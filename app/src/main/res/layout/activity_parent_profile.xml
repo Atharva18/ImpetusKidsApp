@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3209da"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="25dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/childphoto"
+                android:layout_width="136dp"
+                android:layout_height="103dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/head"
+                tools:layout_editor_absoluteX="-34dp" />
+
+            <Button
+                android:id="@+id/upload"
+                android:layout_width="111dp"
+                android:layout_height="57dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:foregroundGravity="center_vertical"
+                android:text="Upload Photo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="159dp" />
+
+        </LinearLayout>
+
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="348dp"
+            android:layout_height="570dp"
+            android:stretchColumns="1"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TableRow
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_column="0"
+                    android:padding="10dip"
+                    android:text="Father's Name"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/fatherName"
+                    android:layout_width="204dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:text="NA"
+                    android:textAlignment="center" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="0"
+                    android:padding="10dip"
+                    android:text="Mother's Name"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/motherName"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:gravity="right"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="0"
+                    android:padding="10dip"
+                    android:text="Occupation"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/occupation"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:gravity="right"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Contact No"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/contactNo"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Email-id"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/emailId"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+
+
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Qualification"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/qualification"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Office No"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/officeNo"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="City"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/city"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Street"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/street"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Landmark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/landmark"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Pincode"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/pincode"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:cursorVisible="false"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="center" />
+            </TableRow>
+
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/update"
+            android:layout_width="90dp"
+            android:layout_height="48dp"
+            android:text="Update"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tableLayout"
+            tools:layout_editor_absoluteX="65dp" />
+
+
+    </LinearLayout>
+</ScrollView>

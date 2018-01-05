@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.parij.myschoolcomm">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="ImpetusKids"
+        android:roundIcon="@drawable/impetusimg"
+        android:supportsRtl="true"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main4Activity"
+            android:exported="true"
+            android:label="        Dashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Main5Activity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeWorkActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TimetableActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReqLeaveActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EmergencyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AuthorizedPersonActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SyllabusCoverage"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AnnouncementActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewUser"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ParentProfile"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".parentmain"
+            android:label="@string/title_activity_parentmain"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".fragment2_parentmain"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fragment3_parentmain"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".admindashboard"
+            android:exported="true"
+            android:label="        Dashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".adminparent"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".adminchild"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ResetPassword"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".adminemergency"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".adminauthorized"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".parentwindow"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".childdetailswindow"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".emergencywindow"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity android:name=".authorizedwindow" />
+        <activity android:name=".daycaredashboard" />
+        <activity android:name=".start_screen3" />
+        <activity android:name=".Start_Screen2" />
+        <activity android:name=".StartScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".monday"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tuesday"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".wednesday"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".thursday"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".friday"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".saturday"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".syllabusadmin"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AdminHomeWork"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".announcementadmin"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".announcementuser"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".temp"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reqleaveadmin"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".resetpassworddaycare"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+
+        <!--
+            <activity
+            android:name=".resetpassword"
+            android:label="@string/title_activity_resetpassword"
+            android:theme="@style/AppTheme" />
+        -->
+        <activity android:name=".Weeklymenu" />
+        <activity android:name=".LiveFeed" />
+        <activity android:name=".Photos" />
+        <activity android:name=".daycarechild" />
+        <activity android:name=".daycaretimetable" />
+        <activity android:name=".daycare_parentmain" />
+        <activity android:name=".parentRegistration" />
+        <activity android:name=".Memories" />
+        <activity android:name=".feedbackActivity" />
+        <activity android:name=".ThemeAdmin" />
+        <activity android:name=".ThemeUser" />
+        <activity android:name=".userfeedback"></activity>
+    </application>
+
+</manifest>

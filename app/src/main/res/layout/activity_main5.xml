@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:fillViewport="true"
+    android:orientation="vertical"
+
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:background="#3209da" />
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:stretchColumns="1"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TableRow>
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/photo"
+                    android:layout_width="117dp"
+                    android:layout_height="121dp"
+
+                    android:src="@drawable/head"
+                    app:civ_border_color="#FF000000"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="0"
+                    android:padding="10dip"
+                    android:text="GR NO:"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/grNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittextborder"
+                    android:gravity="right"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="0"
+                    android:padding="10dip"
+                    android:text="Admission No:"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/admissionNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittextborder"
+                    android:gravity="right"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="0"
+                    android:padding="10dip"
+                    android:text="Admission Date"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/admissionDate"
+                    android:background="@drawable/edittextborder"
+                    android:gravity="right"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Category"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/category"
+                    android:background="@drawable/edittextborder"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Class"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/class1"
+                    android:background="@drawable/edittextborder"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+
+
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Division"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/division"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Gender"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Date of Birth"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/dateOfBirth"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Blood Group"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bloodGroup"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Class Teacher"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/classTeacher"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:padding="10dip"
+                    android:text="Contact Teacher  "
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/contactNo"
+                    android:layout_width="70dp"
+                    android:layout_column="0"
+                    android:background="@drawable/edittextborder"
+                    android:padding="10dip"
+                    android:text="NA"
+                    android:textAlignment="viewStart" />
+
+                <Button
+                    android:id="@+id/phone"
+                    android:layout_width="64dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/phoneimg" />
+            </TableRow>
+
+
+        </TableLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+
+
+
+
+

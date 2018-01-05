@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">MySchoolComm</string>
+    <string name="UserName">pk123</string>
+    <string name="PassWord">e.g. gaurav</string>
+    <string name="Login">LOGIN</string>
+    <string name="NewUser">NEW USER?</string>
+    <string name="SonorDaughtersName">Enter your childsname</string>
+    <string name="phonenumber">EnterYourPhoneNo</string>
+    <string name="usrname">e.g.Santosh123</string>
+    <string name="setpwd">Passsword</string>
+    <string name="title_activity_main3">Main3Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string-array name="Days_array">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+    <string-array name="Month_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string name="title_activity_parentmain">parentmain</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+
+    <string name="info">Impetus Kids is much more than a school. Our philosophy has always been to create ‘A Happy Child’. We strive to make learning a fun experience that goes beyond reading and writing. We want every child to feel secure, confident and successful. Our classrooms are spacious, well equipped and age appropriate. We stimulate their curious minds by unique play-way methods combined with the Montessori Technique as well as Jolly Phonics, developing their language, math and analytical skills.</string>
+
+    <string-array name="Type">
+        <item>Day-Care</item>
+        <item>Seeding</item>
+        <item>Budding</item>
+        <item>Blossoming</item>
+        <item>Fluorishing</item>
+    </string-array>
+
+    <string-array name="Batch">
+        <item>Morning</item>
+        <item>Afternoon</item>
+    </string-array>
+
+
+    <string name="title_activity_give_feedback">GiveFeedback</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_contact_info">ContactInfo</string>
+    <string name="title_activity_resetpassword">resetpassword</string>
+    <string name="title_activity_home">home</string>
+
+
+    <string name="title_activity">Home screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+
+    <string name="slide_title_2">WE ARE ALL ABOUT THE LITTLE PEOPLE</string>
+    <!-- Use &#8226; for bullets.... CDATA here helps to include html tags-->
+    <string name="slide_2_point1">
+    &#8226;Our Philosophy has always been to create "A Happy Child"
+  </string>
+    <string name="slide_2_point2">&#8226;We strive to make learning a fun experience that goes beyond reading and writing</string>
+    <string name="slide_2_point3">&#8226;We stimulate their curious minds by unique play-way methods developing their language, math and analytical skills.</string>
+
+    <string name="slide_title_3">. . COME JOIN US . .</string>
+    <string name="slide_3_point1">Contact Details</string>
+    <string name="slide_3_point2">&#8226;Contact No.: 095523 29911&#8226;</string>
+    <string name="slide_3_point3">&#8226;Visit Us: www.impetuskids.com&#8226;
+    </string>
+
+</resources>

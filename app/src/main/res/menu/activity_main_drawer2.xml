@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/resetpassword"
+        android:title="Reset Password"
+        android:icon="@drawable/redo"
+        />
+
+    <item android:id="@+id/CallUs"
+        android:title="Call Us"
+        android:icon="@drawable/callus"
+        />
+    
+
+    <item android:id="@+id/feedback"
+        android:title="Feedback"
+        android:icon="@drawable/feedback"
+        />
+
+    <item android:id="@+id/rateus"
+        android:title="Rate Us"
+        android:icon="@drawable/rateus"
+        />
+
+    <item android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/logout"
+        />
+
+
+
+
+</menu>
