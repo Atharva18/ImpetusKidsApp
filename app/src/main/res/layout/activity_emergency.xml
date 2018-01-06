@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.parij.myschoolcomm.EmergencyActivity"
+    android:orientation="vertical"
+    android:weightSum="100"
 
-    >
+    tools:context="com.example.parij.myschoolcomm.EmergencyActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="399dp"
-        android:layout_height="65dp"
+        android:layout_width="match_parent"
 
+        android:layout_height="0dp"
+
+        android:layout_weight="10"
         android:background="#3209da"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="250dp"
-        android:layout_height="33dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="8"
+        android:gravity="bottom"
         android:text=" Contact Number"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -33,22 +37,25 @@
 
     <EditText
         android:id="@+id/contactNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="10"
+        android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"
-        android:background="@drawable/edittextborder"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="250dp"
-        android:layout_height="33dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="8"
+        android:gravity="bottom"
         android:text="Alternate Number"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -57,47 +64,54 @@
 
     <EditText
         android:id="@+id/alternativeNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="10"
+        android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"
-        android:background="@drawable/edittextborder"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <TextView
         android:id="@+id/textView23"
-        android:layout_width="196dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_weight="8"
+        android:gravity="bottom"
         android:text="Family Doctor Name"
         android:textSize="18sp"
         android:textStyle="bold"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alternativeNo" />
 
     <EditText
         android:id="@+id/familyDoctor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="10"
+        android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"
-        android:background="@drawable/edittextborder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <TextView
         android:id="@+id/textView24"
-        android:layout_width="261dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="8"
+        android:gravity="bottom"
         android:text="Family Doctor Number"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -106,25 +120,30 @@
 
     <EditText
         android:id="@+id/doctorNo"
-        android:layout_width="213dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="10"
+        android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"
-        android:background="@drawable/edittextborder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="12"
+        android:background="@color/colorPrimary"
         android:text="Submit "
+        android:textColor="@color/White"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/doctorNo" />
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

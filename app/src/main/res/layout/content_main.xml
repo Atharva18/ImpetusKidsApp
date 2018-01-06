@@ -8,7 +8,7 @@
     android:background="@color/Grey"
     android:orientation="vertical"
 
-    android:weightSum="3"
+    android:weightSum="5"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.parij.myschoolcomm.Main4Activity"
     tools:showIn="@layout/app_bar_main">
@@ -16,7 +16,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:orientation="horizontal"
@@ -109,8 +109,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
-        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         android:orientation="horizontal"
         android:weightSum="3">
 
@@ -202,7 +202,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="147dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:orientation="horizontal"

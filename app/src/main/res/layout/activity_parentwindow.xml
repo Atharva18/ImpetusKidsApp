@@ -5,21 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="100"
     tools:context="com.example.parij.myschoolcomm.parentwindow">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#3209da"
-        android:padding="4dp" />
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="#3209da" />
 
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="10"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:hint="Enter name of the Student"
@@ -30,9 +33,11 @@
     <EditText
         android:id="@+id/roll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="10"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:hint="Enter Roll No."
@@ -42,8 +47,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="10"
         android:orientation="horizontal">
 
         <TextView
@@ -70,8 +78,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="10"
         android:orientation="horizontal">
 
         <TextView
@@ -97,9 +108,10 @@
     <Button
         android:id="@+id/ok"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:layout_weight="10"
         android:background="@color/colorPrimaryDark"
         android:foregroundGravity="center_horizontal"
         android:text="OK"

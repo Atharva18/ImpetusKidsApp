@@ -1,101 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
     tools:context="com.example.parij.myschoolcomm.Main2Activity">
 
-    <TextView
-        android:id="@+id/sonDaughtername"
-        android:layout_width="146dp"
-        android:layout_height="45dp"
-        android:text="Enter Your Child's name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:layout_editor_absoluteY="36dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/inputname"
-        android:layout_width="180dp"
-        android:layout_height="48dp"
-        android:layout_marginRight="26dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/SonorDaughtersName"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="36dp" />
+        <TextView
+            android:id="@+id/sonDaughtername"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Child Name: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:layout_editor_absoluteY="36dp" />
 
-    <TextView
-        android:id="@+id/phoneNumber"
-        android:layout_width="146dp"
-        android:layout_height="38dp"
-        android:text="Enter Your Phone Number"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:layout_editor_absoluteY="110dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        <EditText
+            android:id="@+id/inputname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Child name"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="36dp" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/inputphone"
-        android:layout_width="177dp"
-        android:layout_height="38dp"
-        android:ems="10"
-        android:inputType="phone"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="110dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/UserName"
-        android:layout_width="145dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:text="Set your UserName"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="174dp" />
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Phone number: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:layout_editor_absoluteY="110dp" />
 
-    <EditText
-        android:id="@+id/setusrname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="174dp"
-        tools:text="@string/usrname" />
+        <EditText
+            android:id="@+id/inputphone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Phone no"
+            android:inputType="phone"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="178dp"
+            tools:layout_editor_absoluteY="110dp" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/setpwd"
-        android:layout_width="145dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="16dp"
-        android:text="Set Your PassWord"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/setpwd"
-        android:layout_width="172dp"
-        android:layout_height="35dp"
-        android:text="@string/setpwd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="178dp" />
+        <TextView
+            android:id="@+id/UserName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="User name: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:layout_editor_absoluteY="174dp" />
+
+        <EditText
+            android:id="@+id/setusrname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="eg. santosh123"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="178dp"
+            tools:layout_editor_absoluteY="174dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/setpwd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Password: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/setpwd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/setpwd"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="178dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/accept"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="10"
+        android:background="@color/colorPrimary"
         android:text="Accept"
         tools:layout_editor_absoluteX="131dp"
         tools:layout_editor_absoluteY="342dp" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
