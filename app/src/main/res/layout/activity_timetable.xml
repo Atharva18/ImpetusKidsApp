@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TimetableActivity"
-    >
-    <android.support.constraint.ConstraintLayout
+    android:orientation="vertical"
+    tools:context=".TimetableActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.parij.myschoolcomm.Timetable">
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="#3209da"
+        android:padding="4dp" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="387dp"
-            android:layout_height="50dp"
-            android:background="#3209da"
-            android:padding="4dp"/>
-
-
-        <TextView
-            android:id="@+id/themeofday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Coming Soon...."
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:layout_editor_absoluteX="0dp" />
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+    <TextView
+        android:id="@+id/themeofday"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="90"
+        android:gravity="center"
+        android:text="Coming Soon .."
+        android:textSize="20sp"
+        android:textStyle="italic" />
+</LinearLayout>

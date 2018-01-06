@@ -8,6 +8,7 @@
     android:background="@color/Grey"
     android:orientation="vertical"
 
+    android:weightSum="3"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.parij.myschoolcomm.daycaredashboard"
     tools:showIn="@layout/app_bar_main2">
@@ -15,8 +16,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -24,8 +27,7 @@
             android:layout_width="115dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@color/White"
             android:orientation="vertical">
@@ -35,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:background="@color/Green"
+                android:gravity="center_vertical"
                 android:text="Memories"
                 android:textAlignment="center"
                 android:textColor="@color/White"
@@ -43,8 +46,10 @@
             <ImageButton
                 android:id="@+id/memories"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="match_parent"
                 android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/memories" />
         </LinearLayout>
 
@@ -52,9 +57,8 @@
             android:layout_width="115dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
             android:orientation="vertical">
@@ -64,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
                 android:text="Live CCTV"
                 android:textAlignment="center"
                 android:textColor="@color/White"
@@ -72,8 +77,10 @@
             <ImageButton
                 android:id="@+id/dayatimeptus"
                 android:layout_width="match_parent"
-                android:layout_height="84dp"
+                android:layout_height="match_parent"
                 android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/cctv" />
         </LinearLayout>
 
@@ -81,7 +88,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -89,8 +97,7 @@
             android:layout_width="115dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@color/White"
             android:orientation="vertical">
@@ -100,6 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:background="@color/Brown"
+                android:gravity="center_vertical"
                 android:text="Daily Schedule"
                 android:textAlignment="center"
                 android:textColor="@color/White"
@@ -108,8 +116,10 @@
             <ImageButton
                 android:id="@+id/timetable"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="match_parent"
                 android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/timetable" />
         </LinearLayout>
 
@@ -117,9 +127,8 @@
             android:layout_width="115dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
             android:orientation="vertical">
@@ -129,6 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:background="@color/Orange"
+                android:gravity="center_vertical"
                 android:text="Parent Profile"
                 android:textAlignment="center"
                 android:textColor="@color/White"
@@ -137,8 +147,10 @@
             <ImageButton
                 android:id="@+id/parentsprofile"
                 android:layout_width="match_parent"
-                android:layout_height="84dp"
+                android:layout_height="match_parent"
                 android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/parents" />
         </LinearLayout>
 
@@ -147,7 +159,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="147dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -155,9 +170,8 @@
             android:layout_width="115dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
 
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@color/White"
             android:orientation="vertical">
@@ -167,6 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/light_blue"
+                android:gravity="center_vertical"
                 android:text="Child Profile"
                 android:textAlignment="center"
                 android:textColor="@color/White"
@@ -175,8 +190,10 @@
             <ImageButton
                 android:id="@+id/childprofile"
                 android:layout_width="match_parent"
-                android:layout_height="93dp"
+                android:layout_height="match_parent"
                 android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/child" />
         </LinearLayout>
 
@@ -184,8 +201,8 @@
             android:layout_width="115dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@color/White"
             android:orientation="vertical">
@@ -195,6 +212,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:background="@color/Pink"
+                android:gravity="center_vertical"
                 android:text="Food-Menu"
                 android:textAlignment="center"
                 android:textColor="@color/White"
@@ -203,8 +221,10 @@
             <ImageButton
                 android:id="@+id/foodmenu"
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="match_parent"
                 android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/foodmenu" />
         </LinearLayout>
 

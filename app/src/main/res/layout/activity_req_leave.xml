@@ -1,81 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
     tools:context="com.example.parij.myschoolcomm.ReqLeaveActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="427dp"
-        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
         android:background="#3209da"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="15"
+        android:weightSum="2">
 
-    <TextView
-        android:id="@+id/fromlab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:fontFamily="serif"
-        android:text="From:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="32dp" />
+        <TextView
+            android:id="@+id/fromlab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".5"
+            android:fontFamily="serif"
+            android:text="From:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="32dp" />
 
-    <EditText
-        android:id="@+id/fromdate"
-        android:layout_width="215dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/edittextborder"
-        android:ems="10"
-        android:hint="Enter date"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fromlab"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="115dp" />
+        <EditText
+            android:id="@+id/fromdate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:background="@drawable/edittextborder"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Select Date"
+            android:inputType="date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fromlab"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="115dp" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tolab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:fontFamily="serif"
-        android:text="To:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fromlab"
-        tools:layout_editor_absoluteX="32dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="15"
+        android:weightSum="2">
 
-    <EditText
-        android:id="@+id/todate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/edittextborder"
-        android:ems="10"
-        android:hint="Enter date"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toEndOf="@+id/tolab"
-        app:layout_constraintTop_toBottomOf="@+id/fromdate"
-        tools:layout_editor_absoluteX="135dp" />
+        <TextView
+            android:id="@+id/tolab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight=".5"
+            android:fontFamily="serif"
+            android:text="To:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fromlab"
+            tools:layout_editor_absoluteX="32dp" />
+
+        <EditText
+            android:id="@+id/todate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:background="@drawable/edittextborder"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Select Date"
+            android:inputType="date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/tolab"
+            app:layout_constraintTop_toBottomOf="@+id/fromdate"
+            tools:layout_editor_absoluteX="135dp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/reasonlab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="114dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="15"
         android:fontFamily="serif"
+        android:gravity="center_vertical"
         android:text="Reason:"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -86,9 +117,11 @@
 
     <EditText
         android:id="@+id/reason"
-        android:layout_width="214dp"
-        android:layout_height="176dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="30"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textMultiLine"
@@ -98,15 +131,17 @@
 
     <Button
         android:id="@+id/sendbtn"
-        android:layout_width="304dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="61dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_weight="8"
+        android:background="@color/colorPrimary"
         android:text="Send Request"
-        android:textSize="18sp"
+        android:textColor="@color/White"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reason"
         tools:layout_editor_absoluteX="8dp" />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
