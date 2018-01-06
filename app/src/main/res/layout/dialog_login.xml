@@ -16,14 +16,14 @@
             app:titleTextColor="@android:color/background_light"></android.support.v7.widget.Toolbar>
 
         <EditText
+            android:id="@+id/uname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
             android:layout_gravity="center_vertical"
-            android:id="@+id/uname"
             android:layout_margin="20dp"
-            android:hint="Enter Username"
             android:background="@drawable/edittextborder"
+            android:hint="Enter Username"
+            android:padding="20dp"
             />
 
     <EditText
@@ -32,17 +32,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_margin="20dp"
+        android:background="@drawable/edittextborder"
         android:hint="Enter Password"
         android:inputType="textPassword"
-        android:background="@drawable/edittextborder"
         android:padding="20dp" />
         <Button
+            android:id="@+id/LGNBTN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@color/colorPrimary"
+
             android:text="Login"
-            android:id="@+id/LGNBTN"/>
+            android:textColor="@color/White" />
 
 
     </LinearLayout>

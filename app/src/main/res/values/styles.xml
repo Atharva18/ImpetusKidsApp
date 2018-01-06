@@ -7,13 +7,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlNormal">#FFFFFF</item>
-
+        <item name="colorControlNormal">#ece7e7</item>
         <item name="android:colorForeground">@color/foreground_material_light</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="colorControlNormal">#ffffff</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

@@ -19,8 +19,8 @@
 
             <TextView
                 android:id="@+id/contactlab"
-                android:layout_width="wrap_content"
-                android:layout_height="47dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="25dp"
@@ -51,10 +51,10 @@
 
                 <ImageButton
                     android:id="@+id/callbtn"
-                    android:layout_width="55dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="#FFFF"
                     android:src="@drawable/phoneimg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/contactno"

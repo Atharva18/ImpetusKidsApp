@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.parij.myschoolcomm.reqleaveadmin"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context="com.example.parij.myschoolcomm.reqleaveadmin">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="427dp"
-        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
         android:background="#3209da"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
@@ -18,8 +20,9 @@
 
     <ListView
         android:id="@+id/ListofLeaves"
-        android:layout_width="368dp"
-        android:layout_height="551dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
