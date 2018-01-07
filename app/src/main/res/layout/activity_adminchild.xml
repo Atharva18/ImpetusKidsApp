@@ -93,10 +93,12 @@
                     android:id="@+id/grNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:gravity="right"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow android:layout_marginTop="10dp">
@@ -112,10 +114,12 @@
                     android:id="@+id/admissionNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:gravity="right"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow android:layout_marginTop="10dp">
@@ -129,10 +133,12 @@
 
                 <EditText
                     android:id="@+id/admissionDate"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:gravity="right"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -146,9 +152,11 @@
 
                 <EditText
                     android:id="@+id/category"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow android:layout_marginTop="10dp">
@@ -161,9 +169,11 @@
 
                 <EditText
                     android:id="@+id/class1"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
 
 
             </TableRow>
@@ -180,9 +190,11 @@
                 <EditText
                     android:id="@+id/division"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow android:layout_marginTop="10dp">
@@ -196,9 +208,11 @@
                 <EditText
                     android:id="@+id/gender"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -213,9 +227,11 @@
                 <EditText
                     android:id="@+id/dateOfBirth"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -223,32 +239,36 @@
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Blood Group"
+                    android:text="Blood Group: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/bloodGroup"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Class Teacher"
+                    android:text="Class Teacher: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/classTeacher"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -256,7 +276,7 @@
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Contact Teacher  "
+                    android:text="Contact Teacher:   "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -264,9 +284,11 @@
                     android:id="@+id/contactNo"
                     android:layout_width="70dp"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
 
             </TableRow>
 

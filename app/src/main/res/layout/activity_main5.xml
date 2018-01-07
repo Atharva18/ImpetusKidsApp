@@ -52,7 +52,9 @@
 
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_column="0"
@@ -63,16 +65,21 @@
 
                 <TextView
                     android:id="@+id/grNo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
-                    android:gravity="right"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_column="0"
@@ -83,16 +90,21 @@
 
                 <TextView
                     android:id="@+id/admissionNo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
-                    android:gravity="right"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_column="0"
@@ -103,142 +115,197 @@
 
                 <TextView
                     android:id="@+id/admissionDate"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
-                    android:gravity="right"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Category"
+                    android:text="Category: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/category"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Class"
+                    android:text="Class: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/class1"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
 
 
             </TableRow>
 
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Division"
+                    android:text="Division: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/division"
+                    android:layout_width="0dp"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Gender"
+                    android:text="Gender: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/gender"
+                    android:layout_width="0dp"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Date of Birth"
+                    android:text="Date of Birth: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/dateOfBirth"
+                    android:layout_width="0dp"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Blood Group"
+                    android:text="Blood Group: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/bloodGroup"
+                    android:layout_width="0dp"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Class Teacher"
+                    android:text="Class Teacher: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/classTeacher"
+                    android:layout_width="0dp"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="@drawable/edittextborder"
+                    android:gravity="center_vertical"
                     android:padding="10dip"
                     android:text="NA"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
-            <TableRow>
+            <TableRow
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Contact Teacher  "
+                    android:text="Contact Teacher: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

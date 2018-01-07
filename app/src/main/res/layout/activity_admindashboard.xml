@@ -58,6 +58,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/emergency" />
         </LinearLayout>
@@ -90,6 +91,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/authorized" />
         </LinearLayout>
@@ -123,6 +125,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/parents" />
         </LinearLayout>
@@ -169,6 +172,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/child" />
 
@@ -202,6 +206,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/syllabus" />
         </LinearLayout>
@@ -235,6 +240,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/announcement" />
         </LinearLayout>
@@ -277,6 +283,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/homework" />
         </LinearLayout>
@@ -310,6 +317,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/theme1" />
         </LinearLayout>
@@ -343,6 +351,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="2.8"
                 android:background="@null"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/requestleave" />
         </LinearLayout>

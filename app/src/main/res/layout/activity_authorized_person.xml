@@ -5,12 +5,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context="com.example.parij.myschoolcomm.AuthorizedPersonActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:weightSum="100"
+        tools:context="com.example.parij.myschoolcomm.AuthorizedPersonActivity">
 
 
         <android.support.v7.widget.Toolbar
@@ -80,12 +80,17 @@
         android:id="@+id/relation"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_weight="6"
         android:background="@drawable/edittextborder"
         android:ems="8"
+        android:gravity="center_vertical"
         android:inputType="textPersonName"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -106,12 +111,17 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_weight="6"
         android:background="@drawable/edittextborder"
         android:ems="10"
+        android:gravity="center_vertical"
         android:inputType="textPersonName"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -133,12 +143,17 @@
         android:id="@+id/contactno"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_weight="6"
         android:background="@drawable/edittextborder"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:gravity="center_vertical"
+        android:inputType="phone"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -173,13 +188,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:background="@drawable/edittextborder"
                 android:ems="10"
+                android:gravity="center_vertical"
                 android:inputType="textPersonName"
-                android:textSize="14sp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/textView28"
                 app:layout_constraintTop_toBottomOf="@+id/contactno" />
         </LinearLayout>
@@ -208,13 +227,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
 
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="7dp"
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
                 android:background="@drawable/edittextborder"
                 android:ems="10"
+                android:gravity="center_vertical"
                 android:inputType="textPersonName"
-                android:textSize="14sp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="18sp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView29"
                 app:layout_constraintTop_toBottomOf="@+id/contactno" />

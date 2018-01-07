@@ -47,6 +47,7 @@
                 android:background="@color/colorPrimary"
                 android:foregroundGravity="center_vertical"
                 android:text="Upload Photo"
+                android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="159dp" />
@@ -81,7 +82,7 @@
                     android:layout_width="0dp"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:text="Father's Name"
+                    android:text="Father's Name: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -89,12 +90,15 @@
                     android:id="@+id/fatherName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:hint="Enter here"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
             </TableRow>
 
@@ -108,7 +112,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:text="Mother's Name"
+                    android:text="Mother's Name: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -116,12 +120,16 @@
                     android:id="@+id/motherName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
                     android:gravity="right"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -134,7 +142,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:layout_weight="1"
-                    android:text="Occupation"
+                    android:text="Occupation: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -142,12 +150,16 @@
                     android:id="@+id/occupation"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
                     android:gravity="right"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -160,7 +172,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Contact No"
+                    android:text="Contact No: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -168,11 +180,15 @@
                     android:id="@+id/contactNo"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -184,7 +200,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Email-id"
+                    android:text="Email-id: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -192,11 +208,15 @@
                     android:id="@+id/emailId"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
 
 
             </TableRow>
@@ -211,7 +231,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Qualification"
+                    android:text="Qualification: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -220,11 +240,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -236,7 +260,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Office No"
+                    android:text="Office No: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -245,11 +269,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -262,7 +290,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="City"
+                    android:text="City: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -271,11 +299,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -288,7 +320,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Street"
+                    android:text="Street: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -297,11 +329,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -313,7 +349,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Landmark"
+                    android:text="Landmark: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -322,11 +358,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -339,7 +379,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Pincode"
+                    android:text="Pincode: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -348,11 +388,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_column="0"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:cursorVisible="false"
-                    android:text="NA"
-                    android:textAlignment="center" />
+                    android:hint="NA"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
             </TableRow>
 
 
@@ -363,9 +407,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary"
             android:text="Update"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tableLayout"
