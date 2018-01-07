@@ -122,7 +122,6 @@ public class AdminHomeWork extends AppCompatActivity {
 
             }
         };
-
         arrayAdapter=ArrayAdapter.createFromResource(this,R.array.Type,android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);

@@ -123,7 +123,7 @@
                 <TextView
                     android:layout_column="0"
                     android:padding="10dip"
-                    android:text="Admission Date"
+                    android:text="Admission Date: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -155,7 +155,7 @@
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Class"
+                    android:text="Class: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -173,7 +173,7 @@
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Division"
+                    android:text="Division: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -189,7 +189,7 @@
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Gender"
+                    android:text="Gender: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -206,7 +206,7 @@
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Date of Birth"
+                    android:text="Date of Birth: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
