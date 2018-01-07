@@ -116,7 +116,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TableRow android:layout_weight="1">
+            <TableRow
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_height="match_parent"
@@ -130,19 +132,24 @@
 
                 <EditText
                     android:id="@+id/monday"
-                    android:layout_width="286dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:autoLink="all"
+                    android:background="@drawable/edittextborder"
                     android:clickable="true"
                     android:gravity="center_vertical"
                     android:hint="Paste link here"
-                    android:padding="10dip"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:textAlignment="viewStart"
-                    android:textSize="10sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow android:layout_weight="1">
+            <TableRow
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_height="match_parent"
@@ -156,19 +163,24 @@
 
                 <EditText
                     android:id="@+id/tuesday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:autoLink="all"
+                    android:background="@drawable/edittextborder"
                     android:clickable="true"
                     android:gravity="center_vertical"
                     android:hint="Paste link here"
-                    android:padding="10dip"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:textAlignment="viewStart"
-                    android:textSize="10sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow android:layout_weight="1">
+            <TableRow
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_height="match_parent"
@@ -182,20 +194,25 @@
 
                 <EditText
                     android:id="@+id/wednesday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:autoLink="all"
+                    android:background="@drawable/edittextborder"
                     android:clickable="true"
                     android:gravity="center_vertical"
                     android:hint="Paste link here"
-                    android:padding="10dip"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:textAlignment="viewStart"
-                    android:textSize="10sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
 
-            <TableRow android:layout_weight="1">
+            <TableRow
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_height="match_parent"
@@ -209,19 +226,24 @@
 
                 <EditText
                     android:id="@+id/thursday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:autoLink="all"
+                    android:background="@drawable/edittextborder"
                     android:clickable="true"
                     android:gravity="center_vertical"
                     android:hint="Paste link here"
-                    android:padding="10dip"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:textAlignment="viewStart"
-                    android:textSize="10sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow android:layout_weight="1">
+            <TableRow
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_height="match_parent"
@@ -235,19 +257,24 @@
 
                 <EditText
                     android:id="@+id/friday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:autoLink="all"
+                    android:background="@drawable/edittextborder"
                     android:clickable="true"
                     android:gravity="center_vertical"
                     android:hint="Paste link here"
-                    android:padding="10dip"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:textAlignment="viewStart"
-                    android:textSize="10sp" />
+                    android:textSize="18sp" />
             </TableRow>
 
-            <TableRow android:layout_weight="1">
+            <TableRow
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_height="match_parent"
@@ -261,16 +288,19 @@
 
                 <EditText
                     android:id="@+id/saturday"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:autoLink="all"
+                    android:background="@drawable/edittextborder"
                     android:clickable="true"
                     android:gravity="center_vertical"
                     android:hint="Paste link here"
-                    android:padding="10dip"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:textAlignment="viewStart"
-                    android:textSize="10sp" />
+                    android:textSize="18sp" />
             </TableRow>
         </TableLayout>
 
@@ -280,6 +310,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="8"
             android:background="@color/colorPrimary"
             android:text="OK"

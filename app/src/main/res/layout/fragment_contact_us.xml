@@ -51,10 +51,12 @@
 
                 <ImageButton
                     android:id="@+id/callbtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:background="#FFFF"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/phoneimg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/contactno"

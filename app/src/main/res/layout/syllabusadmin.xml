@@ -28,7 +28,7 @@
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:orientation="horizontal">
 
             <TextView
@@ -56,7 +56,7 @@
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:orientation="horizontal">
 
             <TextView
@@ -88,7 +88,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:gravity="center_vertical"
             android:text="To"
             android:textSize="18sp"
@@ -101,7 +101,7 @@
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:orientation="horizontal">
 
             <TextView
@@ -126,6 +126,18 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="12"
+            android:gravity="center_vertical"
+            android:text="Link :"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/link"
             android:layout_width="match_parent"
@@ -133,12 +145,13 @@
             android:layout_marginLeft="7dp"
             android:layout_marginRight="7dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="15"
+            android:layout_weight="12"
             android:autoLink="all"
+            android:background="@drawable/edittextborder"
             android:clickable="true"
             android:ems="10"
-            android:hint="Paste Link Here"
             android:inputType="textPersonName"
+            android:paddingLeft="8dp"
             android:textAlignment="viewStart"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,7 +164,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="10"
+            android:layout_weight="12"
             android:background="@color/colorPrimary"
             android:text="ok"
             android:textColor="@color/White" />

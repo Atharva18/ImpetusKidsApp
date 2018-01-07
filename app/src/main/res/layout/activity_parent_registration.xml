@@ -16,20 +16,43 @@
         android:background="#3209da"
         android:padding="4dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="9"
+        android:gravity="bottom"
+        android:text="Username :"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10"
+        android:layout_weight="9"
+        android:background="@drawable/edittextborder"
         android:ems="10"
-        android:hint="Enter UserName"
         android:inputType="textPersonName"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="9"
+        android:gravity="bottom"
+        android:text="Password :"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/password"
@@ -37,11 +60,12 @@
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10"
+        android:layout_weight="9"
+        android:background="@drawable/edittextborder"
         android:ems="10"
-        android:hint="Enter Password"
         android:inputType="textPersonName"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -51,8 +75,7 @@
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10"
+        android:layout_weight="9"
         android:orientation="horizontal">
 
         <TextView
@@ -77,20 +100,43 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="9"
+        android:gravity="bottom"
+        android:text="Roll No. :"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/rollNo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10"
+        android:layout_weight="9"
+        android:background="@drawable/edittextborder"
         android:ems="10"
-        android:hint="Enter Roll No."
         android:inputType="number"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="9"
+        android:gravity="bottom"
+        android:text="Students's Name :"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/name"
@@ -98,11 +144,12 @@
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10"
+        android:layout_weight="9"
+        android:background="@drawable/edittextborder"
         android:ems="10"
-        android:hint="Enter Name"
         android:inputType="textPersonName"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rollNo" />
@@ -112,12 +159,12 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10"
+        android:layout_weight="9"
         android:background="@color/colorPrimary"
         android:text="Add User"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        android:textColor="@color/White"/>
 
 
 </LinearLayout>

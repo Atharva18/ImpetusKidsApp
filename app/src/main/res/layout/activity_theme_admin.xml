@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,19 +35,14 @@
             android:gravity="center_vertical"
             android:text="Program :"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/enddate" />
+            android:textStyle="bold"/>
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.45"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/enddate"
-            tools:layout_editor_absoluteX="112dp" />
+            android:gravity="center" />
 
     </LinearLayout>
 
@@ -80,10 +74,7 @@
             android:gravity="center_horizontal|center"
             android:text="Select start date"
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:layout_editor_absoluteX="100dp" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -97,10 +88,7 @@
         android:layout_weight="10"
         android:gravity="center"
         android:text="To"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startdate"
-        tools:layout_editor_absoluteX="150dp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -130,10 +118,7 @@
             android:gravity="center_horizontal|center"
             android:text="Select end date "
             android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView40"
-            tools:layout_editor_absoluteX="100dp" />
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <TextView
@@ -155,28 +140,22 @@
         android:layout_weight="30"
         android:background="@drawable/edittextborder"
         android:ems="10"
-        android:gravity="top"
+        android:gravity="top|left"
         android:inputType="textMultiLine"
-        android:textAllCaps="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/ok"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_gravity="center_horizontal|center"
+        android:layout_gravity="center"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
         android:layout_weight="8"
         android:background="@color/colorPrimary"
         android:text="OK"
-        android:textColor="@color/White"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/theme"
-        tools:layout_editor_absoluteX="130dp" />
+        android:textColor="@color/White"/>
 
 
 </LinearLayout>
