@@ -49,12 +49,8 @@
             android:background="@drawable/edittextborder"
             android:ems="10"
             android:gravity="center"
-            android:hint="Select Date"
-            android:inputType="date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fromlab"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="115dp" />
+            android:text="Select Date"
+            android:inputType="date" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,13 +85,8 @@
             android:background="@drawable/edittextborder"
             android:ems="10"
             android:gravity="center"
-            android:hint="Select Date"
-            android:inputType="date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toEndOf="@+id/tolab"
-            app:layout_constraintTop_toBottomOf="@+id/fromdate"
-            tools:layout_editor_absoluteX="135dp" />
+            android:text="Select Date"
+            android:inputType="date" />
     </LinearLayout>
 
     <TextView
@@ -125,9 +116,9 @@
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/todate"
-        tools:layout_editor_absoluteX="82dp" />
+        android:gravity="top|left"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"/>
 
     <Button
         android:id="@+id/sendbtn"
@@ -139,9 +130,6 @@
         android:background="@color/colorPrimary"
         android:text="Send Request"
         android:textColor="@color/White"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reason"
-        tools:layout_editor_absoluteX="8dp" />
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"/>
 </LinearLayout>

@@ -14,7 +14,16 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:background="#3209da" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="Student's Name :"
+        android:gravity="bottom"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
@@ -25,25 +34,32 @@
         android:layout_weight="10"
         android:background="@drawable/edittextborder"
         android:ems="10"
-        android:hint="Enter name of the Student"
         android:inputType="textPersonName"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="Roll No. :"
+        android:gravity="bottom"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
     <EditText
         android:id="@+id/roll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
         android:layout_weight="10"
         android:background="@drawable/edittextborder"
         android:ems="10"
-        android:hint="Enter Roll No."
         android:inputType="textPersonName"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,15 +68,16 @@
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
         android:layout_weight="10"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="132dp"
+            android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="Select Program"
+            android:text="Program :"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -68,8 +85,9 @@
 
         <Spinner
             android:id="@+id/spinner4"
-            android:layout_width="167dp"
+            android:layout_width="0dp"
             android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/roll" />
@@ -83,14 +101,16 @@
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
         android:layout_weight="10"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="Select batch"
+            android:text="Batch :"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +118,9 @@
 
         <Spinner
             android:id="@+id/spinner2"
-            android:layout_width="167dp"
+            android:layout_width="0dp"
             android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner4" />

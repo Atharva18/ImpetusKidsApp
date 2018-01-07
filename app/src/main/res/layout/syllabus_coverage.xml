@@ -26,14 +26,13 @@
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="12.85">
+            android:layout_marginTop="10dp"
+            android:layout_weight="12">
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="0dp"
                 android:layout_weight="1"
 
                 android:gravity="center_vertical"
@@ -47,7 +46,6 @@
                 android:id="@+id/program"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="0dp"
                 android:layout_weight="1"
 
                 android:background="@drawable/edittextborder"
@@ -63,8 +61,8 @@
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="12.85"
+            android:layout_marginTop="10dp"
+            android:layout_weight="12"
             android:orientation="horizontal">
 
             <TextView
@@ -102,8 +100,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:layout_weight="12.85"
+            android:layout_marginTop="10dp"
+            android:layout_weight="12"
             android:gravity="center"
             android:text="To"
             android:textSize="18sp"
@@ -115,8 +113,8 @@
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="12.85">
+            android:layout_marginTop="10dp"
+            android:layout_weight="12">
 
             <TextView
                 android:id="@+id/textView11"
@@ -153,8 +151,8 @@
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="12.85"
+            android:layout_marginTop="10dp"
+            android:layout_weight="12"
             android:gravity="center_vertical"
             android:text="Link :"
             android:textSize="18sp"
@@ -168,14 +166,16 @@
             android:layout_height="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="12.85"
+            android:layout_marginTop="10dp"
+            android:layout_weight="12"
             android:autoLink="all"
             android:background="@drawable/edittextborder"
             android:clickable="true"
             android:ems="10"
             android:gravity="center_vertical|center"
             android:inputType="textPersonName"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -188,8 +188,8 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_weight="12.85"
+            android:layout_marginTop="10dp"
+            android:layout_weight="12"
             android:background="@color/colorPrimary"
             android:text="OK"
             android:textColor="@color/White"
