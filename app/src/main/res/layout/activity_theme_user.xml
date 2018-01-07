@@ -46,6 +46,8 @@
             android:layout_weight="1.45"
             android:background="@drawable/edittextborder"
             android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -77,6 +79,8 @@
             android:layout_weight="1.45"
             android:background="@drawable/edittextborder"
             android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -108,6 +112,8 @@
             android:layout_weight="1.45"
             android:background="@drawable/edittextborder"
             android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:textSize="18sp" />
     </LinearLayout>
 
