@@ -9,6 +9,8 @@
     android:layout_marginRight="8dp"
     android:layout_marginTop="8dp"
     android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     android:weightSum="100"
     tools:context="com.example.parij.myschoolcomm.adminparent$PlaceholderFragment">
 

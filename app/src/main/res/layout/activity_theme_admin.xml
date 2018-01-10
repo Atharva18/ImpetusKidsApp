@@ -131,6 +131,7 @@
         android:text="Theme :"
         android:textSize="18sp"
         android:textStyle="bold" />
+
     <EditText
         android:id="@+id/theme"
         android:layout_width="match_parent"
@@ -142,6 +143,8 @@
         android:ems="10"
         android:gravity="top|left"
         android:inputType="textMultiLine"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:textAllCaps="false" />
 
     <Button
