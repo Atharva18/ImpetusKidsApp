@@ -10,6 +10,8 @@ import android.util.Log;
 
 public class SessionManagement {
     static String username;
+    static long lastLoginTimestamp;
+    static boolean rememberMe;
     static SharedPreferences sharedPreferences;
     static SharedPreferences.Editor editor;
 
@@ -17,6 +19,8 @@ public class SessionManagement {
     {
         sharedPreferences = context.getSharedPreferences("ImpetusKids",Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username","NA");
+        lastLoginTimestamp = sharedPreferences.getLong("lastLoginTimpstamp",0);
+        rememberMe = sharedPreferences.getBoolean("rememberMe",false);
     }
     public static void updateSharedPreferences()
     {
@@ -24,6 +28,8 @@ public class SessionManagement {
         {
             editor = sharedPreferences.edit();
             editor.putString("username", username);
+            editor.putLong("lastLoginTimpstamp",lastLoginTimestamp);
+            editor.putBoolean("rememberMe",rememberMe);
             if(editor.commit())
             {
                 Log.e("SP","Commit successfull with Uname : " + username);
