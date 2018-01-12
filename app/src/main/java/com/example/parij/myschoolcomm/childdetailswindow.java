@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,10 +34,10 @@ public class childdetailswindow extends AppCompatActivity {
     EditText editTextSearch;
     Spinner spinnerFilter;
     ListView listView;
-    ArrayList<Student> arrayList;
-    ArrayList<String> arrayListDisplay;
+    ArrayList<Student> arrayListFull, arrayListFiltered;
+    ArrayList<String> arrayListDisplay, arrayListSpinner;
     DatabaseReference databaseReference;
-    ArrayAdapter arrayAdapter;
+    ArrayAdapter arrayAdapter, arrayAdapterSpinner;
     Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +69,56 @@ public class childdetailswindow extends AppCompatActivity {
 
     void initiate() {
         editTextSearch = (EditText) findViewById(R.id.editTextRoaster);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterListByText(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         spinnerFilter = (Spinner) findViewById(R.id.spinnerRoaster);
         listView = (ListView) findViewById(R.id.listViewRoaster);
-        arrayList = new ArrayList<>();
+        arrayListFull = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("studinfo");
         dialog = new Dialog(childdetailswindow.this, android.R.style.Theme_DeviceDefault_Light_Dialog);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 showDialogAndStartActivity(position);
+            }
+        });
+
+        arrayListSpinner = new ArrayList<>();
+        arrayListSpinner.add("All");
+        arrayListSpinner.add("Blossoming");
+        arrayListSpinner.add("Budding");
+        arrayListSpinner.add("Day-Care");
+        arrayListSpinner.add("Flourishing");
+        arrayListSpinner.add("Speeding");
+        arrayAdapterSpinner = new ArrayAdapter<>(childdetailswindow.this, android.R.layout.simple_spinner_dropdown_item, arrayListSpinner);
+        spinnerFilter.setAdapter(arrayAdapterSpinner);
+
+        spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                filterList(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -98,10 +140,11 @@ public class childdetailswindow extends AppCompatActivity {
                             name = ds2.child("name").getValue(String.class);
                             rollno = Integer.parseInt(ds2.getKey());
                             Student student = new Student(program, batch, rollno, name, username);
-                            arrayList.add(student);
-                            arrayListDisplay.add(student.getRollNo() + ". " + student.getName() + "\n" + student.getProgram());
+                            arrayListFull.add(student);
+                            arrayListDisplay.add(student.getRollNo() + ". " + student.getName() + "\nProgram: " + student.getProgram());
                             Log.d("StudentObj : ", student.toString());
                         }
+                arrayListFiltered = arrayListFull;
                 arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay);
                 listView.setAdapter(arrayAdapter);
             }
@@ -115,6 +158,7 @@ public class childdetailswindow extends AppCompatActivity {
 
     void showDialogAndStartActivity(final int position) {
         dialog.setContentView(R.layout.dialog_choose_detail_type);
+        dialog.setTitle("Choose action: ");
         final RadioButton radioButtonChildProfile, radioButtonParentProfile, radioButtonEmergency, radioButtonAuthorised;
         Button button;
         radioButtonAuthorised = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeAuthorisedPerson);
@@ -126,10 +170,9 @@ public class childdetailswindow extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setTitle("Choose action: ");
                 dialog.dismiss();
                 Bundle bundle = new Bundle();
-                bundle.putString("username", arrayList.get(position).getUsername());
+                bundle.putString("username", arrayListFiltered.get(position).getUsername());
                 if (radioButtonAuthorised.isChecked()) {
                     Intent intent = new Intent(childdetailswindow.this, adminauthorized.class);
                     intent.putExtras(bundle);
@@ -156,7 +199,40 @@ public class childdetailswindow extends AppCompatActivity {
         });
         dialog.show();
     }
+
+    void filterList(int position) {
+        String filter = arrayListSpinner.get(position);
+        if (position == 0)
+            filter = "";
+        arrayListFiltered = new ArrayList<>();
+        arrayListDisplay = new ArrayList<>();
+        for (int i = 0; i < arrayListFull.size(); i++) {
+            if (arrayListFull.get(i).getProgram().contains(filter)) {
+                arrayListFiltered.add(arrayListFull.get(i));
+                arrayListDisplay.add(arrayListFull.get(i).getRollNo() + ". " + arrayListFull.get(i).getName() + "\nProgram: " + arrayListFull.get(i).getProgram());
+            }
+        }
+        arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay);
+        listView.setAdapter(arrayAdapter);
+    }
+
+    void filterListByText(String input) {
+        arrayListFiltered = new ArrayList<>();
+        arrayListDisplay = new ArrayList<>();
+        for (int i = 0; i < arrayListFull.size(); i++) {
+            if (arrayListFull.get(i).getName().contains(input)) {
+                arrayListFiltered.add(arrayListFull.get(i));
+                arrayListDisplay.add(arrayListFull.get(i).getRollNo() + ". " + arrayListFull.get(i).getName() + "\nProgram: " + arrayListFull.get(i).getProgram());
+            }
+        }
+        arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay);
+        listView.setAdapter(arrayAdapter);
+    }
 }
+
+
+
+
 /*
  if (flag == 1) {
                                Toast.makeText(getApplicationContext(), "Entry found!", Toast.LENGTH_LONG).show();
