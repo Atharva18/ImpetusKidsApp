@@ -63,8 +63,6 @@ public class adminemergency extends AppCompatActivity {
                     Toast.makeText(adminemergency.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
                 }
 
-
-
             }
         });
 

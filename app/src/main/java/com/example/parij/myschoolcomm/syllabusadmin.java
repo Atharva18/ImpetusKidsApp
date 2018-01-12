@@ -21,7 +21,9 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class syllabusadmin extends AppCompatActivity {
 
@@ -70,63 +72,61 @@ public class syllabusadmin extends AppCompatActivity {
         ok=(Button)findViewById(R.id.OK);
         link=(EditText) findViewById(R.id.link);
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        final Calendar mycalender=Calendar.getInstance();
+
+        final DatePickerDialog.OnDateSetListener date=new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year= cal.get(Calendar.YEAR);
-                int month= cal.get(Calendar.MONTH);
-                int day= cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog=new DatePickerDialog(syllabusadmin.this,
-                        android.R.style.Theme,onDateSetListener,year,month,day);
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-
-
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                mycalender.set(Calendar.YEAR,i);
+                mycalender.set(Calendar.MONTH,i1);
+                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                UpdateLabel();
             }
-        });
-        final String[] date1 = new String[1];
-        onDateSetListener=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                 date1[0] = dayOfMonth+"/"+month+"/"+year;
-                textView.setText(date1[0]);
+            private void UpdateLabel() {
+                String myFormat = "dd/MM/yy";
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-
+                textView.setText(sdf.format(mycalender.getTime()));
 
             }
         };
+
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(syllabusadmin.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+        final DatePickerDialog.OnDateSetListener date1=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                mycalender.set(Calendar.YEAR,i);
+                mycalender.set(Calendar.MONTH,i1);
+                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                UpdateLabel();
+            }
+
+            private void UpdateLabel() {
+                String myFormat = "dd/MM/yy";
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                textView2.setText(sdf.format(mycalender.getTime()));
+
+            }
+        };
+
 
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year= cal.get(Calendar.YEAR);
-                int month= cal.get(Calendar.MONTH);
-                int day= cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog=new DatePickerDialog(syllabusadmin.this,
-                        android.R.style.Theme,onDateSetListener2,year,month,day);
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-
-
+            public void onClick(View view) {
+                new DatePickerDialog(syllabusadmin.this,date1,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-        final String[] date2 = new String[1];
-        onDateSetListener2=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                 date2[0] = dayOfMonth+"/"+month+"/"+year;
-                textView2.setText(date2[0]);
-
-            }
-        };
 
 
         arrayAdapter=ArrayAdapter.createFromResource(this,R.array.Type,android.R.layout.simple_spinner_item);
@@ -176,6 +176,8 @@ public class syllabusadmin extends AppCompatActivity {
                     syllabus obj = new syllabus(startdate,enddate,drivelink);
 
                     databaseReference.setValue(obj);
+
+                    Toast.makeText(syllabusadmin.this,"Successfully Updated!",Toast.LENGTH_LONG).show();
 
                 }
 

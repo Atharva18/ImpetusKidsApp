@@ -57,6 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <Button
+            android:id="@+id/dialcontact"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.6"

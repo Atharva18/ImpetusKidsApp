@@ -59,12 +59,12 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/upload"
-                        android:layout_width="161dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorPrimary"
-                        android:text="Upload Photo"
-                        android:textColor="@color/White" />
+                    android:id="@+id/upload"
+                    android:layout_width="161dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Upload Photo"
+                    android:textColor="@color/White" />
 
                     <Button
                         android:id="@+id/choosePhoto"

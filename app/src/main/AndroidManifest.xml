@@ -118,10 +118,22 @@
             android:name=".emergencywindow"
             android:exported="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".authorizedwindow" />
-        <activity android:name=".daycaredashboard" />
-        <activity android:name=".start_screen3" />
-        <activity android:name=".Start_Screen2" />
+        <activity android:name=".authorizedwindow"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".daycaredashboard"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".start_screen3"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".Start_Screen2"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".StartScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -189,7 +201,10 @@
             android:label="@string/title_activity_resetpassword"
             android:theme="@style/AppTheme" />
         -->
-        <activity android:name=".Weeklymenu" />
+        <activity android:name=".Weeklymenu"
+
+
+            />
         <activity android:name=".LiveFeed" />
         <activity android:name=".Photos" />
         <activity android:name=".daycarechild" />

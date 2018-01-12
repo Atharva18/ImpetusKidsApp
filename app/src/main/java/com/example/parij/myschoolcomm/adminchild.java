@@ -38,7 +38,9 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -100,13 +102,6 @@ public class adminchild extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
 /*
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,32 +148,50 @@ public class adminchild extends AppCompatActivity {
 */
 
 
-        admissiondate.setOnClickListener(new View.OnClickListener() {
+        final Calendar mycalender=Calendar.getInstance();
+
+        final DatePickerDialog.OnDateSetListener date=new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year= 2017;
-                int month= 0;
-                int day= 1;
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                mycalender.set(Calendar.YEAR,i);
+                mycalender.set(Calendar.MONTH,i1);
+                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                UpdateLabel();
+            }
 
-                month=month+1;
-                DatePickerDialog dialog=new DatePickerDialog(adminchild.this,
-                        android.R.style.Theme,onDateSetListener,year,month,day);
+            private void UpdateLabel() {
+                String myFormat = "MM/dd/yy";
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-
+                admissiondate.setText(sdf.format(mycalender.getTime()));
 
             }
-        });
-        final String[] date1 = new String[1];
-        onDateSetListener=new DatePickerDialog.OnDateSetListener() {
+        };
+
+
+        admissiondate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            public void onClick(View view) {
+                new DatePickerDialog(adminchild.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
-                date1[0] = dayOfMonth+"/"+month+"/"+year;
-                admissiondate.setText(date1[0]);
 
+
+        final DatePickerDialog.OnDateSetListener date1=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                mycalender.set(Calendar.YEAR,i);
+                mycalender.set(Calendar.MONTH,i1);
+                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                UpdateLabel();
+            }
+
+            private void UpdateLabel() {
+                String myFormat = "MM/dd/yy";
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                dateOfBirth.setText(sdf.format(mycalender.getTime()));
 
             }
         };
@@ -186,34 +199,10 @@ public class adminchild extends AppCompatActivity {
 
         dateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year= 2000;
-                int month= 0;
-                int day= 1;
-
-                month=month+1;
-
-                DatePickerDialog dialog=new DatePickerDialog(adminchild.this,
-                        android.R.style.Theme,onDateSetListener2,year,month,day);
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-
-
+            public void onClick(View view) {
+                new DatePickerDialog(adminchild.this,date1,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-        final String[] date2 = new String[1];
-        onDateSetListener2=new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                date2[0] = dayOfMonth+"/"+month+"/"+year;
-                dateOfBirth.setText(date1[0]);
-
-
-            }
-        };
 
 
 

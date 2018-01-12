@@ -70,7 +70,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
             }
 
             private void UpdateLabel() {
-                String myFormat = "MM/dd/yy";
+                String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 from.setText(sdf.format(mycalender.getTime()));
@@ -96,7 +96,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
             }
 
             private void UpdateLabel() {
-                String myFormat = "MM/dd/yy";
+                String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 to.setText(sdf.format(mycalender.getTime()));
