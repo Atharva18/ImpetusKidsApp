@@ -16,17 +16,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class ParentProfile extends AppCompatActivity {
 
+    final int ImgReq = 1;
     EditText fatherName,motherName,ocupation,contactNo,emailId,qualification,officeNo,city,street,landmark,pincode;
     FirebaseDatabase database;
     Button update;
     Bundle bundle;
     Button upload;
-    final int ImgReq=1;
     ImageView childphoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,7 +182,7 @@ public class ParentProfile extends AppCompatActivity {
         landmark=(EditText)findViewById(R.id.landmark);
         pincode=(EditText)findViewById(R.id.pincode);
         childphoto=(ImageView)findViewById(R.id.childphoto);
-        upload=(Button)findViewById(R.id.upload);
+        upload = (Button) findViewById(R.id.choosePhoto);
 
 
     }

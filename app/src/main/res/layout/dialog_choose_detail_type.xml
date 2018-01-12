@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="3dp"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:checkedButton="@+id/radioButtonDetailTypeChildProfile">
+
+        <RadioButton
+            android:id="@+id/radioButtonDetailTypeChildProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Child profile" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDetailTypeParentProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Parent profile" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDetailTypeAuthorisedPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Authorised person" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDetailTypeEmergency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Emergency" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonDetailTypeOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:text="Ok" />
+</LinearLayout>

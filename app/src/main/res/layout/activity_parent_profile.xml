@@ -39,7 +39,7 @@
                 tools:layout_editor_absoluteX="-34dp" />
 
             <Button
-                android:id="@+id/upload"
+                android:id="@+id/choosePhoto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
