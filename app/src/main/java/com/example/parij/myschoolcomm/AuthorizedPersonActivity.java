@@ -4,15 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.net.Uri;
-import android.provider.ContactsContract;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -95,8 +91,11 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 mycalender.set(Calendar.YEAR,i);
+                int year = mycalender.get(Calendar.YEAR);
                 mycalender.set(Calendar.MONTH,i1);
+                int month = mycalender.get(Calendar.MONTH);
                 mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                int day = mycalender.get(Calendar.DAY_OF_MONTH);
                 UpdateLabel();
             }
 
