@@ -4,13 +4,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,6 +50,12 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
+                        SessionManagement.retrieveSharedPreferences(daycaredashboard.this);
+                        SessionManagement.rememberMe=false;
+                        SessionManagement.username="NA";
+                        SessionManagement.lastLoginTimestamp=0;
+                        SessionManagement.updateSharedPreferences();
                         daycaredashboard.this.finish();
                     }
                 })
@@ -420,6 +426,12 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                         public void onClick(DialogInterface dialog,int id) {
                             // if this button is clicked, close
                             // current activity
+
+                            SessionManagement.retrieveSharedPreferences(daycaredashboard.this);
+                            SessionManagement.rememberMe=false;
+                            SessionManagement.username="NA";
+                            SessionManagement.lastLoginTimestamp=0;
+                            SessionManagement.updateSharedPreferences();
                             daycaredashboard.this.finish();
                         }
                     })

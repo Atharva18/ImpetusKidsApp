@@ -1,39 +1,23 @@
 package com.example.parij.myschoolcomm;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class MainActivity extends AppCompatActivity {
     String user,pass;
@@ -53,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
        // toolbar.setNavigationIcon(R.drawable.main1);
         //toolbar.setTitleTextColor(0xFFFFFFFF);
         main_initiate();
-
+        checkSavedLogin();
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
                 final EditText UserName=(EditText)mView.findViewById(R.id.uname);
                 final EditText PassWord=(EditText)mView.findViewById(R.id.pwd);
+                final CheckBox rememberMe = (CheckBox)mView.findViewById(R.id.checkboxRememberMe);
                 final Button lgn;
 
 
@@ -74,7 +59,12 @@ public class MainActivity extends AppCompatActivity {
                         final String username = UserName.getText().toString().trim();
                         final String passwordtxt = PassWord.getText().toString().trim();
 
+                        if(rememberMe.isChecked()){
+                            SessionManagement.rememberMe = true;
+                        }
+
                         final ProgressDialog pd = new ProgressDialog(MainActivity.this);
+
                         pd.setMessage("Loading...");
                         pd.show();
 
@@ -106,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
                                             Bundle bundle=new Bundle();
                                             bundle.putString("Username",username);
                                             intent.putExtras(bundle);
+                                            SessionManagement.username=username;
+                                            SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
+                                            SessionManagement.updateSharedPreferences();
                                             pd.dismiss();
                                             dialog.dismiss();
                                             startActivity(intent);
@@ -169,7 +162,8 @@ public class MainActivity extends AppCompatActivity {
                                           //  pd.dismiss();
                                             pd.dismiss();
                                             dialog.dismiss();
-                                            SessionManagement.username = username;
+                                            SessionManagement.username=username;
+                                            SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
                                             SessionManagement.updateSharedPreferences();
                                             startActivity(intent);
                                             finish();
@@ -225,6 +219,9 @@ public class MainActivity extends AppCompatActivity {
                                             Bundle bundle=new Bundle();
                                             bundle.putString("Username",username);
                                             intent.putExtras(bundle);
+                                            SessionManagement.username=username;
+                                            SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
+                                            SessionManagement.updateSharedPreferences();
                                             pd.dismiss();
                                             dialog.dismiss();
                                             startActivity(intent);
@@ -285,7 +282,8 @@ public class MainActivity extends AppCompatActivity {
                                            // pd.dismiss();
                                             pd.dismiss();
                                             dialog.dismiss();
-                                            SessionManagement.username = username;
+                                            SessionManagement.username=username;
+                                            SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
                                             SessionManagement.updateSharedPreferences();
                                             startActivity(intent);
                                             finish();
@@ -344,7 +342,8 @@ public class MainActivity extends AppCompatActivity {
                                             Intent intent=new Intent(MainActivity.this,Main4Activity.class);
                                             pd.dismiss();
                                             dialog.dismiss();
-                                            SessionManagement.username = username;
+                                            SessionManagement.username=username;
+                                            SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
                                             SessionManagement.updateSharedPreferences();
                                             startActivity(intent);
                                             finish();
@@ -418,7 +417,8 @@ public class MainActivity extends AppCompatActivity {
                                         //    intent.putExtras(bundle);
                                             pd.dismiss();
                                             dialog.dismiss();
-                                            SessionManagement.username = username;
+                                            SessionManagement.username=username;
+                                            SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
                                             SessionManagement.updateSharedPreferences();
                                             startActivity(intent);
                                             finish();
@@ -476,12 +476,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    public void checkSavedLogin(){
+        long currentTimeMillis=System.currentTimeMillis();
+        Log.d("check login",SessionManagement.username+" : "+SessionManagement.rememberMe+" : "+(currentTimeMillis - SessionManagement.lastLoginTimestamp));
+        if((!SessionManagement.username.equals("NA") &&
+                (SessionManagement.lastLoginTimestamp > 0 &&
+                    currentTimeMillis - SessionManagement.lastLoginTimestamp  < 1209600000 )) &&
+                SessionManagement.rememberMe){
+                    if(SessionManagement.username.contains("Admin")){
+                        Intent intent = new Intent(MainActivity.this,admindashboard.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        Intent intent = new Intent(MainActivity.this,Main4Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+        }
+    }
     public void main_initiate(){
        // UserName=(EditText)findViewById(R.id.editText2);
         //PassWord=(EditText) findViewById(R.id.editText3);
         Login=(Button)findViewById(R.id.Login);
-
         //Register=(Button)findViewById(R.id.NewUser);
     }
 }
