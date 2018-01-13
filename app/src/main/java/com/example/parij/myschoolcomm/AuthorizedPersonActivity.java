@@ -276,16 +276,22 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                        name.setError("Invalid!");
                    }
                }
-               if(TextUtils.isEmpty(datestart))
+                int check = 0;
+
+                if (TextUtils.isEmpty(datestart) || datestart.contains("date"))
                {
+
+                   check = 1;
+                   if (flag == 0)
+                       Toast.makeText(AuthorizedPersonActivity.this, "Please enter the start date", Toast.LENGTH_SHORT).show();
                    flag++;
-                   date1.setError("Please enter the starting date");
                }
 
-                if(TextUtils.isEmpty(dateend))
+                if (TextUtils.isEmpty(dateend) || dateend.contains("date"))
                 {
                     flag++;
-                    date2.setError("Please enter the ending date");
+                    if (check == 0)
+                        Toast.makeText(AuthorizedPersonActivity.this, "Please enter the end date", Toast.LENGTH_SHORT).show();
                 }
 
                 if (start > end) {
