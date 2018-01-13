@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginRight="3dp"
-        android:layout_weight="25"
+        android:layout_weight="18"
         android:orientation="horizontal"
         android:weightSum="3">
 
@@ -92,7 +92,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="7dp"
-        android:layout_weight="5.5"
+        android:layout_weight="8"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"
@@ -123,7 +123,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="7dp"
-        android:layout_weight="5.5"
+        android:layout_weight="8"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"
@@ -154,7 +154,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="7dp"
-        android:layout_weight="5.5"
+        android:layout_weight="8"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"
@@ -185,7 +185,7 @@
         android:layout_marginRight="3dp"
 
         android:layout_marginTop="7dp"
-        android:layout_weight="5.5"
+        android:layout_weight="8"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"
@@ -216,7 +216,7 @@
         android:layout_marginRight="3dp"
 
         android:layout_marginTop="7dp"
-        android:layout_weight="5.5"
+        android:layout_weight="8"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:inputType="textPersonName"

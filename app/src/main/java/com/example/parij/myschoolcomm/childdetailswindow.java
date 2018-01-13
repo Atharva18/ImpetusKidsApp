@@ -109,7 +109,7 @@ public class childdetailswindow extends AppCompatActivity {
         arrayListSpinner.add("Budding");
         arrayListSpinner.add("Day-Care");
         arrayListSpinner.add("Flourishing");
-        arrayListSpinner.add("Speeding");
+        arrayListSpinner.add("Seeding");
         arrayAdapterSpinner = new ArrayAdapter<>(childdetailswindow.this, android.R.layout.simple_spinner_dropdown_item, arrayListSpinner);
         spinnerFilter.setAdapter(arrayAdapterSpinner);
 
@@ -229,7 +229,21 @@ public class childdetailswindow extends AppCompatActivity {
                 arrayListDisplay.add(arrayListFull.get(i).getRollNo() + ". " + arrayListFull.get(i).getName() + "\nProgram: " + arrayListFull.get(i).getProgram());
             }
         }
-        arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay);
+        arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                /// Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                // Set the text size 25 dip for ListView each item
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+
+                // Return the view
+                return view;
+            }
+        };
         listView.setAdapter(arrayAdapter);
     }
 
