@@ -24,6 +24,7 @@ public class Start_Screen2 extends AppCompatActivity {
 
                 Intent intent=new Intent(Start_Screen2.this,start_screen3.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -35,7 +36,7 @@ public class Start_Screen2 extends AppCompatActivity {
 
                 Intent intent=new Intent(Start_Screen2.this,MainActivity.class);
                 startActivity(intent);
-
+                finish();
 
             }
         });

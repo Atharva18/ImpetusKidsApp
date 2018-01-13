@@ -23,6 +23,7 @@ Button gotit;
 
                 Intent intent=new Intent(start_screen3.this,MainActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -33,6 +34,7 @@ Button gotit;
 
                 Intent intent1=new Intent(start_screen3.this,MainActivity.class);
                 startActivity(intent1);
+                finish();
             }
         });
 

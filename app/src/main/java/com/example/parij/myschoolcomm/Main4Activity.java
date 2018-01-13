@@ -27,6 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerStandard;
+
 public class Main4Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
    // Button Logout;
     ImageButton SProfile;
@@ -39,18 +42,22 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
     ImageButton hWClassreport;
     ImageButton Emergency;
     ImageView nav_head;
-    private DrawerLayout drawer;
     FirebaseDatabase database;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
     TextView name;
     TextView rollNo;
     TextView program;
     ImageView photo;
     String username;
-
     TextView hometxt,spokentxt,reqtxt,emertxt,authtxt,parenttxt,childtxt,syllabustxt,announcetxt;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+
     @Override
     public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            JZVideoPlayer.releaseAllVideos();
+            return;
+        }
         new AlertDialog.Builder(this)
                 .setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
@@ -752,16 +759,29 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
             android.support.v7.app.AlertDialog dialog=build.create();
             dialog.show();
 
+        } else if (id == R.id.cctv) {
+            final String url = "http://cdn.streamonweb.com:1935/ipcamlive/impetus_cam1/playlist.m3u8";
+            JZVideoPlayerStandard.startFullscreen(Main4Activity.this, JZVideoPlayerStandard.class, url, "CCTV");
+
         } else if (id == R.id.notifications) {
             Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.feedback) {
-            Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(Main4Activity.this, userfeedback.class);
+            startActivity(intent);
 
 
         } else if (id == R.id.rateus) {
-            Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
         } else if (id == R.id.logout) {
            // Toast.makeText(getApplicationContext(), "Logout Clicked clicked", Toast.LENGTH_SHORT).show();
 
@@ -778,6 +798,11 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
                         public void onClick(DialogInterface dialog,int id) {
                             // if this button is clicked, close
                             // current activity
+                            SessionManagement.retrieveSharedPreferences(Main4Activity.this);
+                            SessionManagement.rememberMe = false;
+                            SessionManagement.username = "NA";
+                            SessionManagement.lastLoginTimestamp = 0;
+                            SessionManagement.updateSharedPreferences();
                             Main4Activity.this.finish();
                         }
                     })

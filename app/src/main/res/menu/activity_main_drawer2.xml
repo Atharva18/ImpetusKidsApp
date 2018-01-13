@@ -2,29 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/resetpassword"
-        android:title="Reset Password"
         android:icon="@drawable/redo"
+        android:title="Reset Password"
         />
 
     <item android:id="@+id/CallUs"
-        android:title="Call Us"
         android:icon="@drawable/callus"
+        android:title="Call Us"
         />
-    
 
+    <item
+        android:id="@+id/cctv"
+        android:icon="@drawable/cctv"
+        android:title="My Day at Impetus" />
     <item android:id="@+id/feedback"
-        android:title="Feedback"
         android:icon="@drawable/feedback"
+        android:title="Feedback"
         />
 
     <item android:id="@+id/rateus"
-        android:title="Rate Us"
         android:icon="@drawable/rateus"
+        android:title="Rate Us"
         />
 
     <item android:id="@+id/logout"
-        android:title="Logout"
         android:icon="@drawable/logout"
+        android:title="Logout"
         />
 
 

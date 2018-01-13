@@ -450,6 +450,10 @@ public class MainActivity extends AppCompatActivity {
                             }
 
 
+                        } else {
+                            pd.dismiss();
+                            Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
+
                         }
 
 
@@ -487,8 +491,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this,admindashboard.class);
                         startActivity(intent);
                         finish();
-                    }
-                    else {
+                    } else if (SessionManagement.username.contains("Dayc")) {
+                        Intent intent = new Intent(MainActivity.this, daycaredashboard.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
                         Intent intent = new Intent(MainActivity.this,Main4Activity.class);
                         startActivity(intent);
                         finish();

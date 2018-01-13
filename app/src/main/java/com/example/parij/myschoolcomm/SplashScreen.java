@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 
 public class SplashScreen extends AppCompatActivity {
-    private ProgressBar mProgressBar;
     private static int SPLASH_OUT_TIME=3000;
+    private ProgressBar mProgressBar;
     private int mProgressStatus = 0;
 
 
@@ -38,6 +38,7 @@ public class SplashScreen extends AppCompatActivity {
                     public void run() {
                        Intent i=new Intent(SplashScreen.this,Start_Screen2.class);
                        startActivity(i);
+                        finish();
                     }
                 });
             }

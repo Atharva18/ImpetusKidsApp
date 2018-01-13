@@ -463,7 +463,6 @@ public class adminchild extends AppCompatActivity {
         }
     }
 
-
     public void initialise() {
         //update=(Button)findViewById(R.id.update);
          childphoto = (ImageView) findViewById(R.id.childphoto);
