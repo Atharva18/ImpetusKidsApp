@@ -450,6 +450,10 @@ public class MainActivity extends AppCompatActivity {
                             }
 
 
+                        } else {
+                            pd.dismiss();
+                            Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
+
                         }
 
 

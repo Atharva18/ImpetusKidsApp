@@ -27,6 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerStandard;
+
 public class Main4Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
    // Button Logout;
     ImageButton SProfile;
@@ -51,6 +54,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
 
     @Override
     public void onBackPressed() {
+        JZVideoPlayer.releaseAllVideos();
         new AlertDialog.Builder(this)
                 .setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
@@ -751,6 +755,10 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
             build.setView(mView);
             android.support.v7.app.AlertDialog dialog=build.create();
             dialog.show();
+
+        } else if (id == R.id.cctv) {
+            final String url = "http://cdn.streamonweb.com:1935/ipcamlive/impetus_cam1/playlist.m3u8";
+            JZVideoPlayerStandard.startFullscreen(Main4Activity.this, JZVideoPlayerStandard.class, url, "CCTV");
 
         } else if (id == R.id.notifications) {
             Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();

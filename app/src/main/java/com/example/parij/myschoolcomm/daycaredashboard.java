@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 
 public class daycaredashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +48,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
     @Override
     public void onBackPressed() {
+        JZVideoPlayer.releaseAllVideos();
         new AlertDialog.Builder(this)
                 .setMessage("Are you sure you want to exit?")
                 .setCancelable(false)

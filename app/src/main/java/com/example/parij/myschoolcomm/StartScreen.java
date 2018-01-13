@@ -27,6 +27,7 @@ public class StartScreen extends AppCompatActivity {
 
                 Intent intent=new Intent(StartScreen.this,Start_Screen2.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -38,7 +39,7 @@ public class StartScreen extends AppCompatActivity {
 
                 Intent intent=new Intent(StartScreen.this,MainActivity.class);
                 startActivity(intent);
-
+                finish();
             }
         });
 
