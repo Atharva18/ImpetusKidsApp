@@ -48,7 +48,10 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
     @Override
     public void onBackPressed() {
-        JZVideoPlayer.releaseAllVideos();
+        if (JZVideoPlayer.backPress()) {
+            JZVideoPlayer.releaseAllVideos();
+            return;
+        }
         new AlertDialog.Builder(this)
                 .setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
