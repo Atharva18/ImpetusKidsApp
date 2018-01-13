@@ -106,7 +106,7 @@ public class reqleaveadmin extends AppCompatActivity {
         messageList= new ArrayList<>();
 
         spinnerArrayList = new ArrayList<>();
-        spinnerArrayList.add("All");
+        spinnerArrayList.add("None");
         spinnerArrayList.add("5 Days");
         spinnerArrayList.add("10 Days");
         spinnerArrayList.add("15 Days");
