@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -158,13 +157,19 @@ public class ThemeAdmin extends AppCompatActivity {
                 long start = mycalender.getTimeInMillis();
                 long end = mycalender2.getTimeInMillis();
                 int flag=0;
-                if(TextUtils.isEmpty(startdate)||TextUtils.isEmpty(enddate)||TextUtils.isEmpty(program)||
-                        TextUtils.isEmpty(themetxt)) {
-                    flag=1;
-                    Toast.makeText(getApplicationContext(),"Please fill all the fields",Toast.LENGTH_SHORT).show();
+
+                if (startdate.contains("date")) {
+                    Toast.makeText(ThemeAdmin.this, "Please select start date!", Toast.LENGTH_LONG).show();
+
+                } else if (enddate.contains("date")) {
+                    Toast.makeText(ThemeAdmin.this, "Please select end date!", Toast.LENGTH_LONG).show();
                 } else if (start > end) {
 
                     Toast.makeText(getApplicationContext(), "Please enter valid dates!", Toast.LENGTH_SHORT).show();
+
+                } else if (themetxt.length() <= 0) {
+
+                    Toast.makeText(ThemeAdmin.this, "Please set the theme!", Toast.LENGTH_LONG).show();
 
                 } else {
                     database= FirebaseDatabase.getInstance();
