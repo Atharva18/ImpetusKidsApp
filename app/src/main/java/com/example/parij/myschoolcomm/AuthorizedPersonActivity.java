@@ -91,11 +91,11 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 mycalender.set(Calendar.YEAR,i);
-                int year = mycalender.get(Calendar.YEAR);
+                // int year = mycalender.get(Calendar.YEAR);
                 mycalender.set(Calendar.MONTH,i1);
-                int month = mycalender.get(Calendar.MONTH);
+                // int month = mycalender.get(Calendar.MONTH);
                 mycalender.set(Calendar.DAY_OF_MONTH,i2);
-                int day = mycalender.get(Calendar.DAY_OF_MONTH);
+                //  int day = mycalender.get(Calendar.DAY_OF_MONTH);
                 UpdateLabel();
             }
 
@@ -108,28 +108,33 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
             }
         };
 
-
         date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 new DatePickerDialog(AuthorizedPersonActivity.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
+        final Calendar mycalender2 = Calendar.getInstance();
+
+
         final DatePickerDialog.OnDateSetListener date11=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                mycalender.set(Calendar.YEAR,i);
-                mycalender.set(Calendar.MONTH,i1);
-                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                // datePicker.setMinDate(Long.parseLong(date1.getText().toString()));
+                mycalender2.set(Calendar.YEAR, i);
+                mycalender2.set(Calendar.MONTH, i1);
+                mycalender2.set(Calendar.DAY_OF_MONTH, i2);
                 UpdateLabel();
+
             }
+
 
             private void UpdateLabel() {
                 String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-                date2.setText(sdf.format(mycalender.getTime()));
+                date2.setText(sdf.format(mycalender2.getTime()));
 
             }
         };
@@ -138,7 +143,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
         date2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(AuthorizedPersonActivity.this,date11,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(AuthorizedPersonActivity.this, date11, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -209,10 +214,14 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                 String mname= name.getText().toString().trim();
                 String mcontactNo=contactNo.getText().toString().trim();
                 String mrelation= relation.getText().toString().trim();
-               String datestart = date1.getText().toString().trim();
+                String datestart = date1.getText().toString().trim();
+                long start = mycalender.getTimeInMillis();
+                long end = mycalender2.getTimeInMillis();
                 String dateend= date2.getText().toString().trim();
 
                 int flag=0;
+
+                //Log.println(Log.ERROR,"msg", String.valueOf(start)+" "+String.valueOf(end));
 
                if(TextUtils.isEmpty(mname))
                {
@@ -266,9 +275,6 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                        flag++;
                        name.setError("Invalid!");
                    }
-
-
-
                }
                if(TextUtils.isEmpty(datestart))
                {
@@ -282,6 +288,12 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                     date2.setError("Please enter the ending date");
                 }
 
+                if (start > end) {
+
+                    flag++;
+                    Toast.makeText(AuthorizedPersonActivity.this, "Please enter valid dates!", Toast.LENGTH_LONG).show();
+
+                }
                 if(flag==0)
                 {
 
