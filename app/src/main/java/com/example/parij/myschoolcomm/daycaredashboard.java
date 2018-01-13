@@ -420,6 +420,10 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             android.support.v7.app.AlertDialog dialog=build.create();
             dialog.show();
 
+        } else if (id == R.id.cctv) {
+            final String url = "http://cdn.streamonweb.com:1935/ipcamlive/impetus_cam1/playlist.m3u8";
+
+            JZVideoPlayerStandard.startFullscreen(daycaredashboard.this, JZVideoPlayerStandard.class, url, "CCTV");
         } else if (id == R.id.feedback) {
             //Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
