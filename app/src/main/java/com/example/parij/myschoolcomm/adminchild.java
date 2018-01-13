@@ -4,14 +4,12 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,32 +18,25 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.android.volley.toolbox.ImageRequest;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 public class adminchild extends AppCompatActivity {
 
@@ -63,8 +54,9 @@ public class adminchild extends AppCompatActivity {
     ProgressDialog pd;
     Button save;
     int PICK_IMAGE_REQUEST=111;
-    EditText grNo, admissionNo, category, admissiondate, class1, division, gender, dateOfBirth, bloodGroup, classTeacher, contactNo;
+    EditText grNo, admissionNo, category, class1, division, gender, bloodGroup, classTeacher, contactNo;
     FirebaseDatabase database;
+    TextView admissiondate, dateOfBirth;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://myschoolcomm-a80d4.appspot.com/Child_Profile");
@@ -476,12 +468,12 @@ public class adminchild extends AppCompatActivity {
         //update=(Button)findViewById(R.id.update);
          childphoto = (ImageView) findViewById(R.id.childphoto);
        // upload = (Button) findViewById(R.id.upload);
-        admissiondate = (EditText) findViewById(R.id.admissionDate);
+        admissiondate = (TextView) findViewById(R.id.admissionDate);
         category = (EditText) findViewById(R.id.category);
         class1 = (EditText) findViewById(R.id.class1);
         division = (EditText) findViewById(R.id.division);
         gender = (EditText) findViewById(R.id.gender);
-        dateOfBirth = (EditText) findViewById(R.id.dateOfBirth);
+        dateOfBirth = (TextView) findViewById(R.id.dateOfBirth);
         bloodGroup = (EditText) findViewById(R.id.bloodGroup);
         classTeacher = (EditText) findViewById(R.id.classTeacher);
         contactNo = (EditText) findViewById(R.id.contactNo);

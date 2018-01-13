@@ -3,7 +3,6 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -88,6 +87,7 @@
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:gravity="right"
+                    android:inputType="number"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
@@ -109,6 +109,7 @@
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
                     android:gravity="right"
+                    android:inputType="number"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
@@ -123,7 +124,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:id="@+id/admissionDate"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
@@ -216,7 +217,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:id="@+id/dateOfBirth"
                     android:layout_column="0"
                     android:layout_gravity="center_vertical"
@@ -278,13 +279,13 @@
                     android:layout_column="0"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
+                    android:inputType="number"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
 
             </TableRow>
-
-
+            
         </TableLayout>
 
         <Button
