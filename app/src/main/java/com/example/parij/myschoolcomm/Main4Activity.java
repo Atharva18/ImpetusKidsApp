@@ -756,12 +756,21 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
             Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.feedback) {
-            Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(Main4Activity.this, userfeedback.class);
+            startActivity(intent);
 
 
         } else if (id == R.id.rateus) {
-            Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
         } else if (id == R.id.logout) {
            // Toast.makeText(getApplicationContext(), "Logout Clicked clicked", Toast.LENGTH_SHORT).show();
 

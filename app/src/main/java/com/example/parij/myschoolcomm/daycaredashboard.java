@@ -1,7 +1,6 @@
 package com.example.parij.myschoolcomm;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -28,7 +27,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 
 public class daycaredashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,7 +36,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
     ImageButton livefeed;
     ImageButton Photos;
     ImageButton timetable;
-  //  Button Logout;
+    //  Button Logout;
     DrawerLayout drawer;
     TextView name;
     TextView rollNo;
@@ -48,15 +46,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
     TextView memoriestxt,cctvtxt,scheduletxt,parenttxt,childtxt,menutxt;
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        JZVideoPlayer.releaseAllVideos();
-    }
-    @Override
     public void onBackPressed() {
-        if (JZVideoPlayer.backPress()) {
-            return;
-        }
         new AlertDialog.Builder(this)
                 .setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
@@ -134,77 +124,73 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
         FirebaseDatabase database;
 
-            program.setText("Program : Day-Care");
-            final int[] flag = {0};
-            database=FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference= database.getReference("studinfo").child("Day-Care").child("Morning");
+        program.setText("Program : Day-Care");
+        final int[] flag = {0};
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("studinfo").child("Day-Care").child("Morning");
 
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
 
-                        String name1 = (String) data.child("name").getValue();
-                        String username1=(String)data.child("username").getValue();
+                    String name1 = (String) data.child("name").getValue();
+                    String username1 = (String) data.child("username").getValue();
 
-                        if(username2.equals(username1))
-                        {
-                            flag[0] =1;
-                            name.setText("Name : "+name1);
-                            rollNo.setText("Batch :  Morning");
+                    if (username2.equals(username1)) {
+                        flag[0] = 1;
+                        name.setText("Name : " + name1);
+                        rollNo.setText("Batch :  Morning");
 
-                        }
                     }
                 }
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+            }
+        });
 
-            databaseReference = database.getReference("Images").child("Child_Profile");
-            final String user=username2;
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+        databaseReference = database.getReference("Images").child("Child_Profile");
+        final String user = username2;
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
-                        if(user.equals(data.getKey()))
-                        {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    if (user.equals(data.getKey())) {
 
-                            String url = data.getValue().toString();
-                            if(url!=null) {
-                                Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
-                            }
-
+                        String url = data.getValue().toString();
+                        if (url != null) {
+                            Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
                         }
+
                     }
                 }
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
-
-
-            childtxt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Intent l=new Intent(daycaredashboard.this,Main5Activity.class);
-                    l.putExtras(bundle);
-                    startActivity(l);
+            }
+        });
 
 
-                }
-            });
+        childtxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            childprof.setOnClickListener(new View.OnClickListener() {
+                Intent l = new Intent(daycaredashboard.this, Main5Activity.class);
+                l.putExtras(bundle);
+                startActivity(l);
+
+
+            }
+        });
+
+        childprof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent l=new Intent(daycaredashboard.this,Main5Activity.class);
@@ -213,17 +199,17 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
             }
         });
-            parenttxt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        parenttxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                    Intent l=new Intent(daycaredashboard.this,daycare_parentmain.class);
-                    l.putExtras(bundle);
-                    startActivity(l);
+                Intent l = new Intent(daycaredashboard.this, daycare_parentmain.class);
+                l.putExtras(bundle);
+                startActivity(l);
 
 
-                }
-            });
+            }
+        });
 
         parentprof.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,7 +240,6 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                 startActivity(new Intent(daycaredashboard.this,Weeklymenu.class));
             }
         });
-
         final String url="http://cdn.streamonweb.com:1935/ipcamlive/impetus_cam1/playlist.m3u8";
 
         cctvtxt.setOnClickListener(new View.OnClickListener() {
@@ -353,9 +338,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         menutxt=(TextView)findViewById(R.id.textmenu);
 
 
-
-
-       // Logout=(Button)findViewById(R.id.Logout);
+        // Logout=(Button)findViewById(R.id.Logout);
     }
 
     @Override
@@ -399,7 +382,6 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                     startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
 
 
-
                 }
             });
 
@@ -411,7 +393,6 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
                     String dial = "tel:" + number;
                     startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
-
 
 
                 }
@@ -427,29 +408,33 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                     startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
 
 
-
                 }
             });
-
-
-
-
 
             build.setView(mView);
             android.support.v7.app.AlertDialog dialog=build.create();
             dialog.show();
 
+        } else if (id == R.id.feedback) {
+            //Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
 
-        }
-         else if (id == R.id.feedback) {
-            Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(daycaredashboard.this, userfeedback.class);
+            startActivity(intent);
+
 
         } else if (id == R.id.rateus) {
-            Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+
 
         } else if (id == R.id.logout) {
-          //  Toast.makeText(getApplicationContext(), "Logout Clicked clicked", Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(getApplicationContext(), "Logout Clicked clicked", Toast.LENGTH_SHORT).show();
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(daycaredashboard.this);
 
@@ -461,7 +446,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                     .setMessage("Click yes to exit!")
                     .setCancelable(false)
                     .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
+                        public void onClick(DialogInterface dialog, int id) {
                             // if this button is clicked, close
                             // current activity
 
@@ -488,8 +473,6 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             alertDialog.show();
 
 
-
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
@@ -498,5 +481,4 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         return true;
 
     }
-
 }
