@@ -17,7 +17,7 @@
         />
     <item
         android:id="@+id/cctv"
-        android:icon="@drawable/cctv"
+        android:icon="@drawable/livecctv"
         android:title="My Day at Impetus" />
 
     <item android:id="@+id/feedback"
