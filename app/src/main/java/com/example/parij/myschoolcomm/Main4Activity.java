@@ -4,21 +4,19 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -764,7 +762,26 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
             JZVideoPlayerStandard.startFullscreen(Main4Activity.this, JZVideoPlayerStandard.class, url, "CCTV");
 
         } else if (id == R.id.notifications) {
-            Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+
+            if (username.contains("Seed")) {
+                Intent intent = new Intent(Main4Activity.this, Timetable_playgroup.class);
+                startActivity(intent);
+            } else if (username.contains("Budd")) {
+                Intent intent = new Intent(Main4Activity.this, Timetable_nursery.class);
+                startActivity(intent);
+
+            } else if (username.contains("Bloss")) {
+                Intent intent = new Intent(Main4Activity.this, Timetable_jrandsrkg.class);
+                startActivity(intent);
+
+            } else if (username.contains("Flou")) {
+                Intent intent = new Intent(Main4Activity.this, Timetable_jrandsrkg.class);
+                startActivity(intent);
+
+            }
+
+
 
         } else if (id == R.id.feedback) {
             // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();

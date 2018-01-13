@@ -235,6 +235,15 @@
             android:name=".ThemeUser"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Timetable_jrandsrkg"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Timetable_nursery"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Timetable_playgroup"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".userfeedback"
             android:screenOrientation="portrait"></activity>
     </application>
