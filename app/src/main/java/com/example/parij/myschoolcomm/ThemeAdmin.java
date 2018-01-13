@@ -1,10 +1,8 @@
 package com.example.parij.myschoolcomm;
 
 import android.app.DatePickerDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -13,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -101,13 +98,13 @@ public class ThemeAdmin extends AppCompatActivity {
         });
 
 
-
+        final Calendar mycalender2 = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date2=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                mycalender.set(Calendar.YEAR,i);
-                mycalender.set(Calendar.MONTH,i1);
-                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                mycalender2.set(Calendar.YEAR, i);
+                mycalender2.set(Calendar.MONTH, i1);
+                mycalender2.set(Calendar.DAY_OF_MONTH, i2);
                 UpdateLabel();
             }
 
@@ -115,7 +112,7 @@ public class ThemeAdmin extends AppCompatActivity {
                 String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                end.setText(sdf.format(mycalender.getTime()));
+                end.setText(sdf.format(mycalender2.getTime()));
 
             }
         };
@@ -124,7 +121,7 @@ public class ThemeAdmin extends AppCompatActivity {
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(ThemeAdmin.this,date2,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(ThemeAdmin.this, date2, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -158,15 +155,18 @@ public class ThemeAdmin extends AppCompatActivity {
                 String enddate= end.getText().toString();
                 String program =type[0];
                 String themetxt= theme.getText().toString().trim();
+                long start = mycalender.getTimeInMillis();
+                long end = mycalender2.getTimeInMillis();
                 int flag=0;
                 if(TextUtils.isEmpty(startdate)||TextUtils.isEmpty(enddate)||TextUtils.isEmpty(program)||
-                        TextUtils.isEmpty(themetxt))
-                {
+                        TextUtils.isEmpty(themetxt)) {
                     flag=1;
                     Toast.makeText(getApplicationContext(),"Please fill all the fields",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else if (start > end) {
+
+                    Toast.makeText(getApplicationContext(), "Please enter valid dates!", Toast.LENGTH_SHORT).show();
+
+                } else {
                     database= FirebaseDatabase.getInstance();
                     DatabaseReference reference = database.getReference("Theme").child(program);
 
@@ -174,7 +174,6 @@ public class ThemeAdmin extends AppCompatActivity {
 
                     reference.setValue(obj);
                     Toast.makeText(getApplicationContext(),"Theme Set!",Toast.LENGTH_SHORT).show();
-
 
 
                 }

@@ -2,12 +2,9 @@ package com.example.parij.myschoolcomm;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -93,12 +90,14 @@ public class AdminHomeWork extends AppCompatActivity {
             }
         });
 
+        final Calendar mycalender2 = Calendar.getInstance();
+
         final DatePickerDialog.OnDateSetListener date2=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                mycalender.set(Calendar.YEAR,i);
-                mycalender.set(Calendar.MONTH,i1);
-                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                mycalender2.set(Calendar.YEAR, i);
+                mycalender2.set(Calendar.MONTH, i1);
+                mycalender2.set(Calendar.DAY_OF_MONTH, i2);
                 UpdateLabel();
             }
 
@@ -106,7 +105,7 @@ public class AdminHomeWork extends AppCompatActivity {
                 String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                enddate.setText(sdf.format(mycalender.getTime()));
+                enddate.setText(sdf.format(mycalender2.getTime()));
 
             }
         };
@@ -115,7 +114,7 @@ public class AdminHomeWork extends AppCompatActivity {
         enddate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(AdminHomeWork.this,date2,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(AdminHomeWork.this, date2, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -154,14 +153,22 @@ public class AdminHomeWork extends AppCompatActivity {
                 String friday1= friday.getText().toString();
                 String saturday1= saturday.getText().toString();
 
-                int flag=0;
-                if(TextUtils.isEmpty(program)||TextUtils.isEmpty(startdate1)||TextUtils.isEmpty(enddate1))
-                {
-                    flag=1;
-                    Toast.makeText(AdminHomeWork.this,"Please enter the startdate and enddate!",Toast.LENGTH_SHORT).show();
+                long start = mycalender.getTimeInMillis();
+                long end = mycalender2.getTimeInMillis();
 
-                }
-                if(flag==0)
+                int flag=0;
+                if (startdate1.contains("Date"))
+                {
+                    flag++;
+                    Toast.makeText(AdminHomeWork.this, "Please select start date!", Toast.LENGTH_LONG).show();
+                } else if (enddate1.contains("Date")) {
+                    flag++;
+                    Toast.makeText(AdminHomeWork.this, "Please select end date!", Toast.LENGTH_LONG).show();
+                } else if (start > end) {
+                    flag++;
+                    Toast.makeText(AdminHomeWork.this, "Please enter valid dates!", Toast.LENGTH_SHORT).show();
+
+                } else if (flag == 0)
                 {
 
                     database=FirebaseDatabase.getInstance();

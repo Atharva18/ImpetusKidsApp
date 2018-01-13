@@ -1,36 +1,33 @@
 package com.example.parij.myschoolcomm;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.security.acl.Group;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 public class ReqLeaveActivity extends AppCompatActivity {
 
-    private Button sendbtn;
-    private EditText from,to,reason;
+    TextView from, to;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     Message message;
     Bundle bundle;
+    private Button sendbtn;
+    private EditText reason;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +83,14 @@ public class ReqLeaveActivity extends AppCompatActivity {
             }
         });
 
+        final Calendar mycalender2 = Calendar.getInstance();
+
         final DatePickerDialog.OnDateSetListener date1=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                mycalender.set(Calendar.YEAR,i);
-                mycalender.set(Calendar.MONTH,i1);
-                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                mycalender2.set(Calendar.YEAR, i);
+                mycalender2.set(Calendar.MONTH, i1);
+                mycalender2.set(Calendar.DAY_OF_MONTH, i2);
                 UpdateLabel();
             }
 
@@ -99,14 +98,14 @@ public class ReqLeaveActivity extends AppCompatActivity {
                 String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                to.setText(sdf.format(mycalender.getTime()));
+                to.setText(sdf.format(mycalender2.getTime()));
 
             }
         };
         to.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(ReqLeaveActivity.this,date1,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(ReqLeaveActivity.this, date1, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -116,9 +115,22 @@ public class ReqLeaveActivity extends AppCompatActivity {
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(from.getText().toString() !=null || to.getText().toString()!=null ||reason.getText().toString()!=null){
+
+                long start = mycalender.getTimeInMillis();
+                long end = mycalender2.getTimeInMillis();
+
+                if (from.getText().toString().contains("Date")) {
+                    Toast.makeText(ReqLeaveActivity.this, "Please select start date!", Toast.LENGTH_LONG).show();
+                } else if (to.getText().toString().contains("Date")) {
+                    Toast.makeText(ReqLeaveActivity.this, "Please select end date!", Toast.LENGTH_LONG).show();
+
+                } else if (start > end) {
+                    Toast.makeText(ReqLeaveActivity.this, "Please select valid dates!", Toast.LENGTH_LONG).show();
+                } else if (reason.getText().toString().trim().length() <= 0) {
+                    Toast.makeText(ReqLeaveActivity.this, "Please enter the reason!", Toast.LENGTH_LONG).show();
+                } else if (from.getText().toString() != null || to.getText().toString() != null || reason.getText().toString() != null) {
                     //message=new Message(msg_body,System.currentTimeMillis(),username);
-                    message=new Message(reason.getText().toString(),from.getText().toString(),to.getText().toString(),System.currentTimeMillis(),username);
+                    message = new Message(reason.getText().toString().trim(), from.getText().toString().trim(), to.getText().toString().trim(), System.currentTimeMillis(), username);
                     databaseReference.push().setValue(message);
                     Toast.makeText(ReqLeaveActivity.this,"Request Sent!",Toast.LENGTH_LONG).show();
                 }
@@ -144,8 +156,8 @@ public class ReqLeaveActivity extends AppCompatActivity {
     private void main_initate() {
 
         sendbtn=(Button)findViewById(R.id.sendbtn);
-        from=(EditText)findViewById(R.id.fromdate);
-        to=(EditText)findViewById(R.id.todate);
+        from = (TextView) findViewById(R.id.fromdate);
+        to = (TextView) findViewById(R.id.todate);
         reason=(EditText)findViewById(R.id.reason);
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference().child("Leave_request");

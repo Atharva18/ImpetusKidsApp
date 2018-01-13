@@ -1,10 +1,8 @@
 package com.example.parij.myschoolcomm;
 
 import android.app.DatePickerDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -101,13 +99,13 @@ public class syllabusadmin extends AppCompatActivity {
         });
 
 
-
+        final Calendar mycalender2 = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date1=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                mycalender.set(Calendar.YEAR,i);
-                mycalender.set(Calendar.MONTH,i1);
-                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                mycalender2.set(Calendar.YEAR, i);
+                mycalender2.set(Calendar.MONTH, i1);
+                mycalender2.set(Calendar.DAY_OF_MONTH, i2);
                 UpdateLabel();
             }
 
@@ -115,7 +113,7 @@ public class syllabusadmin extends AppCompatActivity {
                 String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                textView2.setText(sdf.format(mycalender.getTime()));
+                textView2.setText(sdf.format(mycalender2.getTime()));
 
             }
         };
@@ -124,7 +122,7 @@ public class syllabusadmin extends AppCompatActivity {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(syllabusadmin.this,date1,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(syllabusadmin.this, date1, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -159,14 +157,25 @@ public class syllabusadmin extends AppCompatActivity {
                  String startdate = textView.getText().toString();
                  String enddate= textView2.getText().toString();
                  String drivelink=link.getText().toString().trim();
+                long start = mycalender.getTimeInMillis();
+                long end = mycalender2.getTimeInMillis();
 
                 if(TextUtils.isEmpty(drivelink)||TextUtils.isEmpty(enddate)||TextUtils.isEmpty(program)||TextUtils.isEmpty(startdate))
                 {
                     flag=1;
                     Toast.makeText(syllabusadmin.this,"Please fill all the details",Toast.LENGTH_LONG).show();
-                }
+                } else if (start > end) {
+                    flag++;
+                    Toast.makeText(syllabusadmin.this, "Please enter valid dates!", Toast.LENGTH_LONG).show();
 
-                if(flag==0)
+                } else if (startdate.contains("Date")) {
+                    flag++;
+                    Toast.makeText(syllabusadmin.this, "Please select start date!", Toast.LENGTH_LONG).show();
+
+                } else if (enddate.contains("Date")) {
+                    flag++;
+                    Toast.makeText(syllabusadmin.this, "Please select end date!", Toast.LENGTH_LONG).show();
+                } else if (flag == 0)
                 {
 
                    database=FirebaseDatabase.getInstance();
