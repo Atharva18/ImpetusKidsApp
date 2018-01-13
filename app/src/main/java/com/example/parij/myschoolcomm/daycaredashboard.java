@@ -1,6 +1,7 @@
 package com.example.parij.myschoolcomm;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,6 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerStandard;
+
 public class daycaredashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton childprof;
     ImageButton parentprof;
@@ -44,7 +48,15 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
     TextView memoriestxt,cctvtxt,scheduletxt,parenttxt,childtxt,menutxt;
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        JZVideoPlayer.releaseAllVideos();
+    }
+    @Override
     public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
         new AlertDialog.Builder(this)
                 .setMessage("Are you sure you want to exit?")
                 .setCancelable(false)
@@ -249,10 +261,21 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             @Override
             public void onClick(View v) {
 
-                Uri uri=Uri.parse(url);
+                JZVideoPlayerStandard.startFullscreen(daycaredashboard.this, JZVideoPlayerStandard.class, url, "CCTV");
+                /*final Dialog dialog = new Dialog(daycaredashboard.this);
+                dialog.setContentView(R.layout.dialog_cctv);
+                Button buttonOk = (Button)dialog.findViewById(R.id.buttonCCTVOk);
+                buttonOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();*/
+                /*Uri uri=Uri.parse(url);
                 Intent live= new Intent(Intent.ACTION_VIEW);
                 live.setDataAndType(uri,"video/*");
-                startActivity(live);
+                startActivity(live);*/
 
             }
         });
@@ -261,10 +284,25 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             @Override
             public void onClick(View v) {
 
+                JZVideoPlayerStandard.startFullscreen(daycaredashboard.this, JZVideoPlayerStandard.class, url, "CCTV");
+
+                /*final Dialog dialog = new Dialog(daycaredashboard.this);
+                dialog.setContentView(R.layout.dialog_cctv);
+                JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) dialog.findViewById(R.id.videoplayer);
+                jzVideoPlayerStandard.setUp(url, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "CCTV");
+                Button buttonOk = (Button)dialog.findViewById(R.id.buttonCCTVOk);
+                buttonOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        JZVideoPlayer.releaseAllVideos();
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();*//*
                 Uri uri=Uri.parse(url);
                 Intent live= new Intent(Intent.ACTION_VIEW);
                 live.setDataAndType(uri,"video/*");
-                startActivity(live);
+                startActivity(live);*/
 
                 //startActivity(new Intent(daycaredashboard.this,LiveFeed.class));
             }
@@ -460,4 +498,5 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         return true;
 
     }
+
 }

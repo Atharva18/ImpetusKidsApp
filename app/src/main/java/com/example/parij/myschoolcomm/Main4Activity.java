@@ -39,16 +39,16 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
     ImageButton hWClassreport;
     ImageButton Emergency;
     ImageView nav_head;
-    private DrawerLayout drawer;
     FirebaseDatabase database;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
     TextView name;
     TextView rollNo;
     TextView program;
     ImageView photo;
     String username;
-
     TextView hometxt,spokentxt,reqtxt,emertxt,authtxt,parenttxt,childtxt,syllabustxt,announcetxt;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -778,6 +778,11 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
                         public void onClick(DialogInterface dialog,int id) {
                             // if this button is clicked, close
                             // current activity
+                            SessionManagement.retrieveSharedPreferences(Main4Activity.this);
+                            SessionManagement.rememberMe = false;
+                            SessionManagement.username = "NA";
+                            SessionManagement.lastLoginTimestamp = 0;
+                            SessionManagement.updateSharedPreferences();
                             Main4Activity.this.finish();
                         }
                     })
