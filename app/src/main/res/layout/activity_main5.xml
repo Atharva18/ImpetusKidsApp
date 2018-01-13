@@ -3,7 +3,6 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -72,7 +71,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -97,7 +95,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -121,7 +118,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -145,7 +141,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -168,7 +163,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
 
@@ -195,7 +189,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -219,7 +212,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -244,7 +236,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -269,7 +260,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -293,7 +283,6 @@
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -315,7 +304,6 @@
                     android:layout_column="0"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:text="NA"
                     android:textAlignment="viewStart" />
 
                 <Button
