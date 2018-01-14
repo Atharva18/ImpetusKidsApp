@@ -761,7 +761,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
             final String url = "http://cdn.streamonweb.com:1935/ipcamlive/impetus_cam1/playlist.m3u8";
             JZVideoPlayerStandard.startFullscreen(Main4Activity.this, JZVideoPlayerStandard.class, url, "CCTV");
 
-        } else if (id == R.id.notifications) {
+        } /*else if (id == R.id.notifications) {
             // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
             if (username.contains("Seed")) {
@@ -783,7 +783,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
 
 
 
-        } else if (id == R.id.feedback) {
+        } */ else if (id == R.id.feedback) {
             // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(Main4Activity.this, userfeedback.class);
