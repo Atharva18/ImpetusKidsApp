@@ -180,7 +180,8 @@
         <activity
             android:name=".announcementadmin"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateUnchanged|adjustPan" />
         <activity
             android:name=".announcementuser"
             android:exported="true"
