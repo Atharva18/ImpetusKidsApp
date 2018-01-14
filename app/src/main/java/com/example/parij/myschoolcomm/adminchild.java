@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -57,7 +58,7 @@ public class adminchild extends AppCompatActivity {
     EditText grNo, admissionNo, category, class1, division, gender, bloodGroup, classTeacher, contactNo;
     FirebaseDatabase database;
     TextView admissiondate, dateOfBirth;
-
+    ViewGroup rootScrollView;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://myschoolcomm-a80d4.appspot.com/Child_Profile");
 
@@ -452,9 +453,11 @@ public class adminchild extends AppCompatActivity {
             try {
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                bitmap = Bitmap.createScaledBitmap(bitmap, (int) (120 * getResources().getDisplayMetrics().density), (int) (120 * getResources().getDisplayMetrics().density), false);
 
 
                 childphoto.setImageBitmap(bitmap);
+                rootScrollView.invalidate();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -481,6 +484,7 @@ public class adminchild extends AppCompatActivity {
         save=(Button)findViewById(R.id.save);
         choosePhoto=(Button)findViewById(R.id.choosePhoto);
        // phone=(Button)findViewById(R.id.phone);
+        rootScrollView = (ViewGroup) findViewById(R.id.scrollViewAdminChild);
 
     }
 
