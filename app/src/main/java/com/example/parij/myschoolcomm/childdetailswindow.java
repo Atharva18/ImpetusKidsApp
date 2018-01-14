@@ -154,10 +154,12 @@ public class childdetailswindow extends AppCompatActivity {
                         /// Get the Item from ListView
                         View view = super.getView(position, convertView, parent);
 
-                        TextView tv = (TextView) view.findViewById(android.R.id.text1);
-
+                        TextView tv1 = (TextView) view.findViewById(android.R.id.text1);
+                        TextView tv2 = (TextView) view.findViewById(R.id.text2);
+                        tv1.setText(arrayListDisplay.get(position));
+                        tv2.setText("2: " + arrayListDisplay.get(position));
                         // Set the text size 25 dip for ListView each item
-                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                        tv1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
 
                         // Return the view
                         return view;
@@ -229,16 +231,18 @@ public class childdetailswindow extends AppCompatActivity {
                 arrayListDisplay.add(arrayListFull.get(i).getRollNo() + ". " + arrayListFull.get(i).getName() + "\nProgram: " + arrayListFull.get(i).getProgram());
             }
         }
-        arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {
+        arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_2, arrayListDisplay) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 /// Get the Item from ListView
                 View view = super.getView(position, convertView, parent);
 
-                TextView tv = (TextView) view.findViewById(android.R.id.text1);
-
+                TextView tv1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView tv2 = (TextView) view.findViewById(R.id.text2);
+                tv1.setText(arrayListDisplay.get(position));
+                tv2.setText("2: " + arrayListDisplay.get(position));
                 // Set the text size 25 dip for ListView each item
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                tv1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
 
                 // Return the view
                 return view;
@@ -256,7 +260,23 @@ public class childdetailswindow extends AppCompatActivity {
                 arrayListDisplay.add(arrayListFull.get(i).getRollNo() + ". " + arrayListFull.get(i).getName() + "\nProgram: " + arrayListFull.get(i).getProgram());
             }
         }
-        arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay);
+        arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_2, arrayListDisplay) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                /// Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                TextView tv1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView tv2 = (TextView) view.findViewById(R.id.text2);
+                tv1.setText(arrayListDisplay.get(position));
+                tv2.setText("2: " + arrayListDisplay.get(position));
+                // Set the text size 25 dip for ListView each item
+                tv1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+
+                // Return the view
+                return view;
+            }
+        };
         listView.setAdapter(arrayAdapter);
     }
 }

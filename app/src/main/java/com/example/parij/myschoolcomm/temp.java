@@ -26,13 +26,13 @@ import java.util.ArrayList;
 public class temp extends AppCompatActivity {
 
 
+    static int count = 0;
+    static int count2 = 0;
     EditText musername, password, rollNo, name;
     Spinner spinner2;
     Button add;
     ArrayAdapter<CharSequence> arrayAdapter;
     FirebaseDatabase database;
-    static int count = 0;
-    static int count2=0;
     ArrayList<String> userNames, rollNos;
     DatabaseReference databaseReference;
 
@@ -199,7 +199,8 @@ public class temp extends AppCompatActivity {
                     {
                         for(DataSnapshot dsrolls : dsBatch.getChildren())
                         {
-                            rollNos.add(dsrolls.getKey());
+                            if (ds.getKey().equalsIgnoreCase(program1) && dsBatch.getKey().equalsIgnoreCase(batch))
+                                rollNos.add(dsrolls.getKey());
                             Log.println(Log.ERROR, "msg", String.valueOf(rollNos));
                         }
                     }
@@ -272,9 +273,7 @@ public class temp extends AppCompatActivity {
         });
 
         Log.println(Log.ERROR,"msg2", String.valueOf(String.valueOf(getCount())));
-        if(getCount()==0)
-            return true;
-        return  false;
+        return getCount() == 0;
 
 
     }
@@ -316,9 +315,7 @@ public class temp extends AppCompatActivity {
             }
         });
         Log.println(Log.ERROR,"msg4", String.valueOf(String.valueOf(getCount())));
-        if(getCount2()==0)
-            return true;
-        return  false;
+        return getCount2() == 0;
 
     }
 
