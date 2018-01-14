@@ -224,7 +224,7 @@ public class childdetailswindow extends AppCompatActivity {
         for (int i = 0; i < arrayListFull.size(); i++) {
             if (arrayListFull.get(i).getProgram().contains(filter)) {
                 arrayListFiltered.add(arrayListFull.get(i));
-                arrayListDisplay.add(arrayListFull.get(i).getName() + ", Roll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + arrayListFull.get(i).getProgram());
+                arrayListDisplay.add(arrayListFull.get(i).getName() + "\n Roll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + arrayListFull.get(i).getProgram());
             }
         }
         if (editTextSearch.getText().toString() != null)

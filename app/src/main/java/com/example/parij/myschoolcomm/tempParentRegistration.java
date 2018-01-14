@@ -28,11 +28,12 @@ public class tempParentRegistration extends AppCompatActivity {
     static int count = 0;
     static int count2 = 0;
     EditText musername, password, rollNo, name;
-    Spinner spinner2;
+
+    Spinner spinner2, spinnerProgram;
     Button add;
-    ArrayAdapter<CharSequence> arrayAdapter;
+    ArrayAdapter<CharSequence> arrayAdapter, arrayAdapterProgram;
     FirebaseDatabase database;
-    ArrayList<String> userNames, rollNos;
+    ArrayList<String> userNames, rollNos, arrayListPrograms;
     DatabaseReference databaseReference;
 
     public static int getCount2() {
@@ -88,7 +89,15 @@ public class tempParentRegistration extends AppCompatActivity {
         rollNo = (EditText) findViewById(R.id.rollNo);
         name = (EditText) findViewById(R.id.name);
         //spinner1=(Spinner)findViewById(R.id.spinner);
-        spinner2 = (Spinner) findViewById(R.id.spinner5);
+        spinnerProgram = (Spinner) findViewById(R.id.spinnerProgramRegistration);
+        arrayListPrograms.add("Day-Care");
+        arrayListPrograms.add("Blossoming");
+        arrayListPrograms.add("Budding");
+        arrayListPrograms.add("Flourishing");
+        arrayListPrograms.add("Seeding");
+        //arrayAdapterProgram = new ArrayAdapter<CharSequence>(tempParentRegistration.this, android.R.layout.simple_list_item_1, arrayListPrograms);
+
+        spinner2 = (Spinner) findViewById(R.id.spinnerProgramRegistration);
         add = (Button) findViewById(R.id.adduser);
 
 
@@ -198,6 +207,7 @@ public class tempParentRegistration extends AppCompatActivity {
                     {
                         for(DataSnapshot dsrolls : dsBatch.getChildren())
                         {
+                            Log.e("REGISTER", "Prog: " + ds.getKey() + " Batch: " + ds.getKey());
                             if (ds.getKey().equalsIgnoreCase(program1) && dsBatch.getKey().equalsIgnoreCase(batch))
                                 rollNos.add(dsrolls.getKey());
                             Log.println(Log.ERROR, "msg", String.valueOf(rollNos));

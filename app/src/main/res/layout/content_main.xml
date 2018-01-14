@@ -169,7 +169,7 @@
                 android:layout_height="46dp"
                 android:background="@color/Brown"
                 android:gravity="center_vertical"
-                android:text="Authorized Person"
+                android:text="Authorize to collect"
                 android:textAlignment="center"
                 android:textColor="@color/White"
                 android:textSize="18sp" />

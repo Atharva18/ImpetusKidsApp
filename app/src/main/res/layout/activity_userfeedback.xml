@@ -16,14 +16,14 @@
         android:background="#3209da" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/textView36"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
         android:gravity="center_vertical"
-        android:text="1) How useful did you find this app?"
+        android:text="How useful did you find this app?"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +36,8 @@
         android:layout_gravity="center"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
+        android:theme="@style/RatingBar"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:layout_editor_absoluteY="112dp" />
 
@@ -46,9 +47,9 @@
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
         android:gravity="center_vertical"
-        android:text="2)Is this app easy to navigate?"
+        android:text="Is this app easy to navigate?"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,7 +62,8 @@
         android:layout_gravity="center"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
+        android:theme="@style/RatingBar"
         tools:layout_editor_absoluteX="7dp"
         tools:layout_editor_absoluteY="262dp" />
 
@@ -71,9 +73,9 @@
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
         android:gravity="center_vertical"
-        android:text="3)Overall Rating"
+        android:text="Overall Rating"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -86,9 +88,41 @@
         android:layout_gravity="center"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
+        android:theme="@style/RatingBar"
         tools:layout_editor_absoluteX="7dp"
         tools:layout_editor_absoluteY="396dp" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
+        android:text="Any other suggestions: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <EditText
+        android:id="@+id/editTextUserFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="top"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="25"
+        android:background="@drawable/edittextborder"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="We would love to hear from you. If you are facing any issues in using the app, please let us know. Your valuable feedback, will help us serve you better."
+        android:inputType="textMultiLine"
+        android:padding="7dp"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/button4"
@@ -97,7 +131,8 @@
         android:layout_gravity="center"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="10"
+        android:layout_marginTop="10dp"
+        android:layout_weight="8"
         android:background="@color/colorPrimary"
         android:text="Submit"
         android:textColor="@color/White"
