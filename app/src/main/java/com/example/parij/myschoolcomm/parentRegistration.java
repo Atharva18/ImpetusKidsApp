@@ -1,11 +1,9 @@
 package com.example.parij.myschoolcomm;
 
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,12 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 public class parentRegistration extends AppCompatActivity {
 
 
+    static int count = 0;
     EditText musername,password,rollNo,name;
     Spinner spinner2;
     Button add;
     ArrayAdapter<CharSequence> arrayAdapter;
     FirebaseDatabase database;
-    static int count=0;
 
     public static int getcount()
     {
@@ -79,7 +77,7 @@ public class parentRegistration extends AppCompatActivity {
         rollNo=(EditText)findViewById(R.id.rollNo);
         name =(EditText)findViewById(R.id.name);
         //spinner1=(Spinner)findViewById(R.id.spinner);
-        spinner2=(Spinner)findViewById(R.id.spinner5);
+        spinner2 = (Spinner) findViewById(R.id.spinnerProgramRegistration);
         add=(Button)findViewById(R.id.adduser);
 
 

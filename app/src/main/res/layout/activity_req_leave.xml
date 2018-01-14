@@ -23,7 +23,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="15"
+        android:layout_weight="10"
         android:weightSum="2">
 
         <TextView
@@ -31,8 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight=".5"
-            android:fontFamily="serif"
+            android:layout_weight="0.6"
             android:text="From:"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -45,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1.5"
+            android:layout_weight="1.4"
             android:background="@drawable/edittextborder"
             android:ems="10"
             android:gravity="center"
@@ -60,7 +59,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="15"
+        android:layout_weight="10"
         android:weightSum="2">
 
         <TextView
@@ -68,8 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight=".5"
-            android:fontFamily="serif"
+            android:layout_weight="0.6"
             android:text="To:"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -82,7 +80,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1.5"
+            android:layout_weight="1.4"
             android:background="@drawable/edittextborder"
             android:ems="10"
             android:gravity="center"
@@ -97,9 +95,8 @@
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="15"
-        android:fontFamily="serif"
-        android:gravity="center_vertical"
+        android:layout_weight="8"
+        android:gravity="bottom|center_vertical"
         android:text="Reason:"
         android:textSize="18sp"
         android:textStyle="bold"

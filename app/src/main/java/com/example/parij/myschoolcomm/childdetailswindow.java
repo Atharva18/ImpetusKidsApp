@@ -142,7 +142,7 @@ public class childdetailswindow extends AppCompatActivity {
                             rollno = Integer.parseInt(ds2.getKey());
                             Student student = new Student(program, batch, rollno, name, username);
                             arrayListFull.add(student);
-                            arrayListDisplay.add(student.getName() + ", Roll no: " + student.getRollNo() + "\nProgram: " + student.getProgram());
+                            arrayListDisplay.add("Name: " + student.getName() + "\nRoll no: " + student.getRollNo() + "\nProgram: " + student.getProgram());
                             Log.d("StudentObj : ", student.toString());
                         }
                 arrayListFiltered = arrayListFull;
@@ -224,7 +224,7 @@ public class childdetailswindow extends AppCompatActivity {
         for (int i = 0; i < arrayListFull.size(); i++) {
             if (arrayListFull.get(i).getProgram().contains(filter)) {
                 arrayListFiltered.add(arrayListFull.get(i));
-                arrayListDisplay.add(arrayListFull.get(i).getName() + ", Roll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + arrayListFull.get(i).getProgram());
+                arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + arrayListFull.get(i).getProgram());
             }
         }
         if (editTextSearch.getText().toString() != null)
@@ -254,7 +254,7 @@ public class childdetailswindow extends AppCompatActivity {
         arrayListDisplay = new ArrayList<>();
         for (int i = 0; i < arrayListFiltered.size(); i++) {
             if (arrayListFiltered.get(i).getName().contains(input)) {
-                arrayListDisplay.add(arrayListFiltered.get(i).getName() + ", Roll no: " + arrayListFiltered.get(i).getRollNo() + "\nProgram: " + arrayListFiltered.get(i).getProgram());
+                arrayListDisplay.add("Name: " + arrayListFiltered.get(i).getName() + "\nRoll no: " + arrayListFiltered.get(i).getRollNo() + "\nProgram: " + arrayListFiltered.get(i).getProgram());
             }
         }
         arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {

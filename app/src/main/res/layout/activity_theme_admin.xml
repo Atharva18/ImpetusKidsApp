@@ -78,23 +78,12 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="10"
-        android:gravity="center"
-        android:text="To"
-        android:textSize="18sp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="10"
         android:orientation="horizontal"
         android:weightSum="2">
@@ -118,7 +107,7 @@
             android:gravity="center_horizontal|center"
             android:text="Select end date "
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
@@ -127,7 +116,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_weight="10"
-        android:gravity="center_vertical"
+        android:gravity="bottom"
         android:text="Theme :"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -157,8 +146,8 @@
         android:layout_marginTop="10dp"
         android:layout_weight="8"
         android:background="@color/colorPrimary"
-        android:text="OK"
-        android:textColor="@color/White"/>
+        android:text="Set the theme"
+        android:textColor="@color/White" />
 
 
 </LinearLayout>

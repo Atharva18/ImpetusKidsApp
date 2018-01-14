@@ -1,11 +1,12 @@
 package com.example.parij.myschoolcomm;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class userfeedback extends AppCompatActivity {
     RatingBar three;
     FirebaseDatabase database;
     Button submit;
+    EditText editTextUserFeedback;
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -56,7 +58,7 @@ public class userfeedback extends AppCompatActivity {
         two = (RatingBar) findViewById(R.id.ratingBar5);
         three = (RatingBar) findViewById(R.id.ratingBar6);
         submit = (Button) findViewById(R.id.button4);
-
+        editTextUserFeedback = (EditText) findViewById(R.id.editTextUserFeedback);
         database = FirebaseDatabase.getInstance();
 
         final ArrayList<Float> mylist = new ArrayList<Float>();
@@ -112,6 +114,12 @@ public class userfeedback extends AppCompatActivity {
                     reference = database.getReference("Feedback").child(username).child("Qn3");
 
                     reference.setValue(mymap.get(3));
+
+                    if (editTextUserFeedback.getText() != null) {
+
+                        reference = database.getReference("Feedback").child(username).child("text");
+                        reference.setValue(editTextUserFeedback.getText().toString());
+                    }
 
                     Toast.makeText(userfeedback.this, "Thank You!", Toast.LENGTH_LONG).show();
                 } else {
