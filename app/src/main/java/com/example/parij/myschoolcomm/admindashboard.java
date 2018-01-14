@@ -17,10 +17,9 @@ import android.widget.TextView;
 public class admindashboard extends AppCompatActivity {
     Button Logout;
     FloatingActionButton floatButton;
+    TextView emergencytxt, authorizedtxt, parenttxt, childtxt, syllabustxt, announcementtxt, homeworktxt, spokentxt, requesttxt;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    TextView emergencytxt,authorizedtxt,parenttxt,childtxt,syllabustxt,announcementtxt,homeworktxt,spokentxt,requesttxt;
-
 
     @Override
     public void onBackPressed() {
@@ -96,7 +95,7 @@ public class admindashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent= new Intent(admindashboard.this,temp.class);
+                Intent intent = new Intent(admindashboard.this, tempParentRegistration.class);
                 startActivity(intent);
 
               //  Toast.makeText(admindashboard.this,"Coming Soon!",Toast.LENGTH_LONG).show();

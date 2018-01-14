@@ -1,8 +1,7 @@
 package com.example.parij.myschoolcomm;
 
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class temp extends AppCompatActivity {
+public class tempParentRegistration extends AppCompatActivity {
 
 
     static int count = 0;
@@ -41,7 +40,7 @@ public class temp extends AppCompatActivity {
     }
 
     public static void setCount2(int count2) {
-        temp.count2 = count2;
+        tempParentRegistration.count2 = count2;
     }
 
     public static int getCount()
@@ -50,7 +49,7 @@ public class temp extends AppCompatActivity {
     }
 
     public static void setCount(int count) {
-        temp.count = count;
+        tempParentRegistration.count = count;
     }
 
 
@@ -158,14 +157,14 @@ public class temp extends AppCompatActivity {
                         if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password1) || TextUtils.isEmpty(roll)
                                 || TextUtils.isEmpty(name1)) {
 
-                            Toast.makeText(temp.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
+                            Toast.makeText(tempParentRegistration.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
                             flag3 = 1;
                         }
 
 
                         if (flag == 1)
                         {
-                            Toast.makeText(temp.this, "Invalid Username", Toast.LENGTH_LONG).show();
+                            Toast.makeText(tempParentRegistration.this, "Invalid Username", Toast.LENGTH_LONG).show();
                         } else if (flag3 != 1)
                         {
                             if (!userNames.contains(userName))
@@ -218,7 +217,7 @@ public class temp extends AppCompatActivity {
                     reference=database.getReference("studinfo").child(program).child(batch);
                     reference.child(roll).child("name").setValue(name1);
                     reference.child(roll).child("username").setValue(userName);
-                    Toast.makeText(temp.this, "Entry added!", Toast
+                    Toast.makeText(tempParentRegistration.this, "Entry added!", Toast
                             .LENGTH_LONG).show();
                 }
                 else
@@ -321,17 +320,17 @@ public class temp extends AppCompatActivity {
 
     /*
 
-                    //Toast.makeText(temp.this, "Inside2", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(tempParentRegistration.this, "Inside2", Toast.LENGTH_LONG).show();
 
 
                     if (checkUser(userName, program))
                     {
 
-                       // Toast.makeText(temp.this, "Inside", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(tempParentRegistration.this, "Inside", Toast.LENGTH_LONG).show();
 
                         if(checkroll(program,batch,roll) )
                         {
-                          //  Toast.makeText(temp.this, "Inside5", Toast.LENGTH_LONG).show();
+                          //  Toast.makeText(tempParentRegistration.this, "Inside5", Toast.LENGTH_LONG).show();
                             database=FirebaseDatabase.getInstance();
                             DatabaseReference reference= database.getReference("UserNames").child(program);
                             reference.child(userName).child("password").setValue(password1);
@@ -342,7 +341,7 @@ public class temp extends AppCompatActivity {
                             reference=database.getReference("studinfo").child(program).child(batch);
                             reference.child(roll).child("name").setValue(name1);
                             reference.child(roll).child("username").setValue(userName);
-                            Toast.makeText(temp.this, "Entry added!", Toast
+                            Toast.makeText(tempParentRegistration.this, "Entry added!", Toast
                                     .LENGTH_LONG).show();
 
 
