@@ -28,7 +28,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
         android:fontFamily="serif"
         android:singleLine="true"
         android:text="Duration-3.00 hrs (9:00am - 12:00pm)"
@@ -42,6 +42,8 @@
         android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
         android:layout_weight="80"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,8 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="3dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="3dp">
+            android:paddingRight="7dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -79,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/day1lab"
-                    android:layout_width="wrap_content"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:text="Day 1"
                     android:textAlignment="center"
@@ -88,7 +89,7 @@
 
                 <TextView
                     android:id="@+id/day2lab"
-                    android:layout_width="wrap_content"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Day 2"
@@ -98,7 +99,7 @@
 
                 <TextView
                     android:id="@+id/Day3lab"
-                    android:layout_width="wrap_content"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Day 3"
@@ -108,7 +109,7 @@
 
                 <TextView
                     android:id="@+id/Day4lab"
-                    android:layout_width="wrap_content"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:text="Day 4"
@@ -119,7 +120,7 @@
 
                 <TextView
                     android:id="@+id/Day5lab"
-                    android:layout_width="wrap_content"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:text="Day 5"
