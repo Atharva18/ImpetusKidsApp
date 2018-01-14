@@ -452,7 +452,7 @@ public class adminchild extends AppCompatActivity {
             try {
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                bitmap = Bitmap.createScaledBitmap(bitmap, (int) (120 * getResources().getDisplayMetrics().density), (int) (120 * getResources().getDisplayMetrics().density), false);
+                bitmap = Bitmap.createScaledBitmap(bitmap, (int) (150 * getResources().getDisplayMetrics().density), (int) (150 * getResources().getDisplayMetrics().density), false);
 
 
                 childphoto.setImageBitmap(bitmap);
