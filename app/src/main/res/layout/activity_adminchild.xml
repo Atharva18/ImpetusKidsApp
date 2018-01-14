@@ -68,7 +68,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@color/colorPrimary"
-                        android:text=" Upload Photo "
+                        android:text="Choose Photo "
                         android:textColor="@color/White" />
 
                 </LinearLayout>

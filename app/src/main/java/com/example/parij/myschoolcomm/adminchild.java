@@ -297,18 +297,17 @@ public class adminchild extends AppCompatActivity {
                     pd.dismiss();
                 }
                 else {
+
+                    int check = 0;
+
                     childdet obj = new childdet(grNo1, gender1, division1, dateOfBirth1,
                             contactNo1, classTeacher1, class11, category1, bloodGroup1, admissiondate1, admissionNo1);
 
                     reference.child(username).setValue(obj);
 
-
                     if (filePath != null) {
-
-
                         pd.show();
-
-
+                        check = 1;
                         UploadTask uploadTask = childRef.putFile(filePath);
 
                         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -320,7 +319,7 @@ public class adminchild extends AppCompatActivity {
                                 DatabaseReference reference = database.getReference("Images").child("Child_Profile");
                                 reference.child(username).setValue(downloadurl);
                                 pd.dismiss();
-                               // Toast.makeText(adminchild.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(adminchild.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -330,7 +329,7 @@ public class adminchild extends AppCompatActivity {
                             }
                         });
                     }
-                  //  pd.dismiss();
+                    if (check == 0)
                     Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
                 }
 
