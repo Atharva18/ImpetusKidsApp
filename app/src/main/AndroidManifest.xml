@@ -11,8 +11,8 @@
     <application
         android:name=".ImpetusKids"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="ImpetusKids"
+        android:icon="@drawable/appicon"
+        android:label="Impetus-Kids"
         android:largeHeap="true"
         android:roundIcon="@drawable/impetusimg"
         android:supportsRtl="true"

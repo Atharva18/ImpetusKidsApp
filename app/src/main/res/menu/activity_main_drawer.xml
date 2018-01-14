@@ -11,10 +11,10 @@
         android:title="Call Us"
         />
 
-    <item android:id="@+id/notifications"
-        android:icon="@drawable/timetable1"
-        android:title="Time-Table"
-        />
+    <!-- <item android:id="@+id/notifications"
+         android:icon="@drawable/timetable1"
+         android:title="Time-Table"
+         />-->
     <item
         android:id="@+id/cctv"
         android:icon="@drawable/livecctv"
