@@ -14,10 +14,12 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,10 @@ public class adminchild extends AppCompatActivity {
     Bundle bundle;
      // Button upload;
       Button choosePhoto;
+      Spinner program;
+      Spinner batch;
+      ArrayAdapter programadapter;
+      ArrayAdapter batchadapter;
     //  Button update;
    // Button phone;
     Bitmap bitmap;
@@ -55,7 +61,7 @@ public class adminchild extends AppCompatActivity {
     ProgressDialog pd;
     Button save;
     int PICK_IMAGE_REQUEST=111;
-    EditText grNo, admissionNo, category, class1, division, gender, bloodGroup, classTeacher, contactNo;
+    EditText  gender, bloodGroup, classTeacher, contactNo;
     FirebaseDatabase database;
     TextView admissiondate, dateOfBirth;
     ViewGroup rootScrollView;
@@ -82,6 +88,14 @@ public class adminchild extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setMessage("Uploading....");
 
+
+        programadapter=programadapter.createFromResource(this,R.array.Type,android.R.layout.simple_spinner_item);
+        programadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        program.setAdapter(programadapter);
+
+        batchadapter=batchadapter.createFromResource(this,R.array.Type, android.R.layout.simple_spinner_item);
+        batchadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        batch.setAdapter(batchadapter);
         choosePhoto.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -209,19 +223,22 @@ public class adminchild extends AppCompatActivity {
 
                 database=FirebaseDatabase.getInstance();
                 DatabaseReference reference= database.getReference("ChildProfile");
-
-                grNo1=grNo.getText().toString();
-                division1=division.getText().toString();
+                grNo1=null;
+                category1=null;
+                admissionNo1=null;
+                //grNo1=grNo.getText().toString();
+                //division1=division.getText().toString();
                 dateOfBirth1=dateOfBirth.getText().toString();
                 contactNo1=contactNo.getText().toString();
                 classTeacher1=classTeacher.getText().toString();
-                class11=class1.getText().toString();
-                category1=category.getText().toString();
+                //class11=class1.getText().toString();
+                //category1=category.getText().toString();
                 bloodGroup1=bloodGroup.getText().toString();
                 admissiondate1=admissiondate.getText().toString();
-                admissionNo1=admissionNo.getText().toString();
+                //admissionNo1=admissionNo.getText().toString();
                 gender1=gender.getText().toString();
-
+                class11=program.getSelectedItem().toString();
+                division1=batch.getSelectedItem().toString();
 
 
                 int flag=0;
@@ -261,7 +278,7 @@ public class adminchild extends AppCompatActivity {
 
                 }
 
-                if(!TextUtils.isEmpty(category1))
+                /*if(!TextUtils.isEmpty(category1))
                 {
                     String regex = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
                     Pattern pattern = Pattern.compile(regex);
@@ -273,7 +290,7 @@ public class adminchild extends AppCompatActivity {
                         category.setError("Please enter a valid category!");
                     }
 
-                }
+                }*/
 
                 if(TextUtils.isEmpty(admissiondate1))
                 {
@@ -365,12 +382,12 @@ public class adminchild extends AppCompatActivity {
                     if (username.equals(data.getKey())) {
 
 
-                         grNo.setText((CharSequence) data.child("grNo").getValue());
-                        admissionNo.setText((CharSequence) data.child("admissionNo").getValue());
+                        // grNo.setText((CharSequence) data.child("grNo").getValue());
+                        //admissionNo.setText((CharSequence) data.child("admissionNo").getValue());
                         admissiondate.setText((CharSequence) data.child("admissiondate").getValue());
-                        category.setText((CharSequence) data.child("category").getValue());
-                        class1.setText((CharSequence) data.child("class1").getValue());
-                        division.setText((CharSequence) data.child("division").getValue());
+                        //category.setText((CharSequence) data.child("category").getValue());
+                        //class1.setText((CharSequence) data.child("class1").getValue());
+                        //division.setText((CharSequence) data.child("division").getValue());
                         gender.setText((CharSequence) data.child("gender").getValue());
                         dateOfBirth.setText((CharSequence) data.child("dateOfBirth").getValue());
                         bloodGroup.setText((CharSequence) data.child("bloodGroup").getValue());
@@ -470,16 +487,16 @@ public class adminchild extends AppCompatActivity {
          childphoto = (ImageView) findViewById(R.id.childphoto);
        // upload = (Button) findViewById(R.id.upload);
         admissiondate = (TextView) findViewById(R.id.admissionDate);
-        category = (EditText) findViewById(R.id.category);
-        class1 = (EditText) findViewById(R.id.class1);
-        division = (EditText) findViewById(R.id.division);
+        //category = (EditText) findViewById(R.id.category);
+        program = (Spinner) findViewById(R.id.class1);
+        batch = (Spinner) findViewById(R.id.division);
         gender = (EditText) findViewById(R.id.gender);
         dateOfBirth = (TextView) findViewById(R.id.dateOfBirth);
         bloodGroup = (EditText) findViewById(R.id.bloodGroup);
         classTeacher = (EditText) findViewById(R.id.classTeacher);
         contactNo = (EditText) findViewById(R.id.contactNo);
-        grNo = (EditText) findViewById(R.id.grNo);
-        admissionNo = (EditText) findViewById(R.id.admissionNo);
+        //grNo = (EditText) findViewById(R.id.grNo);
+        //admissionNo = (EditText) findViewById(R.id.admissionNo);
         save=(Button)findViewById(R.id.save);
         choosePhoto=(Button)findViewById(R.id.choosePhoto);
        // phone=(Button)findViewById(R.id.phone);
