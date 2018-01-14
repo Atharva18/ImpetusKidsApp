@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2.2"
-                android:background="@color/Brown"
+                android:background="@color/newBrown"
                 android:gravity="center_vertical|center"
                 android:text="Authorized Person"
                 android:textAlignment="gravity"
@@ -303,7 +303,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2.2"
-                android:background="@color/Green"
+                android:background="@color/newGreen"
                 android:gravity="center"
                 android:text="Spoken English
 "
