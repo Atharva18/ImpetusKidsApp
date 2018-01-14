@@ -303,8 +303,6 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                 if(flag==0)
                 {
 
-                    pd.show();
-
                     StorageReference childRef = storageRef.child(username+"image.jpg");
 
                     if(filePath==null && personphoto.getDrawable()==null)
@@ -314,17 +312,13 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                     }
                     else {
                         //uploading the image
-                        database = FirebaseDatabase.getInstance();
-                        DatabaseReference reference = database.getReference("authorizeToCollect");
 
-                        pd.show();
+                        int check1 = 0;
 
                         if (filePath != null) {
 
-                            authorizeclass authorize = new authorizeclass(mname, mcontactNo, mrelation, datestart, dateend);
-
-                            reference.child(username).setValue(authorize);
-
+                            check1 = 1;
+                            pd.show();
 
                             UploadTask uploadTask = childRef.putFile(filePath);
 
@@ -337,7 +331,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                                     DatabaseReference reference = database.getReference("Images").child("Authorized_Person");
                                     reference.child(username).setValue(downloadurl);
                                     pd.dismiss();
-                                   // Toast.makeText(AuthorizedPersonActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AuthorizedPersonActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -348,9 +342,11 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                             });
                         }
 
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                        if (check1 == 0) {
+                            Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
 
+
+                        }
                     }
 
 
