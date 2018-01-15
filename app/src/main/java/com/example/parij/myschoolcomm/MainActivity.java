@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.parij.myschoolcomm.Models.Admin;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     Bundle bundle;
     ImageView imageViewLogin;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
+    ProgressDialog pd;
     AlertDialog dialog = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +52,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void loginAdmin(Admin admin) {
+        Toast.makeText(getApplicationContext(), "Logging you in", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(MainActivity.this, admindashboard.class);
 
+        SessionManagement.username = admin.getUsername();
+        SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
+        SessionManagement.isAdmin = true;
+        SessionManagement.updateSharedPreferences();
+
+        pd.dismiss();
+        dialog.dismiss();
+        startActivity(intent);
+        finish();
+    }
+
+    public void loginUser(Student student) {
+        Toast.makeText(getApplicationContext(), "Logging you in", Toast.LENGTH_LONG).show();
+        Intent intent;
+        if (student.getProgram() == Constants.DAYCARE)
+            intent = new Intent(MainActivity.this, daycaredashboard.class);
+        else
+            intent = new Intent(MainActivity.this, Main4Activity.class);
+        SessionManagement.username = student.getUsername();
+        SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
+        SessionManagement.updateSharedPreferences();
+
+        pd.dismiss();
+        dialog.dismiss();
+        startActivity(intent);
+        finish();
+    }
     public void checkSavedLogin() {
         long currentTimeMillis = System.currentTimeMillis();
         Log.d("check login", SessionManagement.username + " : " + SessionManagement.rememberMe + " : " + (currentTimeMillis - SessionManagement.lastLoginTimestamp));
@@ -57,18 +90,35 @@ public class MainActivity extends AppCompatActivity {
                 (SessionManagement.lastLoginTimestamp > 0 &&
                         currentTimeMillis - SessionManagement.lastLoginTimestamp < 1209600000)) &&
                 SessionManagement.rememberMe) {
-            if (SessionManagement.username.contains("Admin")) {
+            if (SessionManagement.isAdmin) {
                 Intent intent = new Intent(MainActivity.this, admindashboard.class);
                 startActivity(intent);
                 finish();
-            } else if (SessionManagement.username.contains("Dayc")) {
-                Intent intent = new Intent(MainActivity.this, daycaredashboard.class);
-                startActivity(intent);
-                finish();
             } else {
-                Intent intent = new Intent(MainActivity.this, Main4Activity.class);
-                startActivity(intent);
-                finish();
+                DatabaseReference referenceUser = database.getReference("newDb").child("students");
+                referenceUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Intent intent;
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            if (SessionManagement.username.equals(data.child("username").getValue().toString())) {
+                                int program = data.child("program").getValue(Integer.class);
+                                if (program == Constants.DAYCARE)
+                                    intent = new Intent(MainActivity.this, daycaredashboard.class);
+                                else
+                                    intent = new Intent(MainActivity.this, Main4Activity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         }
     }
@@ -103,361 +153,70 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String username = UserName.getText().toString().trim();
-                final String passwordtxt = PassWord.getText().toString().trim();
+                final String password = PassWord.getText().toString().trim();
 
                 if (rememberMe.isChecked()) {
                     SessionManagement.rememberMe = true;
                 }
 
-                final ProgressDialog pd = new ProgressDialog(MainActivity.this);
+                pd = new ProgressDialog(MainActivity.this);
 
                 pd.setMessage("Loading...");
                 pd.show();
 
-                if (username.contains("Admin")) {
+                if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
 
-                    if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(passwordtxt)) {
+                    DatabaseReference referenceAdmin = database.getReference("newDb").child("admins");
 
-                        DatabaseReference reference = database.getReference("UserNames").child("Admin");
-
-                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                String name = null, password = null;
-                                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                    name = data.getKey();
-                                    password = data.child("password").getValue(String.class);
-
-                                    if (username.equals(name))
-                                        break;
-                                }
-
-                                if (username.equals(name) && passwordtxt.equals(password)) {
-
-                                    Toast.makeText(getApplicationContext(), "Logging you in", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(MainActivity.this, admindashboard.class);
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("Username", username);
-                                    intent.putExtras(bundle);
-                                    SessionManagement.username = username;
-                                    SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
-                                    SessionManagement.updateSharedPreferences();
-                                    pd.dismiss();
-                                    dialog.dismiss();
-                                    startActivity(intent);
-                                    finish();
-
-
-                                } else {
-                                    pd.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                pd.dismiss();
-                                Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
-
-                            }
-
-                        });
-
-                    } else {
-
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Username or Password cannot be empty!", Toast.LENGTH_LONG).show();
-                    }
-
-                } else if (username.contains("Bloss")) {
-                    if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(passwordtxt)) {
-
-                        DatabaseReference reference = database.getReference("UserNames").child("Blossoming");
-
-                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                String name = null, password = null;
-                                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                    name = data.getKey();
-                                    password = data.child("password").getValue(String.class);
-
-                                    if (username.equals(name))
-                                        break;
-                                }
-
-                                if (username.equals(name) && passwordtxt.equals(password)) {
-
-                                    Toast.makeText(getApplicationContext(), "Redirecting to Blossoming Dashboard", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(MainActivity.this, Main4Activity.class);
-                                    //  Bundle bundle=new Bundle();
-                                    // bundle.putString("Username",username);
-                                    // intent.putExtras(bundle);
-                                    //  pd.dismiss();
-                                    pd.dismiss();
-                                    dialog.dismiss();
-                                    SessionManagement.username = username;
-                                    SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
-                                    SessionManagement.updateSharedPreferences();
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    pd.dismiss();
-                                    Toast.makeText(MainActivity.this, "Incorrect credentials!Please Try Again!", Toast.LENGTH_SHORT).show();
+                    referenceAdmin.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Admin admin = new Admin();
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                admin.setUsername(data.child("username").getValue().toString());
+                                admin.setPassword(data.child("password").getValue().toString());
+                                if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
+                                    loginAdmin(admin);
                                 }
                             }
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                pd.dismiss();
-                                Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
-
-                            }
-
-                        });
-
-                    } else {
-
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Username or Password cannot be empty!", Toast.LENGTH_LONG).show();
-                    }
-                } else if (username.contains("Dayc")) {
-                    if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(passwordtxt)) {
-
-                        DatabaseReference reference = database.getReference("UserNames").child("DayCare");
-
-                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                String name = null, password = null;
-                                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                    name = data.getKey();
-                                    password = data.child("password").getValue(String.class);
-
-                                    if (username.equals(name))
-                                        break;
-                                }
-
-                                if (username.equals(name) && passwordtxt.equals(password)) {
-
-                                    Toast.makeText(getApplicationContext(), "Redirecting to Day Care Dashboard", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(MainActivity.this, daycaredashboard.class);
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("Username", username);
-                                    intent.putExtras(bundle);
-                                    SessionManagement.username = username;
-                                    SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
-                                    SessionManagement.updateSharedPreferences();
-                                    pd.dismiss();
-                                    dialog.dismiss();
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    pd.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                pd.dismiss();
-                                Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
-
-                            }
-
-                        });
-
-                    } else {
-
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Username or Password cannot be empty!", Toast.LENGTH_LONG).show();
-                    }
-
-                } else if (username.contains("Budd")) {
-                    if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(passwordtxt)) {
-
-                        DatabaseReference reference = database.getReference("UserNames").child("Budding");
-
-                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                String name = null, password = null;
-                                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                    name = data.getKey();
-                                    password = data.child("password").getValue(String.class);
-
-                                    if (username.equals(name))
-                                        break;
-                                }
-
-                                if (username.equals(name) && passwordtxt.equals(password)) {
-
-                                    Toast.makeText(getApplicationContext(), "Redirecting to Budding Dashboard", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(MainActivity.this, Main4Activity.class);
-                                    // Bundle bundle=new Bundle();
-                                    //bundle.putString("Username",username);
-                                    //intent.putExtras(bundle);
-                                    // pd.dismiss();
-                                    pd.dismiss();
-                                    dialog.dismiss();
-                                    SessionManagement.username = username;
-                                    SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
-                                    SessionManagement.updateSharedPreferences();
-                                    startActivity(intent);
-                                    finish();
-
-                                } else {
-                                    pd.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                pd.dismiss();
-                                Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
-
-                            }
-
-                        });
-
-                    } else {
-
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Username or Password cannot be empty!", Toast.LENGTH_LONG).show();
-                    }
-
-                } else if (username.contains("Seed")) {
-                    if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(passwordtxt)) {
-
-                        DatabaseReference reference = database.getReference("UserNames").child("Seeding");
-
-                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                String name = null, password = null;
-                                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                    name = data.getKey();
-                                    password = data.child("password").getValue(String.class);
-
-                                    if (username.equals(name))
-                                        break;
-                                }
-
-                                if (username.equals(name) && passwordtxt.equals(password)) {
-
-
-                                    Toast.makeText(getApplicationContext(), "Redirecting to Seeding Dashboard", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(MainActivity.this, Main4Activity.class);
-                                    pd.dismiss();
-                                    dialog.dismiss();
-                                    SessionManagement.username = username;
-                                    SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
-                                    SessionManagement.updateSharedPreferences();
-                                    startActivity(intent);
-                                    finish();
-
-                                } else {
-                                    Log.println(Log.ERROR, "msg", username + " " + passwordtxt);
-                                    //pd.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Incorrect username or password", Toast.LENGTH_LONG).show();
-                                }
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-                                /*reference.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-
+                            DatabaseReference referenceUser = database.getReference("newDb").child("students");
+                            referenceUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    Student student;
+                                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                        student = (data.getValue(Student.class));
+                                        if (username.equals(student.getUsername()) && password.equals(student.getPassword())) {
+                                            Log.d("daycare", data.getValue().toString() + "");
+                                            loginUser(student);
+                                        }
                                     }
-
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-                                        pd.dismiss();
-                                        Toast.makeText(getApplicationContext(),"Something went wrong!",Toast.LENGTH_LONG).show();
-
-                                    }
-
-                                });*/
-
-                    } else {
-
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Username or Password cannot be empty!", Toast.LENGTH_LONG).show();
-                    }
-
-                } else if (username.contains("Flou")) {
-                    if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(passwordtxt)) {
-
-                        DatabaseReference reference = database.getReference("UserNames").child("Flourishing");
-
-                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                String name = null, password = null;
-                                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                    name = data.getKey();
-                                    password = data.child("password").getValue(String.class);
-
-                                    if (username.equals(name))
-                                        break;
                                 }
 
-                                if (username.equals(name) && passwordtxt.equals(password)) {
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
 
-                                    Toast.makeText(getApplicationContext(), "Redirecting to Flourishing Dashboard", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(MainActivity.this, Main4Activity.class);
-                                    //Bundle bundle=new Bundle();
-                                    //  bundle.putString("Username",username);
-                                    //    intent.putExtras(bundle);
-                                    pd.dismiss();
-                                    dialog.dismiss();
-                                    SessionManagement.username = username;
-                                    SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
-                                    SessionManagement.updateSharedPreferences();
-                                    startActivity(intent);
-                                    finish();
-
-                                } else {
-                                    pd.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
                                 }
+                            });
+                            pd.dismiss();
+                            Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
 
-                            }
+                        }
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                pd.dismiss();
-                                Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            pd.dismiss();
+                            Toast.makeText(getApplicationContext(), "Something went wrong!", Toast.LENGTH_LONG).show();
 
-                            }
+                        }
 
-                        });
-
-                    } else {
-
-                        pd.dismiss();
-                        Toast.makeText(getApplicationContext(), "Username or Password cannot be empty!", Toast.LENGTH_LONG).show();
-                    }
-
+                    });
 
                 } else {
-                    pd.dismiss();
-                    Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
 
+                    pd.dismiss();
+                    Toast.makeText(getApplicationContext(), "Username or Password cannot be empty!", Toast.LENGTH_LONG).show();
                 }
 
 

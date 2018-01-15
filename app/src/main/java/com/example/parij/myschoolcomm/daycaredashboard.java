@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -124,7 +123,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         rollNo = (TextView)header.findViewById(R.id.roll);
         program = (TextView)header.findViewById(R.id.program);
         photo =(ImageView)header.findViewById(R.id.photo);
-
+        //TODO Remove Bundle usage and use firebasereference to set the data
         final String username2 = bundle.getString("Username");
 
         FirebaseDatabase database;

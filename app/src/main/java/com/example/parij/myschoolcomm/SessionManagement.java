@@ -12,6 +12,7 @@ public class SessionManagement {
     static String username;
     static long lastLoginTimestamp;
     static boolean rememberMe;
+    static boolean isAdmin;
     static SharedPreferences sharedPreferences;
     static SharedPreferences.Editor editor;
 
@@ -21,6 +22,7 @@ public class SessionManagement {
         username = sharedPreferences.getString("username","NA");
         lastLoginTimestamp = sharedPreferences.getLong("lastLoginTimpstamp",0);
         rememberMe = sharedPreferences.getBoolean("rememberMe",false);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
     }
     public static void updateSharedPreferences()
     {
@@ -30,6 +32,7 @@ public class SessionManagement {
             editor.putString("username", username);
             editor.putLong("lastLoginTimpstamp",lastLoginTimestamp);
             editor.putBoolean("rememberMe",rememberMe);
+            editor.putBoolean("isAdmin", isAdmin);
             if(editor.commit())
             {
                 Log.e("SP","Commit successfull with Uname : " + username);
