@@ -74,6 +74,7 @@ public class announcementuser extends AppCompatActivity {
                 for(DataSnapshot ds: dataSnapshot.getChildren())
                 {
                     arrayListBroadcast.add(ds.getValue(Broadcast.class));
+
                 }
                 sort(arrayListBroadcast);
                 filter(spinnerFilter.getSelectedItemPosition());

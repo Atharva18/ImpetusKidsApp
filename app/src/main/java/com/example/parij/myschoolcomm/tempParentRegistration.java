@@ -3,17 +3,16 @@ package com.example.parij.myschoolcomm;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +26,7 @@ public class tempParentRegistration extends AppCompatActivity {
 
     static int count = 0;
     static int count2 = 0;
-    EditText musername, password, rollNo, name;
+    EditText username, password, rollNo, name;
 
     Spinner spinner2, spinnerProgram;
     Button add;
@@ -84,12 +83,13 @@ public class tempParentRegistration extends AppCompatActivity {
         //  toolbar.setNavigationIcon(R.drawable.childprofbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
-        musername = (EditText) findViewById(R.id.username);
+        username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         rollNo = (EditText) findViewById(R.id.rollNo);
         name = (EditText) findViewById(R.id.name);
         //spinner1=(Spinner)findViewById(R.id.spinner);
         spinnerProgram = (Spinner) findViewById(R.id.spinnerProgramRegistration);
+        arrayListPrograms = new ArrayList<>();
         arrayListPrograms.add("Day-Care");
         arrayListPrograms.add("Blossoming");
         arrayListPrograms.add("Budding");
@@ -105,94 +105,31 @@ public class tempParentRegistration extends AppCompatActivity {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(arrayAdapter);
 
-        final String[] type1 = new String[1];
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onClick(View v) {
 
-                type1[0] = (String) parent.getItemAtPosition(position);
+                Student student = new Student();
+                student.setRollNo(rollNo.getText().toString().trim());
+                student.setName(name.getText().toString().trim());
+                int batch;
+                if (spinner2.getSelectedItemPosition() == 0)
+                    batch = Constants.MORNING;
+                else
+                    batch = Constants.AFTERNOON;
+                student.setBatch(batch);
+                //Simlarly program
 
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        userNames = new ArrayList<>();
-        rollNos = new ArrayList<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("UserNames");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    for (DataSnapshot dsChild : ds.getChildren()) {
-                        userNames.add(dsChild.getKey());
-                    }
-                }
-                add.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Log.println(Log.ERROR, "msg", String.valueOf(userNames));
-                        String program = "";
-                        final String userName, password1, roll, name1, batch;
-                        userName = musername.getText().toString().trim();
-                        password1 = password.getText().toString().trim();
-                        roll = rollNo.getText().toString().trim();
-                        name1 = name.getText().toString().trim();
-                        batch = type1[0];
-
-                        int flag = 0;
-                        if (userName.contains("Dayc")) {
-                            program = "DayCare";
-
-                        } else if (userName.contains("Bloss")) {
-                            program = "Blossoming";
-
-                        } else if (userName.contains("Budd")) {
-                            program = "Budding";
-
-                        } else if (userName.contains("Flou")) {
-                            program = "Flourishing";
-
-                        } else if (userName.contains("Seed")) {
-                            program = "Seeding";
-
-                        } else {
-                            flag = 1;
-                        }
-                        int flag3 = 0;
-                        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password1) || TextUtils.isEmpty(roll)
-                                || TextUtils.isEmpty(name1)) {
-
-                            Toast.makeText(tempParentRegistration.this, "Please fill all the fields", Toast.LENGTH_LONG).show();
-                            flag3 = 1;
-                        }
-
-
-                        if (flag == 1)
-                        {
-                            Toast.makeText(tempParentRegistration.this, "Invalid Username", Toast.LENGTH_LONG).show();
-                        } else if (flag3 != 1)
-                        {
-                            if (!userNames.contains(userName))
-                            {
-                                checkRoll(userName, roll, password1, program, name1, batch);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Username exists", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }
-                });
-            }
-
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+                student.setUsername(username.getText().toString().trim());
+                student.setPassword(password.getText().toString().trim());
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
+                databaseReference.push().setValue(student);
             }
         });
+
+
+
+
 
     }
     boolean checkRoll(final String userName, final String roll, final String password, final String program1, final String name1, final String batch)
@@ -265,7 +202,7 @@ public class tempParentRegistration extends AppCompatActivity {
                     Log.println(Log.ERROR,"msg",key);
 
                     if (data.getKey().equals(user)) {
-                        musername.setError("UserName already Exists!");
+                        username.setError("UserName already Exists!");
                       //  flag1[0] = 1;
                         setCount(1);
                         Log.println(Log.ERROR,"msg1", String.valueOf(String.valueOf(getCount())));

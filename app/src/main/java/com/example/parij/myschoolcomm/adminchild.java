@@ -89,11 +89,11 @@ public class adminchild extends AppCompatActivity {
         pd.setMessage("Uploading....");
 
 
-        programadapter=programadapter.createFromResource(this,R.array.Type,android.R.layout.simple_spinner_item);
+        programadapter = ArrayAdapter.createFromResource(this, R.array.Type, android.R.layout.simple_spinner_item);
         programadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         program.setAdapter(programadapter);
 
-        batchadapter=batchadapter.createFromResource(this,R.array.Type, android.R.layout.simple_spinner_item);
+        batchadapter = ArrayAdapter.createFromResource(this, R.array.Batch, android.R.layout.simple_spinner_item);
         batchadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         batch.setAdapter(batchadapter);
         choosePhoto.setOnClickListener(new View.OnClickListener()

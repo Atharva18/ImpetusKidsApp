@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -140,7 +141,7 @@ public class childdetailswindow extends AppCompatActivity {
                             username = ds2.child("username").getValue(String.class);
                             name = ds2.child("name").getValue(String.class);
                             rollno = Integer.parseInt(ds2.getKey());
-                            Student student = new Student(program, batch, rollno, name, username);
+                            Student student = new Student();
                             arrayListFull.add(student);
                             arrayListDisplay.add("Name: " + student.getName() + "\nRoll no: " + student.getRollNo() + "\nProgram: " + student.getProgram());
                             Log.d("StudentObj : ", student.toString());
@@ -222,7 +223,7 @@ public class childdetailswindow extends AppCompatActivity {
         arrayListFiltered = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
         for (int i = 0; i < arrayListFull.size(); i++) {
-            if (arrayListFull.get(i).getProgram().contains(filter)) {
+            if (arrayListFull.get(i).getProgram() == 0) {
                 arrayListFiltered.add(arrayListFull.get(i));
                 arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + arrayListFull.get(i).getProgram());
             }
