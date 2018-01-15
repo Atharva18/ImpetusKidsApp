@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+
     android:fillViewport="true"
     android:orientation="vertical"
 
@@ -16,13 +17,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="14">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="59dp"
-            android:background="#3209da" />
+            android:background="#3209da"
+            android:layout_weight="2"/>
 
 
         <TableLayout
@@ -31,6 +34,7 @@
             android:layout_marginTop="10dp"
             android:stretchColumns="1"
             android:visibility="visible"
+            android:weightSum="12"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
@@ -42,7 +46,7 @@
                     android:id="@+id/photo"
                     android:layout_width="117dp"
                     android:layout_height="121dp"
-
+                    android:layout_weight="2"
                     android:src="@drawable/head"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="2dp"
@@ -50,10 +54,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </TableRow>
-
+            <!--
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                >
 
                 <TextView
                     android:layout_column="0"
@@ -98,10 +103,11 @@
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
-
+            -->
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_column="0"
@@ -122,10 +128,11 @@
                     android:textSize="18sp" />
             </TableRow>
 
-
+            <!--
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -144,14 +151,14 @@
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
-
+            -->
             <TableRow
                 android:layout_marginRight="3dp"
                 android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Class: "
+                    android:text="Program: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -172,11 +179,12 @@
 
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Division: "
+                    android:text="Batch: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -195,7 +203,8 @@
 
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -219,7 +228,8 @@
 
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -243,7 +253,8 @@
 
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -266,7 +277,8 @@
 
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -290,7 +302,8 @@
 
             <TableRow
                 android:layout_marginRight="3dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
