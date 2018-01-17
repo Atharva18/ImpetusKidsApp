@@ -21,7 +21,10 @@ public class EmergencyPerson implements Serializable {
 
     public EmergencyPerson() {
         //Do not remove, removal may cause World War 3
-        familyDoctorName = "";
+        familyDoctorName = "NA";
+        familyDoctorPhone = "NA";
+        phone = "NA";
+        phoneAlternate = "NA";
     }
     public String getPhone() {
         return phone;

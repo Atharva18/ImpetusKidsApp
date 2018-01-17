@@ -261,7 +261,7 @@ public class EmergencyActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Student student;
+                Student student = new Student();
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     student = ds.getValue(Student.class);

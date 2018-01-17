@@ -49,6 +49,19 @@ public class Student implements Serializable {
     public Student() {
         //Do not remove, removal may cause World War 3
         name = "";
+        rollNo = "";
+        username = "";
+        password = "";
+        admissionDate = "";
+        program = -1;
+        batch = -1;
+        dateOfBirth = "";
+        bloodGroup = -1;
+        classTeacherName = "";
+        classTeacherPhone = "";
+        imageLink = "";
+        EmergencyPerson emergencyPerson = new EmergencyPerson();
+
     }
 
     public String getRollNo() {

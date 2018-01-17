@@ -57,6 +57,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
     ProgressDialog pd;
     Button choosePhoto;
     ArrayList<Student> studentArrayList;
+    ArrayList<String> keysArrayList;
 
     DatePickerDialog.OnDateSetListener onDateSetListener;
     DatePickerDialog.OnDateSetListener onDateSetListener2;
@@ -173,6 +174,8 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
         });
 
         studentArrayList = new ArrayList<Student>();
+        keysArrayList = new ArrayList<String>();
+
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -183,6 +186,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                 {
                     student = ds.getValue(Student.class);
                     studentArrayList.add(student);
+                    keysArrayList.add(ds.getKey());
                 }
             }
 
@@ -289,7 +293,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                 {
 
                     StorageReference childRef = storageRef.child(username+"image.jpg");
-
+                    int position = 0;
                     if(filePath==null && personphoto.getDrawable()==null)
                     {
                         Toast.makeText(getApplicationContext(),"Please Select a image!",Toast.LENGTH_LONG).show();
@@ -302,9 +306,12 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                         for (Student stud : studentArrayList) {
                             if (stud.getUsername().equals(username)) {
                                 student = stud;
+                                position = studentArrayList.indexOf(student);
                                 break;
                             }
                         }
+
+                        String key = keysArrayList.get(position);
 
                         final AuthorizedPerson authorizedPerson = new AuthorizedPerson();
                         authorizedPerson.setRelation(mrelation);
@@ -342,19 +349,14 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
 
 
                         student.setAuthorizedPerson(authorizedPerson);
-                        reference.push().setValue(student);
+                        reference.child(key).setValue(student);
                         if (status == 0)
                             Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
 
 
                     }
 
-
-
                     //   Toast.makeText(getApplicationContext(),"Response submitted",Toast.LENGTH_LONG).show();
-
-
-
                 }
 
 
