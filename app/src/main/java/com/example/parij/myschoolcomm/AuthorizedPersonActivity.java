@@ -21,15 +21,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.parij.myschoolcomm.Models.AuthorizedPerson;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -50,6 +56,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
     int PICK_IMAGE_REQUEST = 111;
     ProgressDialog pd;
     Button choosePhoto;
+    ArrayList<Student> studentArrayList;
 
     DatePickerDialog.OnDateSetListener onDateSetListener;
     DatePickerDialog.OnDateSetListener onDateSetListener2;
@@ -165,47 +172,25 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
             }
         });
 
-
-      /*  upload.setOnClickListener(new View.OnClickListener() {
+        studentArrayList = new ArrayList<Student>();
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                    pd.show();
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    StorageReference childRef = storageRef.child(username+"image.jpg");
-
-                if(filePath==null)
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
-                    Toast.makeText(getApplicationContext(),"Please Select a image!",Toast.LENGTH_LONG).show();
-                    pd.dismiss();
+                    student = ds.getValue(Student.class);
+                    studentArrayList.add(student);
                 }
-                else
-                {
-                    //uploading the image
+            }
 
-                    UploadTask uploadTask = childRef.putFile(filePath);
-
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            taskSnapshot.getMetadata();
-                            String downloadurl= taskSnapshot.getDownloadUrl().toString();
-                            database=FirebaseDatabase.getInstance();
-                            DatabaseReference reference= database.getReference("Images").child("Authorized_Person");
-                            reference.child(username).setValue(downloadurl);
-                            pd.dismiss();
-                            Toast.makeText(AuthorizedPersonActivity.this, "Upload successful", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            pd.dismiss();
-                            Toast.makeText(AuthorizedPersonActivity.this, "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
-                        }
-                    });}
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
-
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,23 +298,36 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                     else {
                         //uploading the image
 
-                        int check1 = 0;
+                        Student student = new Student();
+                        for (Student stud : studentArrayList) {
+                            if (stud.getUsername().equals(username)) {
+                                student = stud;
+                                break;
+                            }
+                        }
+
+                        final AuthorizedPerson authorizedPerson = new AuthorizedPerson();
+                        authorizedPerson.setRelation(mrelation);
+                        authorizedPerson.setName(mname);
+                        authorizedPerson.setPhone(mcontactNo);
+                        authorizedPerson.setFromDate(datestart);
+                        authorizedPerson.setToDate(dateend);
+
+                        int status = 0;
 
                         if (filePath != null) {
-
-                            check1 = 1;
+                            status = 1;
                             pd.show();
-
                             UploadTask uploadTask = childRef.putFile(filePath);
-
                             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                     taskSnapshot.getMetadata();
                                     String downloadurl = taskSnapshot.getDownloadUrl().toString();
                                     database = FirebaseDatabase.getInstance();
-                                    DatabaseReference reference = database.getReference("Images").child("Authorized_Person");
-                                    reference.child(username).setValue(downloadurl);
+                                    //   DatabaseReference reference = database.getReference("Images").child("Authorized_Person");
+                                    //  reference.child(username).setValue(downloadurl);
+                                    authorizedPerson.setImageLink(downloadurl);
                                     pd.dismiss();
                                     Toast.makeText(AuthorizedPersonActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
                                 }
@@ -342,11 +340,13 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                             });
                         }
 
-                        if (check1 == 0) {
+
+                        student.setAuthorizedPerson(authorizedPerson);
+                        reference.push().setValue(student);
+                        if (status == 0)
                             Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
 
 
-                        }
                     }
 
 

@@ -1,9 +1,7 @@
 package com.example.parij.myschoolcomm;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -12,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.parij.myschoolcomm.Models.EmergencyPerson;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -116,10 +116,10 @@ public class EmergencyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String contact =contactNo.getText().toString().trim();
-                String alternative=alternativeNo.getText().toString().trim();
-                String doctorname=familyDoctor.getText().toString().trim();
-                String doctorno=doctorNo.getText().toString().trim();
+                final String contact = contactNo.getText().toString().trim();
+                final String alternative = alternativeNo.getText().toString().trim();
+                final String doctorname = familyDoctor.getText().toString().trim();
+                final String doctorno = doctorNo.getText().toString().trim();
 
                 int flag=0;
 
@@ -197,14 +197,42 @@ public class EmergencyActivity extends AppCompatActivity {
                 }
                 if(flag==0)
                 {
-                    database=FirebaseDatabase.getInstance();
+
+                    final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
+
+                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            Student student;
+
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                student = ds.getValue(Student.class);
+                                if (student.getUsername().equals(username)) {
+                                    student.setEmergencyPerson(new EmergencyPerson(contact, alternative, doctorname, doctorno));
+                                    reference.child(ds.getKey()).setValue(student);
+                                    Toast.makeText(getApplicationContext(), "Your Response has been added", Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                    /*database=FirebaseDatabase.getInstance();
                     DatabaseReference databaseReference= database.getReference("emergency");
 
                     emergencyclass emergency = new emergencyclass(contact,alternative,doctorname,doctorno);
 
-                    databaseReference.child(username).setValue(emergency);
+                    databaseReference.child(username).setValue(emergency);*/
 
-                    Toast.makeText(getApplicationContext(),"Your Response has been added",Toast.LENGTH_LONG).show();
+
 
                 }
                 else
@@ -223,42 +251,31 @@ public class EmergencyActivity extends AppCompatActivity {
     {
         super.onStart();
 
-
-  //      bundle=getIntent().getExtras();
-   //     final String username = bundle.getString("Username");
         SessionManagement.retrieveSharedPreferences(EmergencyActivity.this);
-
         final String username = SessionManagement.username;
         database=FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference= database.getReference("emergency");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        final DatabaseReference databaseReference = database.getReference("newDb").child("students");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot data : dataSnapshot.getChildren())
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
-                    if(username.equals(data.getKey()))
-                    {
-                       // contactNo.setText((CharSequence) data.child("mcontact"));
-                        contactNo.setText((CharSequence) data.child("contact").getValue());
-                        alternativeNo.setText((CharSequence)data.child("alternativeContact").getValue());
-                        familyDoctor.setText((CharSequence)data.child("doctorname").getValue());
-                        doctorNo.setText((CharSequence)data.child("doctorno").getValue());
+                    student = ds.getValue(Student.class);
 
+                    if (student.getUsername().equals(username)) {
+                        contactNo.setText(student.getEmergencyPerson().getPhone().toString());
+                        alternativeNo.setText(student.getEmergencyPerson().getPhoneAlternate().toString());
+                        doctorNo.setText(student.getEmergencyPerson().getFamilyDoctorName());
+                        familyDoctor.setText(student.getEmergencyPerson().getFamilyDoctorPhone().toString());
+                        break;
                     }
-
-
                 }
-
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-
-                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_LONG).show();
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
