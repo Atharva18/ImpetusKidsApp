@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -211,6 +212,7 @@ public class EmergencyActivity extends AppCompatActivity {
                                 if (student.getUsername().equals(username)) {
                                     student.setEmergencyPerson(new EmergencyPerson(contact, alternative, doctorname, doctorno));
                                     reference.child(ds.getKey()).setValue(student);
+                                    Log.e("Key", "Student: " + student.getUsername() + " Session-username: " + username + " Key: " + ds.getKey());
                                     Toast.makeText(getApplicationContext(), "Your Response has been added", Toast.LENGTH_LONG).show();
                                 }
 
@@ -263,7 +265,6 @@ public class EmergencyActivity extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     student = ds.getValue(Student.class);
-
                     if (student.getUsername().equals(username)) {
                         contactNo.setText(student.getEmergencyPerson().getPhone().toString());
                         alternativeNo.setText(student.getEmergencyPerson().getPhoneAlternate().toString());

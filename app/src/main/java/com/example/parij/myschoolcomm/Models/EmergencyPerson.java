@@ -19,6 +19,10 @@ public class EmergencyPerson implements Serializable {
         this.familyDoctorPhone = familyDoctorPhone;
     }
 
+    public EmergencyPerson() {
+        //Do not remove, removal may cause World War 3
+        familyDoctorName = "";
+    }
     public String getPhone() {
         return phone;
     }

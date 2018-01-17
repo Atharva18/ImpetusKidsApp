@@ -23,6 +23,11 @@ public class AuthorizedPerson implements Serializable {
         this.imageLink = imageLink;
     }
 
+    public AuthorizedPerson() {
+        //Do not remove, removal may cause World War 3
+        name = "";
+    }
+
     public String getRelation() {
         return relation;
     }

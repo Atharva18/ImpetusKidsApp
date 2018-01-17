@@ -29,5 +29,7 @@ public class Constants {
     public static final int OPositive = 16;
     public static final int ONegative = 17;
 
+    //FB DB
+    public static final String FBDB = "newDb";
 
 }

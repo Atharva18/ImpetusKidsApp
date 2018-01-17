@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class admindashboard extends AppCompatActivity {
     Button Logout;
     FloatingActionButton floatButton;
@@ -54,7 +56,7 @@ public class admindashboard extends AppCompatActivity {
 
         //drawerLayout.addDrawerListener(actionBarDrawerToggle);
         //actionBarDrawerToggle.syncState();
-
+        FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).keepSynced(true);
         Logout=(Button)findViewById(R.id.Logout);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
        setSupportActionBar(toolbar);

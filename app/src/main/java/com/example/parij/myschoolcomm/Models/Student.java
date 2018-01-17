@@ -47,6 +47,8 @@ public class Student implements Serializable {
     }
 
     public Student() {
+        //Do not remove, removal may cause World War 3
+        name = "";
     }
 
     public String getRollNo() {

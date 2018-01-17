@@ -16,6 +16,8 @@ public class Admin implements Serializable {
     }
 
     public Admin() {
+        //Do not remove, removal may cause World War 3
+        username = "";
     }
 
     public String getUsername() {

@@ -84,7 +84,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         getSupportActionBar().setTitle("      Dashboard");*/
 
 
-
+        FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).keepSynced(true);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("        Dashboard");

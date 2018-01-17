@@ -22,6 +22,8 @@ public class Parent implements Serializable {
     }
 
     public Parent() {
+        //Do not remove, removal may cause World War 3
+        name = "";
     }
 
     public String getName() {

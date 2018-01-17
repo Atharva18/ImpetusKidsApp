@@ -75,7 +75,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_main1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).keepSynced(true);
         drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
 
         findViewById(R.id.drawer_button).setOnClickListener(new View.OnClickListener() {
