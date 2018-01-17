@@ -32,4 +32,9 @@ public class Constants {
     //FB DB
     public static final String FBDB = "newDb";
 
+    //Gender
+    public static final int MALE = 18;
+    public static final int FEMALE = 19;
+
+
 }

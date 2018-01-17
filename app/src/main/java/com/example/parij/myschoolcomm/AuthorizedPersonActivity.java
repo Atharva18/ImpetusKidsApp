@@ -92,7 +92,6 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setMessage("Uploading....");
 
-
         final Calendar mycalender=Calendar.getInstance();
 
         final DatePickerDialog.OnDateSetListener date=new DatePickerDialog.OnDateSetListener() {
@@ -115,7 +114,6 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
 
             }
         };
-
         date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,8 +123,6 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
         });
 
         final Calendar mycalender2 = Calendar.getInstance();
-
-
         final DatePickerDialog.OnDateSetListener date11=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
@@ -138,7 +134,6 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
 
             }
 
-
             private void UpdateLabel() {
                 String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
@@ -147,19 +142,12 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
             }
         };
 
-
         date2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new DatePickerDialog(AuthorizedPersonActivity.this, date11, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
-
-
-
-
         choosePhoto.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -319,9 +307,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                         authorizedPerson.setPhone(mcontactNo);
                         authorizedPerson.setFromDate(datestart);
                         authorizedPerson.setToDate(dateend);
-
                         int status = 0;
-
                         if (filePath != null) {
                             status = 1;
                             pd.show();
@@ -332,9 +318,19 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                                     taskSnapshot.getMetadata();
                                     String downloadurl = taskSnapshot.getDownloadUrl().toString();
                                     database = FirebaseDatabase.getInstance();
-                                    //   DatabaseReference reference = database.getReference("Images").child("Authorized_Person");
-                                    //  reference.child(username).setValue(downloadurl);
                                     authorizedPerson.setImageLink(downloadurl);
+                                    Student student = new Student();
+                                    int position = 0;
+                                    for (Student stud : studentArrayList) {
+                                        if (stud.getUsername().equals(username)) {
+                                            student = stud;
+                                            position = studentArrayList.indexOf(student);
+                                            break;
+                                        }
+                                    }
+                                    String key = keysArrayList.get(position);
+                                    student.setAuthorizedPerson(authorizedPerson);
+                                    reference.child(key).setValue(student);
                                     pd.dismiss();
                                     Toast.makeText(AuthorizedPersonActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
                                 }
@@ -346,24 +342,16 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                                 }
                             });
                         }
-
-
-                        student.setAuthorizedPerson(authorizedPerson);
-                        reference.child(key).setValue(student);
-                        if (status == 0)
+                        if (status == 0) {
+                            student.setAuthorizedPerson(authorizedPerson);
+                            reference.child(key).setValue(student);
                             Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
-
-
+                        }
                     }
 
-                    //   Toast.makeText(getApplicationContext(),"Response submitted",Toast.LENGTH_LONG).show();
                 }
-
-
-
             }
         });
-
 
     }
 

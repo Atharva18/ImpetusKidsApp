@@ -15,6 +15,7 @@ public class Student implements Serializable {
     private String admissionDate;
     private int program;
     private int batch;
+    private int gender;
     private String dateOfBirth;
     private int bloodGroup;
     private String classTeacherName;
@@ -25,7 +26,7 @@ public class Student implements Serializable {
     private AuthorizedPerson authorizedPerson;
     private EmergencyPerson emergencyPerson;
 
-    public Student(String rollNo, String name, String username, String password, String admissionDate, int program, int batch, String dateOfBirth, int bloodGroup, String classTeacherName, String classTeacherPhone, String imageLink, ArrayList<String> memoryImageLinks, Parent father, Parent mother, Parent guardian, AuthorizedPerson authorizedPerson, EmergencyPerson emergencyPerson) {
+    public Student(String rollNo, String name, String username, String password, String admissionDate, int program, int batch, int gender, String dateOfBirth, int bloodGroup, String classTeacherName, String classTeacherPhone, String imageLink, ArrayList<String> memoryImageLinks, Parent father, Parent mother, Parent guardian, AuthorizedPerson authorizedPerson, EmergencyPerson emergencyPerson) {
         this.rollNo = rollNo;
         this.name = name;
         this.username = username;
@@ -33,6 +34,7 @@ public class Student implements Serializable {
         this.admissionDate = admissionDate;
         this.program = program;
         this.batch = batch;
+        this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.bloodGroup = bloodGroup;
         this.classTeacherName = classTeacherName;
@@ -55,6 +57,7 @@ public class Student implements Serializable {
         admissionDate = "";
         program = -1;
         batch = -1;
+        gender = -1;
         dateOfBirth = "";
         bloodGroup = -1;
         classTeacherName = "";
@@ -62,6 +65,14 @@ public class Student implements Serializable {
         imageLink = "";
         emergencyPerson = new EmergencyPerson();
 
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     public String getRollNo() {
