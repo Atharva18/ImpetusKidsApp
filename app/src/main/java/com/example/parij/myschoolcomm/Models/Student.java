@@ -60,7 +60,7 @@ public class Student implements Serializable {
         classTeacherName = "";
         classTeacherPhone = "";
         imageLink = "";
-        EmergencyPerson emergencyPerson = new EmergencyPerson();
+        emergencyPerson = new EmergencyPerson();
 
     }
 
