@@ -18,8 +18,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,13 +77,10 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daycaredashboard);
         final Bundle bundle=getIntent().getExtras();
-        /*
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(0xFFFFFFFF);
-        setSupportActionBar(toolbar);
 
-
-        getSupportActionBar().setTitle("      Dashboard");*/
+        SessionManagement.retrieveSharedPreferences(daycaredashboard.this);
+        final String username = SessionManagement.username;
+        SessionManagement.updateSharedPreferences();
 
 
         FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).keepSynced(true);
@@ -124,54 +123,39 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         program = (TextView)header.findViewById(R.id.program);
         photo =(ImageView)header.findViewById(R.id.photo);
         //TODO Remove Bundle usage and use firebasereference to set the data
-        final String username2 = bundle.getString("Username");
+
 
         FirebaseDatabase database;
-
-        program.setText("Program : Day-Care");
-        final int[] flag = {0};
         database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("studinfo").child("Day-Care").child("Morning");
+        DatabaseReference reference = database.getReference("newDb").child("students");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Student student;
 
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    if (username.equals(student.getUsername())) {
+                        name.setText("Name :" + student.getName());
+                        rollNo.setText("Roll No :" + student.getRollNo());
+                        int programCode = student.getProgram();
 
-                    String name1 = (String) data.child("name").getValue();
-                    String username1 = (String) data.child("username").getValue();
+                        if (programCode == Constants.DAYCARE) {
+                            program.setText("Program : Day-Care");
 
-                    if (username2.equals(username1)) {
-                        flag[0] = 1;
-                        name.setText("Name : " + name1);
-                        rollNo.setText("Batch :  Morning");
+                        }
 
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        databaseReference = database.getReference("Images").child("Child_Profile");
-        final String user = username2;
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-                    if (user.equals(data.getKey())) {
-
-                        String url = data.getValue().toString();
-                        if (url != null) {
+                        String url = student.getImageLink();
+                        if (!url.equals("")) {
                             Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Something went wrong,Please Try Again !", Toast.LENGTH_LONG).show();
                         }
 
                     }
+
+
                 }
             }
 
@@ -187,7 +171,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             public void onClick(View v) {
 
                 Intent l = new Intent(daycaredashboard.this, Main5Activity.class);
-                l.putExtras(bundle);
+
                 startActivity(l);
 
 
@@ -198,7 +182,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             @Override
             public void onClick(View v) {
                 Intent l=new Intent(daycaredashboard.this,Main5Activity.class);
-                l.putExtras(bundle);
+
                 startActivity(l);
 
             }
@@ -208,7 +192,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             public void onClick(View v) {
 
                 Intent l = new Intent(daycaredashboard.this, daycare_parentmain.class);
-                l.putExtras(bundle);
+
                 startActivity(l);
 
 
@@ -222,7 +206,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                 //Toast.makeText(daycaredashboard.this,"Coming Soon!",Toast.LENGTH_SHORT).show();
 
                 Intent l=new Intent(daycaredashboard.this,daycare_parentmain.class);
-                l.putExtras(bundle);
+
                 startActivity(l);
 
 
@@ -351,11 +335,11 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
 
         int id = item.getItemId();
-        final Bundle bundle=getIntent().getExtras();
+
         if (id == R.id.resetpassword) {
 
             Intent intent=new Intent(daycaredashboard.this,resetpassworddaycare.class);
-            intent.putExtras(bundle);
+
             startActivity(intent);
             //Toast.makeText(getApplicationContext(), "Reset Password clicked", Toast.LENGTH_SHORT).show();
 

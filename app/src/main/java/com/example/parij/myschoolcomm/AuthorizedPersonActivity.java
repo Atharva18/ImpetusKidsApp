@@ -82,10 +82,6 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
         initialise();
-
-       // bundle=getIntent().getExtras();
-       // final String username = bundle.getString("Username");
-
         SessionManagement.retrieveSharedPreferences(AuthorizedPersonActivity.this);
 
         final String username = SessionManagement.username;

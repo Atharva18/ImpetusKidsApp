@@ -9,19 +9,18 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.parij.myschoolcomm.Models.Parent;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +32,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,10 +57,11 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
     ProgressDialog pd;
     Uri filePath;
     Context context;
+    ArrayList<Student> studentArrayList;
+    ArrayList<String> keysArrayList;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://myschoolcomm-a80d4.appspot.com/Parents_Profile");
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +81,30 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
         // bundle=getActivity().getIntent().getExtras();
         pd = new ProgressDialog(getContext());
         pd.setMessage("Uploading....");
+
+
+        studentArrayList = new ArrayList<Student>();
+        keysArrayList = new ArrayList<String>();
+
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    studentArrayList.add(student);
+                    keysArrayList.add(ds.getKey());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         choosePhoto.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -93,54 +118,7 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
             }
         });
 
-/*
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                    pd.show();
-
-                    StorageReference childRef = storageRef.child(username+"motherImage.jpg");
-
-                if(filePath==null)
-                {
-                    Toast.makeText(getContext(),"Please Select a image!",Toast.LENGTH_LONG).show();
-                    pd.dismiss();
-                }
-                else
-                {
-                    //uploading the image
-
-                    UploadTask uploadTask = childRef.putFile(filePath);
-
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            taskSnapshot.getMetadata();
-                            String downloadurl= taskSnapshot.getDownloadUrl().toString();
-                            database=FirebaseDatabase.getInstance();
-                            DatabaseReference reference= database.getReference("Images").child("Parents_Profile");
-                            reference.child(username+"Mother").setValue(downloadurl);
-                            pd.dismiss();
-                            Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            pd.dismiss();
-                            Toast.makeText(getContext(), "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
-                        }
-                    });}
-
-
-            }
-        });*/
-
         save.setOnClickListener(this);
-
-
 
         return rootView;
     }
@@ -149,14 +127,15 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
     public void onClick(View v) {
 
         //Log.println(Log.INFO,"hello","present");
-        database=FirebaseDatabase.getInstance();
-        DatabaseReference reference= database.getReference("ParentProfile");
 
         String name,contact,email;
 
         name=name1.getText().toString().trim();
         contact=contact1.getText().toString().trim();
         email=email1.getText().toString().trim();
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("newDb").child("students");
+
 
         int flag=0;
 
@@ -204,10 +183,22 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
             else {
                 //uploading the image
 
-                fragment1 fragobj = new fragment1(name, contact, email);
 
-                reference.child("mother").child(username).setValue(fragobj);
+                int position = 0;
+                Student student = new Student();
+                for (Student stud : studentArrayList) {
+                    if (stud.getUsername().equals(username)) {
+                        student = stud;
+                        position = studentArrayList.indexOf(student);
+                        break;
+                    }
+                }
 
+                String key = keysArrayList.get(position);
+                final Parent parent = new Parent();
+                parent.setEmail(email);
+                parent.setName(name);
+                parent.setPhone(contact);
                 int check=0;
 
                 if (filePath != null) {
@@ -221,8 +212,20 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
                             taskSnapshot.getMetadata();
                             String downloadurl = taskSnapshot.getDownloadUrl().toString();
                             database = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference("Images").child("Parents_Profile");
-                            reference.child(username + "Mother").setValue(downloadurl);
+                            DatabaseReference reference = database.getReference("newDb").child("students");
+                            parent.setImageLink(downloadurl);
+                            Student student = new Student();
+                            int position = 0;
+                            for (Student stud : studentArrayList) {
+                                if (stud.getUsername().equals(username)) {
+                                    student = stud;
+                                    position = studentArrayList.indexOf(student);
+                                    break;
+                                }
+                            }
+                            String key = keysArrayList.get(position);
+                            student.setMother(parent);
+                            reference.child(key).setValue(student);
                             pd.dismiss();
                            Toast.makeText(getContext(), "Successfully updated!", Toast.LENGTH_SHORT).show();
                         }
@@ -235,8 +238,14 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
                     });
                 }
              //   pd.dismiss();
-                if(check==0)
-               Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                if (check == 0) {
+
+                    database = FirebaseDatabase.getInstance();
+                    reference = database.getReference("newDb").child("students");
+                    student.setMother(parent);
+                    reference.child(key).setValue(student);
+                    Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                }
             }
 
             //Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_LONG).show();
@@ -269,62 +278,32 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
     @Override
     public void onStart() {
         super.onStart();
-
-
-        database=FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference= database.getReference("ParentProfile").child("mother");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                for(DataSnapshot data:dataSnapshot.getChildren())
-                {
-                    if(username.equals(data.getKey()))
-                    {
-                        name1.setText((CharSequence) data.child("name").getValue());
-                        contact1.setText((CharSequence) data.child("contact").getValue());
-                        email1.setText((CharSequence) data.child("email").getValue());
-
-                    }
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-                Toast.makeText(getContext(),"Oops! Something went wrong",Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-
-        databaseReference = database.getReference("Images").child("Parents_Profile");
-        final String user=username+"Mother";
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("newDb").child("students");
+        SessionManagement.retrieveSharedPreferences(context);
+        username = SessionManagement.username;
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    if(user.equals(data.getKey()))
-                    {
+                Student student;
 
-                        String url = data.getValue().toString();
-                        if(url!=null)
-                       Glide.with(context.getApplicationContext()).load(url).into(photo);
-                            //new DownLoadImageTask(photo).execute(url);
-                        else
-                            Toast.makeText(getActivity(),"Something Went Wrong!Please Try Again!",Toast.LENGTH_SHORT).show();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    if (student.getUsername().equals(username)) {
+                        name1.setText(student.getMother().getName().toString());
+                        contact1.setText(student.getMother().getPhone().toString());
+                        email1.setText(student.getMother().getEmail().toString());
+
+                        String url = student.getMother().getImageLink();
+                        if (!url.equals("")) {
+                            Glide.with(context.getApplicationContext()).load(url).into(photo);
+                        } else {
+                            Toast.makeText(getActivity(), "Something went wrong,Please Try Again !", Toast.LENGTH_LONG).show();
+                        }
 
                     }
                 }
-
-
-
 
             }
 
@@ -333,58 +312,6 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
 
             }
         });
-
-
-
     }
+
 }
-
-
-class fragment2
-{
-
-    String name;
-    String contact;
-    String email;
-
-
-    public fragment2()
-    {
-
-
-    }
-
-    public fragment2(String name,String contact, String email)
-    {
-        this.name=name;
-        this.contact=contact;
-        this.email=email;
-
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-}
-

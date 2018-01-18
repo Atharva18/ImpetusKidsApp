@@ -24,6 +24,9 @@ public class Parent implements Serializable {
     public Parent() {
         //Do not remove, removal may cause World War 3
         name = "";
+        phone = "";
+        email = "";
+        imageLink = "";
     }
 
     public String getName() {

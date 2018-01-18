@@ -113,7 +113,7 @@ public class Main5Activity extends AppCompatActivity {
                             gender.setText("Male");
                         else if (Gender == Constants.FEMALE)
                             gender.setText("Female");
-                        
+
                         dateOfBirth.setText(student.getDateOfBirth().toString());
 
                         int bGroup = student.getBloodGroup();
@@ -138,8 +138,8 @@ public class Main5Activity extends AppCompatActivity {
 
                         String url = student.getImageLink().toString();
 
-                        if(url!=null) {
-                            Glide.with(getApplicationContext().getApplicationContext()).load(url).into(childphoto);
+                        if (!url.equals("")) {
+                            Glide.with(getApplicationContext()).load(url).into(childphoto);
                         }
                         else
                         {

@@ -77,7 +77,7 @@ public class parentRegistration extends AppCompatActivity {
         rollNo=(EditText)findViewById(R.id.rollNo);
         name =(EditText)findViewById(R.id.name);
         //spinner1=(Spinner)findViewById(R.id.spinner);
-        spinner2 = (Spinner) findViewById(R.id.spinnerProgramRegistration);
+        spinner2 = (Spinner) findViewById(R.id.spinnerBatch);
         add=(Button)findViewById(R.id.adduser);
 
 

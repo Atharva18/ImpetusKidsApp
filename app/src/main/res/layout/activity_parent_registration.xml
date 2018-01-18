@@ -41,7 +41,7 @@
         android:paddingRight="8dp"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerProgramRegistration" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBatch" />
 
     <TextView
         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
         <Spinner
-            android:id="@+id/spinnerProgramRegistration"
+            android:id="@+id/spinnerBatch"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -121,7 +121,7 @@
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
         <Spinner
-            android:id="@+id/spinnerProgramRegistration"
+            android:id="@+id/spinnerProgram"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
