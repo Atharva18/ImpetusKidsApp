@@ -285,8 +285,6 @@ public class daycare_frag1_parent extends Fragment implements View.OnClickListen
                         String url = student.getFather().getImageLink();
                         if (!url.equals("")) {
                             Glide.with(context.getApplicationContext()).load(url).into(photo);
-                        } else {
-                            Toast.makeText(getActivity(), "Something went wrong,Please Try Again !", Toast.LENGTH_LONG).show();
                         }
 
                     }

@@ -92,7 +92,7 @@ public class childdetailswindow extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewRoaster);
         arrayListFull = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("studinfo");
+        databaseReference = FirebaseDatabase.getInstance().getReference("newDb").child("students");
         dialog = new Dialog(childdetailswindow.this, android.R.style.Theme_DeviceDefault_Light_Dialog);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -129,19 +129,10 @@ public class childdetailswindow extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String program, batch;
-                int rollno;
-                String username, name;
-                for (DataSnapshot ds : dataSnapshot.getChildren())//Program
-                    for (DataSnapshot ds1 : ds.getChildren())//Batch
-                        for (DataSnapshot ds2 : ds1.getChildren())//Roll
+                for (DataSnapshot ds : dataSnapshot.getChildren())//Roll
                         {
-                            program = ds.getKey();
-                            batch = ds1.getKey();
-                            username = ds2.child("username").getValue(String.class);
-                            name = ds2.child("name").getValue(String.class);
-                            rollno = Integer.parseInt(ds2.getKey());
-                            Student student = new Student();
+                            Student student;
+                            student = ds.getValue(Student.class);
                             arrayListFull.add(student);
                             arrayListDisplay.add("Name: " + student.getName() + "\nRoll no: " + student.getRollNo() + "\nProgram: " + student.getProgram());
                             Log.d("StudentObj : ", student.toString());

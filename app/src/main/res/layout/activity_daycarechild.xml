@@ -3,49 +3,45 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:fillViewport="true"
-    android:orientation="vertical"
-
-    >
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="14">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#3209da"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="73dp" />
+            android:layout_height="59dp"
+            android:layout_weight="2"
+            android:background="#3209da" />
 
 
         <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:stretchColumns="1"
             android:visibility="visible"
+            android:weightSum="12"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
 
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TableRow android:layout_width="match_parent">
+            <TableRow>
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/photo"
-                    android:layout_width="match_parent"
-                    android:layout_height="128dp"
-
+                    android:layout_width="117dp"
+                    android:layout_height="121dp"
+                    android:layout_weight="2"
                     android:src="@drawable/head"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="2dp"
@@ -53,13 +49,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </TableRow>
-
+            <!--
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
                     android:layout_column="0"
                     android:padding="10dip"
                     android:text="GR NO:"
@@ -74,15 +70,14 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_column="0"
@@ -99,15 +94,15 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
-
+            -->
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:layout_column="0"
@@ -123,16 +118,16 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
 
-
+            <!--
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -147,19 +142,18 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
-
+            -->
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Class: "
+                    android:text="Program: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -170,8 +164,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
 
@@ -180,12 +173,13 @@
 
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
-                    android:text="Division: "
+                    android:text="Batch: "
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -197,15 +191,15 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -221,16 +215,16 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
 
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -246,16 +240,16 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
 
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -271,15 +265,15 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -295,16 +289,16 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
+                    android:padding="10dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
 
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_marginRight="3dp">
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:padding="10dip"
@@ -314,20 +308,16 @@
 
                 <TextView
                     android:id="@+id/contactNo"
-                    android:layout_width="0dp"
+                    android:layout_width="70dp"
                     android:layout_column="0"
-                    android:layout_gravity="center_vertical"
                     android:background="@drawable/edittextborder"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="8dp"
-                    android:text="NA"
-                    android:textAlignment="viewStart"
-                    android:textSize="18sp" />
+                    android:padding="10dip"
+                    android:textAlignment="viewStart" />
 
                 <Button
                     android:id="@+id/phone"
                     android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/phoneimg" />
             </TableRow>
 

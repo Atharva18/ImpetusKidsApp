@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.parij.myschoolcomm.Models.Student;
@@ -141,10 +140,7 @@ public class Main5Activity extends AppCompatActivity {
                         if (!url.equals("")) {
                             Glide.with(getApplicationContext()).load(url).into(childphoto);
                         }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(),"Something went wrong,Please Try Again !",Toast.LENGTH_LONG).show();
-                        }
+
                     }
                 }
             }
@@ -163,7 +159,7 @@ public class Main5Activity extends AppCompatActivity {
         childphoto = (ImageView) findViewById(R.id.photo);
 
         admissiondate = (TextView) findViewById(R.id.admissionDate);
-        category = (TextView) findViewById(R.id.category);
+        // category = (TextView) findViewById(R.id.category);
         class1 = (TextView) findViewById(R.id.class1);
         division = (TextView) findViewById(R.id.division);
         gender = (TextView) findViewById(R.id.gender);
