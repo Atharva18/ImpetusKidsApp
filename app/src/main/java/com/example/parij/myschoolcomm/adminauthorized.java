@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,161 +67,8 @@ public class adminauthorized extends AppCompatActivity {
                     Toast.makeText(adminauthorized.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
                 }
 
-
-
             }
         });
-
-
-
-
-
-
-  /*      upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent,ImgReq);
-
-            }
-        });
-
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String mname= name.getText().toString();
-                String mcontactNo=contactNo.getText().toString();
-                String mrelation= relation.getText().toString();
-                String datestart = date1.getText().toString();
-                String dateend= date2.getText().toString();
-
-                int flag=0;
-
-                if(TextUtils.isEmpty(mname))
-                {
-                    name.setError("Please enter the name");
-                    flag++;
-                }
-                if(!TextUtils.isEmpty(mname) && flag==0)
-                {
-                    String regex = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
-                    Pattern pattern = Pattern.compile(regex);
-                    Matcher matcher = pattern.matcher(mname);
-
-                    if(!matcher.matches())
-                    {
-                        flag++;
-                        name.setError("Please enter a valid name!");
-                    }
-
-                }
-                if(TextUtils.isEmpty(mcontactNo))
-                {
-                    contactNo.setError("Please enter the contact number");
-                    flag++;
-                }
-                if(!TextUtils.isEmpty(mcontactNo)&& flag==0)
-                {
-                    String regex = "[0-9*#+() -]*";
-                    Pattern pattern = Pattern.compile(regex);
-                    Matcher matcher = pattern.matcher(mcontactNo);
-
-                    if (!matcher.matches()) {
-                        flag++;
-                        contactNo.setError("Enter a valid number!");
-                        // Toast.makeText(getApplicationContext(),"Please enter a valid contact no!",Toast.LENGTH_LONG).show();
-                    }
-
-                }
-                if(TextUtils.isEmpty(mrelation))
-                {
-                    relation.setError("Please enter the relation");
-                    flag++;
-                }
-                if(!TextUtils.isEmpty(mrelation)&& flag==0)
-                {
-                    String regex = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
-                    Pattern pattern = Pattern.compile(regex);
-                    Matcher matcher = pattern.matcher(mname);
-
-                    if(!matcher.matches())
-                    {
-                        flag++;
-                        name.setError("Invalid!");
-                    }
-
-
-
-                }
-                if(TextUtils.isEmpty(datestart))
-                {
-                    flag++;
-                    date1.setError("Please enter the starting date");
-                }
-                if(flag==0 && !TextUtils.isEmpty(datestart))
-                {
-                    String regex = "^(([1-9])|([0][1-9])|([1-2][0-9])|([3][0-1]))\\-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\-\\d{4}$";
-                    Pattern pattern = Pattern.compile(regex);
-                    Matcher matcher = pattern.matcher(datestart);
-
-                    if(!matcher.matches())
-                    {
-                        flag++;
-                        date1.setError("Invalid date format!");
-                    }
-
-
-                }
-
-                if(TextUtils.isEmpty(dateend))
-                {
-                    flag++;
-                    date2.setError("Please enter the ending date");
-                }
-                if(flag==0 && !TextUtils.isEmpty(dateend))
-                {
-                    String regex = "^(([1-9])|([0][1-9])|([1-2][0-9])|([3][0-1]))\\-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\-\\d{4}$";
-                    Pattern pattern = Pattern.compile(regex);
-                    Matcher matcher = pattern.matcher(dateend);
-
-                    if(!matcher.matches())
-                    {
-                        flag++;
-                        date2.setError("Invalid date format!");
-                    }
-
-                }
-
-
-                if(flag==0)
-                {
-
-                    database=FirebaseDatabase.getInstance();
-                    DatabaseReference reference= database.getReference("authorizeToCollect");
-
-
-                    authorizeclass authorize=new authorizeclass(mname,mcontactNo,mrelation,datestart,dateend);
-
-
-                    reference.child(username).setValue(authorize);
-
-                    Toast.makeText(getApplicationContext(),"Response submitted",Toast.LENGTH_LONG).show();
-
-
-
-                }
-
-
-
-            }
-        });
-*/
 
     }
 
@@ -229,66 +77,36 @@ public class adminauthorized extends AppCompatActivity {
     {
         super.onStart();
 
+        SessionManagement.retrieveSharedPreferences(adminauthorized.this);
 
-        bundle=getIntent().getExtras();
-        final String username = bundle.getString("username");
+        final String username = SessionManagement.username;
+
         database=FirebaseDatabase.getInstance();
-         DatabaseReference databaseReference= database.getReference("authorizeToCollect");
+        DatabaseReference databaseReference = database.getReference("newDb").child("students");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-
-                for(DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    if(username.equals(data.getKey()))
-                    {
-                        // contactNo.setText((CharSequence) data.child("mcontact"));
-                        contactNo.setText((CharSequence) data.child("mcontact").getValue());
-                        name.setText((CharSequence)data.child("mname").getValue());
-                        relation.setText((CharSequence)data.child("relation").getValue());
-                        date1.setText((CharSequence)data.child("startdate").getValue());
-                        date2.setText((CharSequence)data.child("enddate").getValue());
-
-                    }
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-
-                Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-        databaseReference = database.getReference("Images").child("Authorized_Person");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    if(username.equals(data.getKey()))
-                    {
+                Student student;
 
-                        String url = data.getValue().toString();
-                        if(url!=null)
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    student = ds.getValue(Student.class);
+
+                    if (student.getUsername().equals(username)) {
+                        name.setText(student.getAuthorizedPerson().getName());
+                        contactNo.setText(student.getAuthorizedPerson().getPhone());
+                        relation.setText(student.getAuthorizedPerson().getRelation());
+                        date1.setText(student.getAuthorizedPerson().getFromDate());
+                        date2.setText(student.getAuthorizedPerson().getToDate());
+
+                        String url = student.getAuthorizedPerson().getImageLink();
+
+                        if (!url.equals(""))
                             Glide.with(getApplicationContext()).load(url).into(personphoto);
-                        else
-                            Toast.makeText(getApplicationContext(),"Something went wrong!Please try again!",Toast.LENGTH_SHORT).show();
                     }
                 }
-
-
-
-
             }
 
             @Override
@@ -296,21 +114,10 @@ public class adminauthorized extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
     }
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
 
         if(requestCode == ImgReq && requestCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();

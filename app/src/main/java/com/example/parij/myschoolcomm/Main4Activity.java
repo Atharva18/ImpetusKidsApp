@@ -146,7 +146,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
 
                         String url = student.getImageLink();
                         if (!url.equals("")) {
-                            Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
+                            Glide.with(getApplicationContext()).load(url).into(photo);
                         }
                     }
 

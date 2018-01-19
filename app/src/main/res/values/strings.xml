@@ -59,6 +59,22 @@
         <item>Afternoon</item>
     </string-array>
 
+    <string-array name="bloodgroup">
+        <item>A +ve</item>
+        <item>A -ve</item>
+        <item>B +ve</item>
+        <item>B -ve</item>
+        <item>O +ve</item>
+        <item>O -ve</item>
+        <item>AB</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
+
 
     <string name="title_activity_give_feedback">GiveFeedback</string>
 

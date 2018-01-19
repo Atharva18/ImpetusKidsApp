@@ -209,12 +209,12 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/gender"
+                <Spinner
+                    android:id="@+id/genderSpinner"
                     android:layout_column="0"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/edittextborder"
-                    android:padding="10dip"
+                    android:gravity="center_vertical"
+                    android:padding="20dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>
@@ -250,12 +250,12 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/bloodGroup"
+                <Spinner
+                    android:id="@+id/bloodGrpSpinner"
                     android:layout_column="0"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/edittextborder"
-                    android:padding="10dip"
+                    android:gravity="center_vertical"
+                    android:padding="20dip"
                     android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </TableRow>

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +37,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -47,24 +49,26 @@ public class adminchild extends AppCompatActivity {
     ImageView childphoto;
     DatePickerDialog.OnDateSetListener onDateSetListener;
     DatePickerDialog.OnDateSetListener onDateSetListener2;
-    Bundle bundle;
-     // Button upload;
       Button choosePhoto;
       Spinner program;
       Spinner batch;
+    Spinner bloodgroup;
+    Spinner genderspinner;
       ArrayAdapter programadapter;
       ArrayAdapter batchadapter;
-    //  Button update;
-   // Button phone;
+    ArrayAdapter bloodgroupadapter;
+    ArrayAdapter genderadapter;
     Bitmap bitmap;
     Uri filePath;
     ProgressDialog pd;
     Button save;
     int PICK_IMAGE_REQUEST=111;
-    EditText  gender, bloodGroup, classTeacher, contactNo;
+    EditText classTeacher, contactNo;
     FirebaseDatabase database;
     TextView admissiondate, dateOfBirth;
     ViewGroup rootScrollView;
+    ArrayList<Student> studentArrayList;
+    ArrayList<String> keysArrayList;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReferenceFromUrl("gs://myschoolcomm-a80d4.appspot.com/Child_Profile");
 
@@ -80,14 +84,19 @@ public class adminchild extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setTitleTextColor(0xFFFFFFFF);
-        bundle = getIntent().getExtras();
-        final String username = bundle.getString("username");
+        SessionManagement.retrieveSharedPreferences(adminchild.this);
+        final String username = SessionManagement.username;
+
+
         initialise();
-         database= FirebaseDatabase.getInstance();
-          DatabaseReference reference= database.getReference("ChildProfile");
+
         pd = new ProgressDialog(this);
         pd.setMessage("Uploading....");
 
+        program = (Spinner) findViewById(R.id.class1);
+        batch = (Spinner) findViewById(R.id.division);
+        bloodgroup = (Spinner) findViewById(R.id.bloodGrpSpinner);
+        genderspinner = (Spinner) findViewById(R.id.genderSpinner);
 
         programadapter = ArrayAdapter.createFromResource(this, R.array.Type, android.R.layout.simple_spinner_item);
         programadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -96,6 +105,41 @@ public class adminchild extends AppCompatActivity {
         batchadapter = ArrayAdapter.createFromResource(this, R.array.Batch, android.R.layout.simple_spinner_item);
         batchadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         batch.setAdapter(batchadapter);
+
+
+        bloodgroupadapter = ArrayAdapter.createFromResource(this, R.array.bloodgroup, android.R.layout.simple_spinner_item);
+        bloodgroupadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bloodgroup.setAdapter(bloodgroupadapter);
+
+        genderadapter = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
+        genderadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genderspinner.setAdapter(genderadapter);
+
+
+        studentArrayList = new ArrayList<Student>();
+        keysArrayList = new ArrayList<String>();
+
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    studentArrayList.add(student);
+                    keysArrayList.add(ds.getKey());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         choosePhoto.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -108,52 +152,6 @@ public class adminchild extends AppCompatActivity {
 
             }
         });
-
-/*
-        upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                    pd.show();
-
-                    StorageReference childRef = storageRef.child(username+"image.jpg");
-
-                    //uploading the image
-
-                if(filePath==null)
-                {
-                    Toast.makeText(getApplicationContext(),"Please Select a image!",Toast.LENGTH_LONG).show();
-                    pd.dismiss();
-                }
-                else
-                {
-                    UploadTask uploadTask = childRef.putFile(filePath);
-
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            taskSnapshot.getMetadata();
-                            String downloadurl= taskSnapshot.getDownloadUrl().toString();
-                            database=FirebaseDatabase.getInstance();
-                            DatabaseReference reference= database.getReference("Images").child("Child_Profile");
-                            reference.child(username).setValue(downloadurl);
-                            pd.dismiss();
-                            Toast.makeText(adminchild.this, "Upload successful", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            pd.dismiss();
-                            Toast.makeText(adminchild.this, "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
-                        }
-                    });}
-
-            }
-        });
-
-*/
-
 
         final Calendar mycalender=Calendar.getInstance();
 
@@ -211,35 +209,19 @@ public class adminchild extends AppCompatActivity {
             }
         });
 
-
-
-
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String grNo1,gender1,division1,dateOfBirth1,contactNo1,classTeacher1,class11,category1,bloodGroup1,admissiondate1,admissionNo1;
+                String dateOfBirth1, contactNo1, classTeacher1, admissiondate1;
 
                 database=FirebaseDatabase.getInstance();
-                DatabaseReference reference= database.getReference("ChildProfile");
-                grNo1=null;
-                category1=null;
-                admissionNo1=null;
-                //grNo1=grNo.getText().toString();
-                //division1=division.getText().toString();
+                final DatabaseReference reference = database.getReference("ChildProfile");
+
                 dateOfBirth1=dateOfBirth.getText().toString();
                 contactNo1=contactNo.getText().toString();
                 classTeacher1=classTeacher.getText().toString();
-                //class11=class1.getText().toString();
-                //category1=category.getText().toString();
-                bloodGroup1=bloodGroup.getText().toString();
                 admissiondate1=admissiondate.getText().toString();
-                //admissionNo1=admissionNo.getText().toString();
-                gender1=gender.getText().toString();
-                class11=program.getSelectedItem().toString();
-                division1=batch.getSelectedItem().toString();
-
 
                 int flag=0;
 
@@ -278,19 +260,6 @@ public class adminchild extends AppCompatActivity {
 
                 }
 
-                /*if(!TextUtils.isEmpty(category1))
-                {
-                    String regex = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
-                    Pattern pattern = Pattern.compile(regex);
-                    Matcher matcher = pattern.matcher(category1);
-
-                    if(!matcher.matches())
-                    {
-                        flag++;
-                        category.setError("Please enter a valid category!");
-                    }
-
-                }*/
 
                 if(TextUtils.isEmpty(admissiondate1))
                 {
@@ -302,11 +271,8 @@ public class adminchild extends AppCompatActivity {
 
             if(flag==0) {
 
-
-
                 StorageReference childRef = storageRef.child(username+"image.jpg");
 
-                //uploading the image
 
                 if(filePath==null && childphoto.getDrawable()==null)
                 {
@@ -316,11 +282,62 @@ public class adminchild extends AppCompatActivity {
                 else {
 
                     int check = 0;
+                    int position = 0;
 
-                    childdet obj = new childdet(grNo1, gender1, division1, dateOfBirth1,
-                            contactNo1, classTeacher1, class11, category1, bloodGroup1, admissiondate1, admissionNo1);
+                    Student student = new Student();
+                    for (Student stud : studentArrayList) {
+                        if (stud.getUsername().equals(username)) {
+                            student = stud;
+                            position = studentArrayList.indexOf(student);
+                            break;
+                        }
+                    }
 
-                    reference.child(username).setValue(obj);
+                    String key = keysArrayList.get(position);
+
+                    student.setAdmissionDate(admissiondate1);
+
+                    if (program.getSelectedItemPosition() == 0)
+                        student.setProgram(Constants.DAYCARE);
+                    else if (program.getSelectedItemPosition() == 1)
+                        student.setProgram(Constants.SEEDING);
+                    else if (program.getSelectedItemPosition() == 2)
+                        student.setProgram(Constants.BUDDING);
+                    else if (program.getSelectedItemPosition() == 3)
+                        student.setProgram(Constants.BLOSSOMING);
+                    else if (program.getSelectedItemPosition() == 4)
+                        student.setProgram(Constants.FLOURISHING);
+
+                    if (batch.getSelectedItemPosition() == 0)
+                        student.setBatch(Constants.MORNING);
+                    else if (batch.getSelectedItemPosition() == 1)
+                        student.setBatch(Constants.AFTERNOON);
+
+                    if (genderspinner.getSelectedItemPosition() == 0)
+                        student.setGender(Constants.MALE);
+                    else if (genderspinner.getSelectedItemPosition() == 1)
+                        student.setGender(Constants.FEMALE);
+
+                    student.setDateOfBirth(dateOfBirth1);
+
+                    if (bloodgroup.getSelectedItemPosition() == 0)
+                        student.setBloodGroup(Constants.APositive);
+                    else if (bloodgroup.getSelectedItemPosition() == 1)
+                        student.setBloodGroup(Constants.ANegative);
+                    else if (bloodgroup.getSelectedItemPosition() == 2)
+                        student.setBloodGroup(Constants.BPositive);
+                    else if (bloodgroup.getSelectedItemPosition() == 3)
+                        student.setBloodGroup(Constants.BNegative);
+                    else if (bloodgroup.getSelectedItemPosition() == 4)
+                        student.setBloodGroup(Constants.OPositive);
+                    else if (bloodgroup.getSelectedItemPosition() == 5)
+                        student.setBloodGroup(Constants.ONegative);
+                    else if (bloodgroup.getSelectedItemPosition() == 6)
+                        student.setBloodGroup(Constants.AB);
+
+
+                    student.setClassTeacherName(classTeacher1);
+                    student.setClassTeacherPhone(contactNo1);
 
                     if (filePath != null) {
                         pd.show();
@@ -333,8 +350,18 @@ public class adminchild extends AppCompatActivity {
                                 taskSnapshot.getMetadata();
                                 String downloadurl = taskSnapshot.getDownloadUrl().toString();
                                 database = FirebaseDatabase.getInstance();
-                                DatabaseReference reference = database.getReference("Images").child("Child_Profile");
-                                reference.child(username).setValue(downloadurl);
+                                Student student = new Student();
+                                int position = 0;
+                                for (Student stud : studentArrayList) {
+                                    if (stud.getUsername().equals(username)) {
+                                        student = stud;
+                                        position = studentArrayList.indexOf(student);
+                                        break;
+                                    }
+                                }
+                                student.setImageLink(downloadurl);
+                                String key = keysArrayList.get(position);
+                                reference.child(key).setValue(student);
                                 pd.dismiss();
                                 Toast.makeText(adminchild.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
                             }
@@ -346,17 +373,11 @@ public class adminchild extends AppCompatActivity {
                             }
                         });
                     }
-                    if (check == 0)
-                    Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                    if (check == 0) {
+                        reference.child(key).setValue(student);
+                        Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-
-
-
-
-
-//                Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_LONG).show();
-
-
             }
 
             }
@@ -368,36 +389,84 @@ public class adminchild extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        bundle = getIntent().getExtras();
-        final String username = bundle.getString("username");
+        SessionManagement.retrieveSharedPreferences(adminchild.this);
+
+        final String username = SessionManagement.username;
+
         database = FirebaseDatabase.getInstance();
-         DatabaseReference databaseReference = database.getReference("ChildProfile");
+        DatabaseReference databaseReference = database.getReference("newDb").child("students");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    if (username.equals(data.getKey())) {
+                    student = ds.getValue(Student.class);
 
+                    if (student.getUsername().equals(username)) {
+                        admissiondate.setText(student.getAdmissionDate().toString());
 
-                        // grNo.setText((CharSequence) data.child("grNo").getValue());
-                        //admissionNo.setText((CharSequence) data.child("admissionNo").getValue());
-                        admissiondate.setText((CharSequence) data.child("admissiondate").getValue());
-                        //category.setText((CharSequence) data.child("category").getValue());
-                        //class1.setText((CharSequence) data.child("class1").getValue());
-                        //division.setText((CharSequence) data.child("division").getValue());
-                        gender.setText((CharSequence) data.child("gender").getValue());
-                        dateOfBirth.setText((CharSequence) data.child("dateOfBirth").getValue());
-                        bloodGroup.setText((CharSequence) data.child("bloodGroup").getValue());
-                        classTeacher.setText((CharSequence) data.child("classTeacher").getValue());
-                       contactNo.setText((CharSequence) data.child("contactNo").getValue());
+                        int programCode = student.getProgram();
 
+                        if (programCode == 0)
+                            program.setSelection(0);
+                        else if (programCode == 1)
+                            program.setSelection(1);
+                        else if (programCode == 2)
+                            program.setSelection(2);
+                        else if (programCode == 3)
+                            program.setSelection(3);
+                        else if (programCode == 4)
+                            program.setSelection(4);
+
+                        int batchCode = student.getBatch();
+
+                        if (batchCode == 0)
+                            batch.setSelection(0);
+                        else if (batchCode == 1)
+                            batch.setSelection(1);
+
+                        int genderCode = student.getGender();
+
+                        if (genderCode == 0)
+                            genderspinner.setSelection(0);
+                        else if (genderCode == 1)
+                            genderspinner.setSelection(1);
+
+                        dateOfBirth.setText(student.getDateOfBirth());
+
+                        int bloodGroupCode = student.getBloodGroup();
+
+                        if (bloodGroupCode == 0)
+                            bloodgroup.setSelection(0);
+                        else if (bloodGroupCode == 1)
+                            bloodgroup.setSelection(1);
+                        else if (bloodGroupCode == 2)
+                            bloodgroup.setSelection(2);
+                        else if (bloodGroupCode == 3)
+                            bloodgroup.setSelection(3);
+                        else if (bloodGroupCode == 4)
+                            bloodgroup.setSelection(4);
+                        else if (bloodGroupCode == 5)
+                            bloodgroup.setSelection(5);
+                        else if (bloodGroupCode == 6)
+                            bloodgroup.setSelection(6);
+
+                        classTeacher.setText(student.getClassTeacherName());
+                        contactNo.setText(student.getClassTeacherPhone());
+
+                        String url = student.getImageLink();
+
+                        if (!url.equals(""))
+                            Glide.with(getApplicationContext()).load(url).into(childphoto);
 
                     }
 
                 }
+
+
             }
 
             @Override
@@ -405,43 +474,6 @@ public class adminchild extends AppCompatActivity {
 
             }
         });
-
-        databaseReference = database.getReference("Images").child("Child_Profile");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    if(username.equals(data.getKey()))
-                    {
-
-                        String url = data.getValue().toString();
-                        if(url!=null)
-                        Glide.with(getApplicationContext()).load(url).into(childphoto);
-                        else
-                            Toast.makeText(adminchild.this,"Something went wrong!Please try again!",Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
-
-
     }
 
     @Override
@@ -456,8 +488,6 @@ public class adminchild extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -483,23 +513,16 @@ public class adminchild extends AppCompatActivity {
     }
 
     public void initialise() {
-        //update=(Button)findViewById(R.id.update);
-         childphoto = (ImageView) findViewById(R.id.childphoto);
-       // upload = (Button) findViewById(R.id.upload);
+
+        childphoto = (ImageView) findViewById(R.id.childphoto);
         admissiondate = (TextView) findViewById(R.id.admissionDate);
-        //category = (EditText) findViewById(R.id.category);
         program = (Spinner) findViewById(R.id.class1);
         batch = (Spinner) findViewById(R.id.division);
-        gender = (EditText) findViewById(R.id.gender);
         dateOfBirth = (TextView) findViewById(R.id.dateOfBirth);
-        bloodGroup = (EditText) findViewById(R.id.bloodGroup);
         classTeacher = (EditText) findViewById(R.id.classTeacher);
         contactNo = (EditText) findViewById(R.id.contactNo);
-        //grNo = (EditText) findViewById(R.id.grNo);
-        //admissionNo = (EditText) findViewById(R.id.admissionNo);
         save=(Button)findViewById(R.id.save);
         choosePhoto=(Button)findViewById(R.id.choosePhoto);
-       // phone=(Button)findViewById(R.id.phone);
         rootScrollView = (ViewGroup) findViewById(R.id.scrollViewAdminChild);
 
     }
@@ -507,118 +530,5 @@ public class adminchild extends AppCompatActivity {
 
 }
 
-class childdet
-{
-
-    String grNo,gender,division,dateOfBirth,contactNo,classTeacher,class1,category,bloodGroup,admissiondate,admissionNo;
-
-    public childdet()
-    {
-
-    }
-
-    public childdet(String grNo, String gender, String division, String dateOfBirth, String contactNo, String classTeacher, String class1, String category, String bloodGroup, String admissiondate, String admissionNo) {
-        this.grNo = grNo;
-        this.gender = gender;
-        this.division = division;
-        this.dateOfBirth = dateOfBirth;
-        this.contactNo = contactNo;
-        this.classTeacher = classTeacher;
-        this.class1 = class1;
-        this.category = category;
-        this.bloodGroup = bloodGroup;
-        this.admissiondate = admissiondate;
-        this.admissionNo = admissionNo;
-    }
-
-
-    public String getGrNo() {
-        return grNo;
-    }
-
-    public void setGrNo(String grNo) {
-        this.grNo = grNo;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getDivision() {
-        return division;
-    }
-
-    public void setDivision(String division) {
-        this.division = division;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
-
-    public String getClassTeacher() {
-        return classTeacher;
-    }
-
-    public void setClassTeacher(String classTeacher) {
-        this.classTeacher = classTeacher;
-    }
-
-    public String getClass1() {
-        return class1;
-    }
-
-    public void setClass1(String class1) {
-        this.class1 = class1;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getBloodGroup() {
-        return bloodGroup;
-    }
-
-    public void setBloodGroup(String bloodGroup) {
-        this.bloodGroup = bloodGroup;
-    }
-
-    public String getAdmissiondate() {
-        return admissiondate;
-    }
-
-    public void setAdmissiondate(String admissiondate) {
-        this.admissiondate = admissiondate;
-    }
-
-    public String getAdmissionNo() {
-        return admissionNo;
-    }
-
-    public void setAdmissionNo(String admissionNo) {
-        this.admissionNo = admissionNo;
-    }
-}
 
 
