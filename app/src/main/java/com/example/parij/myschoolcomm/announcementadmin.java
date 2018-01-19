@@ -3,10 +3,8 @@ package com.example.parij.myschoolcomm;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.parij.myschoolcomm.Models.Announcement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,15 +23,16 @@ import java.util.ArrayList;
 
 public class announcementadmin extends AppCompatActivity {
     ListView listViewAnnouncement;
-    Spinner spinnerFilter;
-    ArrayAdapter arrayAdapter, arrayAdapterSpinner;
-    EditText announcement;
+    Spinner spinnerFilter, spinnerAnnouncementProgram;
+    ArrayAdapter arrayAdapter, arrayAdapterSpinner, arrayAdapterProgram;
+    EditText editTextAnnouncementDetail, editTextAnnouncementTitle;
     Button sendbtn;
     Broadcast broadcast;
+    Announcement announcement;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ArrayList<Broadcast> arrayListBroadcast, filterAnnouncementArrayList;
-    ArrayList<String> arrayListMsg, spinnerArrayList;
+    ArrayList<String> arrayListMsg, spinnerArrayList, spinnerProgramArrayList;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -64,7 +64,7 @@ public class announcementadmin extends AppCompatActivity {
         //  toolbar.setNavigationIcon(R.drawable.childprofbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
-        spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 filter(position);
@@ -74,17 +74,21 @@ public class announcementadmin extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
 
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String msg;
-                if(announcement.getText() != null)
+                if (isFormValid())
                 {
-                    broadcast =  new Broadcast(announcement.getText().toString(), System.currentTimeMillis());
-                    databaseReference.push().setValue(broadcast);
+                    //broadcast =  new Broadcast(editTextAnnouncementDetail.getText().toString(), System.currentTimeMillis());
+                    String title = editTextAnnouncementTitle.getText().toString().trim();
+                    String detail = editTextAnnouncementDetail.getText().toString().trim();
+                    long timestamp = System.currentTimeMillis();
+                    int program = getSelectedProgram();
+                    announcement = new Announcement(title, detail, program, timestamp);
+                    databaseReference.push().setValue(announcement);
                     Toast.makeText(announcementadmin.this,"Announcement Sent!",Toast.LENGTH_LONG).show();
 
                 }
@@ -95,10 +99,7 @@ public class announcementadmin extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    arrayListBroadcast.add(ds.getValue(Broadcast.class));
                 }
-                sort(arrayListBroadcast);
-                filter(spinnerFilter.getSelectedItemPosition());
             }
 
             @Override
@@ -110,25 +111,72 @@ public class announcementadmin extends AppCompatActivity {
     }
 
     private void main_initiate() {
-        listViewAnnouncement = (ListView) findViewById(R.id.listViewAnnouncementAdmin);
-        announcement=(EditText)findViewById(R.id.announcemnttext);
+        //listViewAnnouncement = (ListView) findViewById(R.id.listViewAnnouncementAdmin);
+
+        editTextAnnouncementDetail = (EditText) findViewById(R.id.announcemnttext);
+        editTextAnnouncementTitle = (EditText) findViewById(R.id.editTextAnncouncementTitle);
+        spinnerAnnouncementProgram = (Spinner) findViewById(R.id.spinnerAnnouncementProgram);
         sendbtn=(Button)findViewById(R.id.sendbtn);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        spinnerFilter = (Spinner) findViewById(R.id.spinnerFilterAnnouncementAdmin);
+        //spinnerFilter = (Spinner) findViewById(R.id.spinnerFilterAnnouncementAdmin);
+
         arrayListBroadcast = new ArrayList<>();
         arrayListMsg = new ArrayList<>();
         spinnerArrayList = new ArrayList<>();
-        spinnerArrayList.add("None");
-        spinnerArrayList.add("5 Days");
-        spinnerArrayList.add("10 Days");
-        spinnerArrayList.add("15 Days");
-        arrayAdapterSpinner = new ArrayAdapter(announcementadmin.this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayList);
-        spinnerFilter.setAdapter(arrayAdapterSpinner);
+        spinnerProgramArrayList = new ArrayList<>();
 
-        databaseReference = firebaseDatabase.getReference().child("broadcast");
+        spinnerProgramArrayList.add("All");
+        spinnerProgramArrayList.add("Daycare");
+        spinnerProgramArrayList.add("Seeding");
+        spinnerProgramArrayList.add("Budding");
+        spinnerProgramArrayList.add("Blossoming");
+        spinnerProgramArrayList.add("Flourishing");
+
+        //spinnerArrayList.add("All");
+        //spinnerArrayList.add("5 Days");
+        //spinnerArrayList.add("10 Days");
+        //spinnerArrayList.add("15 Days");
+
+        //arrayAdapterSpinner = new ArrayAdapter(announcementadmin.this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayList);
+        //spinnerFilter.setAdapter(arrayAdapterSpinner);
+
+        arrayAdapterProgram = new ArrayAdapter(announcementadmin.this, android.R.layout.simple_spinner_dropdown_item, spinnerProgramArrayList);
+        spinnerAnnouncementProgram.setAdapter(arrayAdapterProgram);
+        databaseReference = firebaseDatabase.getReference().child(Constants.FBDB).child("announcements");
     }
 
-    void sort(ArrayList<Broadcast> arrayListBroadcast) {
+    boolean isFormValid() {
+        if (editTextAnnouncementDetail.getText().toString().trim().equals("")) {
+            editTextAnnouncementDetail.setError("Invalid input");
+            return false;
+        }
+        if (editTextAnnouncementTitle.getText().toString().trim().equals("")) {
+            editTextAnnouncementTitle.setError("Invalid input");
+            return false;
+        }
+        return true;
+    }
+
+    int getSelectedProgram() {
+        switch (spinnerAnnouncementProgram.getSelectedItemPosition()) {
+            case 0:
+                return Constants.ALLPROGRAMS;
+            case 1:
+                return Constants.DAYCARE;
+            case 2:
+                return Constants.SEEDING;
+            case 3:
+                return Constants.BUDDING;
+            case 4:
+                return Constants.BLOSSOMING;
+            case 5:
+                return Constants.FLOURISHING;
+
+        }
+        return -1;
+    }
+
+    /*void sort(ArrayList<Broadcast> arrayListBroadcast) {
         for (int i = 0; i < arrayListBroadcast.size(); i++) {
             for (int j = 0; j < arrayListBroadcast.size() - 1; j++) {
                 if (arrayListBroadcast.get(j).getTimestamp() < arrayListBroadcast.get(j + 1).getTimestamp()) {
@@ -165,5 +213,5 @@ public class announcementadmin extends AppCompatActivity {
         }
         arrayAdapter = new ArrayAdapter(announcementadmin.this, android.R.layout.simple_list_item_1, arrayListMsg);
         listViewAnnouncement.setAdapter(arrayAdapter);
-    }
+    }*/
 }

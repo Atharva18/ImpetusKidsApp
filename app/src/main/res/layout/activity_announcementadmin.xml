@@ -18,21 +18,65 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="8"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".6"
+            android:gravity="center_vertical"
+            android:text="Program :"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerAnnouncementProgram"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
+        android:text="Title :"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextAnncouncementTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="8"
+        android:background="@drawable/edittextborder"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textSize="18sp" />
+
     <TextView
         android:id="@+id/label"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10"
-        android:fontFamily="serif"
-        android:text="Please enter the announcement to make:"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
+        android:text="Please enter the announcement to make :"
         android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/announcemnttext"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="8dp" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/announcemnttext"
@@ -41,6 +85,7 @@
         android:layout_gravity="top|center_vertical"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="15"
         android:background="@drawable/edittextborder"
         android:ems="10"
@@ -56,14 +101,14 @@
         android:layout_gravity="right"
         android:layout_marginRight="3dp"
         android:layout_marginTop="7dp"
-        android:layout_weight="10"
+        android:layout_weight="8"
         android:background="@color/colorPrimary"
         android:text=" Broadcast "
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="8dp" />
 
-    <View
+    <!--<View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
@@ -97,5 +142,5 @@
         android:id="@+id/listViewAnnouncementAdmin"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="45" />
+        android:layout_weight="45" />-->
 </LinearLayout>
