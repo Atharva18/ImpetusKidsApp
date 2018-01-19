@@ -17,8 +17,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -118,271 +120,47 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
         username = SessionManagement.username;
         SessionManagement.updateSharedPreferences();
 
-        FirebaseDatabase database;
-        if(username.contains("Bloss")) {
+        final FirebaseDatabase database;
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("newDb").child("students");
 
-            program.setText("Program : Blossoming");
-            final int[] flag = {0};
-            database=FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference= database.getReference("studinfo").child("Blossoming").child("Morning");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Student student;
 
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    if (student.getUsername().equals(username)) {
+                        name.setText("Name :" + student.getName());
+                        rollNo.setText("Roll No :" + student.getRollNo());
+                        int programCode = student.getProgram();
 
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
+                        if (Constants.BLOSSOMING == programCode)
+                            program.setText("Program:Blossoming");
+                        else if (Constants.BUDDING == programCode)
+                            program.setText("Program:Budding");
+                        else if (Constants.FLOURISHING == programCode)
+                            program.setText("Program:Flourishing");
+                        else if (Constants.SEEDING == programCode)
+                            program.setText("Program: Seeding");
 
-                       String name1 = (String) data.child("name").getValue();
-                       String username1=(String)data.child("username").getValue();
-
-                       if(username.equals(username1))
-                       {
-                         flag[0] =1;
-                         name.setText("Name : "+name1);
-                         rollNo.setText("Batch :  Morning");
-
-                       }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            databaseReference = database.getReference("Images").child("Child_Profile");
-            final String user=username;
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
-                        if(user.equals(data.getKey()))
-                        {
-
-                            String url = data.getValue().toString();
-                            if(url!=null) {
-                                Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
-                            }
-
+                        String url = student.getImageLink();
+                        if (!url.equals("")) {
+                            Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Something went wrong,Please Try Again !", Toast.LENGTH_LONG).show();
                         }
                     }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
 
                 }
-            });
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-
-
-
-        }
-
-        else if(username.contains("Budd")) {
-            program.setText("Program : Budding");
-
-
-            program.setText("Program : Budding");
-            final int[] flag = {0};
-            database=FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference= database.getReference("studinfo").child("Budding").child("Morning");
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
-
-                        String name1 = (String) data.child("name").getValue();
-                        String username1=(String)data.child("username").getValue();
-
-                        if(username.equals(username1))
-                        {
-                            flag[0] =1;
-                            name.setText("Name : "+name1);
-                            rollNo.setText("Batch :  Morning");
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            databaseReference = database.getReference("Images").child("Child_Profile");
-            final String user=username;
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
-                        if(user.equals(data.getKey()))
-                        {
-
-                            String url = data.getValue().toString();
-                            if(url!=null) {
-                                Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
-                            }
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-        }
-        else if(username.contains("Flou")) {
-            program.setText("Program : Flourishing");
-
-
-            program.setText("Program : Flourishing");
-            final int[] flag = {0};
-            database=FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference= database.getReference("studinfo").child("Flourishing").child("Morning");
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
-
-                        String name1 = (String) data.child("name").getValue();
-                        String username1=(String)data.child("username").getValue();
-
-                        if(username.equals(username1))
-                        {
-                            flag[0] =1;
-                            name.setText("Name : "+name1);
-                            rollNo.setText("Batch :  Morning");
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            databaseReference = database.getReference("Images").child("Child_Profile");
-            final String user=username;
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
-                        if(user.equals(data.getKey()))
-                        {
-
-                            String url = data.getValue().toString();
-                            if(url!=null) {
-                                Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
-                            }
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-
-
-
-
-        }
-        else if(username.contains("Seed")) {
-            program.setText("Program : Seeding");
-
-
-            program.setText("Program : Seeding");
-            final int[] flag = {0};
-            database=FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference= database.getReference("studinfo").child("Seeding").child("Morning");
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
-
-                        String name1 = (String) data.child("name").getValue();
-                        String username1=(String)data.child("username").getValue();
-
-                        if(username.equals(username1))
-                        {
-                            flag[0] =1;
-                            name.setText("Name : "+name1);
-                            rollNo.setText("Batch :  Morning");
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            databaseReference = database.getReference("Images").child("Child_Profile");
-            final String user=username;
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot data : dataSnapshot.getChildren())
-                    {
-                        if(user.equals(data.getKey()))
-                        {
-
-                            String url = data.getValue().toString();
-                            if(url!=null) {
-                                Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
-                            }
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-
-
-
-        }
-
-
-
-
-
-
+            }
+        });
 
         Intialise();
 
@@ -624,29 +402,9 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
 
                                          }
 
-
-
-
-
-
         );
 
     }
-
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(actionBarDrawerToggle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-*/
-
 
     public void Intialise()
     {

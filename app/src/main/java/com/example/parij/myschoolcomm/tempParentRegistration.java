@@ -88,7 +88,8 @@ public class tempParentRegistration extends AppCompatActivity {
         rollNo = (EditText) findViewById(R.id.rollNo);
         name = (EditText) findViewById(R.id.name);
         //spinner1=(Spinner)findViewById(R.id.spinner);
-        spinnerProgram = (Spinner) findViewById(R.id.spinnerProgramRegistration);
+
+        spinnerProgram = (Spinner) findViewById(R.id.spinnerProgram);
         arrayListPrograms = new ArrayList<>();
         arrayListPrograms.add("Day-Care");
         arrayListPrograms.add("Blossoming");
@@ -97,13 +98,19 @@ public class tempParentRegistration extends AppCompatActivity {
         arrayListPrograms.add("Seeding");
         //arrayAdapterProgram = new ArrayAdapter<CharSequence>(tempParentRegistration.this, android.R.layout.simple_list_item_1, arrayListPrograms);
 
-        spinner2 = (Spinner) findViewById(R.id.spinnerProgramRegistration);
+        spinner2 = (Spinner) findViewById(R.id.spinnerBatch);
         add = (Button) findViewById(R.id.adduser);
 
 
         arrayAdapter = ArrayAdapter.createFromResource(this, R.array.Batch, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(arrayAdapter);
+
+
+        arrayAdapterProgram = ArrayAdapter.createFromResource(this, R.array.Type, android.R.layout.simple_spinner_item);
+        arrayAdapterProgram.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProgram.setAdapter(arrayAdapterProgram);
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,11 +126,26 @@ public class tempParentRegistration extends AppCompatActivity {
                     batch = Constants.AFTERNOON;
                 student.setBatch(batch);
                 //Simlarly program
+                int program = 0;
+                if (spinnerProgram.getSelectedItemPosition() == 0)
+                    program = Constants.DAYCARE;
+                else if (spinnerProgram.getSelectedItemPosition() == 1)
+                    program = Constants.SEEDING;
+                else if (spinnerProgram.getSelectedItemPosition() == 2)
+                    program = Constants.BUDDING;
+                else if (spinnerProgram.getSelectedItemPosition() == 3)
+                    program = Constants.BLOSSOMING;
+                else if (spinnerProgram.getSelectedItemPosition() == 4)
+                    program = Constants.FLOURISHING;
 
+                student.setProgram(program);
                 student.setUsername(username.getText().toString().trim());
                 student.setPassword(password.getText().toString().trim());
                 databaseReference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
                 databaseReference.push().setValue(student);
+
+                Toast.makeText(tempParentRegistration.this, "Entry Added!", Toast.LENGTH_LONG).show();
+
             }
         });
 

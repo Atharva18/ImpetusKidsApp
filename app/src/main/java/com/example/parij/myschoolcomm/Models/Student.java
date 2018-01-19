@@ -64,6 +64,9 @@ public class Student implements Serializable {
         classTeacherPhone = "";
         imageLink = "";
         emergencyPerson = new EmergencyPerson();
+        father = new Parent();
+        mother = new Parent();
+        guardian = new Parent();
 
     }
 
