@@ -196,10 +196,6 @@
             android:name=".reqleaveadmin"
             android:exported="true"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".resetpassworddaycare"
-            android:exported="true"
-            android:screenOrientation="portrait" />
 
 
         <!--

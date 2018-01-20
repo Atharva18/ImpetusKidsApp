@@ -1,32 +1,24 @@
 package com.example.parij.myschoolcomm;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -35,31 +27,28 @@ import static android.app.Activity.RESULT_OK;
 
 public class fragment2_adminparent extends Fragment  {
 
-   // Button upload;
-   // Button save;
+    final int ImgReq = 1;
     Bundle bundle;
-    Button call;
     FirebaseDatabase database;
     TextView name1,contact1,email1;
-    String username="";
-    final int ImgReq=1;
     ImageView photo;
+    Button call;
+    String username = "";
+    Context context;
+    View rootView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_fragment2_adminparent, container, false);
+        rootView = inflater.inflate(R.layout.activity_fragment2_adminparent, container, false);
+        context = rootView.getContext();
 
-        bundle=getActivity().getIntent().getExtras();
-        username = bundle.getString("username");
 
-       // upload=(Button)rootView.findViewById(R.id.upload);
-        //save=(Button)rootView.findViewById(R.id.save);
         name1=(TextView) rootView.findViewById(R.id.name);
         contact1=(TextView) rootView.findViewById(R.id.contact);
         email1=(TextView) rootView.findViewById(R.id.email);
-        photo=(ImageView)rootView.findViewById(R.id.photo);
+        photo = (ImageView) rootView.findViewById(R.id.photo);
         call=(Button)rootView.findViewById(R.id.call);
-        // bundle=getActivity().getIntent().getExtras();
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +58,8 @@ public class fragment2_adminparent extends Fragment  {
 
                 String dial = "tel:" + number;
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
-
-
-
-
             }
         });
-
-
 
         return rootView;
     }
@@ -85,58 +68,35 @@ public class fragment2_adminparent extends Fragment  {
     public void onStart() {
         super.onStart();
 
-        bundle=getActivity().getIntent().getExtras();
-        final String username = bundle.getString("username");
-        database=FirebaseDatabase.getInstance();
-         DatabaseReference databaseReference= database.getReference("ParentProfile").child("mother");
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("newDb").child("students");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                for(DataSnapshot data:dataSnapshot.getChildren())
-                {
-                    if(username.equals(data.getKey()))
-                    {
-                        name1.setText((CharSequence) data.child("name").getValue());
-                        contact1.setText((CharSequence) data.child("contact").getValue());
-                        email1.setText((CharSequence) data.child("email").getValue());
+        SessionManagement.retrieveSharedPreferences(context);
 
-                    }
+        final String username = SessionManagement.username;
 
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-                Toast.makeText(getContext(),"Oops! Something went wrong",Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-        databaseReference = database.getReference("Images").child("Parents_Profile");
-        final String user=username+"Mother";
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot data : dataSnapshot.getChildren())
-                {
-                    if(user.equals(data.getKey()))
-                    {
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                        String url = data.getValue().toString();
-                        Glide.with(getActivity().getApplicationContext()).load(url).into(photo);
+                    student = ds.getValue(Student.class);
+
+                    if (student.getUsername().equals(username)) {
+
+                        name1.setText(student.getMother().getName());
+                        contact1.setText(student.getMother().getPhone());
+                        email1.setText(student.getMother().getEmail());
+
+                        String url = student.getMother().getImageLink();
+
+                        if (!url.equals(""))
+                            Glide.with(getActivity().getApplicationContext()).load(url).into(photo);
 
                     }
                 }
-
-
-
-
             }
 
             @Override
@@ -145,18 +105,5 @@ public class fragment2_adminparent extends Fragment  {
             }
         });
 
-
-
-
     }
-
-
-
-
-
-
-
 }
-
-
-

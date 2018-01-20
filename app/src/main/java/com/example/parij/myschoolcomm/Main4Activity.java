@@ -444,11 +444,8 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
 
             Intent intent=new Intent(Main4Activity.this,ResetPassword.class);
             //intent.putExtras(bundle);
-
             startActivity(intent);
-
             //Toast.makeText(getApplicationContext(), "Reset Password clicked", Toast.LENGTH_SHORT).show();
-
         } else if (id == R.id.CallUs) {
            // Toast.makeText(getApplicationContext(), "Call Us is clicked", Toast.LENGTH_SHORT).show();
 

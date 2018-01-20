@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.parij.myschoolcomm.Models.Student;
@@ -149,8 +148,6 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                         String url = student.getImageLink();
                         if (!url.equals("")) {
                             Glide.with(getApplicationContext().getApplicationContext()).load(url).into(photo);
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Something went wrong,Please Try Again !", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -338,8 +335,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
         if (id == R.id.resetpassword) {
 
-            Intent intent=new Intent(daycaredashboard.this,resetpassworddaycare.class);
-
+            Intent intent = new Intent(daycaredashboard.this, ResetPassword.class);
             startActivity(intent);
             //Toast.makeText(getApplicationContext(), "Reset Password clicked", Toast.LENGTH_SHORT).show();
 

@@ -2,28 +2,23 @@ package com.example.parij.myschoolcomm;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class ResetPassword extends AppCompatActivity{
 
@@ -32,6 +27,7 @@ public class ResetPassword extends AppCompatActivity{
     EditText oldpass;
     EditText newpass;
     FirebaseDatabase database;
+    ArrayList<String> passwords;
 
 
     @Override
@@ -54,179 +50,70 @@ public class ResetPassword extends AppCompatActivity{
         SessionManagement.retrieveSharedPreferences(ResetPassword.this);
 
         final String username = SessionManagement.username;
-
-      // Toast.makeText(getApplicationContext(),username,Toast.LENGTH_SHORT).show();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         getSupportActionBar().setTitle("Reset Password");
-        //  toolbar.setNavigationIcon(R.drawable.childprofbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
-
-
 
         oldpass=(EditText)findViewById(R.id.oldPassword);
         newpass=(EditText)findViewById(R.id.newPassword);
         confirm=(Button)findViewById(R.id.confirm);
 
+
+        database = FirebaseDatabase.getInstance();
+        final DatabaseReference reference = database.getReference("newDb").child("students");
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String oldpassword = oldpass.getText().toString();
+                final String newpassword = newpass.getText().toString();
+
+                if (TextUtils.isEmpty(oldpassword))
+                    oldpass.setError("Please enter the old password");
+                else if (TextUtils.isEmpty(newpassword))
+                    newpass.setText("Please enter the new password");
+                else {
+                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            Student student;
+
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                student = ds.getValue(Student.class);
+
+                                if (student.getUsername().equals(username)) {
 
 
+                                    if (student.getPassword().equals(oldpassword)) {
+                                        student.setPassword(newpassword);
+                                        reference.child(ds.getKey()).setValue(student);
+                                        Toast.makeText(ResetPassword.this, "Passwords Changed! Please Login Again!", Toast.LENGTH_SHORT).show();
+                                        oldpass.getText().clear();
+                                        newpass.getText().clear();
+                                        startActivity(new Intent(ResetPassword.this, MainActivity.class));
+                                        finish();
+                                    } else {
+                                        oldpass.setError("Please enter correct password");
 
-                final String old= oldpass.getText().toString();
-                final String newp=newpass.getText().toString();
-                String type="";int flag=0;
-                final String[] check = {""};
-                String checkstr="";
-
-                database=FirebaseDatabase.getInstance();
-                if(!TextUtils.isEmpty(old))
-                {
-                    if(username.contains("Bloss"))
-                    {
-                        type="Blossoming";
-
-                    }
-                    else if(username.contains("Budd"))
-                    {
-                        type="Budding";
-
-                    }
-                    else if(username.contains("Flou"))
-                    {
-                        type="Flourishing";
-                    }
-                    else if(username.contains("Seed"))
-                    {
-                        type="Seeding";
-
-                    }
-
-                    else if(username.contains("Dayc"))
-                    {
-                        type="DayCare";
-
-                    }
-
-                }
-                else
-                {
-                    flag=1;
-                    oldpass.setError("Please enter the old password!");
-
-                }
-
-                if(flag==0)
-                {
-                    if(TextUtils.isEmpty(newp))
-                    {
-
-                        newpass.setError("Please enter a password!");
-
-
-                    }
-                    else
-                    {
-                        final boolean[] flag1 = {false};
-                        final DatabaseReference reference= database.getReference("UserNames").child(type);
-                        final String finalType = type;
-                        reference.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                for(DataSnapshot data : dataSnapshot.getChildren())
-                                {
-
-                                    if(username.equals(data.getKey()))
-
-                                    {
-                                        //Toast.makeText(getApplicationContext(),"Passwords1 Matched!",Toast.LENGTH_LONG).show();
-                                        check[0] = (String) data.child("password").getValue();
-
-
-                                        func(check[0],old,newp, finalType,reference);
-                                        flag1[0]=true;
-                                        /*
-                                        {
-
-                                         reference.child(username).setValue(newp);
-                                         Toast.makeText(getApplicationContext(),"Password Changed!",Toast.LENGTH_LONG).show();
-
-
-                                        }
-
-*/
-
-                                        break;
                                     }
 
-                                    if(flag1[0])
-                                        break;;
                                 }
-
                             }
+                        }
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                                Toast.makeText(getApplicationContext(),"Error occured",Toast.LENGTH_LONG).show();
-
-                            }
-                        });
-
-
-                    }
+                        }
+                    });
 
                 }
-
             }
         });
-
-    }
-
-public void func(String check,String old,String newpas,String type,DatabaseReference reference)
-{
-    SessionManagement.retrieveSharedPreferences(ResetPassword.this);
-    final String username = SessionManagement.username;
-
-
-    if(check.equals(old))
-    {
-
-
-
-    //    DatabaseReference databaseReference = database.getReference("UserNames").child(type);
-
-        reference.child(username).child("password").setValue(newpas);
-
-        Toast.makeText(getApplicationContext(),"Passwords Changed!Please Login again!",Toast.LENGTH_LONG).show();
-
-        oldpass.getText().clear();
-        newpass.getText().clear();
-        //return true;
-
-       // this.finish();
-
-        startActivity(new Intent(ResetPassword.this, MainActivity.class));
-        finish();
-
-
-
-    }
-    else
-    {
-        Log.println(Log.INFO,"message","inside"+ check+" "+old);
-       // Toast.makeText(getApplicationContext(),"Passwords Not Matched!",Toast.LENGTH_LONG).show();
-        oldpass.setError("Please enter correct password!");
-       // return false;
-    }
-
-
-
 }
-
 }
