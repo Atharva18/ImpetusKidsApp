@@ -37,5 +37,19 @@ public class Constants {
     public static final int MALE = 18;
     public static final int FEMALE = 19;
 
-
+    static String getProgramName(int program) {
+        switch (program) {
+            case 4:
+                return "Day-Care";
+            case 5:
+                return "Seeding";
+            case 6:
+                return "Budding";
+            case 7:
+                return "Blossoming";
+            case 8:
+                return "Flourishing";
+        }
+        return "";
+    }
 }

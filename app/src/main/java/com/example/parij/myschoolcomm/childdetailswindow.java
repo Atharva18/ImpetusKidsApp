@@ -92,7 +92,7 @@ public class childdetailswindow extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewRoaster);
         arrayListFull = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference("newDb").child("students");
+        databaseReference = FirebaseDatabase.getInstance().getReference(Constants.FBDB).child("students");
         dialog = new Dialog(childdetailswindow.this, android.R.style.Theme_DeviceDefault_Light_Dialog);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,11 +104,11 @@ public class childdetailswindow extends AppCompatActivity {
 
         arrayListSpinner = new ArrayList<>();
         arrayListSpinner.add("All");
-        arrayListSpinner.add("Blossoming");
-        arrayListSpinner.add("Budding");
         arrayListSpinner.add("Day-Care");
-        arrayListSpinner.add("Flourishing");
         arrayListSpinner.add("Seeding");
+        arrayListSpinner.add("Budding");
+        arrayListSpinner.add("Blossoming");
+        arrayListSpinner.add("Flourishing");
         arrayAdapterSpinner = new ArrayAdapter<>(childdetailswindow.this, android.R.layout.simple_spinner_dropdown_item, arrayListSpinner);
         spinnerFilter.setAdapter(arrayAdapterSpinner);
 
@@ -134,8 +134,8 @@ public class childdetailswindow extends AppCompatActivity {
                             Student student;
                             student = ds.getValue(Student.class);
                             arrayListFull.add(student);
-                            arrayListDisplay.add("Name: " + student.getName() + "\nRoll no: " + student.getRollNo() + "\nProgram: " + student.getProgram());
-                            Log.d("StudentObj : ", student.toString());
+                            arrayListDisplay.add("Name: " + student.getName() + "\nRoll no: " + student.getRollNo() + "\nProgram: " + Constants.getProgramName(student.getProgram()));
+                            Log.d("StudentObj : ", student.getName());
                         }
                 arrayListFiltered = arrayListFull;
                 arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {
@@ -209,14 +209,21 @@ public class childdetailswindow extends AppCompatActivity {
 
     void filterList(int position) {
         String filter = arrayListSpinner.get(position);
-        if (position == 0)
-            filter = "";
+        int programFilter = (int) arrayAdapterSpinner.getItemId(position) + 3;
+        Log.d("program fileter ", programFilter + "");
         arrayListFiltered = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
-        for (int i = 0; i < arrayListFull.size(); i++) {
-            if (arrayListFull.get(i).getProgram() == 0) {
+        if (position == 0) {
+            for (int i = 0; i < arrayListFull.size(); i++) {
                 arrayListFiltered.add(arrayListFull.get(i));
-                arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + arrayListFull.get(i).getProgram());
+                arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFull.get(i).getProgram()));
+            }
+        } else {
+            for (int i = 0; i < arrayListFull.size(); i++) {
+                if (arrayListFull.get(i).getProgram() == programFilter) {
+                    arrayListFiltered.add(arrayListFull.get(i));
+                    arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFull.get(i).getProgram()));
+                }
             }
         }
         if (editTextSearch.getText().toString() != null)
@@ -246,7 +253,7 @@ public class childdetailswindow extends AppCompatActivity {
         arrayListDisplay = new ArrayList<>();
         for (int i = 0; i < arrayListFiltered.size(); i++) {
             if (arrayListFiltered.get(i).getName().contains(input)) {
-                arrayListDisplay.add("Name: " + arrayListFiltered.get(i).getName() + "\nRoll no: " + arrayListFiltered.get(i).getRollNo() + "\nProgram: " + arrayListFiltered.get(i).getProgram());
+                arrayListDisplay.add("Name: " + arrayListFiltered.get(i).getName() + "\nRoll no: " + arrayListFiltered.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFiltered.get(i).getProgram()));
             }
         }
         arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {
