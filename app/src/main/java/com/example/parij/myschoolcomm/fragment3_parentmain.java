@@ -132,7 +132,7 @@ public class fragment3_parentmain extends Fragment implements View.OnClickListen
 
         //Log.println(Log.INFO,"hello","present");
         database=FirebaseDatabase.getInstance();
-        DatabaseReference reference= database.getReference("ParentProfile");
+        DatabaseReference reference = database.getReference("newDb").child("students");
 
         String name,contact,email;
 

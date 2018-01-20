@@ -36,7 +36,6 @@
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
-
             android:orientation="vertical"
             android:weightSum="5">
 
