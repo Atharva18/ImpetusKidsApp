@@ -10,7 +10,7 @@ public class Constants {
     public static final int GUARDIAN = 3;
 
     //Programs
-    public static final int ALLPROGRAMS = 18;
+    public static final int ALLPROGRAMS = 20;
     public static final int DAYCARE = 4;
     public static final int SEEDING = 5;
     public static final int BUDDING = 6;

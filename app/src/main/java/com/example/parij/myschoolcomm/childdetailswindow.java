@@ -178,27 +178,32 @@ public class childdetailswindow extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Bundle bundle = new Bundle();
-                bundle.putString("username", arrayListFiltered.get(position).getUsername());
+                //  Bundle bundle = new Bundle();
+                // bundle.putString("username", arrayListFiltered.get(position).getUsername());
+
+                SessionManagement.username = arrayListFiltered.get(position).getUsername();
+                SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
+                SessionManagement.updateSharedPreferences();
+
                 if (radioButtonAuthorised.isChecked()) {
                     Intent intent = new Intent(childdetailswindow.this, adminauthorized.class);
-                    intent.putExtras(bundle);
+                    // intent.putExtras(bundle);
                     startActivity(intent);
 
                 }
                 if (radioButtonChildProfile.isChecked()) {
                     Intent intent = new Intent(childdetailswindow.this, adminchild.class);
-                    intent.putExtras(bundle);
+                    // intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 if (radioButtonEmergency.isChecked()) {
                     Intent intent = new Intent(childdetailswindow.this, adminemergency.class);
-                    intent.putExtras(bundle);
+                    // intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 if (radioButtonParentProfile.isChecked()) {
                     Intent intent = new Intent(childdetailswindow.this, adminparent.class);
-                    intent.putExtras(bundle);
+                    //intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 finish();

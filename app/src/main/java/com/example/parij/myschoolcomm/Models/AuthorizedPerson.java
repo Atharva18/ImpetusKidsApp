@@ -26,6 +26,11 @@ public class AuthorizedPerson implements Serializable {
     public AuthorizedPerson() {
         //Do not remove, removal may cause World War 3
         name = "";
+        relation = "";
+        phone = "";
+        fromDate = "";
+        toDate = "";
+        imageLink = "";
     }
 
     public String getRelation() {

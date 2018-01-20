@@ -165,7 +165,7 @@ public class adminchild extends AppCompatActivity {
             }
 
             private void UpdateLabel() {
-                String myFormat = "MM/dd/yy";
+                String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 admissiondate.setText(sdf.format(mycalender.getTime()));
@@ -193,7 +193,7 @@ public class adminchild extends AppCompatActivity {
             }
 
             private void UpdateLabel() {
-                String myFormat = "MM/dd/yy";
+                String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
                 dateOfBirth.setText(sdf.format(mycalender.getTime()));
@@ -216,7 +216,7 @@ public class adminchild extends AppCompatActivity {
                 String dateOfBirth1, contactNo1, classTeacher1, admissiondate1;
 
                 database=FirebaseDatabase.getInstance();
-                final DatabaseReference reference = database.getReference("ChildProfile");
+                final DatabaseReference reference = database.getReference("newDb").child("students");
 
                 dateOfBirth1=dateOfBirth.getText().toString();
                 contactNo1=contactNo.getText().toString();
@@ -322,17 +322,17 @@ public class adminchild extends AppCompatActivity {
 
                     if (bloodgroup.getSelectedItemPosition() == 0)
                         student.setBloodGroup(Constants.APositive);
-                    else if (bloodgroup.getSelectedItemPosition() == 1)
-                        student.setBloodGroup(Constants.ANegative);
-                    else if (bloodgroup.getSelectedItemPosition() == 2)
-                        student.setBloodGroup(Constants.BPositive);
                     else if (bloodgroup.getSelectedItemPosition() == 3)
-                        student.setBloodGroup(Constants.BNegative);
+                        student.setBloodGroup(Constants.ANegative);
+                    else if (bloodgroup.getSelectedItemPosition() == 1)
+                        student.setBloodGroup(Constants.BPositive);
                     else if (bloodgroup.getSelectedItemPosition() == 4)
-                        student.setBloodGroup(Constants.OPositive);
+                        student.setBloodGroup(Constants.BNegative);
                     else if (bloodgroup.getSelectedItemPosition() == 5)
-                        student.setBloodGroup(Constants.ONegative);
+                        student.setBloodGroup(Constants.OPositive);
                     else if (bloodgroup.getSelectedItemPosition() == 6)
+                        student.setBloodGroup(Constants.ONegative);
+                    else if (bloodgroup.getSelectedItemPosition() == 2)
                         student.setBloodGroup(Constants.AB);
 
 
@@ -410,48 +410,48 @@ public class adminchild extends AppCompatActivity {
 
                         int programCode = student.getProgram();
 
-                        if (programCode == 0)
+                        if (programCode == 4)
                             program.setSelection(0);
-                        else if (programCode == 1)
+                        else if (programCode == 5)
                             program.setSelection(1);
-                        else if (programCode == 2)
+                        else if (programCode == 6)
                             program.setSelection(2);
-                        else if (programCode == 3)
+                        else if (programCode == 7)
                             program.setSelection(3);
-                        else if (programCode == 4)
+                        else if (programCode == 8)
                             program.setSelection(4);
 
                         int batchCode = student.getBatch();
 
-                        if (batchCode == 0)
+                        if (batchCode == 9)
                             batch.setSelection(0);
-                        else if (batchCode == 1)
+                        else if (batchCode == 10)
                             batch.setSelection(1);
 
                         int genderCode = student.getGender();
 
-                        if (genderCode == 0)
+                        if (genderCode == 18)
                             genderspinner.setSelection(0);
-                        else if (genderCode == 1)
+                        else if (genderCode == 19)
                             genderspinner.setSelection(1);
 
                         dateOfBirth.setText(student.getDateOfBirth());
 
                         int bloodGroupCode = student.getBloodGroup();
 
-                        if (bloodGroupCode == 0)
+                        if (bloodGroupCode == 11)
                             bloodgroup.setSelection(0);
-                        else if (bloodGroupCode == 1)
+                        else if (bloodGroupCode == 12)
                             bloodgroup.setSelection(1);
-                        else if (bloodGroupCode == 2)
+                        else if (bloodGroupCode == 13)
                             bloodgroup.setSelection(2);
-                        else if (bloodGroupCode == 3)
+                        else if (bloodGroupCode == 14)
                             bloodgroup.setSelection(3);
-                        else if (bloodGroupCode == 4)
+                        else if (bloodGroupCode == 15)
                             bloodgroup.setSelection(4);
-                        else if (bloodGroupCode == 5)
+                        else if (bloodGroupCode == 16)
                             bloodgroup.setSelection(5);
-                        else if (bloodGroupCode == 6)
+                        else if (bloodGroupCode == 17)
                             bloodgroup.setSelection(6);
 
                         classTeacher.setText(student.getClassTeacherName());

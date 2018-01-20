@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginAdmin(Admin admin) {
-        Toast.makeText(getApplicationContext(), "Logging you in", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Logging you in", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, admindashboard.class);
 
         SessionManagement.username = admin.getUsername();
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginUser(Student student) {
-        Toast.makeText(getApplicationContext(), "Logging you in", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Logging you in", Toast.LENGTH_SHORT).show();
         Intent intent;
         if (student.getProgram() == Constants.DAYCARE)
             intent = new Intent(MainActivity.this, daycaredashboard.class);
@@ -172,36 +172,48 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Admin admin = new Admin();
+
+                            int check = 0;
+
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 admin.setUsername(data.child("username").getValue().toString());
                                 admin.setPassword(data.child("password").getValue().toString());
                                 if (username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
                                     loginAdmin(admin);
+                                    check = 1;
                                 }
                             }
 
-                            DatabaseReference referenceUser = database.getReference("newDb").child("students");
-                            referenceUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    Student student;
-                                    for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                        student = (data.getValue(Student.class));
-                                        if (username.equals(student.getUsername()) && password.equals(student.getPassword())) {
-                                            Log.d("daycare", data.getValue().toString() + "");
-                                            loginUser(student);
+                            if (check == 0) {
+                                DatabaseReference referenceUser = database.getReference("newDb").child("students");
+                                referenceUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        Student student;
+                                        int flag = 0;
+                                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                            student = (data.getValue(Student.class));
+                                            if (username.equals(student.getUsername()) && password.equals(student.getPassword())) {
+                                                Log.d("daycare", data.getValue().toString() + "");
+                                                flag = 1;
+                                                loginUser(student);
+                                            }
                                         }
+
+                                        if (flag == 0) {
+                                            pd.dismiss();
+                                            Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
+                                        }
+
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
 
-                                }
-                            });
-                            pd.dismiss();
-                            Toast.makeText(getApplicationContext(), "Incorrect username or password!", Toast.LENGTH_LONG).show();
+                                    }
+                                });
 
+                            }
                         }
 
                         @Override

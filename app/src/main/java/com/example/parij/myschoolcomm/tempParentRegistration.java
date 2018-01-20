@@ -3,7 +3,6 @@ package com.example.parij.myschoolcomm;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -31,8 +30,9 @@ public class tempParentRegistration extends AppCompatActivity {
     Spinner spinner2, spinnerProgram;
     Button add;
     ArrayAdapter<CharSequence> arrayAdapter, arrayAdapterProgram;
-    FirebaseDatabase database;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     ArrayList<String> userNames, rollNos, arrayListPrograms;
+    ArrayList<Integer> programs;
     DatabaseReference databaseReference;
 
     public static int getCount2() {
@@ -87,7 +87,7 @@ public class tempParentRegistration extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         rollNo = (EditText) findViewById(R.id.rollNo);
         name = (EditText) findViewById(R.id.name);
-        //spinner1=(Spinner)findViewById(R.id.spinner);
+
 
         spinnerProgram = (Spinner) findViewById(R.id.spinnerProgram);
         arrayListPrograms = new ArrayList<>();
@@ -112,12 +112,39 @@ public class tempParentRegistration extends AppCompatActivity {
         spinnerProgram.setAdapter(arrayAdapterProgram);
 
 
+        userNames = new ArrayList<>();
+        rollNos = new ArrayList<>();
+        programs = new ArrayList<>();
+
+        DatabaseReference reference = database.getReference("newDb").child("students");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+
+                    userNames.add(student.getUsername());
+                    rollNos.add(student.getRollNo());
+                    programs.add(student.getProgram());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                int flag = 0;
+
                 Student student = new Student();
-                student.setRollNo(rollNo.getText().toString().trim());
+
+
                 student.setName(name.getText().toString().trim());
                 int batch;
                 if (spinner2.getSelectedItemPosition() == 0)
@@ -139,190 +166,29 @@ public class tempParentRegistration extends AppCompatActivity {
                     program = Constants.FLOURISHING;
 
                 student.setProgram(program);
+                if (userNames.contains(username.getText().toString())) {
+                    flag = 1;
+                    Toast.makeText(tempParentRegistration.this, "Username already exists!Please select another!", Toast.LENGTH_SHORT).show();
+
+                }
+
+                if (rollNos.contains(rollNo.getText().toString().trim())) {
+                    int position = rollNos.indexOf(rollNo.getText().toString().trim());
+                    if (programs.get(position) == program) {
+                        flag = 1;
+                        Toast.makeText(tempParentRegistration.this, "Roll No already exists!", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                student.setRollNo(rollNo.getText().toString().trim());
                 student.setUsername(username.getText().toString().trim());
                 student.setPassword(password.getText().toString().trim());
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
-                databaseReference.push().setValue(student);
-
-                Toast.makeText(tempParentRegistration.this, "Entry Added!", Toast.LENGTH_LONG).show();
-
+                if (flag == 0) {
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
+                    databaseReference.push().setValue(student);
+                    Toast.makeText(tempParentRegistration.this, "Entry Added!", Toast.LENGTH_LONG).show();
+                }
             }
         });
-
-
-
-
-
     }
-    boolean checkRoll(final String userName, final String roll, final String password, final String program1, final String name1, final String batch)
-    {
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("studinfo");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds: dataSnapshot.getChildren())
-                {
-                    for(DataSnapshot dsBatch : ds.getChildren())
-                    {
-                        for(DataSnapshot dsrolls : dsBatch.getChildren())
-                        {
-                            Log.e("REGISTER", "Prog: " + ds.getKey() + " Batch: " + ds.getKey());
-                            if (ds.getKey().equalsIgnoreCase(program1) && dsBatch.getKey().equalsIgnoreCase(batch))
-                                rollNos.add(dsrolls.getKey());
-                            Log.println(Log.ERROR, "msg", String.valueOf(rollNos));
-                        }
-                    }
-                }
-                if(!rollNos.contains(roll))
-                {
-                    String program = program1;
-                    database=FirebaseDatabase.getInstance();
-                    DatabaseReference reference= database.getReference("UserNames").child(program);
-                    reference.child(userName).child("password").setValue(password);
-
-                    if(program.equals("DayCare"))
-                        program="Day-Care";
-
-                    reference=database.getReference("studinfo").child(program).child(batch);
-                    reference.child(roll).child("name").setValue(name1);
-                    reference.child(roll).child("username").setValue(userName);
-                    Toast.makeText(tempParentRegistration.this, "Entry added!", Toast
-                            .LENGTH_LONG).show();
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(), "Roll no exists", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        return false;
-    }
-
-
-    public boolean checkUser(final String user, String program) {
-
-        setCount(0);
-        database = FirebaseDatabase.getInstance();
-        final DatabaseReference reference,reference1;
-
-        reference = database.getReference("UserNames").child(program);
-
-        final int[] flag1 = {0};
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-
-                    String key = data.getKey();
-                    Log.println(Log.ERROR,"msg",key);
-
-                    if (data.getKey().equals(user)) {
-                        username.setError("UserName already Exists!");
-                      //  flag1[0] = 1;
-                        setCount(1);
-                        Log.println(Log.ERROR,"msg1", String.valueOf(String.valueOf(getCount())));
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        Log.println(Log.ERROR,"msg2", String.valueOf(String.valueOf(getCount())));
-        return getCount() == 0;
-
-
-    }
-
-    public boolean checkroll(String program, String batch, final String roll)
-    {
-        setCount2(0);
-        if(program.equals("DayCare"))
-            program="Day-Care";
-
-        database=FirebaseDatabase.getInstance();
-
-        DatabaseReference reference = database.getReference("studinfo").child(program).child(batch);
-
-
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                for (DataSnapshot data : dataSnapshot.getChildren()) {
-
-
-                    if (data.getKey().equals(roll)) {
-
-
-                        rollNo.setError("Roll No is already in use!");
-                        setCount2(1);
-                        Log.println(Log.ERROR,"msg3", String.valueOf(String.valueOf(getCount())));
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        Log.println(Log.ERROR,"msg4", String.valueOf(String.valueOf(getCount())));
-        return getCount2() == 0;
-
-    }
-
-    /*
-
-                    //Toast.makeText(tempParentRegistration.this, "Inside2", Toast.LENGTH_LONG).show();
-
-
-                    if (checkUser(userName, program))
-                    {
-
-                       // Toast.makeText(tempParentRegistration.this, "Inside", Toast.LENGTH_LONG).show();
-
-                        if(checkroll(program,batch,roll) )
-                        {
-                          //  Toast.makeText(tempParentRegistration.this, "Inside5", Toast.LENGTH_LONG).show();
-                            database=FirebaseDatabase.getInstance();
-                            DatabaseReference reference= database.getReference("UserNames").child(program);
-                            reference.child(userName).child("password").setValue(password1);
-
-                            if(program.equals("DayCare"))
-                                program="Day-Care";
-
-                            reference=database.getReference("studinfo").child(program).child(batch);
-                            reference.child(roll).child("name").setValue(name1);
-                            reference.child(roll).child("username").setValue(userName);
-                            Toast.makeText(tempParentRegistration.this, "Entry added!", Toast
-                                    .LENGTH_LONG).show();
-
-
-                        }
-
-                    }
-
-
-                }
-
-            }
-        });
-    */
-
 }

@@ -51,8 +51,7 @@ public class adminauthorized extends AppCompatActivity {
 
         initialise();
 
-        bundle=getIntent().getExtras();
-        final String username = bundle.getString("username");
+
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,13 +94,13 @@ public class adminauthorized extends AppCompatActivity {
                     student = ds.getValue(Student.class);
 
                     if (student.getUsername().equals(username)) {
-                        name.setText(student.getAuthorizedPerson().getName());
-                        contactNo.setText(student.getAuthorizedPerson().getPhone());
-                        relation.setText(student.getAuthorizedPerson().getRelation());
-                        date1.setText(student.getAuthorizedPerson().getFromDate());
-                        date2.setText(student.getAuthorizedPerson().getToDate());
+                        name.setText(student.getAuthorizedPerson().getName().toString());
+                        contactNo.setText(student.getAuthorizedPerson().getPhone().toString());
+                        relation.setText(student.getAuthorizedPerson().getRelation().toString());
+                        date1.setText(student.getAuthorizedPerson().getFromDate().toString());
+                        date2.setText(student.getAuthorizedPerson().getToDate().toString());
 
-                        String url = student.getAuthorizedPerson().getImageLink();
+                        String url = student.getAuthorizedPerson().getImageLink().toString();
 
                         if (!url.equals(""))
                             Glide.with(getApplicationContext()).load(url).into(personphoto);
