@@ -62,6 +62,8 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(Main4Activity.this, Logout.class);
+                        startActivity(intent);
                         Main4Activity.this.finish();
                     }
                 })
