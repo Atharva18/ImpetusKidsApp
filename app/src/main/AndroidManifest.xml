@@ -170,7 +170,8 @@
         <activity
             android:name=".reqleaveadmin"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateUnchanged|adjustPan" />
 
 
         <!--

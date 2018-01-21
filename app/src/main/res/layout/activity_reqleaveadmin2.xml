@@ -24,6 +24,18 @@
         android:orientation="vertical"
         android:weightSum="100">
 
+        <EditText
+            android:id="@+id/editTextLeaveRequestSearch"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="10"
+            android:background="@drawable/edittextborder"
+            android:hint="Search by name"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -52,7 +64,7 @@
             android:id="@+id/ListofLeaves"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="90"
+            android:layout_weight="80"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

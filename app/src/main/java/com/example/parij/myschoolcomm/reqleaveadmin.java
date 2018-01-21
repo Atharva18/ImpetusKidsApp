@@ -3,14 +3,19 @@ package com.example.parij.myschoolcomm;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.example.parij.myschoolcomm.Models.LeaveRequest;
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,16 +23,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 
 public class reqleaveadmin extends AppCompatActivity {
-    ArrayList<Message> messageArrayList, filterMessageArrayList;
+    //ArrayList<Message> messageArrayList, filterMessageArrayList;
+    ArrayList<LeaveRequest> messageArrayList, filterMessageArrayList;
+    ArrayList<Student> students;
+    HashMap<String, Student> hashMapStudent;
     ArrayList<String> messageList, spinnerArrayList;
     ListView listView;
     ArrayAdapter arrayAdapter, arrayAdapterSpinner;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReferenceStudents;
     Spinner spinnerFilter;
+    EditText editTextSearch;
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -71,18 +81,34 @@ public class reqleaveadmin extends AppCompatActivity {
 
             }
         });
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReferenceStudents.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                messageArrayList = new ArrayList<>();
-                for(DataSnapshot ds:dataSnapshot.getChildren()) {
-                    messageArrayList.add(ds.getValue(Message.class));
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    students.add(data.getValue(Student.class));
                 }
-                sort(messageArrayList);
-                filter(spinnerFilter.getSelectedItemPosition());
-                arrayAdapter=new ArrayAdapter(reqleaveadmin.this,android.R.layout.simple_list_item_1,messageList);
-                listView.setAdapter(arrayAdapter);
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        messageArrayList = new ArrayList<>();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            LeaveRequest leaveRequest = ds.getValue(LeaveRequest.class);
+                            messageArrayList.add(leaveRequest);
+                            hashMapStudent.put(leaveRequest.getUsername(), getStudent(leaveRequest.getUsername()));
+
+                        }
+                        sort(messageArrayList);
+                        filter(spinnerFilter.getSelectedItemPosition());
+                        arrayAdapter = new ArrayAdapter(reqleaveadmin.this, android.R.layout.simple_list_item_1, messageList);
+                        listView.setAdapter(arrayAdapter);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
 
@@ -91,20 +117,33 @@ public class reqleaveadmin extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
 
     private void main_initiate() {
         listView = (ListView) findViewById(R.id.ListofLeaves);
         spinnerFilter = (Spinner) findViewById(R.id.spinnerFilter);
 
+        editTextSearch = (EditText) findViewById(R.id.editTextLeaveRequestSearch);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterListByText(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        hashMapStudent = new HashMap<>();
         messageArrayList = new ArrayList<>();
         messageList= new ArrayList<>();
-
+        students = new ArrayList<>();
         spinnerArrayList = new ArrayList<>();
         spinnerArrayList.add("None");
         spinnerArrayList.add("5 Days");
@@ -112,16 +151,17 @@ public class reqleaveadmin extends AppCompatActivity {
         spinnerArrayList.add("15 Days");
         arrayAdapterSpinner = new ArrayAdapter(reqleaveadmin.this, android.R.layout.simple_spinner_dropdown_item, spinnerArrayList);
         spinnerFilter.setAdapter(arrayAdapterSpinner);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Leave_request");
-
+        spinnerFilter.setSelection(1);
+        databaseReference = FirebaseDatabase.getInstance().getReference(Constants.FBDB).child("leaveRequests");
+        databaseReferenceStudents = FirebaseDatabase.getInstance().getReference(Constants.FBDB).child("students");
     }
 
-    void sort(ArrayList<Message> messageArrayList){
+    void sort(ArrayList<LeaveRequest> messageArrayList) {
 
         for (int i = 0; i < messageArrayList.size(); i++) {
             for (int j = 0; j < messageArrayList.size() - 1; j++) {
                 if (messageArrayList.get(j).getTimestamp() < messageArrayList.get(j + 1).getTimestamp()) {
-                    Message temp = messageArrayList.get(j);
+                    LeaveRequest temp = messageArrayList.get(j);
                     messageArrayList.set(j, messageArrayList.get(j + 1));
                     messageArrayList.set(j + 1, temp);
                 }
@@ -129,9 +169,9 @@ public class reqleaveadmin extends AppCompatActivity {
         }
         messageList = new ArrayList<>();
         for(int i = 0; i < messageArrayList.size(); i++) {
-            messageList.add("Sender: " + messageArrayList.get(i).getSender() + "\n"
-                    + "Message: A request for leave from: " + messageArrayList.get(i).getFromdate() + " to: "
-                    + messageArrayList.get(i).getTodate() + " for the Reason : " + messageArrayList.get(i).getReason());
+            messageList.add("Sender : " + hashMapStudent.get(messageArrayList.get(i).getUsername()).getName() + "\n"
+                    + "Reason : " + messageArrayList.get(i).getReason() + "\n"
+                    + "From : " + messageArrayList.get(i).getFromDate() + "\t To : " + messageArrayList.get(i).getToDate());
         }
     }
 
@@ -153,12 +193,38 @@ public class reqleaveadmin extends AppCompatActivity {
             }
         }
         for (int i = 0; i < filterMessageArrayList.size(); i++) {
-            messageList.add("Sender: " + filterMessageArrayList.get(i).getSender() + "\n"
-                    + "Message: A request for leave from: " + filterMessageArrayList.get(i).getFromdate() + " to: "
-                    + filterMessageArrayList.get(i).getTodate() + " for the Reason : " + filterMessageArrayList.get(i).getReason());
+            messageList.add("Sender : " + hashMapStudent.get(messageArrayList.get(i).getUsername()).getName() + "\n"
+                    + "Reason : " + messageArrayList.get(i).getReason() + "\n"
+                    + "From : " + messageArrayList.get(i).getFromDate() + "\t To : " + messageArrayList.get(i).getToDate());
         }
-        arrayAdapter = new ArrayAdapter(reqleaveadmin.this, android.R.layout.simple_list_item_1, messageList);
+        if (editTextSearch.getText().toString() != null)
+            filterListByText(editTextSearch.getText().toString());
+        else
+            filterListByText("");
+    }
+
+    void filterListByText(String input) {
+
+        ArrayList<String> arrayListDisplay = new ArrayList<>();
+        for (int i = 0; i < filterMessageArrayList.size(); i++) {
+            if (filterMessageArrayList.get(i).getUsername().toLowerCase().contains(input.toLowerCase())) {
+                arrayListDisplay.add("Sender : " + hashMapStudent.get(messageArrayList.get(i).getUsername()).getName() + "\n"
+                        + "Reason : " + messageArrayList.get(i).getReason() + "\n"
+                        + "From : " + messageArrayList.get(i).getFromDate() + "\t To : " + messageArrayList.get(i).getToDate());
+            }
+        }
+        arrayAdapter = new ArrayAdapter(reqleaveadmin.this, android.R.layout.simple_list_item_1, arrayListDisplay);
         listView.setAdapter(arrayAdapter);
+    }
+
+    Student getStudent(String username) {
+        Student student = new Student();
+        for (Student s : students) {
+            if (s.getUsername().equals(username)) {
+                student = s;
+            }
+        }
+        return student;
     }
 }
 
