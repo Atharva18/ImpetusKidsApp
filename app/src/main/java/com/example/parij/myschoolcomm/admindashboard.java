@@ -72,9 +72,9 @@ public class admindashboard extends AppCompatActivity {
 
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        emergencytxt=(TextView)findViewById(R.id.textemergency);
-        authorizedtxt=(TextView)findViewById(R.id.textauthorized);
-        parenttxt=(TextView)findViewById(R.id.textparent);
+        //emergencytxt=(TextView)findViewById(R.id.textemergency);
+        //authorizedtxt=(TextView)findViewById(R.id.textauthorized);
+        // parenttxt=(TextView)findViewById(R.id.textparent);
         childtxt=(TextView)findViewById(R.id.textchild);
         syllabustxt=(TextView)findViewById(R.id.textsyllabus);
         announcementtxt=(TextView)findViewById(R.id.textannouncements);
@@ -82,10 +82,10 @@ public class admindashboard extends AppCompatActivity {
         spokentxt=(TextView)findViewById(R.id.textspoken);
         requesttxt=(TextView)findViewById(R.id.textrequest);
 
-        ImageButton ParentProfile=(ImageButton) findViewById(R.id.parentsprofile);
+        // ImageButton ParentProfile=(ImageButton) findViewById(R.id.parentsprofile);
         ImageButton ChildProfile=(ImageButton) findViewById(R.id.childprofile);
-        ImageButton emerg=(ImageButton)findViewById(R.id.emergency);
-        ImageButton authper=(ImageButton)findViewById(R.id.authorisedperson);
+        // ImageButton emerg=(ImageButton)findViewById(R.id.emergency);
+        //ImageButton authper=(ImageButton)findViewById(R.id.authorisedperson);
         ImageButton Timetable=(ImageButton)findViewById(R.id.theme);
         ImageButton Announcements=(ImageButton)findViewById(R.id.Announcements);
         ImageButton reqforLeave=(ImageButton)findViewById(R.id.reqforLeave);
@@ -105,7 +105,7 @@ public class admindashboard extends AppCompatActivity {
             }
         });
 
-
+/*
         parenttxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,7 @@ public class admindashboard extends AppCompatActivity {
                 startActivity(parent);
             }
         });
-
+*/
         childtxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +146,7 @@ public class admindashboard extends AppCompatActivity {
             }
 
         });
-
+/*
         emergencytxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,7 +186,7 @@ public class admindashboard extends AppCompatActivity {
                 startActivity(authper);
             }
         });
-
+*/
       syllabustxt.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
