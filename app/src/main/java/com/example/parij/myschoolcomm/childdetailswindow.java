@@ -257,7 +257,7 @@ public class childdetailswindow extends AppCompatActivity {
 
         arrayListDisplay = new ArrayList<>();
         for (int i = 0; i < arrayListFiltered.size(); i++) {
-            if (arrayListFiltered.get(i).getName().contains(input)) {
+            if (arrayListFiltered.get(i).getName().toLowerCase().contains(input.toLowerCase())) {
                 arrayListDisplay.add("Name: " + arrayListFiltered.get(i).getName() + "\nRoll no: " + arrayListFiltered.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFiltered.get(i).getProgram()));
             }
         }
