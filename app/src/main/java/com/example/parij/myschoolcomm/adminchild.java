@@ -259,16 +259,12 @@ public class adminchild extends AppCompatActivity {
                     }
 
                 }
-
-
                 if(TextUtils.isEmpty(admissiondate1))
                 {
                    flag++;
                    admissiondate.setError("Please enter the date");
 
                 }
-
-
             if(flag==0) {
 
                 StorageReference childRef = storageRef.child(username+"image.jpg");
@@ -461,7 +457,6 @@ public class adminchild extends AppCompatActivity {
 
                         if (!url.equals(""))
                             Glide.with(getApplicationContext()).load(url).into(childphoto);
-
                     }
 
                 }
