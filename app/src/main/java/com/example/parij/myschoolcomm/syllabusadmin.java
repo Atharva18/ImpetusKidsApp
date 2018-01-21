@@ -94,7 +94,11 @@ public class syllabusadmin extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(syllabusadmin.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(syllabusadmin.this, date, mycalender.get(Calendar.YEAR),
+                        mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
 
@@ -122,7 +126,12 @@ public class syllabusadmin extends AppCompatActivity {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(syllabusadmin.this, date1, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(syllabusadmin.this, date1, mycalender2.get(Calendar.YEAR),
+                        mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
 
@@ -179,7 +188,7 @@ public class syllabusadmin extends AppCompatActivity {
                 {
 
                    database=FirebaseDatabase.getInstance();
-                    DatabaseReference databaseReference = database.getReference("Syllabus_Coverage").child(program);
+                    DatabaseReference databaseReference = database.getReference("newDb").child("Syllabus_Coverage").child(program);
 
 
                     syllabus obj = new syllabus(startdate,enddate,drivelink);

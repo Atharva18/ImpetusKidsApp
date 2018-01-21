@@ -92,7 +92,12 @@ public class ThemeAdmin extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(ThemeAdmin.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ThemeAdmin.this, date, mycalender.get(Calendar.YEAR),
+                        mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
 
@@ -120,7 +125,12 @@ public class ThemeAdmin extends AppCompatActivity {
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(ThemeAdmin.this, date2, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ThemeAdmin.this, date2, mycalender2.get(Calendar.YEAR),
+                        mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
 
@@ -173,7 +183,7 @@ public class ThemeAdmin extends AppCompatActivity {
 
                 } else {
                     database= FirebaseDatabase.getInstance();
-                    DatabaseReference reference = database.getReference("Theme").child(program);
+                    DatabaseReference reference = database.getReference("newDb").child("SpokenEnglish").child(program);
 
                     themes obj = new themes(startdate,enddate,themetxt);
 
