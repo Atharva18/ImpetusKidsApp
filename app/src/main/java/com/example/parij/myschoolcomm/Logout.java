@@ -28,7 +28,7 @@ public class Logout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
 
-        logout = (Button) findViewById(R.id.Logout);
+        logout = (Button) findViewById(R.id.logoutButton);
 
 
         logout.setOnClickListener(new View.OnClickListener() {

@@ -35,6 +35,8 @@ public class admindashboard extends AppCompatActivity {
                         SessionManagement.username="NA";
                         SessionManagement.lastLoginTimestamp=0;
                         SessionManagement.updateSharedPreferences();
+                        Intent intent = new Intent(admindashboard.this, Logout.class);
+                        startActivity(intent);
                         admindashboard.this.finish();
                     }
                 })
