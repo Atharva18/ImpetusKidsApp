@@ -1,5 +1,6 @@
 package com.example.parij.myschoolcomm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +27,7 @@ public class announcementadmin extends AppCompatActivity {
     Spinner spinnerFilter, spinnerAnnouncementProgram;
     ArrayAdapter arrayAdapter, arrayAdapterSpinner, arrayAdapterProgram;
     EditText editTextAnnouncementDetail, editTextAnnouncementTitle;
-    Button sendbtn;
+    Button sendbtn, buttonView;
     Broadcast broadcast;
     Announcement announcement;
     FirebaseDatabase firebaseDatabase;
@@ -75,7 +76,13 @@ public class announcementadmin extends AppCompatActivity {
 
             }
         });*/
-
+        buttonView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(announcementadmin.this, announcementuser.class);
+                startActivity(intent);
+            }
+        });
 
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +124,7 @@ public class announcementadmin extends AppCompatActivity {
         editTextAnnouncementTitle = (EditText) findViewById(R.id.editTextAnncouncementTitle);
         spinnerAnnouncementProgram = (Spinner) findViewById(R.id.spinnerAnnouncementProgram);
         sendbtn=(Button)findViewById(R.id.sendbtn);
+        buttonView = (Button) findViewById(R.id.buttonViewAnnouncementAdmin);
         firebaseDatabase = FirebaseDatabase.getInstance();
         //spinnerFilter = (Spinner) findViewById(R.id.spinnerFilterAnnouncementAdmin);
 

@@ -108,6 +108,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="8dp" />
 
+    <Button
+        android:id="@+id/buttonViewAnnouncementAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="7dp"
+        android:layout_weight="8"
+        android:background="@color/colorPrimary"
+        android:text="View"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="8dp" />
+
     <!--<View
         android:layout_width="match_parent"
         android:layout_height="1dp"
