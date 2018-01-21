@@ -80,7 +80,12 @@ public class ReqLeaveActivity extends AppCompatActivity {
         from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(ReqLeaveActivity.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ReqLeaveActivity.this, date, mycalender.get(Calendar.YEAR),
+                        mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
 
@@ -106,7 +111,12 @@ public class ReqLeaveActivity extends AppCompatActivity {
         to.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(ReqLeaveActivity.this, date1, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ReqLeaveActivity.this, date1, mycalender2.get(Calendar.YEAR),
+                        mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
 

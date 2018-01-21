@@ -86,7 +86,12 @@ public class AdminHomeWork extends AppCompatActivity {
         startdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(AdminHomeWork.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AdminHomeWork.this, date, mycalender.get(Calendar.YEAR),
+                        mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
 
@@ -114,7 +119,11 @@ public class AdminHomeWork extends AppCompatActivity {
         enddate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(AdminHomeWork.this, date2, mycalender2.get(Calendar.YEAR), mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH)).show();
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AdminHomeWork.this, date2, mycalender2.get(Calendar.YEAR),
+                        mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.show();
             }
         });
 
@@ -172,7 +181,7 @@ public class AdminHomeWork extends AppCompatActivity {
                 {
 
                     database=FirebaseDatabase.getInstance();
-                    DatabaseReference databaseReference= database.getReference("HomeWork").child(program);
+                    DatabaseReference databaseReference = database.getReference("newDb").child("HomeWork").child(program);
 
                     HomeWork obj = new HomeWork(monday1,tuesday1,wednesday1,thursday1,friday1,saturday1,startdate1
                     ,enddate1);

@@ -1,11 +1,12 @@
 package com.example.parij.myschoolcomm;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.parij.myschoolcomm.Models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ThemeUser extends AppCompatActivity {
 
-    TextView startdate,enddate,program,theme;
+    TextView startdate, enddate, programtxt, theme;
 
 
 
@@ -47,9 +48,8 @@ public class ThemeUser extends AppCompatActivity {
 
         startdate=(TextView)findViewById(R.id.start);
         enddate=(TextView)findViewById(R.id.end);
-        program=(TextView)findViewById(R.id.program);
+        programtxt = (TextView) findViewById(R.id.program);
         theme=(TextView)findViewById(R.id.theme);
-        startdate=(TextView)findViewById(R.id.start);
 
     }
 
@@ -58,116 +58,63 @@ public class ThemeUser extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Bundle bundle;
-        FirebaseDatabase database;
+        final FirebaseDatabase database;
         SessionManagement.retrieveSharedPreferences(ThemeUser.this);
-
         final String username = SessionManagement.username;
-      //  bundle = getIntent().getExtras();
-       // final String username = bundle.getString("Username");
         database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("newDb").child("students");
 
-        if(username.contains("Seed"))
-        {
-            DatabaseReference databaseReference= database.getReference("Theme").child("Seeding");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-            program.setText("Seeding");
+                Student student;
 
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    if (student.getUsername().equals(username)) {
+                        int programCode = student.getProgram();
+                        String program = "";
+                        if (programCode == Constants.SEEDING)
+                            program = "Seeding";
+                        else if (programCode == Constants.BUDDING)
+                            program = "Budding";
+                        else if (programCode == Constants.FLOURISHING)
+                            program = "Flourishing";
+                        else if (programCode == Constants.BLOSSOMING)
+                            program = "Blossoming";
 
-                    startdate.setText((CharSequence) dataSnapshot.child("startdate").getValue());
-                    enddate.setText((CharSequence) dataSnapshot.child("enddate").getValue());
-                    theme.setText((CharSequence)dataSnapshot.child("theme").getValue());
 
+                        DatabaseReference newreference = database.getReference("newDb").child("SpokenEnglish").child(program);
+
+                        programtxt.setText(program);
+
+                        newreference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                startdate.setText((CharSequence) dataSnapshot.child("startdate").getValue());
+                                enddate.setText((CharSequence) dataSnapshot.child("enddate").getValue());
+                                theme.setText((CharSequence) dataSnapshot.child("theme").getValue());
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    }
                 }
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
-
-
-        }
-        else if(username.contains("Bloss"))
-        {
-
-            DatabaseReference databaseReference= database.getReference("Theme").child("Blossoming");
-
-            program.setText("Blossoming");
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    startdate.setText((CharSequence) dataSnapshot.child("startdate").getValue());
-                    enddate.setText((CharSequence) dataSnapshot.child("enddate").getValue());
-                    theme.setText((CharSequence)dataSnapshot.child("theme").getValue());
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            }
+        });
 
 
-
-        }
-        else if(username.contains("Flou"))
-        {
-
-            DatabaseReference databaseReference= database.getReference("Theme").child("Flourishing");
-
-            program.setText("Flourishing");
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    startdate.setText((CharSequence) dataSnapshot.child("startdate").getValue());
-                    enddate.setText((CharSequence) dataSnapshot.child("enddate").getValue());
-                    theme.setText((CharSequence)dataSnapshot.child("theme").getValue());
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-
-
-
-        }
-        else if(username.contains("Budd"))
-        {
-
-            DatabaseReference databaseReference= database.getReference("Theme").child("Budding");
-
-            program.setText("Budding");
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    startdate.setText((CharSequence) dataSnapshot.child("startdate").getValue());
-                    enddate.setText((CharSequence) dataSnapshot.child("enddate").getValue());
-                    theme.setText((CharSequence)dataSnapshot.child("theme").getValue());
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-
-        }
 
 
 
