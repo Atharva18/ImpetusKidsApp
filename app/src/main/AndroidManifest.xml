@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--        android:name="android.support.multidex.MultiDexApplication"
--->
+
+    <!--         android:name="android.support.multidex.MultiDexApplication" -->
     <application
         android:name=".ImpetusKids"
         android:allowBackup="true"
@@ -118,14 +118,14 @@
             android:name=".emergencywindow"
             android:exported="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".authorizedwindow"
+        <activity
+            android:name=".authorizedwindow"
             android:exported="true"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".daycaredashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".daycaredashboard"
             android:exported="true"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".monday"
             android:exported="true"
@@ -177,14 +177,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnchanged|adjustPan" />
 
-
         <!--
             <activity
             android:name=".resetpassword"
             android:label="@string/title_activity_resetpassword"
             android:theme="@style/AppTheme" />
         -->
-        <activity android:name=".Weeklymenu"
+        <activity
+            android:name=".Weeklymenu"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LiveFeed"
@@ -221,7 +221,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".userfeedback"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".MemoriesUser"></activity>
     </application>
 
 </manifest>
