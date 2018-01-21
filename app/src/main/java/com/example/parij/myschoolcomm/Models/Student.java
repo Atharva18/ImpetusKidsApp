@@ -21,7 +21,7 @@ public class Student implements Serializable {
     private String classTeacherName;
     private String classTeacherPhone;
     private String imageLink;
-    private ArrayList<Memory> memoryImageLinks = new ArrayList<>(9);
+    private ArrayList<Memory> memoryImageLinks = new ArrayList<>();
     private Parent father, mother, guardian;
     private AuthorizedPerson authorizedPerson;
     private EmergencyPerson emergencyPerson;
