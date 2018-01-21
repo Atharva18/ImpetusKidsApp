@@ -4,228 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Grey"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    android:weightSum="100"
-    tools:context="com.example.parij.myschoolcomm.admindashboard">
 
-    />
+    android:background="@color/Grey"
+    android:orientation="vertical"
+
+    android:weightSum="3"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.parij.myschoolcomm.admindashboard">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_weight="0.3"
         android:background="?attr/colorPrimary"
         android:fitsSystemWindows="true"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/AppTheme.AppBarOverlay" />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="23"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.8"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteY="59dp">
+        android:weightSum="2">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
-            android:orientation="vertical"
-            android:weightSum="5">
-
-            <TextView
-                android:id="@+id/textemergency"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.2"
-                android:background="@color/colorAccent"
-                android:gravity="center_vertical|center"
-                android:text="Emergency"
-                android:textAlignment="gravity"
-                android:textColor="@color/White"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/emergency"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.8"
-                android:background="@null"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/emergency" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:background="@color/White"
-            android:orientation="vertical"
-            android:weightSum="5">
-
-            <TextView
-                android:id="@+id/textauthorized"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.2"
-                android:background="@color/newBrown"
-                android:gravity="center_vertical|center"
-                android:text="Authorized Person"
-                android:textAlignment="gravity"
-                android:textColor="@color/White"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/authorisedperson"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.8"
-                android:background="@null"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/authorized" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:background="@color/White"
-            android:orientation="vertical"
-            android:weightSum="5">
-
-            <TextView
-                android:id="@+id/textparent"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.2"
-                android:background="@color/Orange"
-                android:gravity="center_vertical|center"
-                android:text="Parent Profile"
-                android:textAlignment="gravity"
-                android:textColor="@color/White"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/parentsprofile"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.8"
-                android:background="@null"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/parents" />
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="23"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="363dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:background="@color/White"
-
-            android:orientation="vertical"
-            android:weightSum="5">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textchild"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.2"
+                android:layout_height="45dp"
                 android:background="@color/light_blue"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:text="Child Profile"
                 android:textAlignment="center"
                 android:textColor="@color/White"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/childprofile"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.8"
+                android:layout_height="match_parent"
                 android:background="@null"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/child" />
-
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:background="@color/White"
-            android:orientation="vertical"
-            android:weightSum="5">
-
-            <TextView
-                android:id="@+id/textsyllabus"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.2"
-                android:background="@color/Pink"
-                android:gravity="center"
-                android:text="Syllabus Coverage"
-                android:textAlignment="center"
-                android:textColor="@color/White"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:id="@+id/homeclassreport"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.8"
-                android:background="@null"
-                android:padding="5dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/syllabus" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
-            android:orientation="vertical"
-            android:weightSum="5">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textannouncements"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.2"
+                android:layout_weight="1.2"
                 android:background="@color/dark_green"
                 android:gravity="center"
                 android:text="Announcements"
@@ -237,38 +88,37 @@
                 android:id="@+id/Announcements"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.8"
+                android:layout_weight="2.7"
                 android:background="@null"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/announcement" />
         </LinearLayout>
 
-
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="23"
-        android:orientation="horizontal">
+        android:layout_weight="0.8"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
+            android:orientation="vertical">
 
-            android:orientation="vertical"
-            android:weightSum="5">
 
             <TextView
                 android:id="@+id/texthomework"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.2"
+                android:layout_weight="1.2"
                 android:background="@color/Yellow"
                 android:gravity="center"
                 android:text="Home-Work"
@@ -280,7 +130,7 @@
                 android:id="@+id/Homework"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.8"
+                android:layout_weight="2.7"
                 android:background="@null"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
@@ -288,20 +138,21 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@color/White"
-            android:orientation="vertical"
-            android:weightSum="5">
+            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/textspoken"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.2"
+                android:layout_weight="1.2"
                 android:background="@color/newGreen"
                 android:gravity="center"
                 android:text="Spoken English
@@ -314,29 +165,74 @@
                 android:id="@+id/theme"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.8"
+                android:layout_weight="2.7"
                 android:background="@null"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/theme1" />
         </LinearLayout>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.8"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
-            android:orientation="vertical"
-            android:weightSum="5">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textsyllabus"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                android:background="@color/Pink"
+                android:gravity="center"
+                android:text="Syllabus Coverage"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/homeclassreport"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.7"
+                android:background="@null"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/syllabus" />
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="115dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textrequest"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.2"
+                android:layout_weight="1.2"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="View Leave Requests"
@@ -348,7 +244,7 @@
                 android:id="@+id/reqforLeave"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2.8"
+                android:layout_weight="2.7"
                 android:background="@null"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
@@ -358,12 +254,13 @@
 
     </LinearLayout>
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
         android:layout_gravity="right"
-        android:layout_weight="10"
+        android:layout_weight="3"
         android:clickable="true"
         app:srcCompat="@drawable/add" />
 
@@ -372,7 +269,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10"
+        android:layout_weight="1"
         android:background="@color/colorPrimary"
         android:text="LOG OUT"
         android:textColor="@color/White" />

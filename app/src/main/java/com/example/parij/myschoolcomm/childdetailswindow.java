@@ -3,10 +3,7 @@ package com.example.parij.myschoolcomm;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -42,7 +39,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -331,9 +327,11 @@ public class childdetailswindow extends AppCompatActivity {
         EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
             @Override
             public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
-                Log.e("IMAGE PICKED", "Done " + "selectedPos: " + selectedPosition);
-                storageReference = FirebaseStorage.getInstance().getReference().child("Memories").child(arrayListFiltered.get(selectedPosition).getUsername()).child(arrayListFiltered.get(selectedPosition).getMemoryImageLinks().size() + "");
-                Log.e("IMAGE PICKED", "Done2");
+
+                final Student student = arrayListFiltered.get(selectedPosition);
+                final ArrayList<Memory> arrayListMemories = student.getMemoryImageLinks();
+                final int lowestTimestampIndex = lowestTimestamp(arrayListMemories);
+                storageReference = FirebaseStorage.getInstance().getReference().child("Memories").child(arrayListFiltered.get(selectedPosition).getUsername()).child(lowestTimestampIndex + "");
 
                 final ProgressDialog progressDialog = new ProgressDialog(childdetailswindow.this);
                 progressDialog.setIndeterminate(false);
@@ -356,16 +354,8 @@ public class childdetailswindow extends AppCompatActivity {
                         progressDialog.dismiss();
                         databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("students").child(arrayListKeysFiltered.get(selectedPosition));
 
-                        Student student = arrayListFiltered.get(selectedPosition);
+                        arrayListMemories.add(new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
 
-                        ArrayList<Memory> arrayListMemories = student.getMemoryImageLinks();
-
-                        if (arrayListMemories.size() == 0 || arrayListMemories.size() < 9) {
-                            arrayListMemories.add(new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
-                        } else {
-                            int lowestTimestampIndex = lowestTimestamp(arrayListMemories);
-                            arrayListMemories.set(lowestTimestampIndex, new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
-                        }
 
                         student.setMemoryImageLinks(arrayListMemories);
 
@@ -392,12 +382,16 @@ public class childdetailswindow extends AppCompatActivity {
     {
         long minTS = Long.MAX_VALUE;
         int index = 0;
-        for(int i = 0; i < arrayList.size(); i++)
-        {
-            if(arrayList.get(i).getTimestamp() < minTS) {
-                minTS = arrayList.get(i).getTimestamp();
-                index = i;
+        if (arrayList.size() == 9) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                Log.e("TS: ", "ts: " + minTS + " index: " + i + " size: " + arrayList.size());
+                if (arrayList.get(i).getTimestamp() < minTS) {
+                    minTS = arrayList.get(i).getTimestamp();
+                    index = i;
+                }
             }
+        } else {
+            index = arrayList.size();
         }
         return index;
     }
