@@ -1,5 +1,7 @@
 package com.example.parij.myschoolcomm;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -120,6 +123,22 @@ public class userfeedback extends AppCompatActivity {
                         reference = database.getReference("Feedback").child(username).child("text");
                         reference.setValue(editTextUserFeedback.getText().toString());
                     }
+
+                    ImageView image = new ImageView(userfeedback.this);
+                    image.setImageResource(R.drawable.success);
+                    new AlertDialog.Builder(userfeedback.this)
+                            .setMessage("Thank you for taking the time to give us your feedback.We appreciate your " +
+                                    "valuable feedback and comments.\n")
+                            .setCancelable(false)
+
+                            .setIcon(R.drawable.success)
+                            .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    userfeedback.this.finish();
+                                }
+                            }).setView(image)
+                            .show();
+
 
                     Toast.makeText(userfeedback.this, "Thank You!", Toast.LENGTH_LONG).show();
                 } else {

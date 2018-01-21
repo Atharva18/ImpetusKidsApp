@@ -204,8 +204,7 @@ public class admindashboard extends AppCompatActivity {
                                              {
                                                  Intent intent = new Intent(admindashboard.this,syllabusadmin.class);
                                                  startActivity(intent);
-
-
+                                                 
                                              }
 
 

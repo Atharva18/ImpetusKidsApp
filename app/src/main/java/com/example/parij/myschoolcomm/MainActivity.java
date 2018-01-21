@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 login();
             }
         });
-        //Register=(Button)findViewById(R.id.NewUser);
+
     }
 
     void login() {
