@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.parij.myschoolcomm.Models.LeaveRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -130,8 +131,9 @@ public class ReqLeaveActivity extends AppCompatActivity {
                     Toast.makeText(ReqLeaveActivity.this, "Please enter the reason!", Toast.LENGTH_LONG).show();
                 } else if (from.getText().toString() != null || to.getText().toString() != null || reason.getText().toString() != null) {
                     //message=new Message(msg_body,System.currentTimeMillis(),username);
-                    message = new Message(reason.getText().toString().trim(), from.getText().toString().trim(), to.getText().toString().trim(), System.currentTimeMillis(), username);
-                    databaseReference.push().setValue(message);
+                    LeaveRequest leaveRequest = new LeaveRequest(from.getText().toString().trim(), to.getText().toString().trim(), reason.getText().toString().trim(), username, System.currentTimeMillis());
+                    //message = new Message(reason.getText().toString().trim(), from.getText().toString().trim(), to.getText().toString().trim(), System.currentTimeMillis(), username);
+                    databaseReference.push().setValue(leaveRequest);
                     Toast.makeText(ReqLeaveActivity.this,"Request Sent!",Toast.LENGTH_LONG).show();
                 }
             }
@@ -160,7 +162,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
         to = (TextView) findViewById(R.id.todate);
         reason=(EditText)findViewById(R.id.reason);
         firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference().child("Leave_request");
+        databaseReference = firebaseDatabase.getReference().child(Constants.FBDB).child("leaveRequests");
 
     }
 }
