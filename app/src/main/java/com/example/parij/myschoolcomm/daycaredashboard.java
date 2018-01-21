@@ -63,6 +63,9 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                         SessionManagement.username="NA";
                         SessionManagement.lastLoginTimestamp=0;
                         SessionManagement.updateSharedPreferences();
+
+                        Intent intent = new Intent(daycaredashboard.this, Logout.class);
+                        startActivity(intent);
                         daycaredashboard.this.finish();
                     }
                 })
@@ -443,6 +446,10 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                             SessionManagement.username="NA";
                             SessionManagement.lastLoginTimestamp=0;
                             SessionManagement.updateSharedPreferences();
+
+                            Intent intent = new Intent(daycaredashboard.this, Logout.class);
+                            startActivity(intent);
+
                             daycaredashboard.this.finish();
                         }
                     })

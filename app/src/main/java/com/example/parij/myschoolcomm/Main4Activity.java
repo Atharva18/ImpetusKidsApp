@@ -567,12 +567,18 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
                         public void onClick(DialogInterface dialog,int id) {
                             // if this button is clicked, close
                             // current activity
+                            /*
                             SessionManagement.retrieveSharedPreferences(Main4Activity.this);
                             SessionManagement.rememberMe = false;
                             SessionManagement.username = "NA";
                             SessionManagement.lastLoginTimestamp = 0;
                             SessionManagement.updateSharedPreferences();
+                            */
+                            Intent intent = new Intent(Main4Activity.this, Logout.class);
+                            startActivity(intent);
+
                             Main4Activity.this.finish();
+
                         }
                     })
                     .setNegativeButton("No",new DialogInterface.OnClickListener() {

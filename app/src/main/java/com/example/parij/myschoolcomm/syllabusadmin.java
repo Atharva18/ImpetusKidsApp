@@ -121,8 +121,6 @@ public class syllabusadmin extends AppCompatActivity {
 
             }
         };
-
-
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

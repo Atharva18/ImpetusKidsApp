@@ -340,11 +340,15 @@ public class admindashboard extends AppCompatActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, close
                                 // current activity
+                                /*
                                 SessionManagement.retrieveSharedPreferences(admindashboard.this);
                                 SessionManagement.rememberMe=false;
                                 SessionManagement.username="NA";
                                 SessionManagement.lastLoginTimestamp=0;
                                 SessionManagement.updateSharedPreferences();
+                                */
+                                Intent intent = new Intent(admindashboard.this, Logout.class);
+                                startActivity(intent);
                                 admindashboard.this.finish();
                             }
                         })

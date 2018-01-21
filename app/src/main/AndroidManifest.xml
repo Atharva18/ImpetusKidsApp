@@ -102,6 +102,10 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Logout"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".parentwindow"
             android:exported="true"
             android:screenOrientation="portrait" />
