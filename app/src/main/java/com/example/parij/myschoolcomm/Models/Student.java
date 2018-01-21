@@ -21,12 +21,12 @@ public class Student implements Serializable {
     private String classTeacherName;
     private String classTeacherPhone;
     private String imageLink;
-    private ArrayList<String> memoryImageLinks = new ArrayList<>(9);
+    private ArrayList<Memory> memoryImageLinks = new ArrayList<>(9);
     private Parent father, mother, guardian;
     private AuthorizedPerson authorizedPerson;
     private EmergencyPerson emergencyPerson;
 
-    public Student(String rollNo, String name, String username, String password, String admissionDate, int program, int batch, int gender, String dateOfBirth, int bloodGroup, String classTeacherName, String classTeacherPhone, String imageLink, ArrayList<String> memoryImageLinks, Parent father, Parent mother, Parent guardian, AuthorizedPerson authorizedPerson, EmergencyPerson emergencyPerson) {
+    public Student(String rollNo, String name, String username, String password, String admissionDate, int program, int batch, int gender, String dateOfBirth, int bloodGroup, String classTeacherName, String classTeacherPhone, String imageLink, ArrayList<Memory> memoryImageLinks, Parent father, Parent mother, Parent guardian, AuthorizedPerson authorizedPerson, EmergencyPerson emergencyPerson) {
         this.rollNo = rollNo;
         this.name = name;
         this.username = username;
@@ -69,14 +69,6 @@ public class Student implements Serializable {
         mother = new Parent();
         guardian = new Parent();
 
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
     }
 
     public String getRollNo() {
@@ -135,6 +127,14 @@ public class Student implements Serializable {
         this.batch = batch;
     }
 
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -175,11 +175,11 @@ public class Student implements Serializable {
         this.imageLink = imageLink;
     }
 
-    public ArrayList<String> getMemoryImageLinks() {
+    public ArrayList<Memory> getMemoryImageLinks() {
         return memoryImageLinks;
     }
 
-    public void setMemoryImageLinks(ArrayList<String> memoryImageLinks) {
+    public void setMemoryImageLinks(ArrayList<Memory> memoryImageLinks) {
         this.memoryImageLinks = memoryImageLinks;
     }
 

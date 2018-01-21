@@ -1,8 +1,13 @@
 package com.example.parij.myschoolcomm;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -20,15 +25,29 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.parij.myschoolcomm.Models.Memory;
 import com.example.parij.myschoolcomm.Models.Student;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
+
+import pl.aprilapps.easyphotopicker.DefaultCallback;
+import pl.aprilapps.easyphotopicker.EasyImage;
 
 public class childdetailswindow extends AppCompatActivity {
 
@@ -37,10 +56,13 @@ public class childdetailswindow extends AppCompatActivity {
     Spinner spinnerFilter;
     ListView listView;
     ArrayList<Student> arrayListFull, arrayListFiltered;
+    ArrayList<String> arrayListKeysFiltered, arrayListKeysFull;
     ArrayList<String> arrayListDisplay, arrayListSpinner;
     DatabaseReference databaseReference;
     ArrayAdapter arrayAdapter, arrayAdapterSpinner;
     Dialog dialog;
+    StorageReference storageReference;
+    int selectedPosition = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +114,9 @@ public class childdetailswindow extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewRoaster);
         arrayListFull = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
+        arrayListKeysFull = new ArrayList<>();
+        arrayListFiltered = new ArrayList<>();
+
         databaseReference = FirebaseDatabase.getInstance().getReference(Constants.FBDB).child("students");
         dialog = new Dialog(childdetailswindow.this, android.R.style.Theme_DeviceDefault_Light_Dialog);
 
@@ -136,8 +161,11 @@ public class childdetailswindow extends AppCompatActivity {
                             arrayListFull.add(student);
                             arrayListDisplay.add("Name: " + student.getName() + "\nRoll no: " + student.getRollNo() + "\nProgram: " + Constants.getProgramName(student.getProgram()));
                             Log.d("StudentObj : ", student.getName());
+                            arrayListKeysFull.add(ds.getKey());
                         }
                 arrayListFiltered = arrayListFull;
+                arrayListKeysFiltered = arrayListKeysFull;
+
                 arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {
                     @Override
                     public View getView(int position, View convertView, ViewGroup parent) {
@@ -166,12 +194,13 @@ public class childdetailswindow extends AppCompatActivity {
     void showDialogAndStartActivity(final int position) {
         dialog.setContentView(R.layout.dialog_choose_detail_type);
         dialog.setTitle("Choose action: ");
-        final RadioButton radioButtonChildProfile, radioButtonParentProfile, radioButtonEmergency, radioButtonAuthorised;
+        final RadioButton radioButtonChildProfile, radioButtonParentProfile, radioButtonEmergency, radioButtonAuthorised, radioButtonMemoryCapture;
         Button button;
         radioButtonAuthorised = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeAuthorisedPerson);
         radioButtonChildProfile = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeChildProfile);
         radioButtonEmergency = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeEmergency);
         radioButtonParentProfile = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeParentProfile);
+        radioButtonMemoryCapture = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeCaptureMemory);
         button = (Button) dialog.findViewById(R.id.buttonDetailTypeOk);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -206,6 +235,11 @@ public class childdetailswindow extends AppCompatActivity {
                     //intent.putExtras(bundle);
                     startActivity(intent);
                 }
+                if(radioButtonMemoryCapture.isChecked())
+                {
+                    selectedPosition = position;
+                    EasyImage.openChooserWithGallery(childdetailswindow.this, "Capture/Select image", 0);
+                }
                 // finish();
             }
         });
@@ -218,16 +252,19 @@ public class childdetailswindow extends AppCompatActivity {
         Log.d("program fileter ", programFilter + "");
         arrayListFiltered = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
+        arrayListKeysFiltered = new ArrayList<>();
         if (position == 0) {
             for (int i = 0; i < arrayListFull.size(); i++) {
                 arrayListFiltered.add(arrayListFull.get(i));
                 arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFull.get(i).getProgram()));
+                arrayListKeysFiltered.add(arrayListKeysFull.get(i));
             }
         } else {
             for (int i = 0; i < arrayListFull.size(); i++) {
                 if (arrayListFull.get(i).getProgram() == programFilter) {
                     arrayListFiltered.add(arrayListFull.get(i));
                     arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFull.get(i).getProgram()));
+                    arrayListKeysFiltered.add(arrayListKeysFull.get(i));
                 }
             }
         }
@@ -256,11 +293,19 @@ public class childdetailswindow extends AppCompatActivity {
     void filterListByText(String input) {
 
         arrayListDisplay = new ArrayList<>();
+        ArrayList<Student> arrayListFilteredNew = new ArrayList<>();
+        ArrayList<String> arrayListKeysFilteredNew = new ArrayList<>();
         for (int i = 0; i < arrayListFiltered.size(); i++) {
             if (arrayListFiltered.get(i).getName().toLowerCase().contains(input.toLowerCase())) {
                 arrayListDisplay.add("Name: " + arrayListFiltered.get(i).getName() + "\nRoll no: " + arrayListFiltered.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFiltered.get(i).getProgram()));
+                arrayListFilteredNew.add(arrayListFiltered.get(i));
+                arrayListKeysFilteredNew.add(arrayListKeysFiltered.get(i));
             }
         }
+
+        arrayListFiltered = arrayListFilteredNew;
+        arrayListKeysFiltered = arrayListKeysFilteredNew;
+
         arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -277,6 +322,84 @@ public class childdetailswindow extends AppCompatActivity {
             }
         };
         listView.setAdapter(arrayAdapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
+            @Override
+            public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
+                Log.e("IMAGE PICKED", "Done " + "selectedPos: " + selectedPosition);
+                storageReference = FirebaseStorage.getInstance().getReference().child("Memories").child(arrayListFiltered.get(selectedPosition).getUsername()).child(arrayListFiltered.get(selectedPosition).getMemoryImageLinks().size() + "");
+                Log.e("IMAGE PICKED", "Done2");
+
+                final ProgressDialog progressDialog = new ProgressDialog(childdetailswindow.this);
+                progressDialog.setIndeterminate(false);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage("Uploading image...");
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                progressDialog.show();
+
+                UploadTask uploadTask = storageReference.putFile(android.net.Uri.parse(imageFile.toURI().toString()));
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(childdetailswindow.this, "Image upload failed!", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        progressDialog.dismiss();
+                        databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("students").child(arrayListKeysFiltered.get(selectedPosition));
+
+                        Student student = arrayListFiltered.get(selectedPosition);
+
+                        ArrayList<Memory> arrayListMemories = student.getMemoryImageLinks();
+
+                        if (arrayListMemories.size() == 0 || arrayListMemories.size() < 9) {
+                            arrayListMemories.add(new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
+                        } else {
+                            int lowestTimestampIndex = lowestTimestamp(arrayListMemories);
+                            arrayListMemories.set(lowestTimestampIndex, new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
+                        }
+
+                        student.setMemoryImageLinks(arrayListMemories);
+
+                        databaseReference.setValue(student);
+
+                        Toast.makeText(childdetailswindow.this, "Upload successful", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressDialog.setMax((int)taskSnapshot.getTotalByteCount());
+                        progressDialog.setProgress((int)taskSnapshot.getBytesTransferred());
+                        progressDialog.setSecondaryProgress((int)taskSnapshot.getBytesTransferred());
+                        Log.e("Task Progress", "bytesT: " + taskSnapshot.getBytesTransferred() + "bytesTot: " + taskSnapshot.getTotalByteCount());
+                    }
+                });
+
+            }
+        });
+
+    }
+
+    int lowestTimestamp(ArrayList<Memory> arrayList)
+    {
+        long minTS = Long.MAX_VALUE;
+        int index = 0;
+        for(int i = 0; i < arrayList.size(); i++)
+        {
+            if(arrayList.get(i).getTimestamp() < minTS) {
+                minTS = arrayList.get(i).getTimestamp();
+                index = i;
+            }
+        }
+        return index;
     }
 }
 
