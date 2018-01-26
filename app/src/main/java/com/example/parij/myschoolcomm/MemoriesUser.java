@@ -28,7 +28,7 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
     View reverse, skip;
     String username;
     int counter = 0;
-    int progressCount;
+    int progressCount = 0;
     ArrayList<Memory> imageLinks;
     ArrayList<String> imageUrls;
     long pressTime = 0L;
@@ -63,6 +63,11 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
                     s = data.getValue(Student.class);
                     if (s.getUsername().equals(username)) {
                         imageLinks = new ArrayList<>(s.getMemoryImageLinks());
+                        /*if(s.getMemoryImageLinks().size() == 0){
+                            Toast.makeText(MemoriesUser.this,"No memories",Toast.LENGTH_LONG).show();
+                            finish();
+                        }*/
+                        Log.d("memoryLinks", s.getMemoryImageLinks().toString());
                         break;
                     }
                 }
@@ -71,7 +76,7 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
                     Log.d("memories", m.getUrl());
                 }
                 progressCount = imageUrls.size();
-                check();
+                Log.d("size", progressCount + "");
                 startMemories();
             }
 
@@ -96,34 +101,37 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
         skip.setOnTouchListener(onTouchListener);
     }
 
-    void check() {
-        if (imageLinks.size() == 0) {
-            Toast.makeText(MemoriesUser.this, "No memories avilable", Toast.LENGTH_LONG).show();
-            finish();
-        }
-    }
-
     void init() {
         imageView = (ImageView) findViewById(R.id.imageViewMemories);
         SessionManagement.retrieveSharedPreferences(this);
         username = SessionManagement.username;
         imageUrls = new ArrayList<>();
+        storiesProgressView = (StoriesProgressView) findViewById(R.id.stories);
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("students");
 
-        storiesProgressView = (StoriesProgressView) findViewById(R.id.stories);
         reverse = findViewById(R.id.reverse);
         skip = findViewById(R.id.skip);
 
     }
 
+    void check() {
+        if (progressCount == 0) {
+            Toast.makeText(this, "No memories yet", Toast.LENGTH_LONG).show();
+            onDestroy();
+        }
+    }
     void startMemories() {
         storiesProgressView.setStoriesCount(progressCount);
         storiesProgressView.setStoryDuration(3000L);
         storiesProgressView.setStoriesListener(this);
-        storiesProgressView.startStories();
-        Glide.with(this).load(imageUrls.get(counter)).into(imageView);
+        if (progressCount == 0) {
+            Toast.makeText(this, "No memories yet", Toast.LENGTH_LONG).show();
+            finish();
+        } else {
+            storiesProgressView.startStories();
+            Glide.with(this).load(imageUrls.get(counter)).into(imageView);
+        }
     }
-
     @Override
     public void onNext() {
         if (counter + 1 == imageUrls.size())
