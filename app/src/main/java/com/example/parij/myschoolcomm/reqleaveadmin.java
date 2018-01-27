@@ -204,10 +204,10 @@ public class reqleaveadmin extends AppCompatActivity {
     }
 
     void filterListByText(String input) {
-
+        Log.d("inputText", input);
         ArrayList<String> arrayListDisplay = new ArrayList<>();
         for (int i = 0; i < filterMessageArrayList.size(); i++) {
-            if (filterMessageArrayList.get(i).getUsername().toLowerCase().contains(input.toLowerCase())) {
+            if (hashMapStudent.get(filterMessageArrayList.get(i).getUsername()).getName().toLowerCase().contains(input.toLowerCase())) {
                 arrayListDisplay.add("Sender : " + hashMapStudent.get(messageArrayList.get(i).getUsername()).getName() + "\n"
                         + "Reason : " + messageArrayList.get(i).getReason() + "\n"
                         + "From : " + messageArrayList.get(i).getFromDate() + "\t To : " + messageArrayList.get(i).getToDate());
