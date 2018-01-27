@@ -19,40 +19,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class tempParentRegistration extends AppCompatActivity {
 
 
-    static int count = 0;
-    static int count2 = 0;
+
     EditText username, password, rollNo, name;
 
     Spinner spinner2, spinnerProgram;
     Button add;
     ArrayAdapter<CharSequence> arrayAdapter, arrayAdapterProgram;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    ArrayList<String> userNames, rollNos, arrayListPrograms;
-    ArrayList<Integer> programs;
+    List<String> userNames, rollNos, arrayListPrograms;
+    List<Integer> programs;
     DatabaseReference databaseReference;
-
-    public static int getCount2() {
-        return count2;
-    }
-
-    public static void setCount2(int count2) {
-        tempParentRegistration.count2 = count2;
-    }
-
-    public static int getCount()
-    {
-        return count;
-    }
-
-    public static void setCount(int count) {
-        tempParentRegistration.count = count;
-    }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -167,6 +148,7 @@ public class tempParentRegistration extends AppCompatActivity {
 
                 student.setProgram(program);
                 if (userNames.contains(username.getText().toString())) {
+                    
                     flag = 1;
                     Toast.makeText(tempParentRegistration.this, "Username already exists!Please select another!", Toast.LENGTH_SHORT).show();
 
