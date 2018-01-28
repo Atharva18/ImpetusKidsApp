@@ -353,8 +353,10 @@ public class childdetailswindow extends AppCompatActivity {
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         progressDialog.dismiss();
                         databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("students").child(arrayListKeysFiltered.get(selectedPosition));
-
-                        arrayListMemories.add(new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
+                        if (arrayListMemories.size() < 9)
+                            arrayListMemories.add(new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
+                        else
+                            arrayListMemories.set(lowestTimestampIndex, new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
 
 
                         student.setMemoryImageLinks(arrayListMemories);
@@ -382,7 +384,7 @@ public class childdetailswindow extends AppCompatActivity {
     {
         long minTS = Long.MAX_VALUE;
         int index = 0;
-        if (arrayList.size() == 9) {
+        if (arrayList.size() >= 9) {
             for (int i = 0; i < arrayList.size(); i++) {
                 Log.e("TS: ", "ts: " + minTS + " index: " + i + " size: " + arrayList.size());
                 if (arrayList.get(i).getTimestamp() < minTS) {
