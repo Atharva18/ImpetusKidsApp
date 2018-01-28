@@ -48,7 +48,6 @@ public class tempParentRegistration extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,7 +147,7 @@ public class tempParentRegistration extends AppCompatActivity {
 
                 student.setProgram(program);
                 if (userNames.contains(username.getText().toString())) {
-                    
+
                     flag = 1;
                     Toast.makeText(tempParentRegistration.this, "Username already exists!Please select another!", Toast.LENGTH_SHORT).show();
 

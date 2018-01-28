@@ -38,7 +38,7 @@
                 android:layout_height="45dp"
                 android:background="@color/Yellow"
                 android:gravity="center_vertical"
-                android:text="Home-Work"
+                android:text="Homework"
                 android:textAlignment="center"
                 android:textColor="@color/White"
                 android:textSize="18sp" />

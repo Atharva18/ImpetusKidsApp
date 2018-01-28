@@ -199,9 +199,6 @@
             android:name=".daycare_parentmain"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".parentRegistration"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Memories"
             android:screenOrientation="portrait" />
         <activity
