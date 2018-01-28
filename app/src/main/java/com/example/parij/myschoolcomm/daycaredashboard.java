@@ -284,13 +284,13 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         memoriestxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(daycaredashboard.this, Memories.class));
+                startActivity(new Intent(daycaredashboard.this, MemoriesUser.class));
             }
         });
         Photos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(daycaredashboard.this, Memories.class));
+                startActivity(new Intent(daycaredashboard.this, MemoriesUser.class));
             }
         });
 
@@ -468,6 +468,9 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             alertDialog.show();
 
 
+        } else if (id == R.id.memories) {
+            Intent intent = new Intent(daycaredashboard.this, MemoriesUser.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);

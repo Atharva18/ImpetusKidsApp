@@ -15,6 +15,11 @@
          android:icon="@drawable/timetable1"
          android:title="Time-Table"
          />-->
+
+    <item
+        android:id="@+id/memories"
+        android:icon="@drawable/ic_photo_album_black_24dp"
+        android:title="Memories" />
     <item
         android:id="@+id/cctv"
         android:icon="@drawable/livecctv"

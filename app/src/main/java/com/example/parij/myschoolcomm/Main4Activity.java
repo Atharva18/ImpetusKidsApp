@@ -600,6 +600,9 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
 
 
 
+        } else if (id == R.id.memories) {
+            Intent intent = new Intent(Main4Activity.this, MemoriesUser.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
