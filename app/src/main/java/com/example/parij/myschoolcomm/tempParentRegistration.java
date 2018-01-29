@@ -174,6 +174,8 @@ public class tempParentRegistration extends AppCompatActivity {
         if (flag == 0) {
             databaseReference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
             databaseReference.push().setValue(student);
+            arrayListStudents.add(student);
+            userNames.add(student.getUsername());
             Toast.makeText(tempParentRegistration.this, "User registered.", Toast.LENGTH_LONG).show();
         }
     }
