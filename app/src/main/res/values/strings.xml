@@ -70,7 +70,8 @@
     <string-array name="bloodgroup">
         <item>A +ve</item>
         <item>B +ve</item>
-        <item>AB</item>
+        <item>AB +ve</item>
+        <item>AB -ve</item>
         <item>A -ve</item>
         <item>B -ve</item>
         <item>O +ve</item>

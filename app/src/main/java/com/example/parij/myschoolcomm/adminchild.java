@@ -177,18 +177,22 @@ public class adminchild extends AppCompatActivity {
         admissiondate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(adminchild.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(adminchild.this, date, mycalender.get(Calendar.YEAR),
+                        mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMaxDate(mycalender.getTimeInMillis());
+                datePickerDialog.show();
+
             }
         });
 
-
+        final Calendar mycalender2 = Calendar.getInstance();
 
         final DatePickerDialog.OnDateSetListener date1=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                mycalender.set(Calendar.YEAR,i);
-                mycalender.set(Calendar.MONTH,i1);
-                mycalender.set(Calendar.DAY_OF_MONTH,i2);
+                mycalender2.set(Calendar.YEAR, i);
+                mycalender2.set(Calendar.MONTH, i1);
+                mycalender2.set(Calendar.DAY_OF_MONTH, i2);
                 UpdateLabel();
             }
 
@@ -196,7 +200,7 @@ public class adminchild extends AppCompatActivity {
                 String myFormat = "dd/MM/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                dateOfBirth.setText(sdf.format(mycalender.getTime()));
+                dateOfBirth.setText(sdf.format(mycalender2.getTime()));
 
             }
         };
@@ -205,7 +209,13 @@ public class adminchild extends AppCompatActivity {
         dateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(adminchild.this,date1,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(adminchild.this, date, mycalender2.get(Calendar.YEAR),
+                        mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMaxDate(mycalender2.getTimeInMillis());
+                datePickerDialog.show();
+
+
             }
         });
 
@@ -318,18 +328,20 @@ public class adminchild extends AppCompatActivity {
 
                     if (bloodgroup.getSelectedItemPosition() == 0)
                         student.setBloodGroup(Constants.APositive);
-                    else if (bloodgroup.getSelectedItemPosition() == 3)
-                        student.setBloodGroup(Constants.ANegative);
                     else if (bloodgroup.getSelectedItemPosition() == 1)
                         student.setBloodGroup(Constants.BPositive);
-                    else if (bloodgroup.getSelectedItemPosition() == 4)
-                        student.setBloodGroup(Constants.BNegative);
-                    else if (bloodgroup.getSelectedItemPosition() == 5)
-                        student.setBloodGroup(Constants.OPositive);
-                    else if (bloodgroup.getSelectedItemPosition() == 6)
-                        student.setBloodGroup(Constants.ONegative);
                     else if (bloodgroup.getSelectedItemPosition() == 2)
-                        student.setBloodGroup(Constants.AB);
+                        student.setBloodGroup(Constants.ABPositive);
+                    else if (bloodgroup.getSelectedItemPosition() == 3)
+                        student.setBloodGroup(Constants.ABNegative);
+                    else if (bloodgroup.getSelectedItemPosition() == 4)
+                        student.setBloodGroup(Constants.ANegative);
+                    else if (bloodgroup.getSelectedItemPosition() == 5)
+                        student.setBloodGroup(Constants.BNegative);
+                    else if (bloodgroup.getSelectedItemPosition() == 6)
+                        student.setBloodGroup(Constants.OPositive);
+                    else if (bloodgroup.getSelectedItemPosition() == 7)
+                        student.setBloodGroup(Constants.ONegative);
 
 
                     student.setClassTeacherName(classTeacher1);
@@ -439,16 +451,18 @@ public class adminchild extends AppCompatActivity {
                             bloodgroup.setSelection(0);
                         else if (bloodGroupCode == 12)
                             bloodgroup.setSelection(1);
-                        else if (bloodGroupCode == 13)
-                            bloodgroup.setSelection(2);
                         else if (bloodGroupCode == 14)
-                            bloodgroup.setSelection(3);
-                        else if (bloodGroupCode == 15)
                             bloodgroup.setSelection(4);
-                        else if (bloodGroupCode == 16)
+                        else if (bloodGroupCode == 15)
                             bloodgroup.setSelection(5);
-                        else if (bloodGroupCode == 17)
+                        else if (bloodGroupCode == 16)
                             bloodgroup.setSelection(6);
+                        else if (bloodGroupCode == 17)
+                            bloodgroup.setSelection(7);
+                        else if (bloodGroupCode == 21)
+                            bloodgroup.setSelection(2);
+                        else if (bloodGroupCode == 22)
+                            bloodgroup.setSelection(3);
 
                         classTeacher.setText(student.getClassTeacherName());
                         contactNo.setText(student.getClassTeacherPhone());
@@ -458,10 +472,7 @@ public class adminchild extends AppCompatActivity {
                         if (!url.equals(""))
                             Glide.with(getApplicationContext()).load(url).into(childphoto);
                     }
-
                 }
-
-
             }
 
             @Override
