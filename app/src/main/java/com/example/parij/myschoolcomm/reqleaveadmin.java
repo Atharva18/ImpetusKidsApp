@@ -87,7 +87,7 @@ public class reqleaveadmin extends AppCompatActivity {
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     students.add(data.getValue(Student.class));
                 }
-                databaseReference.addValueEventListener(new ValueEventListener() {
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         messageArrayList = new ArrayList<>();
@@ -101,7 +101,6 @@ public class reqleaveadmin extends AppCompatActivity {
                         filter(spinnerFilter.getSelectedItemPosition());
                         arrayAdapter = new ArrayAdapter(reqleaveadmin.this, android.R.layout.simple_list_item_1, messageList);
                         listView.setAdapter(arrayAdapter);
-
                     }
 
                     @Override

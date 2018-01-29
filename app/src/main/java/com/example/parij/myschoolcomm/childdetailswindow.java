@@ -92,17 +92,17 @@ public class childdetailswindow extends AppCompatActivity {
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                filterList(s.toString(), spinnerFilter.getSelectedItemPosition());
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterListByText(s.toString());
+                filterList(s.toString(), spinnerFilter.getSelectedItemPosition());
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                filterList(s.toString(), spinnerFilter.getSelectedItemPosition());
             }
         });
 
@@ -136,7 +136,7 @@ public class childdetailswindow extends AppCompatActivity {
         spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                filterList(position);
+                filterList(editTextSearch.getText().toString(), position);
             }
 
             @Override
@@ -242,60 +242,21 @@ public class childdetailswindow extends AppCompatActivity {
         dialog.show();
     }
 
-    void filterList(int position) {
-        String filter = arrayListSpinner.get(position);
+
+    void filterList(String input, int position) {
         int programFilter = (int) arrayAdapterSpinner.getItemId(position) + 3;
         Log.d("program fileter ", programFilter + "");
         arrayListFiltered = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
         arrayListKeysFiltered = new ArrayList<>();
-        if (position == 0) {
-            for (int i = 0; i < arrayListFull.size(); i++) {
-                arrayListFiltered.add(arrayListFull.get(i));
-                arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFull.get(i).getProgram()));
-                arrayListKeysFiltered.add(arrayListKeysFull.get(i));
-            }
-        } else {
-            for (int i = 0; i < arrayListFull.size(); i++) {
-                if (arrayListFull.get(i).getProgram() == programFilter) {
-                    arrayListFiltered.add(arrayListFull.get(i));
-                    arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFull.get(i).getProgram()));
-                    arrayListKeysFiltered.add(arrayListKeysFull.get(i));
-                }
-            }
-        }
-        if (editTextSearch.getText().toString() != null)
-            filterListByText(editTextSearch.getText().toString());
-        else
-            filterListByText("");
-        /*arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                /// Get the Item from ListView
-                View view = super.getView(position, convertView, parent);
-
-                TextView tv = (TextView) view.findViewById(android.R.id.text1);
-
-                // Set the text size 25 dip for ListView each item
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-
-                // Return the view
-                return view;
-            }
-        };
-        listView.setAdapter(arrayAdapter);*/
-    }
-
-    void filterListByText(String input) {
-
         arrayListDisplay = new ArrayList<>();
         ArrayList<Student> arrayListFilteredNew = new ArrayList<>();
         ArrayList<String> arrayListKeysFilteredNew = new ArrayList<>();
-        for (int i = 0; i < arrayListFiltered.size(); i++) {
-            if (arrayListFiltered.get(i).getName().toLowerCase().contains(input.toLowerCase())) {
-                arrayListDisplay.add("Name: " + arrayListFiltered.get(i).getName() + "\nRoll no: " + arrayListFiltered.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFiltered.get(i).getProgram()));
-                arrayListFilteredNew.add(arrayListFiltered.get(i));
-                arrayListKeysFilteredNew.add(arrayListKeysFiltered.get(i));
+        for (int i = 0; i < arrayListFull.size(); i++) {
+            if (arrayListFull.get(i).getName().toLowerCase().contains(input.toLowerCase()) && (position == 0 || arrayListFull.get(i).getProgram() == programFilter)) {
+                arrayListDisplay.add("Name: " + arrayListFull.get(i).getName() + "\nRoll no: " + arrayListFull.get(i).getRollNo() + "\nProgram: " + Constants.getProgramName(arrayListFull.get(i).getProgram()));
+                arrayListFilteredNew.add(arrayListFull.get(i));
+                arrayListKeysFilteredNew.add(arrayListKeysFull.get(i));
             }
         }
 

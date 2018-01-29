@@ -120,6 +120,7 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
             onDestroy();
         }
     }
+
     void startMemories() {
         storiesProgressView.setStoriesCount(progressCount);
         storiesProgressView.setStoryDuration(3000L);
@@ -132,6 +133,7 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
             Glide.with(this).load(imageUrls.get(counter)).into(imageView);
         }
     }
+
     @Override
     public void onNext() {
         if (counter + 1 == imageUrls.size())

@@ -554,7 +554,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
             }
         } else if (id == R.id.logout) {
-           // Toast.makeText(getApplicationContext(), "Logout Clicked clicked", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), "Logout Clicked clicked", Toast.LENGTH_SHORT).show();
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Main4Activity.this);
 
@@ -584,7 +584,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
                         }
                     })
                     .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
+                        public void onClick(DialogInterface dialog, int id) {
                             // if this button is clicked, just close
                             // the dialog box and do nothing
                             dialog.cancel();
@@ -596,8 +596,6 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
 
             // show it
             alertDialog.show();
-
-
 
 
         } else if (id == R.id.memories) {
