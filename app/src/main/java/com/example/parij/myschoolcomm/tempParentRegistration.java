@@ -33,6 +33,7 @@ public class tempParentRegistration extends AppCompatActivity {
     ArrayAdapter<CharSequence> arrayAdapter, arrayAdapterProgram;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     List<String> userNames, rollNos, arrayListPrograms;
+    ArrayList<Student> arrayListStudents;
     List<Integer> programs;
     DatabaseReference databaseReference;
 
@@ -96,6 +97,7 @@ public class tempParentRegistration extends AppCompatActivity {
         userNames = new ArrayList<>();
         rollNos = new ArrayList<>();
         programs = new ArrayList<>();
+        arrayListStudents = new ArrayList<>();
 
         DatabaseReference reference = database.getReference("newDb").child("students");
 
@@ -105,14 +107,15 @@ public class tempParentRegistration extends AppCompatActivity {
                 Student student;
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     student = ds.getValue(Student.class);
-
+                    arrayListStudents.add(student);
                     userNames.add(student.getUsername());
-                    rollNos.add(student.getRollNo());
-                    programs.add(student.getProgram());
                     add.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            addUser();
+                            if (isInputValid())
+                                addUser();
+                            else
+                                Toast.makeText(tempParentRegistration.this, "Invalid input.", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -158,14 +161,11 @@ public class tempParentRegistration extends AppCompatActivity {
             Toast.makeText(tempParentRegistration.this, "Username already exists. Please choose another combination.", Toast.LENGTH_SHORT).show();
 
         }
+        Log.e("REGISTER", "Rollno: " + rollNo.getText().toString() + " Rollnos : " + rollNos.toString() + " Programs: " + programs.toString());
+        if (checkRollNoAndProgram(rollNo.getText().toString(), program)) {
 
-        if (rollNos.contains(rollNo.getText().toString().trim())) {
-            int position = rollNos.indexOf(rollNo.getText().toString().trim());
-            Log.e("REGISTER", "At location: " + rollNos.get(position) + " Programs: " + programs.get(position));
-            if (programs.get(position) == program) {
-                flag = 1;
-                Toast.makeText(tempParentRegistration.this, "Duplicate roll number. Please change.", Toast.LENGTH_LONG).show();
-            }
+            flag = 1;
+            Toast.makeText(tempParentRegistration.this, "Duplicate roll number. Please change.", Toast.LENGTH_LONG).show();
         }
 
         student.setRollNo(rollNo.getText().toString().trim());
@@ -176,5 +176,17 @@ public class tempParentRegistration extends AppCompatActivity {
             databaseReference.push().setValue(student);
             Toast.makeText(tempParentRegistration.this, "User registered.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    boolean checkRollNoAndProgram(String rollNo, int program) {
+        for (Student student : arrayListStudents) {
+            if (student.getRollNo().equals(rollNo.toLowerCase().trim()) && student.getProgram() == program)
+                return true;
+        }
+        return false;
+    }
+
+    boolean isInputValid() {
+        return !(rollNo.getText().toString().length() == 0 || name.getText().toString().length() == 0 || username.getText().toString().length() == 0 || password.getText().toString().length() == 0);
     }
 }
