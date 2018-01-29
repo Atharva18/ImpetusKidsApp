@@ -3,6 +3,7 @@ package com.example.parij.myschoolcomm;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -71,7 +72,7 @@ public class tempParentRegistration extends AppCompatActivity {
 
         spinnerProgram = (Spinner) findViewById(R.id.spinnerProgram);
         arrayListPrograms = new ArrayList<>();
-        arrayListPrograms.add("Day-Care");
+        arrayListPrograms.add("Daycare");
         arrayListPrograms.add("Blossoming");
         arrayListPrograms.add("Budding");
         arrayListPrograms.add("Flourishing");
@@ -108,6 +109,12 @@ public class tempParentRegistration extends AppCompatActivity {
                     userNames.add(student.getUsername());
                     rollNos.add(student.getRollNo());
                     programs.add(student.getProgram());
+                    add.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            addUser();
+                        }
+                    });
                 }
             }
 
@@ -116,60 +123,58 @@ public class tempParentRegistration extends AppCompatActivity {
 
             }
         });
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
 
-                int flag = 0;
+    void addUser() {
+        int flag = 0;
 
-                Student student = new Student();
+        Student student = new Student();
 
 
-                student.setName(name.getText().toString().trim());
-                int batch;
-                if (spinner2.getSelectedItemPosition() == 0)
-                    batch = Constants.MORNING;
-                else
-                    batch = Constants.AFTERNOON;
-                student.setBatch(batch);
-                //Simlarly program
-                int program = 0;
-                if (spinnerProgram.getSelectedItemPosition() == 0)
-                    program = Constants.DAYCARE;
-                else if (spinnerProgram.getSelectedItemPosition() == 1)
-                    program = Constants.SEEDING;
-                else if (spinnerProgram.getSelectedItemPosition() == 2)
-                    program = Constants.BUDDING;
-                else if (spinnerProgram.getSelectedItemPosition() == 3)
-                    program = Constants.BLOSSOMING;
-                else if (spinnerProgram.getSelectedItemPosition() == 4)
-                    program = Constants.FLOURISHING;
+        student.setName(name.getText().toString().trim());
+        int batch;
+        if (spinner2.getSelectedItemPosition() == 0)
+            batch = Constants.MORNING;
+        else
+            batch = Constants.AFTERNOON;
+        student.setBatch(batch);
+        //Simlarly program
+        int program = 0;
+        if (spinnerProgram.getSelectedItemPosition() == 0)
+            program = Constants.DAYCARE;
+        else if (spinnerProgram.getSelectedItemPosition() == 1)
+            program = Constants.SEEDING;
+        else if (spinnerProgram.getSelectedItemPosition() == 2)
+            program = Constants.BUDDING;
+        else if (spinnerProgram.getSelectedItemPosition() == 3)
+            program = Constants.BLOSSOMING;
+        else if (spinnerProgram.getSelectedItemPosition() == 4)
+            program = Constants.FLOURISHING;
 
-                student.setProgram(program);
-                if (userNames.contains(username.getText().toString())) {
+        student.setProgram(program);
+        if (userNames.contains(username.getText().toString())) {
 
-                    flag = 1;
-                    Toast.makeText(tempParentRegistration.this, "Username already exists!Please select another!", Toast.LENGTH_SHORT).show();
+            flag = 1;
+            Toast.makeText(tempParentRegistration.this, "Username already exists. Please choose another combination.", Toast.LENGTH_SHORT).show();
 
-                }
+        }
 
-                if (rollNos.contains(rollNo.getText().toString().trim())) {
-                    int position = rollNos.indexOf(rollNo.getText().toString().trim());
-                    if (programs.get(position) == program) {
-                        flag = 1;
-                        Toast.makeText(tempParentRegistration.this, "Roll No already exists!", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                student.setRollNo(rollNo.getText().toString().trim());
-                student.setUsername(username.getText().toString().trim());
-                student.setPassword(password.getText().toString().trim());
-                if (flag == 0) {
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
-                    databaseReference.push().setValue(student);
-                    Toast.makeText(tempParentRegistration.this, "Entry Added!", Toast.LENGTH_LONG).show();
-                }
+        if (rollNos.contains(rollNo.getText().toString().trim())) {
+            int position = rollNos.indexOf(rollNo.getText().toString().trim());
+            Log.e("REGISTER", "At location: " + rollNos.get(position) + " Programs: " + programs.get(position));
+            if (programs.get(position) == program) {
+                flag = 1;
+                Toast.makeText(tempParentRegistration.this, "Duplicate roll number. Please change.", Toast.LENGTH_LONG).show();
             }
-        });
+        }
+
+        student.setRollNo(rollNo.getText().toString().trim());
+        student.setUsername(username.getText().toString().trim());
+        student.setPassword(password.getText().toString().trim());
+        if (flag == 0) {
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
+            databaseReference.push().setValue(student);
+            Toast.makeText(tempParentRegistration.this, "User registered.", Toast.LENGTH_LONG).show();
+        }
     }
 }
