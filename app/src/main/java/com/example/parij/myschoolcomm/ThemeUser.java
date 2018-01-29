@@ -16,9 +16,6 @@ import com.google.firebase.database.ValueEventListener;
 public class ThemeUser extends AppCompatActivity {
 
     TextView startdate, enddate, programtxt, theme;
-
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -41,10 +38,9 @@ public class ThemeUser extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         getSupportActionBar().setTitle("Spoken English");
-
         toolbar.setTitleTextColor(0xFFFFFFFF);
+
 
         startdate=(TextView)findViewById(R.id.start);
         enddate=(TextView)findViewById(R.id.end);
@@ -52,8 +48,6 @@ public class ThemeUser extends AppCompatActivity {
         theme=(TextView)findViewById(R.id.theme);
 
     }
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -113,11 +107,6 @@ public class ThemeUser extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
 
     }
 

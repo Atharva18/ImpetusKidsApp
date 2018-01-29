@@ -55,6 +55,15 @@
         <item>Fluorishing</item>
     </string-array>
 
+    <string-array name="TypeAll">
+        <item>All</item>
+        <item>Day Care</item>
+        <item>Seeding</item>
+        <item>Budding</item>
+        <item>Blossoming</item>
+        <item>Fluorishing</item>
+    </string-array>
+
     <string-array name="programs">
         <item>Seeding</item>
         <item>Budding</item>

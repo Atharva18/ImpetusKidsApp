@@ -135,7 +135,7 @@ public class ThemeAdmin extends AppCompatActivity {
         });
 
 
-        arrayAdapter=ArrayAdapter.createFromResource(this,R.array.Type,android.R.layout.simple_spinner_item);
+        arrayAdapter = ArrayAdapter.createFromResource(this, R.array.TypeAll, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 
@@ -166,7 +166,6 @@ public class ThemeAdmin extends AppCompatActivity {
                 String themetxt= theme.getText().toString().trim();
                 long start = mycalender.getTimeInMillis();
                 long end = mycalender2.getTimeInMillis();
-                int flag=0;
 
                 if (startdate.contains("date")) {
                     Toast.makeText(ThemeAdmin.this, "Please select start date!", Toast.LENGTH_LONG).show();
@@ -182,14 +181,7 @@ public class ThemeAdmin extends AppCompatActivity {
                     Toast.makeText(ThemeAdmin.this, "Please set the theme!", Toast.LENGTH_LONG).show();
 
                 } else {
-                    database= FirebaseDatabase.getInstance();
-                    DatabaseReference reference = database.getReference("newDb").child("SpokenEnglish").child(program);
-
-                    themes obj = new themes(startdate,enddate,themetxt);
-
-                    reference.setValue(obj);
-                    Toast.makeText(getApplicationContext(),"Theme Set!",Toast.LENGTH_SHORT).show();
-
+                    check(spinner.getSelectedItemPosition());
 
                 }
 
@@ -198,6 +190,55 @@ public class ThemeAdmin extends AppCompatActivity {
         });
 
     }
+
+    public void check(int position) {
+
+        if (position == 0) {
+            display("Day-Care");
+            display("Seeding");
+            display("Flourishing");
+            display("Budding");
+            display("Blossoming");
+            Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+        } else if (position == 1) {
+            display("Day-Care");
+            Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+        } else if (position == 2) {
+            display("Seeding");
+            Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+
+        } else if (position == 3) {
+            display("Budding");
+            Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+
+        } else if (position == 4) {
+            display("Blossoming");
+            Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+        } else if (position == 5) {
+            display("Flourishing");
+            Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+    }
+
+
+    public void display(String program) {
+
+        String startdate = start.getText().toString();
+        String enddate = end.getText().toString();
+        String themetxt = theme.getText().toString().trim();
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference("newDb").child("SpokenEnglish").child(program);
+
+        themes obj = new themes(startdate, enddate, themetxt);
+
+        reference.setValue(obj);
+
+
+    }
+
 }
 
 class themes
