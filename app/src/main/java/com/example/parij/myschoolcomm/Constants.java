@@ -43,7 +43,7 @@ public class Constants {
     static String getProgramName(int program) {
         switch (program) {
             case 4:
-                return "Daycare";
+                return "Day Care";
             case 5:
                 return "Seeding";
             case 6:

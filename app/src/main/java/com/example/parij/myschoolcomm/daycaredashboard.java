@@ -144,7 +144,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                         int programCode = student.getProgram();
 
                         if (programCode == Constants.DAYCARE) {
-                            program.setText("Program : Day-Care");
+                            program.setText("Program : Day Care");
 
                         }
 
