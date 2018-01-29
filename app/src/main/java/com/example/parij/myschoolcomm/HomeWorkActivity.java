@@ -53,7 +53,7 @@ public class HomeWorkActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getSupportActionBar().setTitle("Home Work");
+        getSupportActionBar().setTitle("Homework");
         //  toolbar.setNavigationIcon(R.drawable.homeclassbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
 

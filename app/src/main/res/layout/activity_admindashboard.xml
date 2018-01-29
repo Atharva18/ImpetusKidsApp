@@ -121,7 +121,7 @@
                 android:layout_weight="1.2"
                 android:background="@color/Yellow"
                 android:gravity="center"
-                android:text="Home-Work"
+                android:text="Homework"
                 android:textAlignment="center"
                 android:textColor="@color/White"
                 android:textSize="16sp" />

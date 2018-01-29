@@ -16,8 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -58,10 +61,9 @@ public class AdminHomeWork extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getSupportActionBar().setTitle("Home Work");
+        getSupportActionBar().setTitle("Homework");
        // toolbar.setNavigationIcon(R.drawable.hwbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
-
 
         final Calendar mycalender=Calendar.getInstance();
 
@@ -128,7 +130,7 @@ public class AdminHomeWork extends AppCompatActivity {
         });
 
 
-        arrayAdapter=ArrayAdapter.createFromResource(this,R.array.Type,android.R.layout.simple_spinner_item);
+        arrayAdapter = ArrayAdapter.createFromResource(this, R.array.programs, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 
@@ -138,6 +140,8 @@ public class AdminHomeWork extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 type[0] = (String) parent.getItemAtPosition(position);
+
+                selectProgram(position);
 
             }
 
@@ -194,6 +198,45 @@ public class AdminHomeWork extends AppCompatActivity {
 
         }
 
+    public void selectProgram(int position) {
+
+        if (position == 0)
+            display("Seeding");
+        else if (position == 1)
+            display("Budding");
+        else if (position == 2)
+            display("Blossoming");
+        else if (position == 3)
+            display("Flourishing");
+
+    }
+
+    public void display(String program) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference newreference = database.getReference("newDb").child("HomeWork").child(program);
+
+        newreference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                startdate.setText((CharSequence) dataSnapshot.child("startdate").getValue());
+                enddate.setText((CharSequence) dataSnapshot.child("enddate").getValue());
+                monday.setText((CharSequence) dataSnapshot.child("monday").getValue());
+                tuesday.setText((CharSequence) dataSnapshot.child("tuesday").getValue());
+                wednesday.setText((CharSequence) dataSnapshot.child("wednesday").getValue());
+                thursday.setText((CharSequence) dataSnapshot.child("thursday").getValue());
+                friday.setText((CharSequence) dataSnapshot.child("friday").getValue());
+                saturday.setText((CharSequence) dataSnapshot.child("saturday").getValue());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -205,6 +248,13 @@ public class AdminHomeWork extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        display("Seeding");
+
     }
 
 }
