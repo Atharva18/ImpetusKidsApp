@@ -162,7 +162,7 @@ public class tempParentRegistration extends AppCompatActivity {
 
         }
         Log.e("REGISTER", "Rollno: " + rollNo.getText().toString() + " Rollnos : " + rollNos.toString() + " Programs: " + programs.toString());
-        if (checkRollNoAndProgram(rollNo.getText().toString(), program)) {
+        if (checkRollNoAndProgram(rollNo.getText().toString(), program, batch)) {
 
             flag = 1;
             Toast.makeText(tempParentRegistration.this, "Duplicate roll number. Please change.", Toast.LENGTH_LONG).show();
@@ -180,9 +180,9 @@ public class tempParentRegistration extends AppCompatActivity {
         }
     }
 
-    boolean checkRollNoAndProgram(String rollNo, int program) {
+    boolean checkRollNoAndProgram(String rollNo, int program, int batch) {
         for (Student student : arrayListStudents) {
-            if (student.getRollNo().equals(rollNo.toLowerCase().trim()) && student.getProgram() == program)
+            if (student.getRollNo().equals(rollNo.toLowerCase().trim()) && student.getProgram() == program && student.getBatch() == batch)
                 return true;
         }
         return false;
