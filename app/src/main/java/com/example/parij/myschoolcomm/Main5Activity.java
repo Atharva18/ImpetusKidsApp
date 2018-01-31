@@ -109,9 +109,9 @@ public class Main5Activity extends AppCompatActivity {
                         int Gender = student.getGender();
 
                         if (Gender == Constants.MALE)
-                            gender.setText("Male");
+                            gender.setText("Boy");
                         else if (Gender == Constants.FEMALE)
-                            gender.setText("Female");
+                            gender.setText("Girl");
 
                         dateOfBirth.setText(student.getDateOfBirth().toString());
 
