@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,12 +51,12 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
     Button save;
     Bundle bundle;
     FirebaseDatabase database;
-    EditText name1,contact1,email1;
+    EditText name1, contact1, email1;
     ImageView photo;
-    String username="";
+    String username = "";
     ProgressDialog pd;
     Uri filePath;
-    int PICK_IMAGE_REQUEST=111;
+    int PICK_IMAGE_REQUEST = 111;
     View rootView;
     Context context;
     ArrayList<Student> studentArrayList;
@@ -66,19 +67,18 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment1_parentmain, container, false);
         context = rootView.getContext();
         SessionManagement.retrieveSharedPreferences(context);
 
         username = SessionManagement.username;
-        save=(Button)rootView.findViewById(R.id.save);
-        name1=(EditText)rootView.findViewById(R.id.name);
-        contact1=(EditText)rootView.findViewById(R.id.contact);
-        email1=(EditText)rootView.findViewById(R.id.email);
-        photo=(ImageView)rootView.findViewById(R.id.photo);
-        choosePhoto=(Button)rootView.findViewById(R.id.choose);
+        save = (Button) rootView.findViewById(R.id.save);
+        name1 = (EditText) rootView.findViewById(R.id.name);
+        contact1 = (EditText) rootView.findViewById(R.id.contact);
+        email1 = (EditText) rootView.findViewById(R.id.email);
+        photo = (ImageView) rootView.findViewById(R.id.photo);
+        choosePhoto = (Button) rootView.findViewById(R.id.choose);
         pd = new ProgressDialog(getContext());
         pd.setMessage("Uploading....");
 
@@ -104,170 +104,6 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
 
             }
         });
-
-        choosePhoto.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_PICK);
-                startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
-
-            }
-        });
-
-        save.setOnClickListener(this);
-        return rootView;
-    }
-
-
-    @Override
-    public void onClick(View v) {
-
-        //Log.println(Log.INFO,"hello","present");
-
-        String name,contact,email;
-        name=name1.getText().toString().trim();
-        contact=contact1.getText().toString().trim();
-        email=email1.getText().toString().trim();
-
-        int flag=0;
-
-        if(TextUtils.isEmpty(name)|| TextUtils.isEmpty(contact)||TextUtils.isEmpty(email))
-        {
-            flag++;
-            Toast.makeText(getContext(),"Please fill all the fields!",Toast.LENGTH_LONG).show();
-        }
-        if(!TextUtils.isEmpty(email))
-        {
-
-            String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(email);
-            if (!matcher.matches()) {
-                flag++;
-                Toast.makeText(getActivity(),"Please enter a valid email!",Toast.LENGTH_LONG).show();
-
-            }
-
-        }
-        if(!TextUtils.isEmpty(contact))
-        {
-
-            String regex = "[0-9*#+() -]*";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(contact);
-
-            if (!matcher.matches()) {
-                flag++;
-                Toast.makeText(getContext(),"Please enter a valid contact no!",Toast.LENGTH_LONG).show();
-            }
-
-        }
-
-        if(flag==0) {
-
-            StorageReference childRef = storageRef.child(username+"fatherImage.jpg");
-            if(filePath==null && photo.getDrawable()==null)
-            {
-                Toast.makeText(context,"Please Select a image!",Toast.LENGTH_LONG).show();
-                pd.dismiss();
-            }
-            else
-            {
-                int position = 0;
-                Student student = new Student();
-                for (Student stud : studentArrayList) {
-                    if (stud.getUsername().equals(username)) {
-                        student = stud;
-                        position = studentArrayList.indexOf(student);
-                        break;
-                    }
-                }
-
-                String key = keysArrayList.get(position);
-                final Parent parent = new Parent();
-                parent.setEmail(email);
-                parent.setName(name);
-                parent.setPhone(contact);
-
-
-                int check=0;
-                if(filePath!=null)
-                {
-                    check=1;
-                    pd.show();
-                    UploadTask uploadTask = childRef.putFile(filePath);
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
-                    {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            taskSnapshot.getMetadata();
-                            String downloadurl= taskSnapshot.getDownloadUrl().toString();
-                            database=FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference("newDb").child("students");
-                            parent.setImageLink(downloadurl);
-                            Student student = new Student();
-                            int position = 0;
-                            for (Student stud : studentArrayList) {
-                                if (stud.getUsername().equals(username)) {
-                                    student = stud;
-                                    position = studentArrayList.indexOf(student);
-                                    break;
-                                }
-                            }
-                            String key = keysArrayList.get(position);
-                            student.setFather(parent);
-                            reference.child(key).setValue(student);
-                            pd.dismiss();
-                            Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener()
-                    {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            pd.dismiss();
-                            Toast.makeText(getContext(), "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
-                        }
-                    });}
-
-                if (check == 0) {
-                    database = FirebaseDatabase.getInstance();
-                    DatabaseReference reference = database.getReference("newDb").child("students");
-                    student.setFather(parent);
-                    reference.child(key).setValue(student);
-                    Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null)
-        {
-
-            filePath = data.getData();
-            try {
-
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), filePath);
-                Bitmap resized = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
-                photo.setImageBitmap(resized);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference("newDb").child("students");
         SessionManagement.retrieveSharedPreferences(context);
@@ -300,6 +136,157 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
 
             }
         });
+
+        choosePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
+
+            }
+        });
+
+        save.setOnClickListener(this);
+        return rootView;
     }
 
+
+    @Override
+    public void onClick(View v) {
+
+        //Log.println(Log.INFO,"hello","present");
+
+        String name, contact, email;
+        name = name1.getText().toString().trim();
+        contact = contact1.getText().toString().trim();
+        email = email1.getText().toString().trim();
+
+        int flag = 0;
+
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(contact) || TextUtils.isEmpty(email)) {
+            flag++;
+            Toast.makeText(getContext(), "Please fill all the fields!", Toast.LENGTH_LONG).show();
+        }
+        if (!TextUtils.isEmpty(email)) {
+
+            String regex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(email);
+            if (!matcher.matches()) {
+                flag++;
+                Toast.makeText(getActivity(), "Please enter a valid email!", Toast.LENGTH_LONG).show();
+
+            }
+
+        }
+        if (!TextUtils.isEmpty(contact)) {
+
+            String regex = "[0-9*#+() -]*";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(contact);
+
+            if (!matcher.matches()) {
+                flag++;
+                Toast.makeText(getContext(), "Please enter a valid contact no!", Toast.LENGTH_LONG).show();
+            }
+
+        }
+
+        if (flag == 0) {
+
+            database = FirebaseDatabase.getInstance();
+            final DatabaseReference reference = database.getReference("newDb").child("students");
+            StorageReference childRef = storageRef.child(username + "fatherImage.jpg");
+            if (filePath == null && photo.getDrawable() == null) {
+                Toast.makeText(context, "Please Select a image!", Toast.LENGTH_LONG).show();
+                pd.dismiss();
+            } else {
+                int position = 0;
+                Student student = new Student();
+                for (Student stud : studentArrayList) {
+                    if (stud.getUsername().equals(username)) {
+                        student = stud;
+                        position = studentArrayList.indexOf(student);
+                        break;
+                    }
+                }
+
+                String key = keysArrayList.get(position);
+                final Parent parent = new Parent();
+                parent.setEmail(email);
+                parent.setName(name);
+                parent.setPhone(contact);
+                student.setFather(parent);
+                reference.child(key).setValue(student);
+
+                int check = 0;
+                if (filePath != null) {
+                    check = 1;
+                    pd.show();
+                    UploadTask uploadTask = childRef.putFile(filePath);
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            taskSnapshot.getMetadata();
+                            String downloadurl = taskSnapshot.getDownloadUrl().toString();
+                            //database=FirebaseDatabase.getInstance();
+                            //DatabaseReference reference = database.getReference("newDb").child("students");
+                            parent.setImageLink(downloadurl);
+                            Student student = new Student();
+                            int position = 0;
+                            for (Student stud : studentArrayList) {
+                                if (stud.getUsername().equals(username)) {
+                                    student = stud;
+                                    position = studentArrayList.indexOf(student);
+                                    break;
+                                }
+                            }
+                            String key = keysArrayList.get(position);
+                            student.setFather(parent);
+                            reference.child(key).setValue(student);
+                            pd.dismiss();
+                            Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            pd.dismiss();
+                            Toast.makeText(getContext(), "Upload Failed -> " + e, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+                if (check == 0) {
+                    Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e("LOAD_IMAGE", "reqCode: " + requestCode + "resCode: " + resultCode + "data: " + (data == null));
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+
+            filePath = data.getData();
+            try {
+                Log.e("LOAD_IMAGE", "Trying!");
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(), filePath);
+                Bitmap resized = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
+                Glide.with(getActivity()).load(filePath).into(photo);
+                Log.d("reachable code", "");
+//                photo.setImageBitmap(resized);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("LOAD_IMAGE", "Exception raised!");
+            }
+
+        }
+    }
+
+}

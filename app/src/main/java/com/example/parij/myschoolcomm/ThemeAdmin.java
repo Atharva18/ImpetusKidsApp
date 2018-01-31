@@ -225,18 +225,13 @@ public class ThemeAdmin extends AppCompatActivity {
 
 
     public void display(String program) {
-
         String startdate = start.getText().toString();
         String enddate = end.getText().toString();
         String themetxt = theme.getText().toString().trim();
         database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("newDb").child("SpokenEnglish").child(program);
-
         themes obj = new themes(startdate, enddate, themetxt);
-
         reference.setValue(obj);
-
-
     }
 
 }

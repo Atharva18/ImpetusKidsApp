@@ -323,7 +323,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                     taskSnapshot.getMetadata();
                                     String downloadurl = taskSnapshot.getDownloadUrl().toString();
-                                    database = FirebaseDatabase.getInstance();
+                                    // database = FirebaseDatabase.getInstance();
                                     authorizedPerson.setImageLink(downloadurl);
                                     Student student = new Student();
                                     int position = 0;

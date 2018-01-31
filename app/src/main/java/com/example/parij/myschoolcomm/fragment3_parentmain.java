@@ -89,6 +89,41 @@ public class fragment3_parentmain extends Fragment implements View.OnClickListen
         studentArrayList = new ArrayList<Student>();
         keysArrayList = new ArrayList<String>();
 
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("newDb").child("students");
+        SessionManagement.retrieveSharedPreferences(context);
+        username = SessionManagement.username;
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Student student;
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    if (student.getUsername().equals(username)) {
+                        name1.setText(student.getGuardian().getName().toString());
+                        contact1.setText(student.getGuardian().getPhone().toString());
+                        email1.setText(student.getGuardian().getEmail().toString());
+
+                        String url = student.getGuardian().getImageLink();
+                        if (!url.equals("")) {
+                            Glide.with(context.getApplicationContext()).load(url).into(photo);
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -278,9 +313,9 @@ public class fragment3_parentmain extends Fragment implements View.OnClickListen
                 Bitmap b = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
                 Glide.clear(photo);
 
-                photo.setImageBitmap(b);
-                Log.e("Choose Img","Reloaded the image");
-                Log.e("Choose Img", "Path : " + filePath.toString());
+                //photo.setImageBitmap(b);
+                // Log.e("Choose Img","Reloaded the image");
+                //Log.e("Choose Img", "Path : " + filePath.toString());
                 Glide.with(context.getApplicationContext()).load(filePath).into(photo);
 
             } catch (Exception e) {
@@ -293,44 +328,6 @@ public class fragment3_parentmain extends Fragment implements View.OnClickListen
         {
             Log.e("Choose Img","If failed");
         }
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("newDb").child("students");
-        SessionManagement.retrieveSharedPreferences(context);
-        username = SessionManagement.username;
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Student student;
-
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    student = ds.getValue(Student.class);
-                    if (student.getUsername().equals(username)) {
-                        name1.setText(student.getGuardian().getName().toString());
-                        contact1.setText(student.getGuardian().getPhone().toString());
-                        email1.setText(student.getGuardian().getEmail().toString());
-
-                        String url = student.getGuardian().getImageLink();
-                        if (!url.equals("")) {
-                            Glide.with(context.getApplicationContext()).load(url).into(photo);
-                        }
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
 }

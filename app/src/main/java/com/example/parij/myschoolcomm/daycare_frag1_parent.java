@@ -86,6 +86,41 @@ public class daycare_frag1_parent extends Fragment implements View.OnClickListen
         studentArrayList = new ArrayList<Student>();
         keysArrayList = new ArrayList<String>();
 
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("newDb").child("students");
+        SessionManagement.retrieveSharedPreferences(context);
+        username = SessionManagement.username;
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Student student;
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    if (student.getUsername().equals(username)) {
+                        name1.setText(student.getFather().getName().toString());
+                        contact1.setText(student.getFather().getPhone().toString());
+                        email1.setText(student.getFather().getEmail().toString());
+
+                        String url = student.getFather().getImageLink();
+                        if (!url.equals("")) {
+                            Glide.with(context.getApplicationContext()).load(url).into(photo);
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -262,41 +297,6 @@ public class daycare_frag1_parent extends Fragment implements View.OnClickListen
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("newDb").child("students");
-        SessionManagement.retrieveSharedPreferences(context);
-        username = SessionManagement.username;
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Student student;
-
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    student = ds.getValue(Student.class);
-                    if (student.getUsername().equals(username)) {
-                        name1.setText(student.getFather().getName().toString());
-                        contact1.setText(student.getFather().getPhone().toString());
-                        email1.setText(student.getFather().getEmail().toString());
-
-                        String url = student.getFather().getImageLink();
-                        if (!url.equals("")) {
-                            Glide.with(context.getApplicationContext()).load(url).into(photo);
-                        }
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 
 }

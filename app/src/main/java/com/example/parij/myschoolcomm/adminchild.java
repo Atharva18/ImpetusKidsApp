@@ -119,6 +119,94 @@ public class adminchild extends AppCompatActivity {
         studentArrayList = new ArrayList<Student>();
         keysArrayList = new ArrayList<String>();
 
+        SessionManagement.retrieveSharedPreferences(adminchild.this);
+
+        // final String username = SessionManagement.username;
+
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("newDb").child("students");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    student = ds.getValue(Student.class);
+
+                    if (student.getUsername().equals(username)) {
+                        admissiondate.setText(student.getAdmissionDate().toString());
+
+                        int programCode = student.getProgram();
+
+                        if (programCode == 4)
+                            program.setSelection(0);
+                        else if (programCode == 5)
+                            program.setSelection(1);
+                        else if (programCode == 6)
+                            program.setSelection(2);
+                        else if (programCode == 7)
+                            program.setSelection(3);
+                        else if (programCode == 8)
+                            program.setSelection(4);
+
+                        int batchCode = student.getBatch();
+
+                        if (batchCode == 9)
+                            batch.setSelection(0);
+                        else if (batchCode == 10)
+                            batch.setSelection(1);
+
+                        int genderCode = student.getGender();
+
+                        if (genderCode == 18)
+                            genderspinner.setSelection(0);
+                        else if (genderCode == 19)
+                            genderspinner.setSelection(1);
+
+                        dateOfBirth.setText(student.getDateOfBirth());
+
+                        int bloodGroupCode = student.getBloodGroup();
+
+                        if (bloodGroupCode == 11)
+                            bloodgroup.setSelection(0);
+                        else if (bloodGroupCode == 12)
+                            bloodgroup.setSelection(1);
+                        else if (bloodGroupCode == 14)
+                            bloodgroup.setSelection(4);
+                        else if (bloodGroupCode == 15)
+                            bloodgroup.setSelection(5);
+                        else if (bloodGroupCode == 16)
+                            bloodgroup.setSelection(6);
+                        else if (bloodGroupCode == 17)
+                            bloodgroup.setSelection(7);
+                        else if (bloodGroupCode == 21)
+                            bloodgroup.setSelection(2);
+                        else if (bloodGroupCode == 22)
+                            bloodgroup.setSelection(3);
+
+                        classTeacher.setText(student.getClassTeacherName());
+                        contactNo.setText(student.getClassTeacherPhone());
+
+                        String url = student.getImageLink();
+
+                        if (!url.equals(""))
+                            Glide.with(getApplicationContext()).load(url).into(childphoto);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("newDb").child("students");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -392,96 +480,6 @@ public class adminchild extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        SessionManagement.retrieveSharedPreferences(adminchild.this);
-
-        final String username = SessionManagement.username;
-
-        database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("newDb").child("students");
-
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Student student;
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                    student = ds.getValue(Student.class);
-
-                    if (student.getUsername().equals(username)) {
-                        admissiondate.setText(student.getAdmissionDate().toString());
-
-                        int programCode = student.getProgram();
-
-                        if (programCode == 4)
-                            program.setSelection(0);
-                        else if (programCode == 5)
-                            program.setSelection(1);
-                        else if (programCode == 6)
-                            program.setSelection(2);
-                        else if (programCode == 7)
-                            program.setSelection(3);
-                        else if (programCode == 8)
-                            program.setSelection(4);
-
-                        int batchCode = student.getBatch();
-
-                        if (batchCode == 9)
-                            batch.setSelection(0);
-                        else if (batchCode == 10)
-                            batch.setSelection(1);
-
-                        int genderCode = student.getGender();
-
-                        if (genderCode == 18)
-                            genderspinner.setSelection(0);
-                        else if (genderCode == 19)
-                            genderspinner.setSelection(1);
-
-                        dateOfBirth.setText(student.getDateOfBirth());
-
-                        int bloodGroupCode = student.getBloodGroup();
-
-                        if (bloodGroupCode == 11)
-                            bloodgroup.setSelection(0);
-                        else if (bloodGroupCode == 12)
-                            bloodgroup.setSelection(1);
-                        else if (bloodGroupCode == 14)
-                            bloodgroup.setSelection(4);
-                        else if (bloodGroupCode == 15)
-                            bloodgroup.setSelection(5);
-                        else if (bloodGroupCode == 16)
-                            bloodgroup.setSelection(6);
-                        else if (bloodGroupCode == 17)
-                            bloodgroup.setSelection(7);
-                        else if (bloodGroupCode == 21)
-                            bloodgroup.setSelection(2);
-                        else if (bloodGroupCode == 22)
-                            bloodgroup.setSelection(3);
-
-                        classTeacher.setText(student.getClassTeacherName());
-                        contactNo.setText(student.getClassTeacherPhone());
-
-                        String url = student.getImageLink();
-
-                        if (!url.equals(""))
-                            Glide.with(getApplicationContext()).load(url).into(childphoto);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
