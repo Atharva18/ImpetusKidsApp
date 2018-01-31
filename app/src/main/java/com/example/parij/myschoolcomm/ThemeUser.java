@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ThemeUser extends AppCompatActivity {
 
-    TextView startdate, enddate, programtxt, theme;
+    TextView startdate, enddate, programtxt, theme, parenttheme;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -46,6 +46,7 @@ public class ThemeUser extends AppCompatActivity {
         enddate=(TextView)findViewById(R.id.end);
         programtxt = (TextView) findViewById(R.id.program);
         theme=(TextView)findViewById(R.id.theme);
+        parenttheme = (TextView) findViewById(R.id.parenttheme);
 
     }
     @Override
@@ -90,6 +91,8 @@ public class ThemeUser extends AppCompatActivity {
                                 startdate.setText((CharSequence) dataSnapshot.child("startdate").getValue());
                                 enddate.setText((CharSequence) dataSnapshot.child("enddate").getValue());
                                 theme.setText((CharSequence) dataSnapshot.child("theme").getValue());
+                                parenttheme.setText((CharSequence) dataSnapshot.child("parenttheme").getValue());
+
                             }
 
                             @Override

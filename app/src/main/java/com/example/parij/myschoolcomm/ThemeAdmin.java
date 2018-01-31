@@ -25,6 +25,7 @@ import java.util.Locale;
 public class ThemeAdmin extends AppCompatActivity {
 
     EditText theme;
+    EditText parenttheme;
     TextView start,end;
     Button button;
     DatePickerDialog.OnDateSetListener onDateSetListener;
@@ -63,6 +64,7 @@ public class ThemeAdmin extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
         theme=(EditText)findViewById(R.id.theme);
+        parenttheme = (EditText) findViewById(R.id.parenttheme);
         start=(TextView)findViewById(R.id.startdate);
         end=(TextView)findViewById(R.id.enddate);
         button=(Button)findViewById(R.id.ok);
@@ -164,6 +166,7 @@ public class ThemeAdmin extends AppCompatActivity {
                 String enddate= end.getText().toString();
                 String program =type[0];
                 String themetxt= theme.getText().toString().trim();
+                String parenttxt = parenttheme.getText().toString().trim();
                 long start = mycalender.getTimeInMillis();
                 long end = mycalender2.getTimeInMillis();
 
@@ -176,7 +179,7 @@ public class ThemeAdmin extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Please enter valid dates!", Toast.LENGTH_SHORT).show();
 
-                } else if (themetxt.length() <= 0) {
+                } else if (themetxt.length() <= 0 || parenttxt.length() <= 0) {
 
                     Toast.makeText(ThemeAdmin.this, "Please set the theme!", Toast.LENGTH_LONG).show();
 
@@ -228,9 +231,10 @@ public class ThemeAdmin extends AppCompatActivity {
         String startdate = start.getText().toString();
         String enddate = end.getText().toString();
         String themetxt = theme.getText().toString().trim();
+        String parenttxt = parenttheme.getText().toString().trim();
         database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("newDb").child("SpokenEnglish").child(program);
-        themes obj = new themes(startdate, enddate, themetxt);
+        themes obj = new themes(startdate, enddate, themetxt, parenttxt);
         reference.setValue(obj);
     }
 
@@ -242,15 +246,18 @@ class themes
     String startdate;
     String enddate;
     String theme;
+    String parenttheme;
 
     public themes()
     {
+
     }
 
-    public themes(String startdate, String enddate, String theme) {
+    public themes(String startdate, String enddate, String theme, String parenttheme) {
         this.startdate = startdate;
         this.enddate = enddate;
         this.theme = theme;
+        this.parenttheme = parenttheme;
     }
 
     public String getStartdate() {
@@ -275,5 +282,13 @@ class themes
 
     public void setTheme(String theme) {
         this.theme = theme;
+    }
+
+    public String getParenttheme() {
+        return parenttheme;
+    }
+
+    public void setParenttheme(String parenttheme) {
+        this.parenttheme = parenttheme;
     }
 }

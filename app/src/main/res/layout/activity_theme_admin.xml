@@ -117,7 +117,7 @@
         android:layout_marginRight="8dp"
         android:layout_weight="10"
         android:gravity="bottom"
-        android:text="Theme :"
+        android:text="Child's Line :"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -127,7 +127,33 @@
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="30"
+        android:layout_weight="15"
+        android:background="@drawable/edittextborder"
+        android:ems="10"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="10"
+        android:gravity="bottom"
+        android:text="Parent's Line :"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/parenttheme"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="15"
         android:background="@drawable/edittextborder"
         android:ems="10"
         android:gravity="top|left"
