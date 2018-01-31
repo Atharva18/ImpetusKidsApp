@@ -172,7 +172,7 @@
         android:layout_marginTop="10dp"
         android:layout_weight="8"
         android:background="@color/colorPrimary"
-        android:text="Set the theme"
+        android:text="SET"
         android:textColor="@color/White" />
 
 
