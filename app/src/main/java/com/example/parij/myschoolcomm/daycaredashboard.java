@@ -468,10 +468,10 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             alertDialog.show();
 
 
-        } else if (id == R.id.memories) {
+        } /*else if (id == R.id.memories) {
             Intent intent = new Intent(daycaredashboard.this, MemoriesUser.class);
             startActivity(intent);
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
         drawer.closeDrawer(GravityCompat.START);
