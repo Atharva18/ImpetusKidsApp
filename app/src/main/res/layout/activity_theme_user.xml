@@ -28,7 +28,7 @@
         android:layout_marginTop="10dp"
         android:layout_weight="4"
         android:gravity="center_vertical"
-        android:text="Child's Line is: "
+        android:text="Child's Line: "
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
         android:layout_marginTop="10dp"
         android:layout_weight="4"
         android:gravity="center_vertical"
-        android:text="Parent's Line is: "
+        android:text="Parent's Line: "
         android:textSize="18sp"
         android:textStyle="bold" />
 
