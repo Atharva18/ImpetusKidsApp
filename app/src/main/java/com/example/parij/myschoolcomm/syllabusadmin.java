@@ -54,7 +54,7 @@ public class syllabusadmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.syllabusadmin);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Syllabus Coverage");
@@ -64,11 +64,11 @@ public class syllabusadmin extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        textView=(TextView)findViewById(R.id.text);
-        textView2=(TextView)findViewById(R.id.text2);
-        spinner=(Spinner)findViewById(R.id.spinner3);
-        ok=(Button)findViewById(R.id.OK);
-        link=(EditText) findViewById(R.id.link);
+        textView = findViewById(R.id.text);
+        textView2 = findViewById(R.id.text2);
+        spinner = findViewById(R.id.spinner3);
+        ok = findViewById(R.id.OK);
+        link = findViewById(R.id.link);
 
         final Calendar mycalender=Calendar.getInstance();
 
@@ -97,7 +97,7 @@ public class syllabusadmin extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(syllabusadmin.this, date, mycalender.get(Calendar.YEAR),
                         mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
@@ -128,7 +128,7 @@ public class syllabusadmin extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(syllabusadmin.this, date1, mycalender2.get(Calendar.YEAR),
                         mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });

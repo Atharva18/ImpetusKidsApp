@@ -54,7 +54,7 @@ public class ThemeAdmin extends AppCompatActivity {
         setContentView(R.layout.activity_theme_admin);
 
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -63,12 +63,12 @@ public class ThemeAdmin extends AppCompatActivity {
         //  toolbar.setNavigationIcon(R.drawable.homeclassbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
-        theme=(EditText)findViewById(R.id.theme);
-        parenttheme = (EditText) findViewById(R.id.parenttheme);
-        start=(TextView)findViewById(R.id.startdate);
-        end=(TextView)findViewById(R.id.enddate);
-        button=(Button)findViewById(R.id.ok);
-        spinner=(Spinner)findViewById(R.id.spinner);
+        theme = findViewById(R.id.theme);
+        parenttheme = findViewById(R.id.parenttheme);
+        start = findViewById(R.id.startdate);
+        end = findViewById(R.id.enddate);
+        button = findViewById(R.id.ok);
+        spinner = findViewById(R.id.spinner);
 
         final Calendar mycalender=Calendar.getInstance();
 
@@ -98,7 +98,7 @@ public class ThemeAdmin extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(ThemeAdmin.this, date, mycalender.get(Calendar.YEAR),
                         mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
@@ -131,7 +131,7 @@ public class ThemeAdmin extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(ThemeAdmin.this, date2, mycalender2.get(Calendar.YEAR),
                         mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });

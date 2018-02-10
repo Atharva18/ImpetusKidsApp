@@ -72,7 +72,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
 
        // Intent intent = getIntent();
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -117,7 +117,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AuthorizedPersonActivity.this, date, mycalender.get(Calendar.YEAR),
                         mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
 
                 // new DatePickerDialog(AuthorizedPersonActivity.this,date,mycalender.get(Calendar.YEAR),mycalender.get(Calendar.MONTH),mycalender.get(Calendar.DAY_OF_MONTH)).show();
@@ -150,7 +150,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AuthorizedPersonActivity.this, date11, mycalender2.get(Calendar.YEAR),
                         mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
@@ -386,15 +386,15 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
     public void initialise()
     {
         //upload=(Button)findViewById(R.id.upload);
-        personphoto=(ImageView)findViewById(R.id.personphoto);
-        submit=(Button)findViewById(R.id.submit);
-        name=(EditText)findViewById(R.id.name);
-        contactNo=(EditText)findViewById(R.id.contactno);
-        relation=(EditText)findViewById(R.id.relation);
-        date1=(TextView) findViewById(R.id.date1);
-       date2=(TextView) findViewById(R.id.date2);
+        personphoto = findViewById(R.id.personphoto);
+        submit = findViewById(R.id.submit);
+        name = findViewById(R.id.name);
+        contactNo = findViewById(R.id.contactno);
+        relation = findViewById(R.id.relation);
+        date1 = findViewById(R.id.date1);
+        date2 = findViewById(R.id.date2);
 
-        choosePhoto =(Button)findViewById(R.id.choose);
+        choosePhoto = findViewById(R.id.choose);
       //  chooseButton=(Button)findViewById(R.id.chooseButton);
 
     }
