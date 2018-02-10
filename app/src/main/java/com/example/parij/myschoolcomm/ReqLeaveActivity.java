@@ -44,7 +44,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
 
         final String username = SessionManagement.username;
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -84,7 +84,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(ReqLeaveActivity.this, date, mycalender.get(Calendar.YEAR),
                         mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
@@ -115,7 +115,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(ReqLeaveActivity.this, date1, mycalender2.get(Calendar.YEAR),
                         mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
@@ -167,10 +167,10 @@ public class ReqLeaveActivity extends AppCompatActivity {
 
     private void main_initate() {
 
-        sendbtn=(Button)findViewById(R.id.sendbtn);
-        from = (TextView) findViewById(R.id.fromdate);
-        to = (TextView) findViewById(R.id.todate);
-        reason=(EditText)findViewById(R.id.reason);
+        sendbtn = findViewById(R.id.sendbtn);
+        from = findViewById(R.id.fromdate);
+        to = findViewById(R.id.todate);
+        reason = findViewById(R.id.reason);
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child(Constants.FBDB).child("leaveRequests");
 

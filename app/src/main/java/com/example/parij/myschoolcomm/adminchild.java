@@ -65,7 +65,8 @@ public class adminchild extends AppCompatActivity {
     int PICK_IMAGE_REQUEST=111;
     EditText classTeacher, contactNo;
     FirebaseDatabase database;
-    TextView admissiondate, dateOfBirth;
+    TextView dateOfBirth, admissiondate;
+
     ViewGroup rootScrollView;
     ArrayList<Student> studentArrayList;
     ArrayList<String> keysArrayList;
@@ -76,7 +77,7 @@ public class adminchild extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminchild);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Child Profile");
@@ -93,10 +94,10 @@ public class adminchild extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setMessage("Uploading....");
 
-        program = (Spinner) findViewById(R.id.class1);
-        batch = (Spinner) findViewById(R.id.division);
-        bloodgroup = (Spinner) findViewById(R.id.bloodGrpSpinner);
-        genderspinner = (Spinner) findViewById(R.id.genderSpinner);
+        program = findViewById(R.id.class1);
+        batch = findViewById(R.id.division);
+        bloodgroup = findViewById(R.id.bloodGrpSpinner);
+        genderspinner = findViewById(R.id.genderSpinner);
 
         programadapter = ArrayAdapter.createFromResource(this, R.array.Type, android.R.layout.simple_spinner_item);
         programadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -267,7 +268,7 @@ public class adminchild extends AppCompatActivity {
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(adminchild.this, date, mycalender.get(Calendar.YEAR),
                         mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMaxDate(mycalender.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 datePickerDialog.show();
 
             }
@@ -298,9 +299,9 @@ public class adminchild extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(adminchild.this, date, mycalender2.get(Calendar.YEAR),
+                DatePickerDialog datePickerDialog = new DatePickerDialog(adminchild.this, date1, mycalender2.get(Calendar.YEAR),
                         mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMaxDate(mycalender2.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 datePickerDialog.show();
 
 
@@ -519,16 +520,16 @@ public class adminchild extends AppCompatActivity {
 
     public void initialise() {
 
-        childphoto = (ImageView) findViewById(R.id.childphoto);
-        admissiondate = (TextView) findViewById(R.id.admissionDate);
-        program = (Spinner) findViewById(R.id.class1);
-        batch = (Spinner) findViewById(R.id.division);
-        dateOfBirth = (TextView) findViewById(R.id.dateOfBirth);
-        classTeacher = (EditText) findViewById(R.id.classTeacher);
-        contactNo = (EditText) findViewById(R.id.contactNo);
-        save=(Button)findViewById(R.id.save);
-        choosePhoto=(Button)findViewById(R.id.choosePhoto);
-        rootScrollView = (ViewGroup) findViewById(R.id.scrollViewAdminChild);
+        childphoto = findViewById(R.id.childphoto);
+        admissiondate = findViewById(R.id.admissionDate);
+        program = findViewById(R.id.class1);
+        batch = findViewById(R.id.division);
+        dateOfBirth = findViewById(R.id.dateOfBirth);
+        classTeacher = findViewById(R.id.classTeacher);
+        contactNo = findViewById(R.id.contactNo);
+        save = findViewById(R.id.save);
+        choosePhoto = findViewById(R.id.choosePhoto);
+        rootScrollView = findViewById(R.id.scrollViewAdminChild);
 
     }
 

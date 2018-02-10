@@ -45,18 +45,18 @@ public class AdminHomeWork extends AppCompatActivity {
 
         Intent intent=getIntent();
 
-        spinner=(Spinner)findViewById(R.id.spinner4);
-        startdate=(TextView)findViewById(R.id.textView);
-        enddate=(TextView)findViewById(R.id.textView2);
-        ok=(Button)findViewById(R.id.ok);
-        monday=(EditText)findViewById(R.id.monday);
-        tuesday=(EditText)findViewById(R.id.tuesday);
-        wednesday=(EditText)findViewById(R.id.wednesday);
-        thursday=(EditText)findViewById(R.id.thursday);
-        friday=(EditText)findViewById(R.id.friday);
-        saturday=(EditText)findViewById(R.id.saturday);
+        spinner = findViewById(R.id.spinner4);
+        startdate = findViewById(R.id.textView);
+        enddate = findViewById(R.id.textView2);
+        ok = findViewById(R.id.ok);
+        monday = findViewById(R.id.monday);
+        tuesday = findViewById(R.id.tuesday);
+        wednesday = findViewById(R.id.wednesday);
+        thursday = findViewById(R.id.thursday);
+        friday = findViewById(R.id.friday);
+        saturday = findViewById(R.id.saturday);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -92,7 +92,7 @@ public class AdminHomeWork extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AdminHomeWork.this, date, mycalender.get(Calendar.YEAR),
                         mycalender.get(Calendar.MONTH), mycalender.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
@@ -124,7 +124,7 @@ public class AdminHomeWork extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AdminHomeWork.this, date2, mycalender2.get(Calendar.YEAR),
                         mycalender2.get(Calendar.MONTH), mycalender2.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.getDatePicker().setMinDate(mycalender2.getTimeInMillis());
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
