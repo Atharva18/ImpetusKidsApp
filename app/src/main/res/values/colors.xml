@@ -15,4 +15,5 @@
     <color name="splashback">#e9ffef12</color>
     <color name="newBrown">#ffc78706</color>
     <color name="newGreen">#17c500</color>
+    <color name="transparent">#00000000</color>
 </resources>

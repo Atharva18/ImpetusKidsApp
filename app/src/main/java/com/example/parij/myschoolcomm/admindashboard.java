@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -59,8 +60,8 @@ public class admindashboard extends AppCompatActivity {
         //drawerLayout.addDrawerListener(actionBarDrawerToggle);
         //actionBarDrawerToggle.syncState();
         FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).keepSynced(true);
-        Logout=(Button)findViewById(R.id.Logout);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Logout = findViewById(R.id.Logout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
        setSupportActionBar(toolbar);
 
 
@@ -77,23 +78,23 @@ public class admindashboard extends AppCompatActivity {
         //emergencytxt=(TextView)findViewById(R.id.textemergency);
         //authorizedtxt=(TextView)findViewById(R.id.textauthorized);
         // parenttxt=(TextView)findViewById(R.id.textparent);
-        childtxt=(TextView)findViewById(R.id.textchild);
-        syllabustxt=(TextView)findViewById(R.id.textsyllabus);
-        announcementtxt=(TextView)findViewById(R.id.textannouncements);
-        homeworktxt=(TextView)findViewById(R.id.texthomework);
-        spokentxt=(TextView)findViewById(R.id.textspoken);
-        requesttxt=(TextView)findViewById(R.id.textrequest);
+        childtxt = findViewById(R.id.textchild);
+        syllabustxt = findViewById(R.id.textsyllabus);
+        announcementtxt = findViewById(R.id.textannouncements);
+        homeworktxt = findViewById(R.id.texthomework);
+        spokentxt = findViewById(R.id.textspoken);
+        requesttxt = findViewById(R.id.textrequest);
 
         // ImageButton ParentProfile=(ImageButton) findViewById(R.id.parentsprofile);
-        ImageButton ChildProfile=(ImageButton) findViewById(R.id.childprofile);
+        ImageButton ChildProfile = findViewById(R.id.childprofile);
         // ImageButton emerg=(ImageButton)findViewById(R.id.emergency);
         //ImageButton authper=(ImageButton)findViewById(R.id.authorisedperson);
-        ImageButton Timetable=(ImageButton)findViewById(R.id.theme);
-        ImageButton Announcements=(ImageButton)findViewById(R.id.Announcements);
-        ImageButton reqforLeave=(ImageButton)findViewById(R.id.reqforLeave);
-        ImageButton HW=(ImageButton)findViewById(R.id.Homework);
-        ImageButton hWClassreport=(ImageButton)findViewById(R.id.homeclassreport);
-        floatButton=(FloatingActionButton)findViewById(R.id.floatButton);
+        ImageButton Timetable = findViewById(R.id.theme);
+        ImageButton Announcements = findViewById(R.id.Announcements);
+        ImageButton reqforLeave = findViewById(R.id.reqforLeave);
+        ImageButton HW = findViewById(R.id.Homework);
+        ImageButton hWClassreport = findViewById(R.id.homeclassreport);
+        floatButton = findViewById(R.id.floatButton);
 
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -342,13 +343,14 @@ public class admindashboard extends AppCompatActivity {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, close
                                 // current activity
-                                /*
+
                                 SessionManagement.retrieveSharedPreferences(admindashboard.this);
                                 SessionManagement.rememberMe=false;
                                 SessionManagement.username="NA";
+                                SessionManagement.isAdmin = false;
                                 SessionManagement.lastLoginTimestamp=0;
                                 SessionManagement.updateSharedPreferences();
-                                */
+                                Log.e("isAdmin", SessionManagement.isAdmin + "");
                                 Intent intent = new Intent(admindashboard.this, Logout.class);
                                 startActivity(intent);
                                 admindashboard.this.finish();

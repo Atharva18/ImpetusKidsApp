@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
     package="com.example.parij.myschoolcomm">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,7 +17,8 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/impetusimg"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tool:replace="android:label">
         <activity
             android:name=".MainActivity"
             android:exported="true"

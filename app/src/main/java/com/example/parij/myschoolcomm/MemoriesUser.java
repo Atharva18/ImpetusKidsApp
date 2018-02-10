@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.parij.myschoolcomm.Models.Memory;
@@ -16,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mzelzoghbi.zgallery.ZGallery;
+import com.mzelzoghbi.zgallery.entities.ZColor;
 
 import java.util.ArrayList;
 
@@ -27,12 +28,14 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
     ImageView imageView;
     View reverse, skip;
     String username;
+    boolean isAdmin;
     int counter = 0;
     int progressCount = 0;
     ArrayList<Memory> imageLinks;
     ArrayList<String> imageUrls;
     long pressTime = 0L;
     long limit = 500L;
+    Bundle bundle;
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -102,11 +105,17 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
     }
 
     void init() {
-        imageView = (ImageView) findViewById(R.id.imageViewMemories);
+        imageView = findViewById(R.id.imageViewMemories);
         SessionManagement.retrieveSharedPreferences(this);
-        username = SessionManagement.username;
+        if (SessionManagement.isAdmin) {
+            bundle = this.getIntent().getExtras();
+            username = bundle.getString("username");
+        } else {
+            username = SessionManagement.username;
+        }
+        isAdmin = SessionManagement.isAdmin;
         imageUrls = new ArrayList<>();
-        storiesProgressView = (StoriesProgressView) findViewById(R.id.stories);
+        storiesProgressView = findViewById(R.id.stories);
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("students");
 
         reverse = findViewById(R.id.reverse);
@@ -114,13 +123,17 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
 
     }
 
-    void check() {
-        if (progressCount == 0) {
-            Toast.makeText(this, "No memories yet", Toast.LENGTH_LONG).show();
-            onDestroy();
-        }
+    void startMemories() {
+        ZGallery.with(this, imageUrls)
+                .setToolbarTitleColor(ZColor.WHITE) // toolbar title color
+                .setGalleryBackgroundColor(ZColor.BLACK) // activity background color
+                .setToolbarColorResId(R.color.transparent) // toolbar color
+                .setTitle("Memories") // toolbar title
+                .show();
+        finish();
     }
 
+/*
     void startMemories() {
         storiesProgressView.setStoriesCount(progressCount);
         storiesProgressView.setStoryDuration(3000L);
@@ -133,6 +146,7 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
             Glide.with(this).load(imageUrls.get(counter)).into(imageView);
         }
     }
+*/
 
     @Override
     public void onNext() {
@@ -159,4 +173,5 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
         storiesProgressView.destroy();
         super.onDestroy();
     }
+
 }
