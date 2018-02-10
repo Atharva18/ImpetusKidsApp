@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.example.parij.myschoolcomm"
@@ -60,6 +60,8 @@ dependencies {
     compile 'id.zelory:compressor:2.1.0'
     compile 'com.github.jkwiecien:EasyImage:1.3.1'
     compile 'com.github.shts:StoriesProgressView:2.0.0'
+    compile 'com.android.support:design:27.0.2'
+
     testCompile 'junit:junit:4.12'
 }
 //apply plugin: 'com.google.gms.google-services'

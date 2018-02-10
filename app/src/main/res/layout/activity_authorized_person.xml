@@ -63,99 +63,60 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="6"
-        android:text="Relation with student:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personphoto" />
 
-    <EditText
-        android:id="@+id/relation"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="3dp"
-        android:layout_weight="6"
-        android:background="@drawable/edittextborder"
-        android:ems="8"
-        android:gravity="center_vertical"
-        android:inputType="textPersonName"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="6"
-        android:text="Name of the person:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relation" />
-
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="3dp"
-        android:layout_weight="6"
-        android:background="@drawable/edittextborder"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:inputType="textPersonName"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="6"
-        android:text="Contact No of the person:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        android:layout_weight="10">
 
-    <EditText
-        android:id="@+id/contactno"
+        <EditText
+            android:id="@+id/relation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Relation"
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center_vertical"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
-        android:layout_weight="6"
-        android:background="@drawable/edittextborder"
-        android:ems="10"
-        android:gravity="center_vertical"
-        android:inputType="phone"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        android:layout_marginTop="10dp"
+        android:layout_weight="10">
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Name of the person"
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="10">
+
+        <EditText
+            android:id="@+id/contactno"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Contact no"
+            android:inputType="phone"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
