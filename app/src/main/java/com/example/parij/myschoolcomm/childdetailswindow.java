@@ -1,7 +1,9 @@
 package com.example.parij.myschoolcomm;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -190,13 +192,14 @@ public class childdetailswindow extends AppCompatActivity {
     void showDialogAndStartActivity(final int position) {
         dialog.setContentView(R.layout.dialog_choose_detail_type);
         dialog.setTitle("Choose action: ");
-        final RadioButton radioButtonChildProfile, radioButtonParentProfile, radioButtonEmergency, radioButtonAuthorised, radioButtonMemoryCapture;
+        final RadioButton radioButtonChildProfile, radioButtonParentProfile, radioButtonEmergency, radioButtonAuthorised, radioButtonMemoryCapture, radioButtonArchiveProfile;
         Button button;
         radioButtonAuthorised = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeAuthorisedPerson);
         radioButtonChildProfile = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeChildProfile);
         radioButtonEmergency = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeEmergency);
         radioButtonParentProfile = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeParentProfile);
         radioButtonMemoryCapture = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeCaptureMemory);
+        radioButtonArchiveProfile = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeArchiveProfile);
         button = (Button) dialog.findViewById(R.id.buttonDetailTypeOk);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -236,6 +239,10 @@ public class childdetailswindow extends AppCompatActivity {
                     selectedPosition = position;
                     EasyImage.openChooserWithGallery(childdetailswindow.this, "Capture/Select image", 0);
                 }
+                if (radioButtonArchiveProfile.isChecked()) {
+                    selectedPosition = position;
+                    archiveProfile(position);
+                }
                 // finish();
             }
         });
@@ -245,7 +252,7 @@ public class childdetailswindow extends AppCompatActivity {
 
     void filterList(String input, int position) {
         int programFilter = (int) arrayAdapterSpinner.getItemId(position) + 3;
-        Log.d("program fileter ", programFilter + "");
+        Log.d("program filter ", programFilter + "");
         arrayListFiltered = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
         arrayListKeysFiltered = new ArrayList<>();
@@ -357,6 +364,54 @@ public class childdetailswindow extends AppCompatActivity {
             index = arrayList.size();
         }
         return index;
+    }
+
+    void archiveProfile(final int position) {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int button) {
+                switch (button) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("students").child(arrayListKeysFiltered.get(position));
+                        databaseReference.removeValue();
+                        databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("archives");
+                        databaseReference.push().setValue(arrayListFiltered.get(position));
+                        arrayListKeysFull.remove(arrayListKeysFiltered.get(position));
+                        arrayListFull.remove(arrayListFiltered.get(position));
+                        arrayListKeysFiltered.remove(position);
+                        arrayListFiltered.remove(position);
+                        arrayListDisplay.remove(position);
+                        Toast.makeText(childdetailswindow.this, "Done.", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+                arrayAdapter = new ArrayAdapter(childdetailswindow.this, android.R.layout.simple_list_item_1, arrayListDisplay) {
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        /// Get the Item from ListView
+                        View view = super.getView(position, convertView, parent);
+
+                        TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                        // Set the text size 25 dip for ListView each item
+                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+
+                        // Return the view
+                        return view;
+                    }
+                };
+                listView.setAdapter(arrayAdapter);
+                arrayAdapter.notifyDataSetChanged();
+            }
+        };
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(childdetailswindow.this);
+        builder.setMessage("Confirm archiving selected profile?").setPositiveButton("Yes, archive.", dialogClickListener).setNegativeButton("No.", dialogClickListener).show();
+
+
     }
 }
 
