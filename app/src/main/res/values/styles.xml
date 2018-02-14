@@ -11,6 +11,7 @@
         <item name="android:colorForeground">@color/foreground_material_light</item>
     </style>
 
+
     <style name="AppTheme.NoActionBar">
         <item name="colorControlNormal">#ffffff</item>
 

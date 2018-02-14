@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:weightSum="100"
     tools:context="com.example.parij.myschoolcomm.announcementadmin">
@@ -12,7 +14,6 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         android:layout_weight="10"
         android:background="#3209da"
         tools:layout_editor_absoluteX="0dp"
@@ -23,76 +24,69 @@
         android:layout_height="0dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
-        android:layout_weight="8"
+        android:layout_marginTop="10dp"
+        android:layout_weight="15"
+        android:orientation="vertical"
         android:weightSum="2">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".6"
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight=".8"
             android:gravity="center_vertical"
-            android:text="Program :"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:text="Program"
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinnerAnnouncementProgram"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:backgroundTint="#000"
             android:gravity="center_vertical" />
     </LinearLayout>
 
-    <TextView
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="3dp"
-        android:layout_weight="8"
-        android:gravity="center_vertical"
-        android:text="Title :"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editTextAnncouncementTitle"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="3dp"
-        android:layout_weight="8"
-        android:background="@drawable/edittextborder"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/label"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="3dp"
-        android:layout_weight="8"
-        android:gravity="center_vertical"
-        android:text="Please enter the announcement to make :"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/announcemnttext"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="top|center_vertical"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="5dp"
-        android:layout_weight="15"
-        android:background="@drawable/edittextborder"
-        android:ems="10"
-        android:gravity="top"
-        android:inputType="textMultiLine"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp" />
+        android:layout_weight="10">
+
+        <EditText
+            android:id="@+id/editTextAnncouncementTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Title"
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="49">
+
+        <EditText
+            android:id="@+id/announcemnttext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:hint="Announcement"
+            android:inputType="textMultiLine"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/sendbtn"
@@ -115,7 +109,7 @@
         android:layout_gravity="center"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="8"
+        android:layout_weight="7"
         android:background="@color/colorPrimary"
         android:text="View All"
         android:textColor="@android:color/white"

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:weightSum="100"
     tools:context="com.example.parij.myschoolcomm.ReqLeaveActivity">
@@ -23,35 +25,53 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10"
-        android:weightSum="2">
+        android:layout_weight="15"
+        android:orientation="vertical"
+        android:weightSum="3.6">
 
         <TextView
             android:id="@+id/fromlab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.6"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.4"
             android:text="From:"
             android:textSize="18sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="32dp" />
 
-        <TextView
-            android:id="@+id/fromdate"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1.4"
-            android:background="@drawable/edittextborder"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="date"
-            android:text="Select Date"
-            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.2"
+            android:orientation="horizontal"
+            android:weightSum="2.6">
+
+            <TextView
+                android:id="@+id/fromdate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2.3"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.3"
+                android:background="@drawable/calendar" />
+
+        </LinearLayout>
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,65 +79,73 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10"
-        android:weightSum="2">
+        android:layout_weight="15"
+        android:orientation="vertical"
+        android:weightSum="3.6">
 
         <TextView
-            android:id="@+id/tolab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.6"
-            android:text="To:"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fromlab"
-            tools:layout_editor_absoluteX="32dp" />
 
-        <TextView
-            android:id="@+id/todate"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1.4"
-            android:background="@drawable/edittextborder"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="date"
-            android:text="Select Date"
-            android:textSize="18sp" />
+            android:text="To:"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="32dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.2"
+            android:orientation="horizontal"
+            android:weightSum="2.6">
+
+            <TextView
+                android:id="@+id/todate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2.3"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.3"
+                android:background="@drawable/calendar" />
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/reasonlab"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="8"
-        android:gravity="bottom|center_vertical"
-        android:text="Reason:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/reason"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tolab"
-        tools:layout_editor_absoluteX="3dp" />
 
-    <EditText
-        android:id="@+id/reason"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="30"
-        android:background="@drawable/edittextborder"
-        android:ems="10"
-        android:gravity="top|left"
-        android:inputType="textMultiLine"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"/>
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="50">
+
+        <EditText
+            android:id="@+id/reason"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:hint="Reason"
+            android:inputType="textMultiLine"
+            android:textSize="20sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/sendbtn"

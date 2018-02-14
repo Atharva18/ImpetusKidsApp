@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:weightSum="100"
     tools:context="com.example.parij.myschoolcomm.ThemeAdmin">
@@ -14,36 +16,37 @@
         android:layout_weight="10"
         android:background="?attr/colorPrimary"
         android:fitsSystemWindows="true"
-
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/AppTheme.AppBarOverlay" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="10"
-        android:orientation="horizontal"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="15"
+        android:orientation="vertical"
         android:weightSum="2">
 
         <TextView
-            android:id="@+id/textView50"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".55"
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".8"
             android:gravity="center_vertical"
-            android:text="Program :"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="Program"
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.45"
-            android:gravity="center" />
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
 
+            android:layout_weight="1.2"
+            android:backgroundTint="#000"
+            android:gravity="center_vertical" />
     </LinearLayout>
 
     <LinearLayout
@@ -51,30 +54,49 @@
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="10"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_marginTop="10dp"
+        android:layout_weight="15"
+        android:orientation="vertical"
+        android:weightSum="3.6">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".55"
-            android:gravity="center_vertical"
-            android:text="Start Date :  "
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/startdate"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.45"
-            android:background="@drawable/edittextborder"
-            android:gravity="center_horizontal|center"
-            android:text="Select start date"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.4"
+            android:text="Start date:"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            tools:layout_editor_absoluteX="32dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.2"
+            android:orientation="horizontal"
+            android:weightSum="2.6">
+
+            <TextView
+                android:id="@+id/startdate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2.3"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.3"
+                android:background="@drawable/calendar" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -84,83 +106,89 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_weight="15"
+        android:orientation="vertical"
+        android:weightSum="3.6">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".55"
-            android:gravity="center_vertical"
-            android:text="End Date :"
-            android:textAllCaps="false"
+            android:id="@+id/fromlab"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.4"
+            android:text="End date:"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            tools:layout_editor_absoluteX="32dp" />
 
-        <TextView
-            android:id="@+id/enddate"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.45"
-            android:background="@drawable/edittextborder"
-            android:gravity="center_horizontal|center"
-            android:text="Select end date "
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.2"
+            android:orientation="horizontal"
+            android:weightSum="2.6">
+
+            <TextView
+                android:id="@+id/enddate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2.3"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:inputType="date"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.3"
+                android:background="@drawable/calendar" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="10"
-        android:gravity="bottom"
-        android:text="Child's Line :"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/theme"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="15"
-        android:background="@drawable/edittextborder"
-        android:ems="10"
-        android:gravity="top|left"
-        android:inputType="textMultiLine"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textAllCaps="false" />
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="15">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="10"
-        android:gravity="bottom"
-        android:text="Parent's Line :"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <EditText
+            android:id="@+id/theme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:hint="Child's Line"
+            android:inputType="textMultiLine"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/parenttheme"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_layout2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="15"
-        android:background="@drawable/edittextborder"
-        android:ems="10"
-        android:gravity="top|left"
-        android:inputType="textMultiLine"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textAllCaps="false" />
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="15">
+
+        <EditText
+            android:id="@+id/parenttheme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:hint="Parent's Line"
+            android:inputType="textMultiLine"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/ok"

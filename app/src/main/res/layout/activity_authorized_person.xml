@@ -8,6 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:weightSum="100"
         tools:context="com.example.parij.myschoolcomm.AuthorizedPersonActivity">
@@ -121,8 +123,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="15"
+        android:layout_marginTop="20dp"
+        android:layout_weight="20"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -217,7 +219,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="10"
         android:background="@color/colorPrimary"
         android:text="Submit"
