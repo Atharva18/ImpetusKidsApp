@@ -65,7 +65,7 @@ public class childdetailswindow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_childdetailswindow);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -90,7 +90,7 @@ public class childdetailswindow extends AppCompatActivity {
     }
 
     void initiate() {
-        editTextSearch = (EditText) findViewById(R.id.editTextRoaster);
+        editTextSearch = findViewById(R.id.editTextRoaster);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -108,8 +108,8 @@ public class childdetailswindow extends AppCompatActivity {
             }
         });
 
-        spinnerFilter = (Spinner) findViewById(R.id.spinnerRoaster);
-        listView = (ListView) findViewById(R.id.listViewRoaster);
+        spinnerFilter = findViewById(R.id.spinnerRoaster);
+        listView = findViewById(R.id.listViewRoaster);
         arrayListFull = new ArrayList<>();
         arrayListDisplay = new ArrayList<>();
         arrayListKeysFull = new ArrayList<>();
@@ -170,7 +170,7 @@ public class childdetailswindow extends AppCompatActivity {
                         /// Get the Item from ListView
                         View view = super.getView(position, convertView, parent);
 
-                        TextView tv = (TextView) view.findViewById(android.R.id.text1);
+                        TextView tv = view.findViewById(android.R.id.text1);
 
                         // Set the text size 25 dip for ListView each item
                         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
@@ -192,22 +192,23 @@ public class childdetailswindow extends AppCompatActivity {
     void showDialogAndStartActivity(final int position) {
         dialog.setContentView(R.layout.dialog_choose_detail_type);
         dialog.setTitle("Choose action: ");
-        final RadioButton radioButtonChildProfile, radioButtonParentProfile, radioButtonEmergency, radioButtonAuthorised, radioButtonMemoryCapture, radioButtonArchiveProfile;
+        final RadioButton radioButtonChildProfile, radioButtonParentProfile, radioButtonEmergency, radioButtonAuthorised, radioButtonMemoryCapture, radioButtonArchiveProfile, radioButtonViewMemories;
         Button button;
-        radioButtonAuthorised = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeAuthorisedPerson);
-        radioButtonChildProfile = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeChildProfile);
-        radioButtonEmergency = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeEmergency);
-        radioButtonParentProfile = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeParentProfile);
-        radioButtonMemoryCapture = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeCaptureMemory);
-        radioButtonArchiveProfile = (RadioButton) dialog.findViewById(R.id.radioButtonDetailTypeArchiveProfile);
-        button = (Button) dialog.findViewById(R.id.buttonDetailTypeOk);
+        radioButtonAuthorised = dialog.findViewById(R.id.radioButtonDetailTypeAuthorisedPerson);
+        radioButtonChildProfile = dialog.findViewById(R.id.radioButtonDetailTypeChildProfile);
+        radioButtonEmergency = dialog.findViewById(R.id.radioButtonDetailTypeEmergency);
+        radioButtonParentProfile = dialog.findViewById(R.id.radioButtonDetailTypeParentProfile);
+        radioButtonMemoryCapture = dialog.findViewById(R.id.radioButtonDetailTypeCaptureMemory);
+        radioButtonArchiveProfile = dialog.findViewById(R.id.radioButtonDetailTypeArchiveProfile);
+        radioButtonViewMemories = dialog.findViewById(R.id.radioButtonDetailTypeViewMemory);
+        button = dialog.findViewById(R.id.buttonDetailTypeOk);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                //  Bundle bundle = new Bundle();
-                // bundle.putString("username", arrayListFiltered.get(position).getUsername());
+                Bundle bundle = new Bundle();
+                bundle.putString("username", arrayListFiltered.get(position).getUsername());
 
                 SessionManagement.username = arrayListFiltered.get(position).getUsername();
                 SessionManagement.lastLoginTimestamp = System.currentTimeMillis();
@@ -243,6 +244,12 @@ public class childdetailswindow extends AppCompatActivity {
                     selectedPosition = position;
                     archiveProfile(position);
                 }
+                if (radioButtonViewMemories.isChecked()) {
+                    Intent intent = new Intent(childdetailswindow.this, MemoriesUser.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+                }
                 // finish();
             }
         });
@@ -276,7 +283,7 @@ public class childdetailswindow extends AppCompatActivity {
                 /// Get the Item from ListView
                 View view = super.getView(position, convertView, parent);
 
-                TextView tv = (TextView) view.findViewById(android.R.id.text1);
+                TextView tv = view.findViewById(android.R.id.text1);
 
                 // Set the text size 25 dip for ListView each item
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
@@ -393,7 +400,7 @@ public class childdetailswindow extends AppCompatActivity {
                         /// Get the Item from ListView
                         View view = super.getView(position, convertView, parent);
 
-                        TextView tv = (TextView) view.findViewById(android.R.id.text1);
+                        TextView tv = view.findViewById(android.R.id.text1);
 
                         // Set the text size 25 dip for ListView each item
                         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
