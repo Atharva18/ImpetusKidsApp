@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Contact Number"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:textSize="18sp" />
 
     </android.support.design.widget.TextInputLayout>
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Alternate Number"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>
 
