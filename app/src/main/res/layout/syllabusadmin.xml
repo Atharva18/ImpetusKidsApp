@@ -95,6 +95,7 @@
                     app:lib_setRoundedView="true" />
 
                 <ImageView
+                    android:id="@+id/startdatebutton"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -150,6 +151,7 @@
                     app:lib_setRoundedView="true" />
 
                 <ImageView
+                    android:id="@+id/enddatebutton"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"

@@ -47,6 +47,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
     TextView date1,date2;
     FirebaseDatabase database;
     Button submit;
+    ImageView frombutton, tobutton;
     Button chooseButton;
     Bundle bundle;
     ArrayAdapter<CharSequence> arrayAdapter;
@@ -111,7 +112,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
             }
         };
 
-        date1.setOnClickListener(new View.OnClickListener() {
+        frombutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -144,7 +145,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
             }
         };
 
-        date2.setOnClickListener(new View.OnClickListener() {
+        tobutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -261,7 +262,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                }
                 int check = 0;
 
-                if (TextUtils.isEmpty(datestart) || datestart.contains("date"))
+                if (TextUtils.isEmpty(datestart))
                {
 
                    check = 1;
@@ -270,7 +271,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                    flag++;
                }
 
-                if (TextUtils.isEmpty(dateend) || dateend.contains("date"))
+                if (TextUtils.isEmpty(dateend))
                 {
                     flag++;
                     if (check == 0)
@@ -387,6 +388,8 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
     {
         //upload=(Button)findViewById(R.id.upload);
         personphoto = findViewById(R.id.personphoto);
+        frombutton = findViewById(R.id.frombutton);
+        tobutton = findViewById(R.id.tobutton);
         submit = findViewById(R.id.submit);
         name = findViewById(R.id.name);
         contactNo = findViewById(R.id.contactno);

@@ -66,7 +66,7 @@ public class adminchild extends AppCompatActivity {
     EditText classTeacher, contactNo;
     FirebaseDatabase database;
     TextView dateOfBirth, admissiondate;
-
+    ImageView dateofbirthbutton, admissionbutton;
     ViewGroup rootScrollView;
     ArrayList<Student> studentArrayList;
     ArrayList<String> keysArrayList;
@@ -263,7 +263,7 @@ public class adminchild extends AppCompatActivity {
         };
 
 
-        admissiondate.setOnClickListener(new View.OnClickListener() {
+        admissionbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(adminchild.this, date, mycalender.get(Calendar.YEAR),
@@ -295,7 +295,7 @@ public class adminchild extends AppCompatActivity {
         };
 
 
-        dateOfBirth.setOnClickListener(new View.OnClickListener() {
+        dateofbirthbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -326,7 +326,7 @@ public class adminchild extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(dateOfBirth1))
                 {
-                    dateOfBirth.setError("Please enter the date!");
+                    Toast.makeText(adminchild.this, "Please select the date of birth!", Toast.LENGTH_SHORT).show();
                     flag++;
 
                 }
@@ -361,7 +361,7 @@ public class adminchild extends AppCompatActivity {
                 if(TextUtils.isEmpty(admissiondate1))
                 {
                    flag++;
-                   admissiondate.setError("Please enter the date");
+                    Toast.makeText(adminchild.this, "Please select the admission date!", Toast.LENGTH_SHORT).show();
 
                 }
             if(flag==0) {
@@ -528,6 +528,8 @@ public class adminchild extends AppCompatActivity {
         classTeacher = findViewById(R.id.classTeacher);
         contactNo = findViewById(R.id.contactNo);
         save = findViewById(R.id.save);
+        admissionbutton = findViewById(R.id.admissionbutton);
+        dateofbirthbutton = findViewById(R.id.dateofbirthbutton);
         choosePhoto = findViewById(R.id.choosePhoto);
         rootScrollView = findViewById(R.id.scrollViewAdminChild);
 

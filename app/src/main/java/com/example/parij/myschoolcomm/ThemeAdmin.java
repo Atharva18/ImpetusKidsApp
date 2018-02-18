@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class ThemeAdmin extends AppCompatActivity {
     Spinner spinner;
     ArrayAdapter<CharSequence> arrayAdapter;
     FirebaseDatabase database;
+    ImageView startbutton, endbutton;
 
 
     @Override
@@ -69,6 +71,8 @@ public class ThemeAdmin extends AppCompatActivity {
         end = findViewById(R.id.enddate);
         button = findViewById(R.id.ok);
         spinner = findViewById(R.id.spinner);
+        startbutton = findViewById(R.id.startbutton);
+        endbutton = findViewById(R.id.endbutton);
 
         final Calendar mycalender=Calendar.getInstance();
 
@@ -91,7 +95,7 @@ public class ThemeAdmin extends AppCompatActivity {
         };
 
 
-        start.setOnClickListener(new View.OnClickListener() {
+        startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -124,7 +128,7 @@ public class ThemeAdmin extends AppCompatActivity {
         };
 
 
-        end.setOnClickListener(new View.OnClickListener() {
+        endbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -170,10 +174,10 @@ public class ThemeAdmin extends AppCompatActivity {
                 long start = mycalender.getTimeInMillis();
                 long end = mycalender2.getTimeInMillis();
 
-                if (startdate.contains("date")) {
+                if (startdate.trim().equals("")) {
                     Toast.makeText(ThemeAdmin.this, "Please select start date!", Toast.LENGTH_LONG).show();
 
-                } else if (enddate.contains("date")) {
+                } else if (enddate.trim().equals("")) {
                     Toast.makeText(ThemeAdmin.this, "Please select end date!", Toast.LENGTH_LONG).show();
                 } else if (start > end) {
 

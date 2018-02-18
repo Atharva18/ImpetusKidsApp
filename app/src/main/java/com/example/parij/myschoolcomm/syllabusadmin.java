@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +35,7 @@ public class syllabusadmin extends AppCompatActivity {
     Button ok;
     EditText link;
     FirebaseDatabase database;
-
+    ImageView startdatebutton, enddatebutton;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -69,6 +70,8 @@ public class syllabusadmin extends AppCompatActivity {
         spinner = findViewById(R.id.spinner3);
         ok = findViewById(R.id.OK);
         link = findViewById(R.id.link);
+        startdatebutton = findViewById(R.id.startdatebutton);
+        enddatebutton = findViewById(R.id.enddatebutton);
 
         final Calendar mycalender=Calendar.getInstance();
 
@@ -91,7 +94,7 @@ public class syllabusadmin extends AppCompatActivity {
         };
 
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        startdatebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -121,7 +124,7 @@ public class syllabusadmin extends AppCompatActivity {
 
             }
         };
-        textView2.setOnClickListener(new View.OnClickListener() {
+        enddatebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -167,7 +170,7 @@ public class syllabusadmin extends AppCompatActivity {
                 long start = mycalender.getTimeInMillis();
                 long end = mycalender2.getTimeInMillis();
 
-                if(TextUtils.isEmpty(drivelink)||TextUtils.isEmpty(enddate)||TextUtils.isEmpty(program)||TextUtils.isEmpty(startdate))
+                if (TextUtils.isEmpty(drivelink) || TextUtils.isEmpty(program))
                 {
                     flag=1;
                     Toast.makeText(syllabusadmin.this,"Please fill all the details",Toast.LENGTH_LONG).show();
@@ -175,11 +178,11 @@ public class syllabusadmin extends AppCompatActivity {
                     flag++;
                     Toast.makeText(syllabusadmin.this, "Please enter valid dates!", Toast.LENGTH_LONG).show();
 
-                } else if (startdate.contains("Date")) {
+                } else if (startdate.trim().equals("")) {
                     flag++;
                     Toast.makeText(syllabusadmin.this, "Please select start date!", Toast.LENGTH_LONG).show();
 
-                } else if (enddate.contains("Date")) {
+                } else if (enddate.trim().equals("")) {
                     flag++;
                     Toast.makeText(syllabusadmin.this, "Please select end date!", Toast.LENGTH_LONG).show();
                 } else if (flag == 0)

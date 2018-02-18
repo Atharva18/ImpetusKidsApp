@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     Message message;
     Bundle bundle;
+    ImageView frombutton, tobutton;
     private Button sendbtn;
     private EditText reason;
 
@@ -77,7 +79,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
         };
 
 
-        from.setOnClickListener(new View.OnClickListener() {
+        frombutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -108,7 +110,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
 
             }
         };
-        to.setOnClickListener(new View.OnClickListener() {
+        tobutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -130,9 +132,9 @@ public class ReqLeaveActivity extends AppCompatActivity {
                 long start = mycalender.getTimeInMillis();
                 long end = mycalender2.getTimeInMillis();
 
-                if (from.getText().toString().contains("Date")) {
+                if (from.getText().toString().trim().equals("")) {
                     Toast.makeText(ReqLeaveActivity.this, "Please select start date!", Toast.LENGTH_LONG).show();
-                } else if (to.getText().toString().contains("Date")) {
+                } else if (to.getText().toString().trim().equals("")) {
                     Toast.makeText(ReqLeaveActivity.this, "Please select end date!", Toast.LENGTH_LONG).show();
 
                 } else if (start > end) {
@@ -169,6 +171,8 @@ public class ReqLeaveActivity extends AppCompatActivity {
 
         sendbtn = findViewById(R.id.sendbtn);
         from = findViewById(R.id.fromdate);
+        frombutton = findViewById(R.id.frombutton);
+        tobutton = findViewById(R.id.tobutton);
         to = findViewById(R.id.todate);
         reason = findViewById(R.id.reason);
         firebaseDatabase=FirebaseDatabase.getInstance();

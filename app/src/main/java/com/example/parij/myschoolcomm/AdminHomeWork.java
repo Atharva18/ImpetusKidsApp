@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class AdminHomeWork extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener onDateSetListener2;
     ArrayAdapter<CharSequence> arrayAdapter;
     FirebaseDatabase database;
+    ImageView startdatebutton, enddatebutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,8 @@ public class AdminHomeWork extends AppCompatActivity {
         thursday = findViewById(R.id.thursday);
         friday = findViewById(R.id.friday);
         saturday = findViewById(R.id.saturday);
+        startdatebutton = findViewById(R.id.startdatebutton);
+        enddatebutton = findViewById(R.id.enddatebutton);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,7 +89,7 @@ public class AdminHomeWork extends AppCompatActivity {
             }
         };
 
-        startdate.setOnClickListener(new View.OnClickListener() {
+        startdatebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -118,7 +122,7 @@ public class AdminHomeWork extends AppCompatActivity {
         };
 
 
-        enddate.setOnClickListener(new View.OnClickListener() {
+        enddatebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -170,11 +174,11 @@ public class AdminHomeWork extends AppCompatActivity {
                 long end = mycalender2.getTimeInMillis();
 
                 int flag=0;
-                if (startdate1.contains("Date"))
+                if (startdate1.trim().equals(""))
                 {
                     flag++;
                     Toast.makeText(AdminHomeWork.this, "Please select start date!", Toast.LENGTH_LONG).show();
-                } else if (enddate1.contains("Date")) {
+                } else if (enddate1.trim().equals("")) {
                     flag++;
                     Toast.makeText(AdminHomeWork.this, "Please select end date!", Toast.LENGTH_LONG).show();
                 } else if (start > end) {

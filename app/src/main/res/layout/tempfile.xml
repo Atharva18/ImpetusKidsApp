@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context="com.example.parij.myschoolcomm.AuthorizedPersonActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical"
-        android:weightSum="100"
-        tools:context="com.example.parij.myschoolcomm.AuthorizedPersonActivity">
 
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:background="#3209da" />
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="#3209da" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="21"
+        android:layout_weight="25"
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -119,122 +118,108 @@
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="15"
-        android:orientation="vertical"
-        android:weightSum="5">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:text="From:"
-            android:textSize="18sp" />
+        android:layout_marginTop="20dp"
+        android:layout_weight="20"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:orientation="horizontal"
-            android:weightSum="2.6">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <com.libRG.CustomTextView
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginLeft="7dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="From:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contactno" />
+
+            <TextView
                 android:id="@+id/date1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
-                android:layout_weight="2.3"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittextborder"
                 android:ems="10"
                 android:gravity="center_vertical"
-                android:inputType="date"
+                android:inputType="textPersonName"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="Select date"
+                android:textAlignment="center"
                 android:textSize="18sp"
-                app:lib_setRadius="3dp"
-                app:lib_setRoundedBorderColor="@color/colorPrimary"
-                app:lib_setRoundedView="true" />
-
-            <ImageView
-                android:id="@+id/frombutton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="0.3"
-                android:background="@drawable/calendar" />
-
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/textView28"
+                app:layout_constraintTop_toBottomOf="@+id/contactno" />
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="15"
-        android:orientation="vertical"
-        android:weightSum="5">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:text="To:"
-            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:orientation="horizontal"
-            android:weightSum="2.6">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <com.libRG.CustomTextView
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="7dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="To:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/date1"
+                app:layout_constraintTop_toBottomOf="@+id/contactno" />
+
+            <TextView
                 android:id="@+id/date2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
-                android:layout_weight="2.3"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittextborder"
                 android:ems="10"
                 android:gravity="center_vertical"
-                android:inputType="date"
+                android:inputType="textPersonName"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="Select date"
+                android:textAlignment="center"
                 android:textSize="18sp"
-                app:lib_setRadius="3dp"
-                app:lib_setRoundedBorderColor="@color/colorPrimary"
-                app:lib_setRoundedView="true" />
-
-            <ImageView
-                android:id="@+id/tobutton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="0.3"
-                android:background="@drawable/calendar" />
-
+                android:textStyle="bold"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView29"
+                app:layout_constraintTop_toBottomOf="@+id/contactno" />
         </LinearLayout>
 
     </LinearLayout>
-
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_weight="8"
+        android:layout_marginTop="20dp"
+        android:layout_weight="10"
         android:background="@color/colorPrimary"
         android:text="Submit"
         android:textColor="@color/White"

@@ -97,6 +97,7 @@
                     app:lib_setRoundedView="true" />
 
                 <ImageView
+                    android:id="@+id/startdatebutton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -151,7 +152,9 @@
                     app:lib_setRoundedBorderColor="@color/colorPrimary"
                     app:lib_setRoundedView="true" />
 
+
                 <ImageView
+                    android:id="@+id/enddatebutton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"

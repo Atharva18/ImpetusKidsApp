@@ -93,6 +93,7 @@
                 app:lib_setRoundedView="true" />
 
             <ImageView
+                android:id="@+id/startbutton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
@@ -148,6 +149,7 @@
                 app:lib_setRoundedView="true" />
 
             <ImageView
+                android:id="@+id/endbutton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
