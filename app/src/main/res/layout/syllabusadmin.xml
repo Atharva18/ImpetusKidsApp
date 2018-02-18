@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.parij.myschoolcomm.syllabusadmin">
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
 
     <LinearLayout
@@ -26,135 +27,162 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="12"
-            android:orientation="horizontal">
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="15"
+            android:orientation="vertical"
+            android:weightSum="2">
 
             <TextView
-                android:id="@+id/textView9"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".8"
                 android:gravity="center_vertical"
-                android:text="Select Program :  "
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:text="Program"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/spinner3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                android:backgroundTint="#000"
+                android:gravity="center_vertical" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="12"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/startdate"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="From (Start Date) : "
-                android:textAllCaps="false"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/edittextborder"
-                android:gravity="center"
-                android:text="Select Date "
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_weight="12"
-            android:gravity="center_vertical"
-            android:text="To"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="12"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Till (End Date) : "
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/edittextborder"
-                android:gravity="center"
-                android:text="Select Date "
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_weight="12"
-            android:gravity="bottom"
-            android:text="Link :"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="15dp"
+            android:layout_weight="15"
+            android:orientation="vertical"
+            android:weightSum="3.6">
 
-        <EditText
-            android:id="@+id/link"
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_vertical"
+
+                android:layout_weight="1.4"
+                android:text="Start date:"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="32dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.2"
+                android:orientation="horizontal"
+                android:weightSum="2.6">
+
+                <com.libRG.CustomTextView
+                    android:id="@+id/text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2.3"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:inputType="date"
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/calendar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="15"
+            android:orientation="vertical"
+            android:weightSum="3.6">
+
+            <TextView
+                android:id="@+id/fromlab"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_vertical"
+
+                android:layout_weight="1.4"
+                android:text="End date:"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="32dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.2"
+                android:orientation="horizontal"
+                android:weightSum="2.6">
+
+                <com.libRG.CustomTextView
+                    android:id="@+id/text2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2.3"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:inputType="date"
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/calendar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:layout_weight="12"
-            android:autoLink="all"
-            android:background="@drawable/edittextborder"
-            android:clickable="true"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:paddingLeft="8dp"
-            android:textAlignment="viewStart"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text2" />
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="25">
+
+            <EditText
+                android:id="@+id/link"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autoLink="all"
+                android:clickable="true"
+                android:gravity="start"
+                android:hint="Link:"
+                android:inputType="textMultiLine"
+                android:textSize="18sp" />
+        </android.support.design.widget.TextInputLayout>
+
 
         <Button
             android:id="@+id/OK"
@@ -162,7 +190,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="12"
             android:background="@color/colorPrimary"
             android:text="ok"

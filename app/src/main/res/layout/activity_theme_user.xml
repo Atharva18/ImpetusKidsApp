@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,14 +33,13 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
+    <com.libRG.CustomTextView
         android:id="@+id/theme"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_weight="15"
-        android:background="@drawable/edittextborder"
         android:ems="10"
         android:gravity="top|left"
         android:inputType="textMultiLine"
@@ -48,7 +48,10 @@
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:lib_setRadius="3dp"
+        app:lib_setRoundedBorderColor="@color/colorPrimary"
+        app:lib_setRoundedView="true" />
 
 
     <TextView
@@ -65,14 +68,13 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
+    <com.libRG.CustomTextView
         android:id="@+id/parenttheme"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_weight="15"
-        android:background="@drawable/edittextborder"
         android:ems="10"
         android:gravity="top|left"
         android:inputType="textMultiLine"
@@ -81,7 +83,10 @@
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:lib_setRadius="3dp"
+        app:lib_setRoundedBorderColor="@color/colorPrimary"
+        app:lib_setRoundedView="true" />
 
 
     <LinearLayout
@@ -104,17 +109,19 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/program"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_weight="1.45"
-            android:background="@drawable/edittextborder"
             android:gravity="center_vertical"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -158,31 +165,35 @@
         android:weightSum="2">
 
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/start"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:background="@drawable/edittextborder"
             android:gravity="center"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/end"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="4dp"
             android:layout_weight="1"
-            android:background="@drawable/edittextborder"
             android:gravity="center"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
     </LinearLayout>
 
 </LinearLayout>

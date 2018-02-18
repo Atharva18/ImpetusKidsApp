@@ -102,25 +102,4 @@
     <string name="title_activity_resetpassword">resetpassword</string>
     <string name="title_activity_home">home</string>
 
-
-    <string name="title_activity">Home screen</string>
-    <string name="next">NEXT</string>
-    <string name="skip">SKIP</string>
-    <string name="start">GOT IT</string>
-
-
-    <string name="slide_title_2">WE ARE ALL ABOUT THE LITTLE PEOPLE</string>
-    <!-- Use &#8226; for bullets.... CDATA here helps to include html tags-->
-    <string name="slide_2_point1">
-    &#8226;Our Philosophy has always been to create "A Happy Child"
-  </string>
-    <string name="slide_2_point2">&#8226;We strive to make learning a fun experience that goes beyond reading and writing</string>
-    <string name="slide_2_point3">&#8226;We stimulate their curious minds by unique play-way methods developing their language, math and analytical skills.</string>
-
-    <string name="slide_title_3"> COME JOIN US...</string>
-    <string name="slide_3_point1">Contact Details</string>
-    <string name="slide_3_point2">&#8226;Contact No.: 095523 29911&#8226;</string>
-    <string name="slide_3_point3">&#8226;Visit Us: www.impetuskids.com&#8226;
-    </string>
-
 </resources>

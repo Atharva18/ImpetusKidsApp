@@ -40,7 +40,7 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/contactNo"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -54,7 +54,10 @@
             android:paddingRight="8dp"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintTop_toBottomOf="@+id/textView16"
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
 
         <Button
             android:id="@+id/dialcontact"
@@ -88,12 +91,11 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/alternativeNo"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-
             android:layout_weight="8"
             android:background="@drawable/edittextborder"
             android:ems="10"
@@ -103,7 +105,10 @@
             android:paddingRight="8dp"
             android:textSize="18sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+            app:layout_constraintTop_toBottomOf="@+id/textView21"
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
 
         <Button
             android:id="@+id/alternativebutton"
@@ -125,11 +130,9 @@
         android:layout_weight="6"
         android:text="Family Doctor Name: "
         android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alternativeNo" />
+        android:textStyle="bold" />
 
-    <TextView
+    <com.libRG.CustomTextView
         android:id="@+id/familyDoctor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -137,15 +140,15 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_weight="10"
-        android:background="@drawable/edittextborder"
         android:ems="10"
         android:gravity="center_vertical"
         android:inputType="textPersonName"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:lib_setRadius="3dp"
+        app:lib_setRoundedBorderColor="@color/colorPrimary"
+        app:lib_setRoundedView="true" />
 
     <TextView
         android:id="@+id/textView24"
@@ -169,7 +172,7 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/doctorNo"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -182,8 +185,9 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
 
         <Button
             android:id="@+id/dialdoctor"

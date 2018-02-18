@@ -40,15 +40,15 @@ public class fragment2_adminparent extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.activity_fragment2_adminparent, container, false);
+        rootView = inflater.inflate(R.layout.fragment1_adminparent, container, false);
         context = rootView.getContext();
 
 
-        name1=(TextView) rootView.findViewById(R.id.name);
-        contact1=(TextView) rootView.findViewById(R.id.contact);
-        email1=(TextView) rootView.findViewById(R.id.email);
-        photo = (ImageView) rootView.findViewById(R.id.photo);
-        call=(Button)rootView.findViewById(R.id.call);
+        name1 = rootView.findViewById(R.id.name);
+        contact1 = rootView.findViewById(R.id.contact);
+        email1 = rootView.findViewById(R.id.email);
+        photo = rootView.findViewById(R.id.photo);
+        call = rootView.findViewById(R.id.call);
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -42,18 +42,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-            <TextView
+            <com.libRG.CustomTextView
                 android:id="@+id/program"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-
-                android:background="@drawable/edittextborder"
                 android:gravity="center_vertical|center"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:lib_setRadius="3dp"
+                app:lib_setRoundedBorderColor="@color/colorPrimary"
+                app:lib_setRoundedView="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,20 +80,21 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-            <TextView
+            <com.libRG.CustomTextView
                 android:id="@+id/text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
-
-                android:background="@drawable/edittextborder"
                 android:gravity="center_vertical|center"
                 android:text="Select Date"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:lib_setRadius="3dp"
+                app:lib_setRoundedBorderColor="@color/colorPrimary"
+                app:lib_setRoundedView="true" />
         </LinearLayout>
 
         <TextView
@@ -129,20 +131,21 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/startdate" />
 
-            <TextView
+            <com.libRG.CustomTextView
                 android:id="@+id/text2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
-
-                android:background="@drawable/edittextborder"
                 android:gravity="center_vertical|center"
                 android:text="Select Date"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:lib_setRadius="3dp"
+                app:lib_setRoundedBorderColor="@color/colorPrimary"
+                app:lib_setRoundedView="true" />
         </LinearLayout>
 
         <TextView
@@ -159,7 +162,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/link"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -167,7 +170,6 @@
             android:layout_marginRight="8dp"
             android:layout_weight="12"
             android:autoLink="all"
-            android:background="@drawable/edittextborder"
             android:clickable="true"
             android:ems="10"
             android:gravity="center_vertical|center"
@@ -177,23 +179,9 @@
             android:textAlignment="viewStart"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text2" />
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
 
-        <Button
-            android:id="@+id/OK"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="12"
-            android:background="@color/colorPrimary"
-            android:text="OK"
-            android:textColor="@color/White"
-
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

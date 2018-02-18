@@ -24,8 +24,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="59dp"
-            android:background="#3209da"
-            android:layout_weight="2"/>
+            android:layout_weight="2"
+            android:background="#3209da" />
 
 
         <TableLayout
@@ -116,16 +116,18 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/admissionDate"
                     android:layout_width="0dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:background="@drawable/edittextborder"
                     android:gravity="center_vertical"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <!--
@@ -162,7 +164,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/class1"
                     android:layout_width="0dp"
                     android:layout_gravity="center_vertical"
@@ -171,7 +173,10 @@
                     android:gravity="center_vertical"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
 
 
             </TableRow>
@@ -188,7 +193,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/division"
                     android:layout_width="0dp"
                     android:layout_column="0"
@@ -198,7 +203,10 @@
                     android:gravity="center_vertical"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -212,7 +220,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/gender"
                     android:layout_width="0dp"
                     android:layout_column="0"
@@ -222,7 +230,10 @@
                     android:gravity="center_vertical"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
 
@@ -237,7 +248,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/dateOfBirth"
                     android:layout_width="0dp"
                     android:layout_column="0"
@@ -247,7 +258,10 @@
                     android:gravity="center_vertical"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
 
@@ -262,7 +276,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/bloodGroup"
                     android:layout_width="0dp"
                     android:layout_column="0"
@@ -272,7 +286,10 @@
                     android:gravity="center_vertical"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -286,7 +303,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/classTeacher"
                     android:layout_width="0dp"
                     android:layout_column="0"
@@ -296,7 +313,10 @@
                     android:gravity="center_vertical"
                     android:padding="10dip"
                     android:textAlignment="viewStart"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
 
@@ -311,13 +331,16 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/contactNo"
                     android:layout_width="70dp"
                     android:layout_column="0"
                     android:background="@drawable/edittextborder"
                     android:padding="10dip"
-                    android:textAlignment="viewStart" />
+                    android:textAlignment="viewStart"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
 
                 <Button
                     android:id="@+id/phone"

@@ -62,12 +62,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photo" />
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="12"
-            android:background="@drawable/edittextborder"
             android:ems="10"
             android:gravity="center_vertical"
             android:inputType="textPersonName"
@@ -76,7 +75,10 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
 
         <TextView
             android:id="@+id/textView26"
@@ -96,12 +98,11 @@
             android:layout_weight="12"
             android:weightSum="10">
 
-            <TextView
+            <com.libRG.CustomTextView
                 android:id="@+id/contact"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
-                android:background="@drawable/edittextborder"
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:inputType="textPersonName"
@@ -109,7 +110,10 @@
                 android:paddingRight="8dp"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name" />
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                app:lib_setRadius="3dp"
+                app:lib_setRoundedBorderColor="@color/colorPrimary"
+                app:lib_setRoundedView="true" />
 
             <Button
                 android:id="@+id/call"
@@ -134,7 +138,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -147,6 +151,9 @@
             android:paddingRight="8dp"
             android:textSize="18sp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contact" />
+            app:layout_constraintTop_toBottomOf="@+id/contact"
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
     </LinearLayout>
 </LinearLayout>
