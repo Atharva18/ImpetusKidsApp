@@ -147,9 +147,8 @@
             <com.libRG.CustomTextView
                 android:id="@+id/date1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
                 android:layout_weight="2.3"
                 android:ems="10"
                 android:gravity="center_vertical"
@@ -201,9 +200,8 @@
             <com.libRG.CustomTextView
                 android:id="@+id/date2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="5dp"
                 android:layout_weight="2.3"
                 android:ems="10"
                 android:gravity="center_vertical"
