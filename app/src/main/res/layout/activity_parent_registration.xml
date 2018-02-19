@@ -25,7 +25,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10">
+        android:layout_weight="12">
 
         <EditText
             android:id="@+id/rollNo"
@@ -44,7 +44,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10">
+        android:layout_weight="12">
 
         <EditText
             android:id="@+id/name"
@@ -121,7 +121,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10">
+        android:layout_weight="12">
 
         <EditText
             android:id="@+id/username"
@@ -140,7 +140,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10">
+        android:layout_weight="12">
 
         <EditText
             android:id="@+id/password"
@@ -158,10 +158,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
-        android:layout_weight="9"
+        android:layout_weight="8"
         android:background="@color/colorPrimary"
         android:text="Add User"
-        android:textColor="@color/White"/>
+        android:textColor="@color/White" />
 
 
 </LinearLayout>
