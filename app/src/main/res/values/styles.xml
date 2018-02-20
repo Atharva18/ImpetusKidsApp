@@ -9,8 +9,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">#ece7e7</item>
         <item name="android:colorForeground">@color/foreground_material_light</item>
-        <!--TODO add hex for item colorControlActivated-->
-        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlActivated">#3209da</item>
     </style>
 
 
