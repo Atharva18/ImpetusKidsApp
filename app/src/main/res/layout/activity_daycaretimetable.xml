@@ -49,7 +49,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +60,10 @@
                     android:text="Greeting time,Yoga, Morning Conversation and Center free play"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -81,7 +84,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,7 +95,10 @@
                     android:text="Breakfast-Snack time"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
 
@@ -114,7 +120,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,7 +131,10 @@
                     android:text="Group Time"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -146,7 +155,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -157,7 +166,10 @@
                     android:text="Art and Craft or project work as per weekly theme"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
 
             </TableRow>
 
@@ -179,7 +191,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -190,7 +202,10 @@
                     android:text="Creative Movement- Outdoor Activity"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -211,7 +226,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -222,7 +237,12 @@
                     android:text="Story time or Library corner/Self Awareness session"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true"
+
+                    />
             </TableRow>
 
             <TableRow
@@ -243,7 +263,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -253,7 +273,10 @@
                     android:text="Fine motor skills and also work on literacy,maths and science"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -274,7 +297,8 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
+
                     android:id="@+id/act8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -285,7 +309,10 @@
                     android:text="Lunch Time"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -306,7 +333,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -317,7 +344,12 @@
                     android:text="Nap time-laying on bed or mat,listening to quiet music.Older children can look at books quietly"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true"
+
+                    />
             </TableRow>
 
             <TableRow
@@ -338,7 +370,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -349,7 +381,12 @@
                     android:text="Quiet play- children starting to wake up, they can watch cartoons quietly or look at books until other children wake up"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true"
+
+                    />
 
             </TableRow>
 
@@ -371,7 +408,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -382,7 +419,10 @@
                     android:text="Snack Time"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -403,7 +443,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -414,7 +454,10 @@
                     android:text="Center free play/ Outdoor fun/ Dramatic play/ Self awareness session"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
             </TableRow>
 
             <TableRow
@@ -435,7 +478,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -446,7 +489,12 @@
                     android:text="Watching value based story and Rhymes"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true"
+
+                    />
             </TableRow>
 
             <TableRow
@@ -467,7 +515,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -478,7 +526,12 @@
                     android:text="Extra-curricular activity"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true"
+
+                    />
             </TableRow>
 
             <TableRow
@@ -499,7 +552,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/act15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -510,7 +563,12 @@
                     android:text="Bye Bye time"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true"
+
+                    />
             </TableRow>
         </TableLayout>
 

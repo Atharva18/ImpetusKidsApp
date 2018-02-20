@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/content1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -52,9 +52,9 @@
             android:text="Idli, Dosa, Uttapam, Upma"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu1" />
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
 
         <TextView
             android:id="@+id/menu2"
@@ -72,7 +72,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/content1" />
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/content2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -87,9 +87,9 @@
             android:text=" Chapati, veggies, Dal and Rice"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu2" />
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
 
         <TextView
             android:id="@+id/menu3"
@@ -107,7 +107,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/content2" />
 
-        <TextView
+        <com.libRG.CustomTextView
             android:id="@+id/content3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -122,9 +122,8 @@
             android:text="Biscuits, cakes, cookies /fruits /doughnuts /Bread Jam"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu3" />
+            app:lib_setRadius="3dp"
+            app:lib_setRoundedBorderColor="@color/colorPrimary"
+            app:lib_setRoundedView="true" />
     </LinearLayout>
 </LinearLayout>

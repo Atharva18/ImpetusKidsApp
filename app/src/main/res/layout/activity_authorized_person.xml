@@ -18,7 +18,6 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-
             android:layout_height="0dp"
             android:layout_weight="10"
             android:background="#3209da" />
@@ -73,7 +72,9 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="10">
+        android:layout_weight="10"
+
+        >
 
         <EditText
             android:id="@+id/relation"
