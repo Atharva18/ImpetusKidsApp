@@ -28,4 +28,9 @@
         <item name="colorControlActivated">#2196F3</item>
     </style>
 
+    <style name="textLayoutHint">
+        <item name="android:textColor">@color/Brown</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

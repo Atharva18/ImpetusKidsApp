@@ -57,14 +57,18 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="5dp"
-        android:layout_weight="10">
+        android:layout_weight="10"
+        android:backgroundTint="#D3D3D3"
+        app:hintTextAppearance="@style/textLayoutHint">
 
         <EditText
             android:id="@+id/editTextAnncouncementTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="#D3D3D3"
             android:hint="Title"
             android:inputType="textPersonName"
+            android:textCursorDrawable="@drawable/blue_cursor"
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -76,7 +80,8 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="49">
+        android:layout_weight="49"
+        android:backgroundTint="@color/Brown">
 
         <EditText
             android:id="@+id/announcemnttext"
