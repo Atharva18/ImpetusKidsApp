@@ -174,4 +174,10 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
         super.onDestroy();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        this.finish();
+    }
 }

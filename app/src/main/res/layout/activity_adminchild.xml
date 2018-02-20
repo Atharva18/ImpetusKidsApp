@@ -101,7 +101,7 @@
                 android:orientation="horizontal"
                 android:weightSum="2.6">
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/admissionDate"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -111,7 +111,12 @@
                     android:ems="10"
                     android:gravity="center_vertical"
                     android:inputType="date"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true"
+
+                    />
 
                 <ImageView
                     android:id="@+id/admissionbutton"
@@ -238,7 +243,7 @@
                 android:orientation="horizontal"
                 android:weightSum="2.6">
 
-                <TextView
+                <com.libRG.CustomTextView
                     android:id="@+id/dateOfBirth"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -248,7 +253,10 @@
                     android:ems="10"
                     android:gravity="center_vertical"
                     android:inputType="date"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:lib_setRadius="3dp"
+                    app:lib_setRoundedBorderColor="@color/colorPrimary"
+                    app:lib_setRoundedView="true" />
 
                 <ImageView
                     android:id="@+id/dateofbirthbutton"
