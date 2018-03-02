@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,17 +68,18 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment1_parentmain, container, false);
+        Log.e("Fragment", "Fragment 2-Mother");
         context = rootView.getContext();
         SessionManagement.retrieveSharedPreferences(context);
         username = SessionManagement.username;
 
       //  upload=(Button)rootView.findViewById(R.id.upload);
-        save=(Button)rootView.findViewById(R.id.save);
-        name1=(EditText)rootView.findViewById(R.id.name);
-        contact1=(EditText)rootView.findViewById(R.id.contact);
-        email1=(EditText)rootView.findViewById(R.id.email);
-        photo=(ImageView)rootView.findViewById(R.id.photo);
-        choosePhoto=(Button) rootView.findViewById(R.id.choose);
+        save = rootView.findViewById(R.id.save);
+        name1 = rootView.findViewById(R.id.name);
+        contact1 = rootView.findViewById(R.id.contact);
+        email1 = rootView.findViewById(R.id.email);
+        photo = rootView.findViewById(R.id.photo);
+        choosePhoto = rootView.findViewById(R.id.choose);
         // bundle=getActivity().getIntent().getExtras();
         pd = new ProgressDialog(getContext());
         pd.setMessage("Uploading....");
@@ -159,11 +161,11 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
         return rootView;
     }
 
+
     @Override
     public void onClick(View v) {
 
         //Log.println(Log.INFO,"hello","present");
-
         String name,contact,email;
 
         name=name1.getText().toString().trim();
@@ -260,8 +262,8 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
                                 }
                             }
                             String key = keysArrayList.get(position);
-                            student.setMother(parent);
-                            reference.child(key).setValue(student);
+                            ((parentmain) getActivity()).studentMain.setMother(parent);
+                            reference.child(key).setValue(((parentmain) getActivity()).studentMain);
                             pd.dismiss();
                            Toast.makeText(getContext(), "Successfully updated!", Toast.LENGTH_SHORT).show();
                         }
@@ -278,8 +280,8 @@ public class fragment2_parentmain extends Fragment implements View.OnClickListen
 
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("newDb").child("students");
-                    student.setMother(parent);
-                    reference.child(key).setValue(student);
+                    ((parentmain) getActivity()).studentMain.setMother(parent);
+                    reference.child(key).setValue(((parentmain) getActivity()).studentMain);
                     Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
                 }
             }

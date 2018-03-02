@@ -69,18 +69,18 @@ public class fragment3_parentmain extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment1_parentmain, container, false);
-
+        Log.e("Fragment", "Fragment 3-Guardian");
         context = rootView.getContext();
         SessionManagement.retrieveSharedPreferences(context);
         username = SessionManagement.username;
 
        // upload=(Button)rootView.findViewById(R.id.upload);
-        save=(Button)rootView.findViewById(R.id.save);
-        name1=(EditText)rootView.findViewById(R.id.name);
-        contact1=(EditText)rootView.findViewById(R.id.contact);
-        email1=(EditText)rootView.findViewById(R.id.email);
-        photo=(CircleImageView)rootView.findViewById(R.id.photo);
-        choosePhoto=(Button) rootView.findViewById(R.id.choose);
+        save = rootView.findViewById(R.id.save);
+        name1 = rootView.findViewById(R.id.name);
+        contact1 = rootView.findViewById(R.id.contact);
+        email1 = rootView.findViewById(R.id.email);
+        photo = rootView.findViewById(R.id.photo);
+        choosePhoto = rootView.findViewById(R.id.choose);
         // bundle=getActivity().getIntent().getExtras();
         context = rootView.getContext();
         pd = new ProgressDialog(getContext());
@@ -161,6 +161,7 @@ public class fragment3_parentmain extends Fragment implements View.OnClickListen
 
         return rootView;
     }
+
 
     @Override
     public void onClick(View v) {
@@ -267,8 +268,8 @@ public class fragment3_parentmain extends Fragment implements View.OnClickListen
                                 }
                             }
                             String key = keysArrayList.get(position);
-                            student.setGuardian(parent);
-                            reference.child(key).setValue(student);
+                            ((parentmain) getActivity()).studentMain.setGuardian(parent);
+                            reference.child(key).setValue(((parentmain) getActivity()).studentMain);
                             pd.dismiss();
                             Toast.makeText(getContext(), "Successfully updated!", Toast.LENGTH_SHORT).show();
                         }
@@ -285,8 +286,8 @@ public class fragment3_parentmain extends Fragment implements View.OnClickListen
 
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("newDb").child("students");
-                    student.setGuardian(parent);
-                    reference.child(key).setValue(student);
+                    ((parentmain) getActivity()).studentMain.setGuardian(parent);
+                    reference.child(key).setValue(((parentmain) getActivity()).studentMain);
                     Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
                 }
 

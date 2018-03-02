@@ -69,16 +69,17 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment1_parentmain, container, false);
+        Log.e("Fragment", "Fragment 1-Father");
         context = rootView.getContext();
         SessionManagement.retrieveSharedPreferences(context);
 
         username = SessionManagement.username;
-        save = (Button) rootView.findViewById(R.id.save);
-        name1 = (EditText) rootView.findViewById(R.id.name);
-        contact1 = (EditText) rootView.findViewById(R.id.contact);
-        email1 = (EditText) rootView.findViewById(R.id.email);
-        photo = (ImageView) rootView.findViewById(R.id.photo);
-        choosePhoto = (Button) rootView.findViewById(R.id.choose);
+        save = rootView.findViewById(R.id.save);
+        name1 = rootView.findViewById(R.id.name);
+        contact1 = rootView.findViewById(R.id.contact);
+        email1 = rootView.findViewById(R.id.email);
+        photo = rootView.findViewById(R.id.photo);
+        choosePhoto = rootView.findViewById(R.id.choose);
         pd = new ProgressDialog(getContext());
         pd.setMessage("Uploading....");
 
@@ -120,7 +121,7 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
                         name1.setText(student.getFather().getName().toString());
                         contact1.setText(student.getFather().getPhone().toString());
                         email1.setText(student.getFather().getEmail().toString());
-
+                        ((parentmain) getActivity()).studentMain = student;
                         String url = student.getFather().getImageLink();
                         if (!url.equals("")) {
                             Glide.with(context.getApplicationContext()).load(url).into(photo);
@@ -158,7 +159,6 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
     public void onClick(View v) {
 
         //Log.println(Log.INFO,"hello","present");
-
         String name, contact, email;
         name = name1.getText().toString().trim();
         contact = contact1.getText().toString().trim();
@@ -205,7 +205,7 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
                 pd.dismiss();
             } else {
                 int position = 0;
-                Student student = new Student();
+                Student student = null;
                 for (Student stud : studentArrayList) {
                     if (stud.getUsername().equals(username)) {
                         student = stud;
@@ -219,8 +219,8 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
                 parent.setEmail(email);
                 parent.setName(name);
                 parent.setPhone(contact);
-                student.setFather(parent);
-                reference.child(key).setValue(student);
+                ((parentmain) getActivity()).studentMain.setFather(parent);
+                reference.child(key).setValue(((parentmain) getActivity()).studentMain);
 
                 int check = 0;
                 if (filePath != null) {
@@ -245,8 +245,8 @@ public class fragment1_parentmain extends Fragment implements View.OnClickListen
                                 }
                             }
                             String key = keysArrayList.get(position);
-                            student.setFather(parent);
-                            reference.child(key).setValue(student);
+                            ((parentmain) getActivity()).studentMain.setFather(parent);
+                            reference.child(key).setValue(((parentmain) getActivity()).studentMain);
                             pd.dismiss();
                             Toast.makeText(getContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
                         }
