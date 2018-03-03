@@ -248,6 +248,7 @@ public class childdetailswindow extends AppCompatActivity {
                     Intent intent = new Intent(childdetailswindow.this, MemoriesUser.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
+                    finish();
 
                 }
                 // finish();

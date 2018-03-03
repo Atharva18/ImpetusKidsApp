@@ -58,7 +58,7 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memories_user);
         init();
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Student s;
