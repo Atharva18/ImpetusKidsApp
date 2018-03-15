@@ -4,108 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/Grey"
     android:orientation="vertical"
-
     android:weightSum="3"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.parij.myschoolcomm.daycaredashboard"
-    tools:showIn="@layout/app_bar_main2">
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:layout_width="115dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:background="@color/White"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textmemory"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:background="@color/newGreen"
-                android:gravity="center_vertical"
-                android:text="Memories"
-                android:textAlignment="center"
-                android:textColor="@color/White"
-                android:textSize="18sp" />
-
-            <ImageButton
-                android:id="@+id/memories"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:padding="10dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/memories" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="115dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:background="@color/White"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textlive"
-                android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:background="@color/colorPrimary"
-                android:gravity="center_vertical"
-                android:text="Live Feed"
-                android:textAlignment="center"
-                android:textColor="@color/White"
-                android:textSize="18sp" />
-
-            <ImageButton
-                android:id="@+id/dayatimeptus"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:padding="10dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/cctv" />
-        </LinearLayout>
-
-    </LinearLayout>
+    tools:showIn="@layout/app_bar_main">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="3">
 
         <LinearLayout
-            android:layout_width="115dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
+
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textschedule"
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
+                android:layout_height="45dp"
                 android:background="@color/newBrown"
                 android:gravity="center_vertical"
                 android:text="Daily Schedule"
@@ -124,11 +51,142 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="115dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textspoken"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="@color/newGreen"
+                android:gravity="center_vertical"
+                android:text="Spoken English"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/theme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/theme1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textrequest"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:text="Request Leave"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/reqforLeave"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/requestleave" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textemergency"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorAccent"
+                android:gravity="center_vertical"
+                android:text="Emergency"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/emergency"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/emergency" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textauthorized"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="@color/newBrown"
+                android:gravity="center_vertical"
+                android:text="Authorize to collect"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/authorisedperson"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/authorized" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
             android:orientation="vertical">
@@ -160,20 +218,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="3">
 
         <LinearLayout
-            android:layout_width="115dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
+
             android:orientation="vertical">
 
             <TextView
@@ -198,11 +255,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="115dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@color/White"
             android:orientation="vertical">
@@ -213,7 +269,7 @@
                 android:layout_height="46dp"
                 android:background="@color/Pink"
                 android:gravity="center_vertical"
-                android:text="Food-Menu"
+                android:text="Food Menu"
                 android:textAlignment="center"
                 android:textColor="@color/White"
                 android:textSize="18sp" />
@@ -228,9 +284,39 @@
                 app:srcCompat="@drawable/foodmenu" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textannouncements"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:background="@color/dark_green"
+                android:gravity="center_vertical"
+                android:text="Announcements"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/Announcements"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/announcement" />
+        </LinearLayout>
+
 
     </LinearLayout>
-
 
 </LinearLayout>
 

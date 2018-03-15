@@ -2,32 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <!-- The toolbar -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:fitsSystemWindows="true"
+            android:minHeight="?attr/actionBarSize"
             android:theme="@style/AppTheme.AppBarOverlay" />
 
         <FrameLayout
             android:id="@+id/drawer_button"
             android:layout_width="50dp"
             android:layout_height="?attr/actionBarSize"
-            android:fitsSystemWindows="true"
             android:layout_alignParentLeft="true"
-            android:clickable="true">
+            android:clickable="true"
+            android:fitsSystemWindows="true">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -43,8 +43,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/drawerlayout"
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
         <include
@@ -58,10 +58,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:itemTextColor="#1d3f4c"
-            app:itemIconTint="#cd4312"
             app:headerLayout="@layout/nav_header_main"
-            app:menu="@menu/activity_main_drawer2" />
+            app:itemIconTint="#cd4312"
+            app:itemTextColor="#1d3f4c"
+            app:menu="@menu/activity_main_drawer" />
 
 
     </android.support.v4.widget.DrawerLayout>

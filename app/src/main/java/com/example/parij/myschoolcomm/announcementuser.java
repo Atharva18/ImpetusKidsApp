@@ -62,7 +62,7 @@ public class announcementuser extends AppCompatActivity {
         username = SessionManagement.username;
         isAdmin = SessionManagement.isAdmin;
         init();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -123,12 +123,16 @@ public class announcementuser extends AppCompatActivity {
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             //arrayListBroadcast.add(ds.getValue(Broadcast.class));
                             announcement = ds.getValue(Announcement.class);
-                            Log.d("announcement class ", program + "");
-                            if (isAdmin)
+                            Log.d("announcement class ", program + "" + isAdmin);
+
+                            if (isAdmin) {
                                 arrayListAnnouncement.add(announcement);
+                            }
                             else {
-                                if (program == announcement.getProgram() || announcement.getProgram() == Constants.ALLPROGRAMS)
+                                if (program == announcement.getProgram() || announcement.getProgram() == Constants.ALLPROGRAMS) {
                                     arrayListAnnouncement.add(announcement);
+                                    Log.d("announcement user ", program + "");
+                                }
                             }
 
                         }
@@ -157,7 +161,7 @@ public class announcementuser extends AppCompatActivity {
         View convertView = inflater.inflate(R.layout.dialog_anouncement_list, null);
         dialog.setView(convertView);
         dialog.setTitle("Announcement List :");
-        listView = (ListView) convertView.findViewById(R.id.listViewAnnouncementUser);
+        listView = convertView.findViewById(R.id.listViewAnnouncementUser);
         arrayAdapter = new ArrayAdapter(announcementuser.this, android.R.layout.simple_list_item_1, arrayListMsg);
         listView.setAdapter(arrayAdapter);
         dialog.show();
@@ -167,19 +171,19 @@ public class announcementuser extends AppCompatActivity {
     {
         //listView = (ListView) findViewById(R.id.listViewAnnouncementUser);
         dialog = new AlertDialog.Builder(announcementuser.this);
-        foldingCell1 = (FoldingCell) findViewById(R.id.foldindcell1);
-        foldingCell2 = (FoldingCell) findViewById(R.id.foldindcell2);
-        foldingCell3 = (FoldingCell) findViewById(R.id.foldindcell3);
-        buttonViewAll = (Button) findViewById(R.id.buttonViewAllAnnouncements);
-        textViewDetail1 = (TextView) findViewById(R.id.textViewAnnouncementDetail1);
-        textViewDetail2 = (TextView) findViewById(R.id.textViewAnnouncementDetail2);
-        textViewDetail3 = (TextView) findViewById(R.id.textViewAnnouncementDetail3);
-        textViewTitle1 = (TextView) findViewById(R.id.textViewAnnouncementTitle1);
-        textViewTitle2 = (TextView) findViewById(R.id.textViewAnnouncementTitle2);
-        textViewTitle3 = (TextView) findViewById(R.id.textViewAnnouncementTitle3);
-        textViewUnfoldedTitle1 = (TextView) findViewById(R.id.textViewUnfoldedAnnouncementTitle1);
-        textViewUnfoldedTitle2 = (TextView) findViewById(R.id.textViewUnfoldedAnnouncementTitle2);
-        textViewUnfoldedTitle3 = (TextView) findViewById(R.id.textViewUnfoldedAnnouncementTitle3);
+        foldingCell1 = findViewById(R.id.foldindcell1);
+        foldingCell2 = findViewById(R.id.foldindcell2);
+        foldingCell3 = findViewById(R.id.foldindcell3);
+        buttonViewAll = findViewById(R.id.buttonViewAllAnnouncements);
+        textViewDetail1 = findViewById(R.id.textViewAnnouncementDetail1);
+        textViewDetail2 = findViewById(R.id.textViewAnnouncementDetail2);
+        textViewDetail3 = findViewById(R.id.textViewAnnouncementDetail3);
+        textViewTitle1 = findViewById(R.id.textViewAnnouncementTitle1);
+        textViewTitle2 = findViewById(R.id.textViewAnnouncementTitle2);
+        textViewTitle3 = findViewById(R.id.textViewAnnouncementTitle3);
+        textViewUnfoldedTitle1 = findViewById(R.id.textViewUnfoldedAnnouncementTitle1);
+        textViewUnfoldedTitle2 = findViewById(R.id.textViewUnfoldedAnnouncementTitle2);
+        textViewUnfoldedTitle3 = findViewById(R.id.textViewUnfoldedAnnouncementTitle3);
         arrayListAnnouncement = new ArrayList<>();
         arrayListMsg = new ArrayList<>();
         /*spinnerFilter = (Spinner) findViewById(R.id.spinnerFilterAnnouncementUser);

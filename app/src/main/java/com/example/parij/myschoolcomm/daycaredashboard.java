@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -31,20 +30,27 @@ import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 
 public class daycaredashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    ImageButton childprof;
-    ImageButton parentprof;
+
     ImageButton foodmenu;
-    ImageButton livefeed;
-    ImageButton Photos;
+    ImageButton SProfile;
+    ImageButton PProfile;
+    ImageButton Timetable;
+    ImageButton Announcements;
+    ImageButton reqforLeave;
+    ImageButton HW;
+    ImageButton AuthPerson;
+    ImageButton hWClassreport;
+    ImageButton Emergency;
     ImageButton timetable;
     //  Button Logout;
     DrawerLayout drawer;
+    ImageView nav_head;
     TextView name;
     TextView rollNo;
     TextView program;
     ImageView photo;
-
-    TextView memoriestxt,cctvtxt,scheduletxt,parenttxt,childtxt,menutxt;
+    TextView hometxt, spokentxt, reqtxt, emertxt, authtxt, syllabustxt, announcetxt;
+    TextView scheduletxt, parenttxt, childtxt, menutxt;
 
     @Override
     public void onBackPressed() {
@@ -86,10 +92,10 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
 
         FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).keepSynced(true);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("        Dashboard");
-        drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
+        drawer = findViewById(R.id.drawerlayout);
 
         findViewById(R.id.drawer_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,16 +120,16 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         toggle.syncState();
 
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         initiate();
 
         View header=navigationView.getHeaderView(0);
 /*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
-        name = (TextView)header.findViewById(R.id.name);
-        rollNo = (TextView)header.findViewById(R.id.roll);
-        program = (TextView)header.findViewById(R.id.program);
-        photo =(ImageView)header.findViewById(R.id.photo);
+        name = header.findViewById(R.id.name);
+        rollNo = header.findViewById(R.id.roll);
+        program = header.findViewById(R.id.program);
+        photo = header.findViewById(R.id.photo);
         //TODO Remove Bundle usage and use firebasereference to set the data
 
 
@@ -165,6 +171,131 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             }
         });
 
+        spokentxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(daycaredashboard.this, ThemeUser.class);
+                // Intent intent=new Intent(Main4Activity.this,AuthorizedPersonActivity.class);
+                //intent.putExtras(bundle);
+                startActivity(intent);
+
+
+            }
+        });
+        Timetable.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View view) {
+                                             Intent intent = new Intent(daycaredashboard.this, ThemeUser.class);
+                                             // Intent intent=new Intent(Main4Activity.this,AuthorizedPersonActivity.class);
+                                             //intent.putExtras(bundle);
+                                             startActivity(intent);
+
+
+                                         }
+
+                                     }
+
+
+        );
+
+        reqtxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(daycaredashboard.this, ReqLeaveActivity.class);
+                //intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        reqforLeave.setOnClickListener(new View.OnClickListener() {
+                                           @Override
+                                           public void onClick(View view) {
+                                               Intent intent = new Intent(daycaredashboard.this, ReqLeaveActivity.class);
+                                               //intent.putExtras(bundle);
+                                               startActivity(intent);
+
+                                           }
+
+
+                                       }
+
+        );
+
+        emertxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(daycaredashboard.this, EmergencyActivity.class);
+                //intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
+
+        Emergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(daycaredashboard.this, EmergencyActivity.class);
+                //intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+
+
+        });
+
+        authtxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(daycaredashboard.this, AuthorizedPersonActivity.class);
+
+                // Intent intent=new Intent(Main4Activity.this,AuthorizedPersonActivity.class);
+                //intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
+
+        AuthPerson.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View view) {
+                                              Intent intent = new Intent(daycaredashboard.this, AuthorizedPersonActivity.class);
+
+                                              // Intent intent=new Intent(Main4Activity.this,AuthorizedPersonActivity.class);
+                                              //intent.putExtras(bundle);
+                                              startActivity(intent);
+
+                                          }
+
+                                      }
+
+        );
+
+        announcetxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(daycaredashboard.this, announcementuser.class);
+                startActivity(intent);
+            }
+        });
+
+        Announcements.setOnClickListener(new View.OnClickListener() {
+                                             @Override
+                                             public void onClick(View view) {
+                                                 Intent intent = new Intent(daycaredashboard.this, announcementuser.class);
+                                                 startActivity(intent);
+
+
+                                             }
+
+
+                                         }
+
+        );
 
         childtxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +309,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             }
         });
 
-        childprof.setOnClickListener(new View.OnClickListener() {
+        SProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent l=new Intent(daycaredashboard.this,Main5Activity.class);
@@ -199,7 +330,7 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             }
         });
 
-        parentprof.setOnClickListener(new View.OnClickListener() {
+        PProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //startActivity(new Intent(daycaredashboard.this,parentmain.class));
@@ -230,69 +361,9 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
         });
         final String url="http://cdn.streamonweb.com:1935/ipcamlive/impetus_cam1/playlist.m3u8";
 
-        cctvtxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                JZVideoPlayerStandard.startFullscreen(daycaredashboard.this, JZVideoPlayerStandard.class, url, "CCTV");
-                /*final Dialog dialog = new Dialog(daycaredashboard.this);
-                dialog.setContentView(R.layout.dialog_cctv);
-                Button buttonOk = (Button)dialog.findViewById(R.id.buttonCCTVOk);
-                buttonOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();*/
-                /*Uri uri=Uri.parse(url);
-                Intent live= new Intent(Intent.ACTION_VIEW);
-                live.setDataAndType(uri,"video/*");
-                startActivity(live);*/
 
-            }
-        });
 
-        livefeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                JZVideoPlayerStandard.startFullscreen(daycaredashboard.this, JZVideoPlayerStandard.class, url, "CCTV");
-
-                /*final Dialog dialog = new Dialog(daycaredashboard.this);
-                dialog.setContentView(R.layout.dialog_cctv);
-                JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) dialog.findViewById(R.id.videoplayer);
-                jzVideoPlayerStandard.setUp(url, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "CCTV");
-                Button buttonOk = (Button)dialog.findViewById(R.id.buttonCCTVOk);
-                buttonOk.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        JZVideoPlayer.releaseAllVideos();
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();*//*
-                Uri uri=Uri.parse(url);
-                Intent live= new Intent(Intent.ACTION_VIEW);
-                live.setDataAndType(uri,"video/*");
-                startActivity(live);*/
-
-                //startActivity(new Intent(daycaredashboard.this,LiveFeed.class));
-            }
-        });
-
-        memoriestxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(daycaredashboard.this, MemoriesUser.class));
-            }
-        });
-        Photos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(daycaredashboard.this, MemoriesUser.class));
-            }
-        });
 
         scheduletxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -311,52 +382,62 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
     }
 
     void initiate(){
-        childprof=(ImageButton)findViewById(R.id.childprofile);
-        parentprof=(ImageButton)findViewById(R.id.parentsprofile);
-        foodmenu=(ImageButton)findViewById(R.id.foodmenu);
-        livefeed=(ImageButton)findViewById(R.id.dayatimeptus);
-        Photos=(ImageButton)findViewById(R.id.memories);
-        timetable=(ImageButton)findViewById(R.id.timetable);
 
-        memoriestxt=(TextView)findViewById(R.id.textmemory);
-        cctvtxt=(TextView)findViewById(R.id.textlive);
-        scheduletxt=(TextView)findViewById(R.id.textschedule);
-        parenttxt=(TextView)findViewById(R.id.textparent);
-        childtxt=(TextView)findViewById(R.id.textchild);
-        menutxt=(TextView)findViewById(R.id.textmenu);
+        foodmenu = findViewById(R.id.foodmenu);
+        timetable = findViewById(R.id.timetable);
+        scheduletxt = findViewById(R.id.textschedule);
+        menutxt = findViewById(R.id.textmenu);
+        SProfile = findViewById(R.id.childprofile);
+        PProfile = findViewById(R.id.parentsprofile);
+        Timetable = findViewById(R.id.theme);
+        Announcements = findViewById(R.id.Announcements);
+        reqforLeave = findViewById(R.id.reqforLeave);
+        HW = findViewById(R.id.Homework);
+        AuthPerson = findViewById(R.id.authorisedperson);
+        hWClassreport = findViewById(R.id.homeclassreport);
+        Emergency = findViewById(R.id.emergency);
+        nav_head = findViewById(R.id.photo);
 
+        hometxt = findViewById(R.id.texthomework);
+        spokentxt = findViewById(R.id.textspoken);
+        reqtxt = findViewById(R.id.textrequest);
+        emertxt = findViewById(R.id.textemergency);
+        authtxt = findViewById(R.id.textauthorized);
+        parenttxt = findViewById(R.id.textparent);
+        childtxt = findViewById(R.id.textchild);
+        syllabustxt = findViewById(R.id.textsyllabus);
+        announcetxt = findViewById(R.id.textannouncements);
 
         // Logout=(Button)findViewById(R.id.Logout);
     }
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-
-
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        final Bundle bundle = getIntent().getExtras();
         if (id == R.id.resetpassword) {
 
             Intent intent = new Intent(daycaredashboard.this, ResetPassword.class);
+            //intent.putExtras(bundle);
             startActivity(intent);
             //Toast.makeText(getApplicationContext(), "Reset Password clicked", Toast.LENGTH_SHORT).show();
-
         } else if (id == R.id.CallUs) {
+            // Toast.makeText(getApplicationContext(), "Call Us is clicked", Toast.LENGTH_SHORT).show();
 
-            //Toast.makeText(getApplicationContext(), "Call Us is clicked", Toast.LENGTH_SHORT).show();
             final TextView phone1,phone2,phone3;
             Button button1,button2,button3;
             android.support.v7.app.AlertDialog.Builder build=new android.support.v7.app.AlertDialog.Builder(daycaredashboard.this);
             View mView=getLayoutInflater().inflate(R.layout.calluspopup,null);
 
-            phone1=(TextView)mView.findViewById(R.id.phone1);
-            phone2=(TextView)mView.findViewById(R.id.phone2);
-            phone3=(TextView)mView.findViewById(R.id.phone3);
+            phone1 = mView.findViewById(R.id.phone1);
+            phone2 = mView.findViewById(R.id.phone2);
+            phone3 = mView.findViewById(R.id.phone3);
 
-            button1=(Button)mView.findViewById(R.id.phoneButton1);
-            button2=(Button)mView.findViewById(R.id.phoneButton2);
-            button3=(Button)mView.findViewById(R.id.phoneButton3);
+            button1 = mView.findViewById(R.id.phoneButton1);
+            button2 = mView.findViewById(R.id.phoneButton2);
+            button3 = mView.findViewById(R.id.phoneButton3);
 
 
             button1.setOnClickListener(new View.OnClickListener() {
@@ -404,11 +485,32 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
         } else if (id == R.id.cctv) {
             final String url = "http://cdn.streamonweb.com:1935/ipcamlive/impetus_cam1/playlist.m3u8";
-
             JZVideoPlayerStandard.startFullscreen(daycaredashboard.this, JZVideoPlayerStandard.class, url, "CCTV");
-        } else if (id == R.id.feedback) {
-            //Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
+        } /*else if (id == R.id.notifications) {
+            // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+
+            if (username.contains("Seed")) {
+                Intent intent = new Intent(Main4Activity.this, Timetable_playgroup.class);
+                startActivity(intent);
+            } else if (username.contains("Budd")) {
+                Intent intent = new Intent(Main4Activity.this, Timetable_nursery.class);
+                startActivity(intent);
+
+            } else if (username.contains("Bloss")) {
+                Intent intent = new Intent(Main4Activity.this, Timetable_jrandsrkg.class);
+                startActivity(intent);
+
+            } else if (username.contains("Flou")) {
+                Intent intent = new Intent(Main4Activity.this, Timetable_jrandsrkg.class);
+                startActivity(intent);
+
+            }
+
+
+
+        } */ else if (id == R.id.feedback) {
+            // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(daycaredashboard.this, userfeedback.class);
             startActivity(intent);
@@ -416,16 +518,15 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
 
         } else if (id == R.id.rateus) {
             // Toast.makeText(getApplicationContext(), "Coming Soon!", Toast.LENGTH_SHORT).show();
+
             final String appPackageName = getPackageName();
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
             } catch (android.content.ActivityNotFoundException anfe) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
             }
-
-
         } else if (id == R.id.logout) {
-            //  Toast.makeText(getApplicationContext(), "Logout Clicked clicked", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(getApplicationContext(), "Logout Clicked clicked", Toast.LENGTH_SHORT).show();
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(daycaredashboard.this);
 
@@ -440,17 +541,18 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
                         public void onClick(DialogInterface dialog, int id) {
                             // if this button is clicked, close
                             // current activity
-
-                            SessionManagement.retrieveSharedPreferences(daycaredashboard.this);
-                            SessionManagement.rememberMe=false;
-                            SessionManagement.username="NA";
-                            SessionManagement.lastLoginTimestamp=0;
+                            /*
+                            SessionManagement.retrieveSharedPreferences(Main4Activity.this);
+                            SessionManagement.rememberMe = false;
+                            SessionManagement.username = "NA";
+                            SessionManagement.lastLoginTimestamp = 0;
                             SessionManagement.updateSharedPreferences();
-
+                            */
                             Intent intent = new Intent(daycaredashboard.this, Logout.class);
                             startActivity(intent);
 
                             daycaredashboard.this.finish();
+
                         }
                     })
                     .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -468,15 +570,13 @@ public class daycaredashboard extends AppCompatActivity implements NavigationVie
             alertDialog.show();
 
 
-        } /*else if (id == R.id.memories) {
+        } else if (id == R.id.memories) {
             Intent intent = new Intent(daycaredashboard.this, MemoriesUser.class);
             startActivity(intent);
-        }*/
+        }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
+        DrawerLayout drawer = findViewById(R.id.drawerlayout);
         drawer.closeDrawer(GravityCompat.START);
-
         return true;
-
     }
 }
