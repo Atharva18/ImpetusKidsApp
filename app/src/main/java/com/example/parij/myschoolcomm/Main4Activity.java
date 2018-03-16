@@ -62,6 +62,8 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
+
                         Intent intent = new Intent(Main4Activity.this, Logout.class);
                         startActivity(intent);
                         Main4Activity.this.finish();
@@ -76,10 +78,10 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).keepSynced(true);
-        drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
+        drawer = findViewById(R.id.drawerlayout);
 
         findViewById(R.id.drawer_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,17 +106,17 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
         toggle.syncState();
 
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
 
         View header=navigationView.getHeaderView(0);
 /*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
-        name = (TextView)header.findViewById(R.id.name);
-        rollNo = (TextView)header.findViewById(R.id.roll);
-        program = (TextView)header.findViewById(R.id.program);
-        photo =(ImageView)header.findViewById(R.id.photo);
+        name = header.findViewById(R.id.name);
+        rollNo = header.findViewById(R.id.roll);
+        program = header.findViewById(R.id.program);
+        photo = header.findViewById(R.id.photo);
 
 
         SessionManagement.retrieveSharedPreferences(Main4Activity.this);
@@ -408,26 +410,26 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
     public void Intialise()
     {
        // Logout=(Button)findViewById(R.id.Logout);
-        SProfile=(ImageButton)findViewById(R.id.childprofile);
-        PProfile=(ImageButton)findViewById(R.id.parentsprofile);
-        Timetable=(ImageButton)findViewById(R.id.theme);
-        Announcements=(ImageButton)findViewById(R.id.Announcements);
-        reqforLeave=(ImageButton)findViewById(R.id.reqforLeave);
-        HW=(ImageButton)findViewById(R.id.Homework);
-        AuthPerson=(ImageButton)findViewById(R.id.authorisedperson);
-        hWClassreport=(ImageButton)findViewById(R.id.homeclassreport);
-        Emergency=(ImageButton)findViewById(R.id.emergency);
-        nav_head=(ImageView)findViewById(R.id.photo);
+        SProfile = findViewById(R.id.childprofile);
+        PProfile = findViewById(R.id.parentsprofile);
+        Timetable = findViewById(R.id.theme);
+        Announcements = findViewById(R.id.Announcements);
+        reqforLeave = findViewById(R.id.reqforLeave);
+        HW = findViewById(R.id.Homework);
+        AuthPerson = findViewById(R.id.authorisedperson);
+        hWClassreport = findViewById(R.id.homeclassreport);
+        Emergency = findViewById(R.id.emergency);
+        nav_head = findViewById(R.id.photo);
 
-        hometxt=(TextView)findViewById(R.id.texthomework);
-        spokentxt=(TextView)findViewById(R.id.textspoken);
-        reqtxt=(TextView)findViewById(R.id.textrequest);
-        emertxt=(TextView)findViewById(R.id.textemergency);
-        authtxt=(TextView)findViewById(R.id.textauthorized);
-        parenttxt=(TextView)findViewById(R.id.textparent);
-        childtxt=(TextView)findViewById(R.id.textchild);
-        syllabustxt=(TextView)findViewById(R.id.textsyllabus);
-        announcetxt=(TextView)findViewById(R.id.textannouncements);
+        hometxt = findViewById(R.id.texthomework);
+        spokentxt = findViewById(R.id.textspoken);
+        reqtxt = findViewById(R.id.textrequest);
+        emertxt = findViewById(R.id.textemergency);
+        authtxt = findViewById(R.id.textauthorized);
+        parenttxt = findViewById(R.id.textparent);
+        childtxt = findViewById(R.id.textchild);
+        syllabustxt = findViewById(R.id.textsyllabus);
+        announcetxt = findViewById(R.id.textannouncements);
 
 
 
@@ -456,13 +458,13 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
             android.support.v7.app.AlertDialog.Builder build=new android.support.v7.app.AlertDialog.Builder(Main4Activity.this);
             View mView=getLayoutInflater().inflate(R.layout.calluspopup,null);
 
-            phone1=(TextView)mView.findViewById(R.id.phone1);
-            phone2=(TextView)mView.findViewById(R.id.phone2);
-            phone3=(TextView)mView.findViewById(R.id.phone3);
+            phone1 = mView.findViewById(R.id.phone1);
+            phone2 = mView.findViewById(R.id.phone2);
+            phone3 = mView.findViewById(R.id.phone3);
 
-            button1=(Button)mView.findViewById(R.id.phoneButton1);
-            button2=(Button)mView.findViewById(R.id.phoneButton2);
-            button3=(Button)mView.findViewById(R.id.phoneButton3);
+            button1 = mView.findViewById(R.id.phoneButton1);
+            button2 = mView.findViewById(R.id.phoneButton2);
+            button3 = mView.findViewById(R.id.phoneButton3);
 
 
             button1.setOnClickListener(new View.OnClickListener() {
@@ -569,13 +571,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
                         public void onClick(DialogInterface dialog,int id) {
                             // if this button is clicked, close
                             // current activity
-                            /*
-                            SessionManagement.retrieveSharedPreferences(Main4Activity.this);
-                            SessionManagement.rememberMe = false;
-                            SessionManagement.username = "NA";
-                            SessionManagement.lastLoginTimestamp = 0;
-                            SessionManagement.updateSharedPreferences();
-                            */
+
                             Intent intent = new Intent(Main4Activity.this, Logout.class);
                             startActivity(intent);
 
@@ -603,7 +599,7 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
             startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerlayout);
+        DrawerLayout drawer = findViewById(R.id.drawerlayout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

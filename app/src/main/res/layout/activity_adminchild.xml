@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:weightSum="120">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -29,10 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="3dp"
-            android:layout_weight="10"
+            android:layout_weight="20"
             android:stretchColumns="1"
             android:visibility="visible"
-            android:weightSum="10">
+            android:weightSum="5">
 
             <TableRow
                 android:layout_height="150dp"
@@ -49,9 +49,7 @@
                     android:maxHeight="150dp"
                     android:src="@drawable/head"
                     app:civ_border_color="#FF000000"
-                    app:civ_border_width="2dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:civ_border_width="2dp" />
 
                 <LinearLayout
 

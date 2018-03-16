@@ -52,7 +52,7 @@
         <item>Seeding</item>
         <item>Budding</item>
         <item>Blossoming</item>
-        <item>Fluorishing</item>
+        <item>Flourishing</item>
     </string-array>
 
     <string-array name="TypeAll">
@@ -61,14 +61,14 @@
         <item>Seeding</item>
         <item>Budding</item>
         <item>Blossoming</item>
-        <item>Fluorishing</item>
+        <item>Flourishing</item>
     </string-array>
 
     <string-array name="programs">
         <item>Seeding</item>
         <item>Budding</item>
         <item>Blossoming</item>
-        <item>Fluorishing</item>
+        <item>Flourishing</item>
     </string-array>
 
     <string-array name="Batch">

@@ -1,230 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
+
+    android:background="@color/Grey"
     android:orientation="vertical"
-    android:weightSum="100"
-    tools:context="com.example.parij.myschoolcomm.AuthorizedPersonActivity">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:background="#3209da" />
+    android:weightSum="3"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.parij.myschoolcomm.daycaredashboard">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="25"
+        android:layout_weight="1"
         android:orientation="horizontal"
-        android:weightSum="5">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/personphoto"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:src="@drawable/head"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="2dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:weightSum="2">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
-            android:layout_gravity="left|center_vertical"
-            android:layout_weight="2.5"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/choose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
+            <TextView
+                android:id="@+id/textmemory"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="@color/newGreen"
+                android:gravity="center_vertical"
+                android:text="Memories"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/memories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/memories" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="115dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textlive"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
                 android:background="@color/colorPrimary"
-                android:text=" CHOOSE PHOTO "
-                android:textColor="@android:color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                android:gravity="center_vertical"
+                android:text="Live Feed"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/dayatimeptus"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/cctv" />
         </LinearLayout>
 
     </LinearLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10">
-
-        <EditText
-            android:id="@+id/relation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Relation"
-            android:inputType="textPersonName"
-            android:textSize="18sp" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10">
-
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Name of the person"
-            android:inputType="textPersonName"
-            android:textSize="18sp" />
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="10">
-
-        <EditText
-            android:id="@+id/contactno"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Contact no"
-            android:inputType="phone"
-            android:textSize="18sp" />
-    </android.support.design.widget.TextInputLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="20"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:background="@color/White"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView28"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginLeft="7dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="From:"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contactno" />
-
-            <TextView
-                android:id="@+id/date1"
+                android:id="@+id/textschedule"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:background="@drawable/edittextborder"
-                android:ems="10"
+                android:layout_height="46dp"
+                android:background="@color/newBrown"
                 android:gravity="center_vertical"
-                android:inputType="textPersonName"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="Select date"
+                android:text="Daily Schedule"
                 android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/textView28"
-                app:layout_constraintTop_toBottomOf="@+id/contactno" />
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/timetable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/timetable" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="115dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:background="@color/White"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView29"
+                android:id="@+id/textparent"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="7dp"
-                android:layout_weight="1"
+                android:layout_height="47dp"
+                android:background="@color/Orange"
                 android:gravity="center_vertical"
-                android:text="To:"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/date1"
-                app:layout_constraintTop_toBottomOf="@+id/contactno" />
-
-            <TextView
-                android:id="@+id/date2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="3dp"
-                android:layout_weight="1"
-                android:background="@drawable/edittextborder"
-                android:ems="10"
-                android:gravity="center_vertical"
-                android:inputType="textPersonName"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="Select date"
+                android:text="Parent Profile"
                 android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView29"
-                app:layout_constraintTop_toBottomOf="@+id/contactno" />
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/parentsprofile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/parents" />
         </LinearLayout>
+
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_weight="10"
-        android:background="@color/colorPrimary"
-        android:text="Submit"
-        android:textColor="@color/White"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactno" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="115dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textchild"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/light_blue"
+                android:gravity="center_vertical"
+                android:text="Child Profile"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/childprofile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/child" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="115dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textmenu"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="@color/Pink"
+                android:gravity="center_vertical"
+                android:text="Food-Menu"
+                android:textAlignment="center"
+                android:textColor="@color/White"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/foodmenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/foodmenu" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

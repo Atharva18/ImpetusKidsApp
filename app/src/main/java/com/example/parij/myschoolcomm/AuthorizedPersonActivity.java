@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.parij.myschoolcomm.Models.AuthorizedPerson;
 import com.example.parij.myschoolcomm.Models.Student;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -177,12 +178,40 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 Student student;
-                for (DataSnapshot ds : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     student = ds.getValue(Student.class);
                     studentArrayList.add(student);
                     keysArrayList.add(ds.getKey());
                 }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Student student;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    student = ds.getValue(Student.class);
+                    if (student.getUsername().equals(username)) {
+                        name.setText(student.getAuthorizedPerson().getName().toString());
+                        relation.setText(student.getAuthorizedPerson().getRelation().toString());
+                        contactNo.setText(student.getAuthorizedPerson().getPhone().toString());
+                        date1.setText(student.getAuthorizedPerson().getFromDate().toString());
+                        date2.setText(student.getAuthorizedPerson().getToDate().toString());
+                        String url = student.getFather().getImageLink();
+                        if (!url.equals("")) {
+                            Glide.with(getApplicationContext()).load(url).into(personphoto);
+                        }
+                    }
+
+                }
+
             }
 
             @Override

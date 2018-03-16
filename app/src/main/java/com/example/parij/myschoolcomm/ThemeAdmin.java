@@ -16,8 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -152,6 +155,8 @@ public class ThemeAdmin extends AppCompatActivity {
 
                 type[0] = (String) parent.getItemAtPosition(position);
 
+
+                selectprogram(position);
             }
 
             @Override
@@ -197,6 +202,61 @@ public class ThemeAdmin extends AppCompatActivity {
         });
 
     }
+
+    public void selectprogram(int position) {
+
+        if (position == 1) {
+            displaystart("Day-Care");
+
+        } else if (position == 2) {
+            displaystart("Seeding");
+
+
+        } else if (position == 3) {
+            displaystart("Budding");
+
+
+        } else if (position == 4) {
+            displaystart("Blossoming");
+
+        } else if (position == 5) {
+            displaystart("Flourishing");
+
+
+        }
+
+
+    }
+
+    public void displaystart(String program) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference newreference = database.getReference("newDb").child("SpokenEnglish").child(program);
+
+        newreference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                start.setText((CharSequence) dataSnapshot.child("startdate").getValue());
+                end.setText((CharSequence) dataSnapshot.child("enddate").getValue());
+                parenttheme.setText((CharSequence) dataSnapshot.child("parenttheme").getValue());
+                theme.setText((CharSequence) dataSnapshot.child("theme").getValue());
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+
+
+
+
 
     public void check(int position) {
 
