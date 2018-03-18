@@ -25,7 +25,6 @@ import java.util.List;
 public class tempParentRegistration extends AppCompatActivity {
 
 
-
     EditText username, password, rollNo, name;
 
     Spinner spinner2, spinnerProgram;
@@ -56,7 +55,7 @@ public class tempParentRegistration extends AppCompatActivity {
         setContentView(R.layout.activity_parent_registration);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -65,13 +64,13 @@ public class tempParentRegistration extends AppCompatActivity {
         //  toolbar.setNavigationIcon(R.drawable.childprofbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        rollNo = (EditText) findViewById(R.id.rollNo);
-        name = (EditText) findViewById(R.id.name);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        rollNo = findViewById(R.id.rollNo);
+        name = findViewById(R.id.name);
 
 
-        spinnerProgram = (Spinner) findViewById(R.id.spinnerProgram);
+        spinnerProgram = findViewById(R.id.spinnerProgram);
         arrayListPrograms = new ArrayList<>();
         arrayListPrograms.add("Daycare");
         arrayListPrograms.add("Blossoming");
@@ -80,8 +79,8 @@ public class tempParentRegistration extends AppCompatActivity {
         arrayListPrograms.add("Seeding");
         //arrayAdapterProgram = new ArrayAdapter<CharSequence>(tempParentRegistration.this, android.R.layout.simple_list_item_1, arrayListPrograms);
 
-        spinner2 = (Spinner) findViewById(R.id.spinnerBatch);
-        add = (Button) findViewById(R.id.adduser);
+        spinner2 = findViewById(R.id.spinnerBatch);
+        add = findViewById(R.id.adduser);
 
 
         arrayAdapter = ArrayAdapter.createFromResource(this, R.array.Batch, android.R.layout.simple_spinner_item);
@@ -99,34 +98,40 @@ public class tempParentRegistration extends AppCompatActivity {
         programs = new ArrayList<>();
         arrayListStudents = new ArrayList<>();
 
-        DatabaseReference reference = database.getReference("newDb").child("students");
+        final DatabaseReference reference = database.getReference("newDb").child("students");
 
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Student student;
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    student = ds.getValue(Student.class);
-                    arrayListStudents.add(student);
-                    userNames.add(student.getUsername());
-                    add.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (isInputValid())
-                                addUser();
-                            else
-                                Toast.makeText(tempParentRegistration.this, "Invalid input.", Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
+                // Toast.makeText(tempParentRegistration.this,"here",Toast.LENGTH_SHORT).show();
+                if (isInputValid())
+                    addUser();
+                else
+                    Toast.makeText(tempParentRegistration.this, "Invalid input.", Toast.LENGTH_LONG).show();
+
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Student student;
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            student = ds.getValue(Student.class);
+                            arrayListStudents.add(student);
+                            userNames.add(student.getUsername());
+
                         }
-                    });
-                }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-            }
         });
     }
+
 
     void addUser() {
         int flag = 0;
