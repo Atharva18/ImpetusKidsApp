@@ -103,7 +103,11 @@ public class memories_admin extends AppCompatActivity {
                 } else if (radioButtonFlourishing.isChecked()) {
                     select_photo((Constants.getProgramName(8)));
                     dialog.cancel();
+                } else if (radioButtonDayCare.isChecked()) {
+                    select_photo((Constants.getProgramName(4)));
+                    dialog.cancel();
                 }
+
             }
         });
         build.setView(view);
