@@ -56,7 +56,7 @@ public class tempParentRegistration extends AppCompatActivity {
         setContentView(R.layout.activity_parent_registration);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -65,13 +65,13 @@ public class tempParentRegistration extends AppCompatActivity {
         //  toolbar.setNavigationIcon(R.drawable.childprofbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        rollNo = (EditText) findViewById(R.id.rollNo);
-        name = (EditText) findViewById(R.id.name);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        rollNo = findViewById(R.id.rollNo);
+        name = findViewById(R.id.name);
 
 
-        spinnerProgram = (Spinner) findViewById(R.id.spinnerProgram);
+        spinnerProgram = findViewById(R.id.spinnerProgram);
         arrayListPrograms = new ArrayList<>();
         arrayListPrograms.add("Daycare");
         arrayListPrograms.add("Blossoming");
@@ -80,8 +80,8 @@ public class tempParentRegistration extends AppCompatActivity {
         arrayListPrograms.add("Seeding");
         //arrayAdapterProgram = new ArrayAdapter<CharSequence>(tempParentRegistration.this, android.R.layout.simple_list_item_1, arrayListPrograms);
 
-        spinner2 = (Spinner) findViewById(R.id.spinnerBatch);
-        add = (Button) findViewById(R.id.adduser);
+        spinner2 = findViewById(R.id.spinnerBatch);
+        add = findViewById(R.id.adduser);
 
 
         arrayAdapter = ArrayAdapter.createFromResource(this, R.array.Batch, android.R.layout.simple_spinner_item);
@@ -100,7 +100,7 @@ public class tempParentRegistration extends AppCompatActivity {
         arrayListStudents = new ArrayList<>();
 
         DatabaseReference reference = database.getReference("newDb").child("students");
-
+        Log.e("REG", "Setting listener");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -118,6 +118,7 @@ public class tempParentRegistration extends AppCompatActivity {
                                 Toast.makeText(tempParentRegistration.this, "Invalid input.", Toast.LENGTH_LONG).show();
                         }
                     });
+                    Log.e("REQ", "Data retrieved");
                 }
             }
 
