@@ -234,7 +234,7 @@
             android:name=".userfeedback"
             android:screenOrientation="portrait" />
         <activity android:name=".MemoriesUser" />
-        <activity android:name=".memories_admin"></activity>
+        <activity android:name=".MemoriesUploadAdminActivity"></activity>
     </application>
 
 </manifest>

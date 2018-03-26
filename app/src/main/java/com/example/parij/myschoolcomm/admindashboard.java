@@ -37,7 +37,7 @@ public class admindashboard extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menuMemories) {
-            Intent intent = new Intent(admindashboard.this, memories_admin.class);
+            Intent intent = new Intent(admindashboard.this, MemoriesUploadAdminActivity.class);
             startActivity(intent);
             return true;
         }

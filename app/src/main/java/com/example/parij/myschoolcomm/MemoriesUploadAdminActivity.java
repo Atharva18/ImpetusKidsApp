@@ -35,7 +35,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 
-public class memories_admin extends AppCompatActivity {
+public class MemoriesUploadAdminActivity extends AppCompatActivity {
 
 
     RadioButton radioButtonAll, radioButtonSeeding, radioButtonBudding, radioButtonBlossoming, radioButtonFlourishing, radioButtonDayCare;
@@ -57,7 +57,7 @@ public class memories_admin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memories_admin);
-        AlertDialog.Builder build = new AlertDialog.Builder(memories_admin.this);
+        AlertDialog.Builder build = new AlertDialog.Builder(MemoriesUploadAdminActivity.this);
         view = getLayoutInflater().inflate(R.layout.dialog_choose_program, null);
         initialise();
 
@@ -124,7 +124,7 @@ public class memories_admin extends AppCompatActivity {
         for (String key : bundle.keySet()) {
             Log.d("myApplication", key + " is a key in the bundle");
         }
-        Intent intent = new Intent(memories_admin.this, AlbumSelectActivity.class);
+        Intent intent = new Intent(MemoriesUploadAdminActivity.this, AlbumSelectActivity.class);
         intent.putExtras(bundle);
         startActivityForResult(intent, com.darsh.multipleimageselect.helpers.Constants.REQUEST_CODE);
 
@@ -138,16 +138,16 @@ public class memories_admin extends AppCompatActivity {
             ArrayList<Image> images = new ArrayList<>();
 
             images = data.getParcelableArrayListExtra(com.darsh.multipleimageselect.helpers.Constants.INTENT_EXTRA_IMAGES);
-            Log.e("Images",images.get(0).path);
+            Log.e("Images", images.get(0).path);
             for (String key : bundle.keySet()) {
                 Log.d("myApplication", key + " is a key in the bundle");
             }
             String program = bundle.getString("Program");
-            upload_photo(images, program);
+            uploadPhoto(images, program);
         }
     }
 
-    void upload_photo(ArrayList<Image> images, String program) {
+    void uploadPhoto(ArrayList<Image> images, String program) {
 
         Programs programs = new Programs();
 
@@ -168,52 +168,66 @@ public class memories_admin extends AppCompatActivity {
         final Programs progobj = programs;
         storageReference = FirebaseStorage.getInstance().getReference().child("Memories").child(program).child(lowestTimestampIndex + "");
 
-        final ProgressDialog progressDialog = new ProgressDialog(memories_admin.this);
+        firebaseUploadTask(0, images, arrayListMemories, lowestTimestampIndex, progobj);
+
+
+    }
+
+    void firebaseUploadTask(final int i, final ArrayList<Image> images, final ArrayList<Memory> arrayListMemories, final int lowestTimestampIndex, final Programs progobj) {
+        final ProgressDialog progressDialog = new ProgressDialog(MemoriesUploadAdminActivity.this);
         progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Uploading image...");
+        progressDialog.setMessage("Uploading image... " + (i + 1) + " of " + images.size());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.show();
-
-        for (int i = 0; i < images.size(); i++) {
-
-            File file = new File(String.valueOf(images.get(i).path));
-            Uri uri = Uri.fromFile(file);
-            UploadTask uploadTask = storageReference.putFile(Uri.parse(uri.toString()));
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(memories_admin.this, "Image upload failed!", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    progressDialog.dismiss();
-                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("students").child("Programs");
-                    if (arrayListMemories.size() < 9)
-                        arrayListMemories.add(new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
-                    else
-                        arrayListMemories.set(lowestTimestampIndex, new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
-
-                    progobj.setMemoryImageLinks(arrayListMemories);
-
-                    databaseReference.push().setValue(progobj);
-
-                    Toast.makeText(memories_admin.this, "Upload successful", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(memories_admin.this, admindashboard.class));
+        File file = new File(String.valueOf(images.get(i).path));
+        Uri uri = Uri.fromFile(file);
+        UploadTask uploadTask = storageReference.putFile(Uri.parse(uri.toString()));
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MemoriesUploadAdminActivity.this, "Image upload failed!", Toast.LENGTH_SHORT).show();
+                if (i == images.size() - 1) {
+                    startActivity(new Intent(MemoriesUploadAdminActivity.this, admindashboard.class));
                     finish();
+                } else {
+                    firebaseUploadTask(i + 1, images, arrayListMemories, lowestTimestampIndex + 1, progobj);
                 }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressDialog.setMax((int) taskSnapshot.getTotalByteCount());
-                    progressDialog.setProgress((int) taskSnapshot.getBytesTransferred());
-                    progressDialog.setSecondaryProgress((int) taskSnapshot.getBytesTransferred());
-                    Log.e("Task Progress", "bytesT: " + taskSnapshot.getBytesTransferred() + "bytesTot: " + taskSnapshot.getTotalByteCount());
-                }
-            });
+            }
+        }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                progressDialog.dismiss();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("students").child("Programs");
+                if (arrayListMemories.size() < 9)
+                    arrayListMemories.add(new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
+                else
+                    arrayListMemories.set(lowestTimestampIndex, new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
 
-        }
+                progobj.setMemoryImageLinks(arrayListMemories);
+
+                databaseReference.push().setValue(progobj);
+
+                Toast.makeText(MemoriesUploadAdminActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+                if (i == images.size() - 1) {
+                    startActivity(new Intent(MemoriesUploadAdminActivity.this, admindashboard.class));
+                    finish();
+                } else {
+                    firebaseUploadTask(i + 1, images, arrayListMemories, lowestTimestampIndex + 1, progobj);
+                }
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                progressDialog.setMax((int) taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress((int) taskSnapshot.getBytesTransferred());
+                progressDialog.setSecondaryProgress((int) taskSnapshot.getBytesTransferred());
+                Log.e("Task Progress", "bytesT: " + taskSnapshot.getBytesTransferred() + "bytesTot: " + taskSnapshot.getTotalByteCount());
+            }
+        });
+
+
     }
 
     int lowestTimestamp(ArrayList<Memory> arrayList) {
