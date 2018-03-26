@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="3dp"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textAlignment="center"
+        android:title="Choose Program"
+        app:title="Choose Program"
+        app:titleTextColor="@android:color/background_light"></android.support.v7.widget.Toolbar>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:checkedButton="@+id/radioButtonAllPrograms">
+
+        <RadioButton
+            android:id="@+id/radioButtonAllPrograms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="All" />
+
+        <RadioButton
+            android:id="@+id/radioButtonDayCare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Day Care" />
+
+        <RadioButton
+            android:id="@+id/radioButtonSeeding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Seeding" />
+
+        <RadioButton
+            android:id="@+id/radioButtonBudding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Budding" />
+
+        <RadioButton
+            android:id="@+id/radioButtonBlossoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Blossoming" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFlourishing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Flourishing" />
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonTypeOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:text="Ok" />
+</LinearLayout>

@@ -25,7 +25,6 @@ import java.util.List;
 public class tempParentRegistration extends AppCompatActivity {
 
 
-
     EditText username, password, rollNo, name;
 
     Spinner spinner2, spinnerProgram;
@@ -99,35 +98,40 @@ public class tempParentRegistration extends AppCompatActivity {
         programs = new ArrayList<>();
         arrayListStudents = new ArrayList<>();
 
-        DatabaseReference reference = database.getReference("newDb").child("students");
-        Log.e("REG", "Setting listener");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        final DatabaseReference reference = database.getReference("newDb").child("students");
+
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Student student;
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    student = ds.getValue(Student.class);
-                    arrayListStudents.add(student);
-                    userNames.add(student.getUsername());
-                    add.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (isInputValid())
-                                addUser();
-                            else
-                                Toast.makeText(tempParentRegistration.this, "Invalid input.", Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
+                // Toast.makeText(tempParentRegistration.this,"here",Toast.LENGTH_SHORT).show();
+                if (isInputValid())
+                    addUser();
+                else
+                    Toast.makeText(tempParentRegistration.this, "Invalid input.", Toast.LENGTH_LONG).show();
+
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Student student;
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            student = ds.getValue(Student.class);
+                            arrayListStudents.add(student);
+                            userNames.add(student.getUsername());
+
                         }
-                    });
-                    Log.e("REQ", "Data retrieved");
-                }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-            }
         });
     }
+
 
     void addUser() {
         int flag = 0;

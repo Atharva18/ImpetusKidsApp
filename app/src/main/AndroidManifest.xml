@@ -8,7 +8,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <!--         android:name="android.support.multidex.MultiDexApplication" -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <!-- android:name="android.support.multidex.MultiDexApplication" -->
     <application
         android:name=".ImpetusKids"
         android:allowBackup="true"
@@ -27,6 +32,13 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.darsh.multipleimageselect.activities.AlbumSelectActivity"
+            android:theme="@style/MultipleImageSelectTheme">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -221,7 +233,8 @@
         <activity
             android:name=".userfeedback"
             android:screenOrientation="portrait" />
-        <activity android:name=".MemoriesUser"></activity>
+        <activity android:name=".MemoriesUser" />
+        <activity android:name=".memories_admin"></activity>
     </application>
 
 </manifest>

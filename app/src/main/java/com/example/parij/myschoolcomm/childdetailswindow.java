@@ -61,6 +61,8 @@ public class childdetailswindow extends AppCompatActivity {
     Dialog dialog;
     StorageReference storageReference;
     int selectedPosition = -1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
