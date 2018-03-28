@@ -33,6 +33,7 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
     int progressCount = 0;
     ArrayList<Memory> imageLinks;
     ArrayList<String> imageUrls;
+
     long pressTime = 0L;
     long limit = 500L;
     Bundle bundle;
@@ -62,18 +63,40 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Student s;
+                String program = "";
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     s = data.getValue(Student.class);
                     if (s.getUsername().equals(username)) {
-                        imageLinks = new ArrayList<>(s.getMemoryImageLinks());
+
+                        program = Constants.getProgramName(s.getProgram());
+                        break;
+                        //  imageLinks = new ArrayList<>(s.getMemoryImageLinks());
                         /*if(s.getMemoryImageLinks().size() == 0){
                             Toast.makeText(MemoriesUser.this,"No memories",Toast.LENGTH_LONG).show();
                             finish();
                         }*/
-                        Log.d("memoryLinks", s.getMemoryImageLinks().toString());
-                        break;
+                        //Log.d("memoryLinks", s.getMemoryImageLinks().toString());
+
                     }
                 }
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference("newDb").child("Programs").child(program);
+
+
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        imageLinks = (ArrayList<Memory>) dataSnapshot.child("memoryImageLinks").getValue();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
                 for (Memory m : imageLinks) {
                     imageUrls.add(m.getUrl());
                     Log.d("memories", m.getUrl());
