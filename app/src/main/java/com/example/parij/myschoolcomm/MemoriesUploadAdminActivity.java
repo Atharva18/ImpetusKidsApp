@@ -196,7 +196,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
                 final int lowestTimestampIndex = lowestTimestamp(arrayListMemories);
                 // final Programs progobj = programs;
 
-                firebaseUploadTask(0, images, arrayListMemories, lowestTimestampIndex, program);
+                firebaseUploadTask(0, images, arrayListMemories, lowestTimestampIndex % 9, program);
 
             }
 
