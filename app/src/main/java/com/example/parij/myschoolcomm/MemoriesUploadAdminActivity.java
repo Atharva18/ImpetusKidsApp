@@ -287,7 +287,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
     int lowestTimestamp(ArrayList<Memory> arrayList) {
         long minTS = Long.MAX_VALUE;
         int index = 0;
-        if (arrayList.size() >= 9) {
+        if (arrayList.size() >= 10) {
             for (int i = 0; i < arrayList.size(); i++) {
                 Log.e("TS: ", "ts: " + minTS + " index: " + i + " size: " + arrayList.size());
                 if (arrayList.get(i).getTimestamp() < minTS) {
