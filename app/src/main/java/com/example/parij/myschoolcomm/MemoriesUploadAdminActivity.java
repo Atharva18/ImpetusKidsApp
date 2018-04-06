@@ -244,7 +244,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
                     startActivity(new Intent(MemoriesUploadAdminActivity.this, admindashboard.class));
                     finish();
                 } else {
-                    firebaseUploadTask(i + 1, images, arrayListMemories, lowestTimestampIndex + 1, program);
+                    firebaseUploadTask(i + 1, images, arrayListMemories, (lowestTimestampIndex + 1) % 9, program);
                 }
             }
         }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -267,7 +267,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
                     startActivity(new Intent(MemoriesUploadAdminActivity.this, admindashboard.class));
                     finish();
                 } else {
-                    firebaseUploadTask(i + 1, images, arrayListMemories, lowestTimestampIndex + 1, program);
+                    firebaseUploadTask(i + 1, images, arrayListMemories, (lowestTimestampIndex + 1) % 9, program);
                 }
 
             }
