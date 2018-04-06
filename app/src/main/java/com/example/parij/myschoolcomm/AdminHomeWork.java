@@ -195,7 +195,7 @@ public class AdminHomeWork extends AppCompatActivity {
                     ,enddate1);
                     databaseReference.setValue(obj);
                     Toast.makeText(AdminHomeWork.this,"Successfully Updated!",Toast.LENGTH_LONG).show();
-
+                    finish();
                 }
             }
         });

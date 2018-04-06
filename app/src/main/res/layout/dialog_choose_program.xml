@@ -22,14 +22,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:checkedButton="@+id/radioButtonAllPrograms">
+        android:checkedButton="@+id/radioButtonDayCare">
 
-        <RadioButton
-            android:id="@+id/radioButtonAllPrograms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="All" />
+        <!--  <RadioButton
+              android:id="@+id/radioButtonAllPrograms"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="All" />-->
 
         <RadioButton
             android:id="@+id/radioButtonDayCare"

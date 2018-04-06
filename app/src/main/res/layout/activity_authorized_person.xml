@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Relation"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine"
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Name of the person"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine"
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>
 

@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class MemoriesUploadAdminActivity extends AppCompatActivity {
 
 
-    RadioButton radioButtonAll, radioButtonSeeding, radioButtonBudding, radioButtonBlossoming, radioButtonFlourishing, radioButtonDayCare;
+    RadioButton radioButtonSeeding, radioButtonBudding, radioButtonBlossoming, radioButtonFlourishing, radioButtonDayCare;
     Button button;
     AlertDialog dialog = null;
     View view;
@@ -87,11 +87,12 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (radioButtonAll.isChecked()) {
+              /*  if (radioButtonAll.isChecked()) {
                     select_photo("all");
 
                     dialog.dismiss();
-                } else if (radioButtonSeeding.isChecked()) {
+                } else*/
+                if (radioButtonSeeding.isChecked()) {
                     select_photo((Constants.getProgramName(5)));
                     dialog.dismiss();
                 } else if (radioButtonBudding.isChecked()) {
@@ -302,7 +303,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
     }
 
     void initialise() {
-        radioButtonAll = view.findViewById(R.id.radioButtonAllPrograms);
+        // radioButtonAll = view.findViewById(R.id.radioButtonAllPrograms);
         radioButtonSeeding = view.findViewById(R.id.radioButtonSeeding);
         radioButtonBudding = view.findViewById(R.id.radioButtonBudding);
         radioButtonBlossoming = view.findViewById(R.id.radioButtonBlossoming);

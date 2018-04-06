@@ -267,23 +267,27 @@ public class ThemeAdmin extends AppCompatActivity {
             display("Budding");
             display("Blossoming");
             Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+            finish();
         } else if (position == 1) {
             display("Day-Care");
             Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+            finish();
         } else if (position == 2) {
             display("Seeding");
             Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
-
+            finish();
         } else if (position == 3) {
             display("Budding");
             Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
-
+            finish();
         } else if (position == 4) {
             display("Blossoming");
             Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+            finish();
         } else if (position == 5) {
             display("Flourishing");
             Toast.makeText(getApplicationContext(), "Theme Set!", Toast.LENGTH_SHORT).show();
+            finish();
 
         }
 

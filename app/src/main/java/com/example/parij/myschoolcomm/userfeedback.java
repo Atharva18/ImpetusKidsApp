@@ -47,7 +47,7 @@ public class userfeedback extends AppCompatActivity {
         setContentView(R.layout.activity_userfeedback);
 
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -57,11 +57,11 @@ public class userfeedback extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
 
-        one = (RatingBar) findViewById(R.id.ratingBar4);
-        two = (RatingBar) findViewById(R.id.ratingBar5);
-        three = (RatingBar) findViewById(R.id.ratingBar6);
-        submit = (Button) findViewById(R.id.button4);
-        editTextUserFeedback = (EditText) findViewById(R.id.editTextUserFeedback);
+        one = findViewById(R.id.ratingBar4);
+        two = findViewById(R.id.ratingBar5);
+        three = findViewById(R.id.ratingBar6);
+        submit = findViewById(R.id.button4);
+        editTextUserFeedback = findViewById(R.id.editTextUserFeedback);
         database = FirebaseDatabase.getInstance();
 
         final ArrayList<Float> mylist = new ArrayList<Float>();
@@ -141,6 +141,7 @@ public class userfeedback extends AppCompatActivity {
 
 
                     Toast.makeText(userfeedback.this, "Thank You!", Toast.LENGTH_LONG).show();
+
                 } else {
                     Toast.makeText(userfeedback.this, "Please fill all the fields!", Toast.LENGTH_SHORT).show();
 

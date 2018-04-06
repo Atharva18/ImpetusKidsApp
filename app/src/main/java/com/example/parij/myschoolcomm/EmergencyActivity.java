@@ -42,7 +42,7 @@ public class EmergencyActivity extends AppCompatActivity {
 
         final String username = SessionManagement.username;
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -214,6 +214,7 @@ public class EmergencyActivity extends AppCompatActivity {
                                     reference.child(ds.getKey()).setValue(student);
                                     Log.e("Key", "Student: " + student.getUsername() + " Session-username: " + username + " Key: " + ds.getKey());
                                     Toast.makeText(getApplicationContext(), "Your Response has been added", Toast.LENGTH_LONG).show();
+                                    finish();
                                 }
 
                             }
@@ -294,11 +295,11 @@ public class EmergencyActivity extends AppCompatActivity {
        // dialcontact=(Button)findViewById(R.id.dialcontact);
         //alternativebutton=(Button)findViewById(R.id.alternativebutton);
         //dialdoctor=(Button)findViewById(R.id.dialdoctor);
-        submit=(Button)findViewById(R.id.submit);
-        contactNo=(EditText)findViewById(R.id.contactNo);
-        alternativeNo=(EditText)findViewById(R.id.alternativeNo);
-        familyDoctor=(EditText)findViewById(R.id.familyDoctor);
-        doctorNo=(EditText)findViewById(R.id.doctorNo);
+        submit = findViewById(R.id.submit);
+        contactNo = findViewById(R.id.contactNo);
+        alternativeNo = findViewById(R.id.alternativeNo);
+        familyDoctor = findViewById(R.id.familyDoctor);
+        doctorNo = findViewById(R.id.doctorNo);
     }
 
 

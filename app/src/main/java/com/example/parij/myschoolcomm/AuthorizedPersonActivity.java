@@ -369,6 +369,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                                     reference.child(key).setValue(student);
                                     pd.dismiss();
                                     Toast.makeText(AuthorizedPersonActivity.this, "Successfully Updated!", Toast.LENGTH_SHORT).show();
+
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -382,6 +383,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
                             student.setAuthorizedPerson(authorizedPerson);
                             reference.child(key).setValue(student);
                             Toast.makeText(getApplicationContext(), "Successfully Updated!", Toast.LENGTH_SHORT).show();
+
                         }
                     }
 

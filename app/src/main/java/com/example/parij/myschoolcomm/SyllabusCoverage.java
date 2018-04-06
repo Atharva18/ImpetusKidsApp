@@ -1,9 +1,12 @@
 package com.example.parij.myschoolcomm;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.parij.myschoolcomm.Models.Student;
@@ -13,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SyllabusCoverage extends AppCompatActivity {
+public class SyllabusCoverage extends AppCompatActivity implements View.OnClickListener {
 
     TextView programtxt;
     TextView startdate;
@@ -29,7 +32,7 @@ public class SyllabusCoverage extends AppCompatActivity {
         setContentView(R.layout.syllabus_coverage);
        // Intent intent=getIntent();
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -38,13 +41,32 @@ public class SyllabusCoverage extends AppCompatActivity {
       //  toolbar.setNavigationIcon(R.drawable.homeclassbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
-        programtxt = (TextView) findViewById(R.id.program);
-        startdate=(TextView)findViewById(R.id.text);
-        enddate=(TextView)findViewById(R.id.text2);
-        link=(TextView)findViewById(R.id.link);
+        programtxt = findViewById(R.id.program);
+        startdate = findViewById(R.id.text);
+        enddate = findViewById(R.id.text2);
+        link = findViewById(R.id.link);
+
+        link.setOnClickListener(this);
 
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.link:
+                openLink(link.getText().toString());
+                break;
+
+        }
+    }
+
+    void openLink(String link) {
+        if (link.length() > 3) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(link));
+            startActivity(i);
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();

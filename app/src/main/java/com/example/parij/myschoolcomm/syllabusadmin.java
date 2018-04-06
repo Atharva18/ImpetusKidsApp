@@ -202,6 +202,8 @@ public class syllabusadmin extends AppCompatActivity {
 
                     Toast.makeText(syllabusadmin.this,"Successfully Updated!",Toast.LENGTH_LONG).show();
 
+                    finish();
+
                 }
 
             }

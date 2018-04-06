@@ -56,7 +56,7 @@ public class announcementadmin extends AppCompatActivity {
 
         main_initiate();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -97,6 +97,7 @@ public class announcementadmin extends AppCompatActivity {
                     announcement = new Announcement(title, detail, program, timestamp);
                     databaseReference.push().setValue(announcement);
                     Toast.makeText(announcementadmin.this,"Announcement Sent!",Toast.LENGTH_LONG).show();
+                    finish();
 
                 }
             }
@@ -120,11 +121,11 @@ public class announcementadmin extends AppCompatActivity {
     private void main_initiate() {
         //listViewAnnouncement = (ListView) findViewById(R.id.listViewAnnouncementAdmin);
 
-        editTextAnnouncementDetail = (EditText) findViewById(R.id.announcemnttext);
-        editTextAnnouncementTitle = (EditText) findViewById(R.id.editTextAnncouncementTitle);
-        spinnerAnnouncementProgram = (Spinner) findViewById(R.id.spinnerAnnouncementProgram);
-        sendbtn=(Button)findViewById(R.id.sendbtn);
-        buttonView = (Button) findViewById(R.id.buttonViewAnnouncementAdmin);
+        editTextAnnouncementDetail = findViewById(R.id.announcemnttext);
+        editTextAnnouncementTitle = findViewById(R.id.editTextAnncouncementTitle);
+        spinnerAnnouncementProgram = findViewById(R.id.spinnerAnnouncementProgram);
+        sendbtn = findViewById(R.id.sendbtn);
+        buttonView = findViewById(R.id.buttonViewAnnouncementAdmin);
         firebaseDatabase = FirebaseDatabase.getInstance();
         //spinnerFilter = (Spinner) findViewById(R.id.spinnerFilterAnnouncementAdmin);
 

@@ -147,6 +147,7 @@ public class ReqLeaveActivity extends AppCompatActivity {
                     //message = new Message(reason.getText().toString().trim(), from.getText().toString().trim(), to.getText().toString().trim(), System.currentTimeMillis(), username);
                     databaseReference.push().setValue(leaveRequest);
                     Toast.makeText(ReqLeaveActivity.this,"Request Sent!",Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
         });

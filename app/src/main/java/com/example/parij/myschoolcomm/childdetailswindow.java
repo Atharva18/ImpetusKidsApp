@@ -200,7 +200,7 @@ public class childdetailswindow extends AppCompatActivity {
         radioButtonChildProfile = dialog.findViewById(R.id.radioButtonDetailTypeChildProfile);
         radioButtonEmergency = dialog.findViewById(R.id.radioButtonDetailTypeEmergency);
         radioButtonParentProfile = dialog.findViewById(R.id.radioButtonDetailTypeParentProfile);
-        radioButtonMemoryCapture = dialog.findViewById(R.id.radioButtonDetailTypeCaptureMemory);
+        // radioButtonMemoryCapture = dialog.findViewById(R.id.radioButtonDetailTypeCaptureMemory);
         radioButtonArchiveProfile = dialog.findViewById(R.id.radioButtonDetailTypeArchiveProfile);
         radioButtonViewMemories = dialog.findViewById(R.id.radioButtonDetailTypeViewMemory);
         button = dialog.findViewById(R.id.buttonDetailTypeOk);
@@ -237,11 +237,11 @@ public class childdetailswindow extends AppCompatActivity {
                     //intent.putExtras(bundle);
                     startActivity(intent);
                 }
-                if(radioButtonMemoryCapture.isChecked())
+              /*  if(radioButtonMemoryCapture.isChecked())
                 {
                     selectedPosition = position;
                     EasyImage.openChooserWithGallery(childdetailswindow.this, "Capture/Select image", 0);
-                }
+                }*/
                 if (radioButtonArchiveProfile.isChecked()) {
                     selectedPosition = position;
                     archiveProfile(position);
