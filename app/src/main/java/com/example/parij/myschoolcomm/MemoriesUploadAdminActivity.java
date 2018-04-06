@@ -252,7 +252,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 progressDialog.dismiss();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.FBDB).child("Programs");
-                if (arrayListMemories.size() < 9)
+                if (arrayListMemories.size() < 10)
                     arrayListMemories.add(new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));
                 else
                     arrayListMemories.set(lowestTimestampIndex, new Memory(System.currentTimeMillis(), task.getResult().getDownloadUrl().toString()));

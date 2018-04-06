@@ -84,7 +84,7 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
                 DatabaseReference reference = database.getReference("newDb").child("Programs").child(program).child("memoryImageLinks");
 
 
-                reference.addValueEventListener(new ValueEventListener() {
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         imageLinks = new ArrayList<>();
