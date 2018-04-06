@@ -1,9 +1,12 @@
 package com.example.parij.myschoolcomm;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.parij.myschoolcomm.Models.Student;
@@ -13,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HomeWorkActivity extends AppCompatActivity {
+public class HomeWorkActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView programtxt, startdate, enddate, monday, tuesday, wednesday, thursday, friday, saturday;
     // Bundle bundle;
@@ -49,7 +52,7 @@ public class HomeWorkActivity extends AppCompatActivity {
         thursday = findViewById(R.id.thursday);
         friday = findViewById(R.id.friday);
         saturday = findViewById(R.id.saturday);
-
+        TextView linkTextViews[] = {monday, tuesday, wednesday, thursday, friday, saturday};
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -58,6 +61,10 @@ public class HomeWorkActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Homework");
         //  toolbar.setNavigationIcon(R.drawable.homeclassbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
+
+        for (int i = 0; i < 6; i++) {
+            linkTextViews[i].setOnClickListener(this);
+        }
 
     }
 
@@ -131,6 +138,38 @@ public class HomeWorkActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.monday:
+                openLink(monday.getText().toString());
+                break;
+            case R.id.tuesday:
+                openLink(tuesday.getText().toString());
+                break;
+            case R.id.wednesday:
+                openLink(wednesday.getText().toString());
+                break;
+            case R.id.thursday:
+                openLink(thursday.getText().toString());
+                break;
+            case R.id.friday:
+                openLink(friday.getText().toString());
+                break;
+            case R.id.saturday:
+                openLink(saturday.getText().toString());
+                break;
+        }
+    }
+
+    void openLink(String link) {
+        if (link.length() > 3) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(link));
+            startActivity(i);
+        }
     }
 }
 /*

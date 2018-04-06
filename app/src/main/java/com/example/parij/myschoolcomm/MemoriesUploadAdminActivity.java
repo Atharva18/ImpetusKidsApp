@@ -169,7 +169,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference reference = database.getReference("newDb").child("Programs").child(program).child("memoryImageLinks");
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Memory> arrayListMemories = new ArrayList<>();
@@ -195,10 +195,8 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
                 //  arrayListMemories=programs.getMemoryImageLinks();
                 final int lowestTimestampIndex = lowestTimestamp(arrayListMemories);
                 // final Programs progobj = programs;
-                storageReference = FirebaseStorage.getInstance().getReference().child("Memories").child(program).child(lowestTimestampIndex + "");
 
                 firebaseUploadTask(0, images, arrayListMemories, lowestTimestampIndex, program);
-
 
             }
 
@@ -207,6 +205,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
 
             }
         });
+
 
 
        /* if (programsArrayList.size() != 0) {
@@ -225,6 +224,8 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
     }
 
     void firebaseUploadTask(final int i, final ArrayList<Image> images, final ArrayList<Memory> arrayListMemories, final int lowestTimestampIndex, final String program) {
+        storageReference = FirebaseStorage.getInstance().getReference().child("Memories").child(program).child(lowestTimestampIndex + "");
+
         final ProgressDialog progressDialog = new ProgressDialog(MemoriesUploadAdminActivity.this);
         progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
