@@ -171,13 +171,14 @@
         android:layout_weight="15">
 
         <EditText
-            android:id="@+id/theme"
+            android:id="@+id/parenttheme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
-            android:hint="Child's Line"
+            android:hint="Parent's Line"
             android:inputType="textMultiLine"
             android:textSize="18sp" />
+
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -189,12 +190,13 @@
         android:layout_marginTop="10dp"
         android:layout_weight="15">
 
+
         <EditText
-            android:id="@+id/parenttheme"
+            android:id="@+id/theme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
-            android:hint="Parent's Line"
+            android:hint="Child's Line"
             android:inputType="textMultiLine"
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>

@@ -180,8 +180,9 @@
                 android:id="@+id/monday"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:autoLink="web"
                 android:hint="Monday"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textSize="18sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -198,8 +199,9 @@
                 android:id="@+id/tuesday"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:autoLink="web"
                 android:hint="Tuesday"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textSize="18sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -216,8 +218,9 @@
                 android:id="@+id/wednesday"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:autoLink="web"
                 android:hint="Wednesday"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textSize="18sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -234,8 +237,9 @@
                 android:id="@+id/thursday"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:autoLink="web"
                 android:hint="Thursday"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textSize="18sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -252,8 +256,9 @@
                 android:id="@+id/friday"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:autoLink="web"
                 android:hint="Friday"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textSize="18sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -270,8 +275,9 @@
                 android:id="@+id/saturday"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:autoLink="all"
                 android:hint="Saturday"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:textSize="18sp" />
         </android.support.design.widget.TextInputLayout>
 

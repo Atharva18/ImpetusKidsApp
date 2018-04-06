@@ -211,8 +211,14 @@ public class announcementuser extends AppCompatActivity {
             }
         }
         for (int i = 3; i < arrayListAnnouncement.size(); i++) {
-            arrayListMsg.add("Title : " + arrayListAnnouncement.get(i).getTitle() + "\nMessage : " + arrayListAnnouncement.get(i).getDetail());
-            Log.d("announcement", "Title : " + arrayListAnnouncement.get(i).getTitle() + "\nMessage : " + arrayListAnnouncement.get(i).getDetail());
+            String programName;
+            if (arrayListAnnouncement.get(i).getProgram() == 20)
+                programName = "All Programs";
+            else
+                programName = Constants.getProgramName(arrayListAnnouncement.get(i).getProgram());
+
+            arrayListMsg.add("Program : " + programName + "\nTitle : " + arrayListAnnouncement.get(i).getTitle() + "\nMessage : " + arrayListAnnouncement.get(i).getDetail());
+            Log.d("announcement", "Title : " + arrayListAnnouncement.get(i).getTitle() + "\nMessage : " + arrayListAnnouncement.get(i).getDetail() + "\nProgram :" + arrayListAnnouncement.get(i).getProgram());
         }
         return arrayListAnnouncement;
     }

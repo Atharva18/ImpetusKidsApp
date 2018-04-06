@@ -38,17 +38,19 @@ public class HomeWorkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_work);
 
-        programtxt = (TextView) findViewById(R.id.program);
-        startdate = (TextView) findViewById(R.id.textView);
-        enddate = (TextView) findViewById(R.id.textView2);
-        monday = (TextView) findViewById(R.id.monday);
-        tuesday = (TextView) findViewById(R.id.tuesday);
-        wednesday = (TextView) findViewById(R.id.wednesday);
-        thursday = (TextView) findViewById(R.id.thursday);
-        friday = (TextView) findViewById(R.id.friday);
-        saturday = (TextView) findViewById(R.id.saturday);
+        programtxt = findViewById(R.id.program);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        startdate = findViewById(R.id.textView);
+        enddate = findViewById(R.id.textView2);
+        monday = findViewById(R.id.monday);
+        // monday.setMovementMethod(LinkMovementMethod.getInstance());
+        tuesday = findViewById(R.id.tuesday);
+        wednesday = findViewById(R.id.wednesday);
+        thursday = findViewById(R.id.thursday);
+        friday = findViewById(R.id.friday);
+        saturday = findViewById(R.id.saturday);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

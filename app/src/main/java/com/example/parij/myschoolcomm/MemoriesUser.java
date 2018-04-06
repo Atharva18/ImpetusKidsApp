@@ -80,14 +80,26 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
                     }
                 }
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference reference = database.getReference("newDb").child("Programs").child(program);
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference("newDb").child("Programs").child(program).child("memoryImageLinks");
 
 
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        imageLinks = (ArrayList<Memory>) dataSnapshot.child("memoryImageLinks").getValue();
+                        imageLinks = new ArrayList<>();
+                        Log.e("FBDB", "DS: " + dataSnapshot.toString());
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            imageLinks.add(ds.getValue(Memory.class));
+                        }
+
+                        for (Memory m : imageLinks) {
+                            imageUrls.add(m.getUrl());
+                            Log.d("memories", m.getUrl());
+                        }
+                        progressCount = imageUrls.size();
+                        Log.d("size", progressCount + "");
+                        startMemories();
                     }
 
                     @Override
@@ -97,13 +109,6 @@ public class MemoriesUser extends AppCompatActivity implements StoriesProgressVi
                 });
 
 
-                for (Memory m : imageLinks) {
-                    imageUrls.add(m.getUrl());
-                    Log.d("memories", m.getUrl());
-                }
-                progressCount = imageUrls.size();
-                Log.d("size", progressCount + "");
-                startMemories();
             }
 
             @Override

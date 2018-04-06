@@ -2,6 +2,7 @@ package com.example.parij.myschoolcomm;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,7 +44,6 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
     AlertDialog dialog = null;
     View view;
     String myProgram = "";
-
     //  ArrayList<Programs> programsArrayList = new ArrayList<>();
     StorageReference storageReference;
     Bundle bundle = new Bundle();
@@ -61,6 +61,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_memories_admin);
         AlertDialog.Builder build = new AlertDialog.Builder(MemoriesUploadAdminActivity.this);
         view = getLayoutInflater().inflate(R.layout.dialog_choose_program, null);
+
         initialise();
 /*
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -87,33 +88,37 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (radioButtonAll.isChecked()) {
-                    select_photo((Constants.getProgramName(4)));
-                    select_photo((Constants.getProgramName(5)));
-                    select_photo((Constants.getProgramName(6)));
-                    select_photo((Constants.getProgramName(7)));
-                    select_photo((Constants.getProgramName(8)));
-                    dialog.cancel();
+                    select_photo("all");
+
+                    dialog.dismiss();
                 } else if (radioButtonSeeding.isChecked()) {
                     select_photo((Constants.getProgramName(5)));
-                    dialog.cancel();
+                    dialog.dismiss();
                 } else if (radioButtonBudding.isChecked()) {
                     select_photo((Constants.getProgramName(6)));
-                    dialog.cancel();
+                    dialog.dismiss();
                 } else if (radioButtonBlossoming.isChecked()) {
                     select_photo((Constants.getProgramName(7)));
-                    dialog.cancel();
+                    dialog.dismiss();
                 } else if (radioButtonFlourishing.isChecked()) {
                     select_photo((Constants.getProgramName(8)));
-                    dialog.cancel();
+                    dialog.dismiss();
                 } else if (radioButtonDayCare.isChecked()) {
                     select_photo((Constants.getProgramName(4)));
-                    dialog.cancel();
+                    dialog.dismiss();
                 }
 
             }
         });
         build.setView(view);
         dialog = build.create();
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                startActivity(new Intent(MemoriesUploadAdminActivity.this, admindashboard.class));
+                finish();
+            }
+        });
         dialog.show();
     }
 
@@ -144,19 +149,34 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
             images = data.getParcelableArrayListExtra(com.darsh.multipleimageselect.helpers.Constants.INTENT_EXTRA_IMAGES);
             Log.e("Images", images.get(0).path);
             String program = myProgram;
-            uploadPhoto(images, program);
+            if (myProgram.equals("all")) {
+
+                for (int i = 4; i < 9; i++) {
+                    program = Constants.getProgramName(i);
+                    uploadPhoto(images, program);
+                }
+            } else {
+                uploadPhoto(images, program);
+            }
+
+        } else {
+            startActivity(new Intent(MemoriesUploadAdminActivity.this, admindashboard.class));
+            finish();
         }
     }
 
     void uploadPhoto(final ArrayList<Image> images, final String program) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("newDb").child("Programs").child(program);
+
+        DatabaseReference reference = database.getReference("newDb").child("Programs").child(program).child("memoryImageLinks");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Memory> arrayListMemories = new ArrayList<>();
 
-                arrayListMemories = (ArrayList<Memory>) dataSnapshot.child("memoryImageLinks").getValue();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    arrayListMemories.add(ds.getValue(Memory.class));
+                }
 
                    /* Toast.makeText(MemoriesUploadAdminActivity.this,"Here1",Toast.LENGTH_SHORT).show();
                     Log.d("value",dataSnapshot.getValue().toString());
@@ -214,6 +234,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
         File file = new File(String.valueOf(images.get(i).path));
         Uri uri = Uri.fromFile(file);
         UploadTask uploadTask = storageReference.putFile(Uri.parse(uri.toString()));
+
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -240,6 +261,7 @@ public class MemoriesUploadAdminActivity extends AppCompatActivity {
                 databaseReference.child(program).setValue(progobj);
 
                 Toast.makeText(MemoriesUploadAdminActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+
                 if (i == images.size() - 1) {
                     startActivity(new Intent(MemoriesUploadAdminActivity.this, admindashboard.class));
                     finish();

@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme.AppBarOverlay" />
 
     <TextView
-        android:id="@+id/textView52"
+        android:id="@+id/textView53"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -29,12 +29,12 @@
         android:layout_marginTop="10dp"
         android:layout_weight="4"
         android:gravity="center_vertical"
-        android:text="Child's Line: "
+        android:text="Parent's Line: "
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <com.libRG.CustomTextView
-        android:id="@+id/theme"
+        android:id="@+id/parenttheme"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -54,8 +54,9 @@
         app:lib_setRoundedView="true" />
 
 
+
     <TextView
-        android:id="@+id/textView53"
+        android:id="@+id/textView52"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -64,12 +65,12 @@
         android:layout_marginTop="10dp"
         android:layout_weight="4"
         android:gravity="center_vertical"
-        android:text="Parent's Line: "
+        android:text="Child's Line: "
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <com.libRG.CustomTextView
-        android:id="@+id/parenttheme"
+        android:id="@+id/theme"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
