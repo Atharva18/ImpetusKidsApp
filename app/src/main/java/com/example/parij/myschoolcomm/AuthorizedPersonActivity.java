@@ -66,7 +66,7 @@ public class AuthorizedPersonActivity extends AppCompatActivity {
 
     //creating reference to firebase storage
     FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReferenceFromUrl("gs://myschoolcomm-a80d4.appspot.com/Play_Authorized");
+    StorageReference storageRef = storage.getReferenceFromUrl("gs://impetus-kids-7e284.appspot.com/Play_Authorized");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
