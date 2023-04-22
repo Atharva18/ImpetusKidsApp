@@ -1,4 +1,4 @@
-# ImpetusKidsApp
+# Impetus Kids Android Application
 
 A Consultancy Project (See Attached PDF) wherein we developed an Android Application for a pre-primary school 'Impetus Kids' to ease the process of communication between parents and teachers.
 Here, we tried to bring the entire administration in a single app.
