@@ -1,12 +1,12 @@
 # ImpetusKidsApp
 
-Android App for a pre-primary school 'Impetus Kids'  to ease the process of communication between parents and teachers.
-Hence, we tried to bring the entire administration in a single app.
-There were two types of users - Teacher and Parent
-Tech Stack - Language Used was Java and Firebase database was used.
+A Consultancy Project (See Attached PDF) wherein we developed an Android Application for a pre-primary school 'Impetus Kids' to ease the process of communication between parents and teachers.
+Here, we tried to bring the entire administration in a single app.
+There are two types of users in this app - Teacher and Parent
+Tech Stack - Language used was Java and Database used was Firebase
 
-## Functionalities of the App:
-1) Announcements - The teacher can post announcements via the app and these can be viewed by the parents.
+## Functionalities: 
+1) Announcements - The teacher can post important announcements via the app and these can be viewed by the parents.
 2) Leave Request - The Parent can generate a leave request and the teacher can approve it.
 3) Homework - The teacher can post daily homework on the app which can be viewed by the parents.
 4) Syllabus Coverage - The teacher can post syllabus coverage of all the subjects.
