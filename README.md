@@ -14,3 +14,4 @@ Tech Stack - Language Used was Java and Firebase database was used.
 6) Live CCTV - Parents can view live CCTV coverage of their child's classroom.
 7) Authorized Person/ Emergency Person - Parents can upload a picture as well as the contact details of the authorized person who can collect their child from school besides them.
 
+[Consultancy Work carried out by our Students and Faculty from Comp Engg. Dept..pdf](https://github.com/Atharva18/ImpetusKidsApp/files/11300017/Consultancy.Work.carried.out.by.our.Students.and.Faculty.from.Comp.Engg.Dept.pdf)
